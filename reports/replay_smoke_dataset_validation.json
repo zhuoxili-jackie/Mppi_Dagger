@@ -1,0 +1,108 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/robot_move_lt/robot_move_lt/lateral_mppi_dagger/datasets/replay_smoke",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "replay_ref0_seed42",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref1_seed43",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref2_seed44",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref3_seed45",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref4_seed46",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref5_seed47",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref0_seed48",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref1_seed49",
+      "split": "train",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref2_seed50",
+      "split": "validation",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref3_seed51",
+      "split": "validation",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref4_seed52",
+      "split": "test",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "replay_ref5_seed53",
+      "split": "test",
+      "steps": 64,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "test": 2,
+    "train": 8,
+    "validation": 2
+  }
+}

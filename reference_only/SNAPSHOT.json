@@ -1,0 +1,8 @@
+{
+  "name": "RTWholeBodyMPPI",
+  "upstream": "https://github.com/jrapudg/RTWholeBodyMPPI.git",
+  "commit": "55e6dc35d042ed5f175ad6ae312c886282f32529",
+  "runtime_dependency": false,
+  "install_into_isaaclab_environment": false,
+  "purpose": "Reference-only inspection of the published MPPI algorithm"
+}

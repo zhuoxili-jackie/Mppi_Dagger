@@ -1,0 +1,12 @@
+backend: reference_wbc
+status: selected_for_mapping_and_closed_loop_feasibility_gate
+control_hz: 50
+lookahead_frames: 0
+wheel_action_mode: hard_zero
+reject_if_raw_clip_max: 0.25
+minimum_safety_margin: 0.0
+last_feasible_reuse_steps: 2
+fixed_gate_seeds: 50
+required_successes: 48
+required_valid_rate: 0.99
+

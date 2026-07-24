@@ -1,0 +1,121 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_smoke_16x8",
+  "episodes": [
+    {
+      "episode_id": "mppi_smoke_16x8_ref0_seed1300",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 95.3743896484375,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.010339820757508278,
+        "action_residual": 0.015699423849582672,
+        "base_orientation": 0.26243656873703003,
+        "base_position": 0.25929540395736694,
+        "box_x_drift": 0.09704649448394775,
+        "contact_mismatch": 4.84375,
+        "edge_drop": 0.1725843846797943,
+        "joint_acceleration": 0.00924009084701538,
+        "joint_limit": 0.0,
+        "joint_position": 1.9304988384246826,
+        "joint_velocity": 1.8669660091400146,
+        "lateral_velocity": 0.5162534713745117,
+        "terminal": 0.2004583179950714,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 0.5635210275650024,
+        "wheel_slip": 0.07989548146724701
+      },
+      "mppi_effective_sample_size_mean": 10.589476585388184,
+      "mppi_minimum_cost_mean": 10.827985763549805,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.34375,
+      "steps": 32,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    }
+  ],
+  "expert_backend": "mppi",
+  "expert_config": {
+    "backend": "whole_body_mppi",
+    "contact_force_threshold_n": 8.0,
+    "control_hz": 50,
+    "cost_weights": {
+      "action_rate": 0.025,
+      "action_residual": 0.04,
+      "base_orientation": 18.0,
+      "base_position": 35.0,
+      "box_x_drift": 60.0,
+      "contact_mismatch": 2.0,
+      "edge_drop": 120.0,
+      "joint_acceleration": 2e-06,
+      "joint_limit": 150.0,
+      "joint_position": 10.0,
+      "joint_velocity": 0.15,
+      "lateral_velocity": 4.0,
+      "terminal": 8.0,
+      "termination": 2500.0,
+      "torque_limit": 0.2,
+      "wheel_position": 45.0,
+      "wheel_slip": 0.3
+    },
+    "gpu_hour_budget": 2,
+    "horizon": 8,
+    "noise_std_leg": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3
+    ],
+    "note": "Reference-centred 12D candidates with four exact-zero wheel actions; state-copy and closed-loop gates remain fail-closed.",
+    "official_repository": "https://github.com/jrapudg/RTWholeBodyMPPI",
+    "optimization_iterations": 1,
+    "samples": 16,
+    "seed": 42,
+    "smoke_episode_budget": 25,
+    "smoke_profile": {
+      "horizon": 8,
+      "optimization_iterations": 1,
+      "samples": 16
+    },
+    "source_vendored": false,
+    "state_copy_gate": {
+      "cost_max_abs": 1e-05,
+      "state_max_abs": 1e-05
+    },
+    "status": "isaac_parallel_rollout_feasibility",
+    "temperature": 1.0,
+    "temporal_smoothing": 0.7,
+    "warm_start": true
+  },
+  "expert_config_hash": "c4356633b80e03f91fc573e13a4b23616640f222798999d0b7654039243f20ca",
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "summary": {
+    "episodes": 1,
+    "mean_solve_ms": 95.3743896484375,
+    "shield_intervention_rate": 0.34375,
+    "success_rate": 1.0,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0"
+}

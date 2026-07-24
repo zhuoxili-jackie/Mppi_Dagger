@@ -1,0 +1,31 @@
+{
+  "arguments": {
+    "active_gpu": 0,
+    "anim_recording_enabled": false,
+    "anim_recording_start_time": 0,
+    "anim_recording_stop_time": 10,
+    "cpu": false,
+    "create_new_stage": false,
+    "device": "cuda:0",
+    "disable_fabric": false,
+    "enable_cameras": false,
+    "headless": true,
+    "hide_ui": true,
+    "horizon": 8,
+    "info": false,
+    "kit_args": "",
+    "physics_gpu": 0,
+    "ref_id": 0,
+    "rendering_mode": null,
+    "report": "reports/09_mppi_resetfix_statecopy_nominal.json",
+    "samples": 16,
+    "scenario": "nominal",
+    "seed": 1200,
+    "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+    "verbose": false,
+    "xr": false
+  },
+  "error_type": "AttributeError",
+  "message": "'list' object has no attribute 'to'",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/scripts/validate_mppi_rollout.py\", line 227, in <module>\n    main()\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/scripts/validate_mppi_rollout.py\", line 109, in main\n    adapter.reset(args_cli.seed, args_cli.ref_id)\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/src/lateral_mppi_dagger/env/isaac_adapter.py\", line 173, in reset\n    MotionCommand._resample_command(\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/tasks/manager_based/beyondmimic/mdp/commands.py\", line 334, in _resample_command\n    self.robot.write_joint_state_to_sim(joint_pos[env_ids], joint_vel[env_ids], env_ids=env_ids)\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/assets/articulation/articulation.py\", line 536, in write_joint_state_to_sim\n    self.write_joint_position_to_sim(position, joint_ids=joint_ids, env_ids=env_ids)\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/assets/articulation/articulation.py\", line 575, in write_joint_position_to_sim\n    self.root_physx_view.set_dof_positions(self._data.joint_pos, indices=physx_env_ids)\n  File \"/home/zzc/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py\", line 1792, in set_dof_positions\n    indices = self._frontend.as_contiguous_uint32(indices)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/zzc/miniconda3/envs/isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/frontend_torch.py\", line 88, in as_contiguous_uint32\n    return tensor.to(torch.int32).contiguous()\n           ^^^^^^^^^\nAttributeError: 'list' object has no attribute 'to'\n"
+}

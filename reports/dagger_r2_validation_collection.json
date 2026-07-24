@@ -1,0 +1,473 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": [
+    {
+      "episode_id": "dagger_r2_validation_ref0_seed12500",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 569.3089599609375,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.355669230222702,
+        "action_residual": 1.6118099689483643,
+        "base_orientation": 88.83187103271484,
+        "base_position": 28.125518798828125,
+        "box_x_drift": 19.145647048950195,
+        "contact_mismatch": 14.514286041259766,
+        "edge_drop": 31.283193588256836,
+        "joint_acceleration": 0.8243144154548645,
+        "joint_limit": 2.8930840926477686e-05,
+        "joint_position": 61.52439880371094,
+        "joint_velocity": 87.21385955810547,
+        "lateral_velocity": 20.308774948120117,
+        "terminal": 2.5160534381866455,
+        "termination": 285.71429443359375,
+        "torque_limit": 0.0,
+        "wheel_position": 18.169132232666016,
+        "wheel_slip": 1.0211862325668335
+      },
+      "mppi_effective_sample_size_mean": 11.190448760986328,
+      "mppi_minimum_cost_mean": 661.1599731445312,
+      "mppi_rollout_termination_rate_mean": 0.12377232313156128,
+      "shield_intervention_rate": 0.9714285714285714,
+      "steps": 35,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref1_seed12501",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 543.9556884765625,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.2864270806312561,
+        "action_residual": 1.1196863651275635,
+        "base_orientation": 36.94203186035156,
+        "base_position": 38.311798095703125,
+        "box_x_drift": 25.93270492553711,
+        "contact_mismatch": 11.416666984558105,
+        "edge_drop": 42.41648864746094,
+        "joint_acceleration": 0.6567550301551819,
+        "joint_limit": 0.0003879883443005383,
+        "joint_position": 48.18036651611328,
+        "joint_velocity": 70.56407928466797,
+        "lateral_velocity": 21.838882446289062,
+        "terminal": 0.995158314704895,
+        "termination": 1319.4444580078125,
+        "torque_limit": 0.0,
+        "wheel_position": 12.43680191040039,
+        "wheel_slip": 0.46109363436698914
+      },
+      "mppi_effective_sample_size_mean": 12.428095817565918,
+      "mppi_minimum_cost_mean": 1631.0037841796875,
+      "mppi_rollout_termination_rate_mean": 0.5817057490348816,
+      "shield_intervention_rate": 1.0,
+      "steps": 36,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref2_seed12502",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 566.20947265625,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.2699481248855591,
+        "action_residual": 0.9693694114685059,
+        "base_orientation": 54.96281051635742,
+        "base_position": 16.172252655029297,
+        "box_x_drift": 5.309837341308594,
+        "contact_mismatch": 11.932432174682617,
+        "edge_drop": 11.063638687133789,
+        "joint_acceleration": 0.6955351829528809,
+        "joint_limit": 4.052674285048852e-06,
+        "joint_position": 38.665199279785156,
+        "joint_velocity": 60.27715301513672,
+        "lateral_velocity": 11.988730430603027,
+        "terminal": 0.9710763692855835,
+        "termination": 945.9459228515625,
+        "torque_limit": 0.0,
+        "wheel_position": 9.36535358428955,
+        "wheel_slip": 0.6091032028198242
+      },
+      "mppi_effective_sample_size_mean": 7.1443400382995605,
+      "mppi_minimum_cost_mean": 1169.1746826171875,
+      "mppi_rollout_termination_rate_mean": 0.3788006901741028,
+      "shield_intervention_rate": 1.0,
+      "steps": 37,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref3_seed12503",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 563.7379760742188,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.010908082127571106,
+        "action_residual": 0.23105651140213013,
+        "base_orientation": 1.9000378847122192,
+        "base_position": 3.098879098892212,
+        "box_x_drift": 0.49565592408180237,
+        "contact_mismatch": 4.573333263397217,
+        "edge_drop": 0.11886028200387955,
+        "joint_acceleration": 0.024699313566088676,
+        "joint_limit": 0.0,
+        "joint_position": 1.0077317953109741,
+        "joint_velocity": 1.976108431816101,
+        "lateral_velocity": 0.39138954877853394,
+        "terminal": 0.0757250264286995,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 2.0043866634368896,
+        "wheel_slip": 0.09630582481622696
+      },
+      "mppi_effective_sample_size_mean": 17.803606033325195,
+      "mppi_minimum_cost_mean": 15.954651832580566,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref4_seed12504",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 562.9970703125,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.014164107851684093,
+        "action_residual": 0.26115891337394714,
+        "base_orientation": 2.816758394241333,
+        "base_position": 3.8855485916137695,
+        "box_x_drift": 0.49548599123954773,
+        "contact_mismatch": 5.130000114440918,
+        "edge_drop": 0.134171262383461,
+        "joint_acceleration": 0.0313967764377594,
+        "joint_limit": 0.0,
+        "joint_position": 1.5215284824371338,
+        "joint_velocity": 2.5210163593292236,
+        "lateral_velocity": 0.4936983287334442,
+        "terminal": 0.10526741296052933,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 2.7495970726013184,
+        "wheel_slip": 0.13715487718582153
+      },
+      "mppi_effective_sample_size_mean": 17.07000732421875,
+      "mppi_minimum_cost_mean": 20.211490631103516,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref5_seed12505",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 564.0466918945312,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.02152015082538128,
+        "action_residual": 0.28656286001205444,
+        "base_orientation": 2.498633623123169,
+        "base_position": 3.721851348876953,
+        "box_x_drift": 0.5712829232215881,
+        "contact_mismatch": 4.545000076293945,
+        "edge_drop": 0.17956899106502533,
+        "joint_acceleration": 0.04103837162256241,
+        "joint_limit": 5.4036288332781623e-08,
+        "joint_position": 1.7328605651855469,
+        "joint_velocity": 3.275979518890381,
+        "lateral_velocity": 0.6970719695091248,
+        "terminal": 0.11184985935688019,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 2.602081298828125,
+        "wheel_slip": 0.1960117667913437
+      },
+      "mppi_effective_sample_size_mean": 15.329197883605957,
+      "mppi_minimum_cost_mean": 20.424694061279297,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    }
+  ],
+  "expert_backend": "mppi",
+  "expert_config": {
+    "backend": "whole_body_mppi",
+    "closed_loop_gate": {
+      "fixed_seed_count": 50,
+      "full_episode_steps": 300,
+      "require_implementation_hashes": true,
+      "require_requested_reference_reset": true,
+      "required_scenario_resolved_name": "nominal",
+      "required_successes": 48,
+      "required_teacher_valid_rate": 0.99,
+      "reset_reference_tolerance": 1e-05,
+      "rotate_references": true,
+      "seed_file": "configs/seeds_nominal_100.txt",
+      "tracking_thresholds": {
+        "base_orientation_rmse_rad": 0.25,
+        "base_position_max_abs_m": [
+          0.2,
+          0.2,
+          0.12
+        ],
+        "box_local_x_drift_max_abs_m": 0.15,
+        "contact_mismatch_rate": 0.35,
+        "wheel_position_rmse_m": 0.25
+      }
+    },
+    "contact_force_threshold_n": 8.0,
+    "control_hz": 50,
+    "cost_weights": {
+      "action_rate": 0.025,
+      "action_residual": 0.04,
+      "base_orientation": 18.0,
+      "base_position": 35.0,
+      "box_x_drift": 60.0,
+      "contact_mismatch": 2.0,
+      "edge_drop": 120.0,
+      "joint_acceleration": 2e-06,
+      "joint_limit": 150.0,
+      "joint_position": 10.0,
+      "joint_velocity": 0.15,
+      "lateral_velocity": 4.0,
+      "terminal": 8.0,
+      "termination": 2500.0,
+      "torque_limit": 0.2,
+      "wheel_position": 45.0,
+      "wheel_slip": 0.3
+    },
+    "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+    "feasibility_gpu_hour_budget": 2,
+    "formal_gate_budget_adjustment_reason": "Measured 0.538 s/control step gives approximately 2.25 GPU-hours for 50x300 steps.",
+    "formal_gate_gpu_hour_budget": 3,
+    "horizon": 20,
+    "noise_scale": 1.0,
+    "noise_std_leg": [
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579
+    ],
+    "note": "Isaac-native reference-centred 12D MPPI with four exact-zero wheel actions; state-copy, ref-0 full episode, and six-reference coverage gates passed; formal 50-seed gate remains fail-closed.",
+    "official_repository": "https://github.com/jrapudg/RTWholeBodyMPPI",
+    "optimization_iterations": 2,
+    "reference_action_lookahead_steps": 1,
+    "reference_only_commit": "55e6dc35d042ed5f175ad6ae312c886282f32529",
+    "reference_only_runtime_dependency": false,
+    "runtime_config": {
+      "action_delay_steps": 0,
+      "backend": "whole_body_mppi",
+      "contact_force_threshold_n": 8.0,
+      "control_hz": 50,
+      "cost_weights": {
+        "action_rate": 0.025,
+        "action_residual": 0.04,
+        "base_orientation": 18.0,
+        "base_position": 35.0,
+        "box_x_drift": 60.0,
+        "contact_mismatch": 2.0,
+        "edge_drop": 120.0,
+        "joint_acceleration": 2e-06,
+        "joint_limit": 150.0,
+        "joint_position": 10.0,
+        "joint_velocity": 0.15,
+        "lateral_velocity": 4.0,
+        "terminal": 8.0,
+        "termination": 2500.0,
+        "torque_limit": 0.2,
+        "wheel_position": 45.0,
+        "wheel_slip": 0.3
+      },
+      "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+      "horizon": 20,
+      "implementation_sha256": {
+        "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+        "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+        "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+        "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+        "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+        "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+        "src/lateral_mppi_dagger/env/scenarios.py": "54a28a8da31181f1fe527143ad71a314c6a67a8b716f750725358c22158928ce",
+        "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+        "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+      },
+      "mppi_seed": 42,
+      "noise_std_leg": [
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "optimization_iterations": 2,
+      "reference_action_lookahead_steps": 1,
+      "samples": 256,
+      "selection_mode": "weighted",
+      "temperature": 1.0,
+      "temporal_smoothing": 0.7,
+      "warm_start": true,
+      "wheel_action_mode": "hard_zero"
+    },
+    "runtime_config_hash": "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6",
+    "samples": 256,
+    "seed": 42,
+    "selection_mode": "weighted",
+    "smoke_episode_budget": 25,
+    "smoke_profile": {
+      "horizon": 8,
+      "optimization_iterations": 1,
+      "samples": 16
+    },
+    "source_vendored": false,
+    "state_copy_gate": {
+      "cost_max_abs": 1e-05,
+      "state_max_abs": 1e-05
+    },
+    "status": "multireference_coverage_passed_formal_gate_pending",
+    "temperature": 1.0,
+    "temporal_smoothing": 0.7,
+    "warm_start": true
+  },
+  "expert_config_hash": "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6",
+  "expert_implementation_sha256": {
+    "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+    "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+    "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+    "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+    "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+    "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+    "src/lateral_mppi_dagger/env/scenarios.py": "54a28a8da31181f1fe527143ad71a314c6a67a8b716f750725358c22158928ce",
+    "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+    "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+  },
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "observation_noise_std": 0.005,
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "scenario_config_hash": "4a72aa431335602da1c7b85c12fddd700907d7f1b35945f97a0ab45f142579a8",
+  "scenario_profile": {
+    "action_delay_steps": 0,
+    "fixed_physics": {
+      "box_dynamic_friction": 0.9,
+      "box_static_friction": 1.1,
+      "front_wheel_dynamic_friction": 0.82,
+      "front_wheel_static_friction": 1.0,
+      "rear_wheel_dynamic_friction": 0.82,
+      "rear_wheel_static_friction": 1.0,
+      "robot_mass_scale": 1.02,
+      "robot_non_wheel_dynamic_friction": 0.7,
+      "robot_non_wheel_static_friction": 0.85
+    },
+    "initial_state": {
+      "joint_position": [
+        -0.008,
+        0.008
+      ],
+      "pose": {
+        "pitch": [
+          -0.008,
+          0.008
+        ],
+        "roll": [
+          -0.008,
+          0.008
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.006,
+          0.006
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.004,
+          0.004
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          -0.01,
+          0.01
+        ],
+        "roll": [
+          -0.01,
+          0.01
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.015,
+          0.015
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.008,
+          0.008
+        ]
+      }
+    },
+    "observation_noise_std": 0.005,
+    "physics_profile": "fixed_light_shift",
+    "platform_position_jitter_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "requested_name": "light_friction_mass_observation_noise",
+    "resolved_name": "light_friction_mass_observation_noise"
+  },
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "student_checkpoint": {
+    "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r1/student_best_checkpoint.pt",
+    "sha256": "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a"
+  },
+  "summary": {
+    "episodes": 6,
+    "mean_solve_ms": 561.7093098958334,
+    "shield_intervention_rate": 0.49523809523809526,
+    "success_rate": 0.5,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "video_dir": null
+}

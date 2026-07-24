@@ -1,0 +1,49 @@
+{
+  "compressed_bytes": 3268472,
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_multiref_gate6",
+  "episodes": 6,
+  "expert_config_hashes": [
+    "5395498507811cf1e2483746dd192321b0776bd7517b91e922ec04ee79763ed6"
+  ],
+  "frames": 1800,
+  "mean_teacher_solve_ms": 542.8027954101562,
+  "p95_teacher_solve_ms": 572.4781921386718,
+  "reference_episodes": {
+    "0": 1,
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 1
+  },
+  "round_episodes": {
+    "0": 6
+  },
+  "round_frames": {
+    "0": 1800
+  },
+  "round_student_behavior_frames": {
+    "0": 0
+  },
+  "scenario_episodes": {
+    "nominal_multiref_coverage": 6
+  },
+  "scenario_frames": {
+    "nominal_multiref_coverage": 1800
+  },
+  "schema_version": "pcbc-dataset-summary-v1",
+  "shield_intervention_rate": 0.0,
+  "split_episodes": {
+    "test": 6
+  },
+  "split_frames": {
+    "test": 1800
+  },
+  "student_checkpoint_hashes": [],
+  "student_valid_rate": 0.0,
+  "success_counts": {
+    "success": 6
+  },
+  "teacher_valid_rate": 1.0,
+  "wheel_action_exact_zero": true
+}

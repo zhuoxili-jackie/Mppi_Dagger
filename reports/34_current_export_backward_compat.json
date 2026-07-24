@@ -1,0 +1,39 @@
+{
+  "embedded_safety_gate_pass": null,
+  "file_hashes_verified": {
+    "golden_io.npz": "9070a4eb9f1e4a6166fc07334f2e40a78f43b05ba7b89182426d5dbd9f990ad8",
+    "policy.onnx": "1995c8166d92e0973178084ddf10b290ad1604009b215453e6e85b14fa9a2109",
+    "policy.pt": "6686c675c9b6899230aeb2354e95c459e46e6ce3f443966cf75bddcd51a58b1f"
+  },
+  "hard_zero_all_backends": true,
+  "latency_50hz_pass": true,
+  "latency_p95_threshold_ms": 20.0,
+  "onnx_cpu_max_ms": 0.04446296952664852,
+  "onnx_cpu_mean_ms": 0.013846070032741409,
+  "onnx_cpu_p50_ms": 0.013175071217119694,
+  "onnx_cpu_p95_ms": 0.014667690265923738,
+  "onnx_cpu_p99_ms": 0.0223455135710537,
+  "onnx_cpu_total_ms": 3.5445939283818007,
+  "onnx_input_name": "obs",
+  "onnx_input_shape": [
+    1,
+    93
+  ],
+  "onnx_metadata_verified": true,
+  "onnx_output_name": "actions",
+  "onnx_output_shape": [
+    1,
+    16
+  ],
+  "onnx_vs_eager": {
+    "max_abs_error": 9.5367431640625e-07,
+    "mean_abs_error": 6.057149448679411e-08
+  },
+  "opset": 18,
+  "samples": 256,
+  "sha256sums_verified": true,
+  "torchscript_vs_eager": {
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0
+  }
+}

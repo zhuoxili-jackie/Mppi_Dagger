@@ -1,0 +1,173 @@
+schema_version: pcbc-dagger-scenarios-v1
+default_profile: nominal
+aliases:
+  nominal_fixed_gate: nominal
+  nominal_multiref_coverage: nominal
+  nominal_probe120: nominal
+  efficiency_probe: nominal
+profiles:
+  nominal:
+    initial_state:
+      pose:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      velocity:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      joint_position: [0.0, 0.0]
+    observation_noise_std: 0.0
+    action_delay_steps: 0
+    platform_position_jitter_m: [0.0, 0.0, 0.0]
+    physics_profile: nominal
+
+  nominal_small_initial_state:
+    initial_state:
+      pose:
+        x: [-0.015, 0.015]
+        y: [-0.010, 0.010]
+        z: [-0.005, 0.005]
+        roll: [-0.012, 0.012]
+        pitch: [-0.012, 0.012]
+        yaw: [-0.015, 0.015]
+      velocity:
+        x: [-0.015, 0.015]
+        y: [-0.020, 0.020]
+        z: [-0.010, 0.010]
+        roll: [-0.015, 0.015]
+        pitch: [-0.015, 0.015]
+        yaw: [-0.015, 0.015]
+      joint_position: [-0.012, 0.012]
+    observation_noise_std: 0.0
+    action_delay_steps: 0
+    platform_position_jitter_m: [0.0, 0.0, 0.0]
+    physics_profile: nominal
+
+  light_friction_mass_observation_noise:
+    initial_state:
+      pose:
+        x: [-0.010, 0.010]
+        y: [-0.006, 0.006]
+        z: [-0.004, 0.004]
+        roll: [-0.008, 0.008]
+        pitch: [-0.008, 0.008]
+        yaw: [-0.010, 0.010]
+      velocity:
+        x: [-0.010, 0.010]
+        y: [-0.015, 0.015]
+        z: [-0.008, 0.008]
+        roll: [-0.010, 0.010]
+        pitch: [-0.010, 0.010]
+        yaw: [-0.010, 0.010]
+      joint_position: [-0.008, 0.008]
+    observation_noise_std: 0.005
+    action_delay_steps: 0
+    platform_position_jitter_m: [0.0, 0.0, 0.0]
+    physics_profile: fixed_light_shift
+    fixed_physics:
+      robot_non_wheel_static_friction: 0.85
+      robot_non_wheel_dynamic_friction: 0.70
+      box_static_friction: 1.10
+      box_dynamic_friction: 0.90
+      front_wheel_static_friction: 1.00
+      front_wheel_dynamic_friction: 0.82
+      rear_wheel_static_friction: 1.00
+      rear_wheel_dynamic_friction: 0.82
+      robot_mass_scale: 1.02
+
+  light_delay_platform_pose:
+    initial_state:
+      pose:
+        x: [-0.010, 0.010]
+        y: [-0.006, 0.006]
+        z: [-0.004, 0.004]
+        roll: [-0.008, 0.008]
+        pitch: [-0.008, 0.008]
+        yaw: [-0.010, 0.010]
+      velocity:
+        x: [-0.010, 0.010]
+        y: [-0.015, 0.015]
+        z: [-0.008, 0.008]
+        roll: [-0.010, 0.010]
+        pitch: [-0.010, 0.010]
+        yaw: [-0.010, 0.010]
+      joint_position: [-0.008, 0.008]
+    observation_noise_std: 0.003
+    action_delay_steps: 1
+    platform_position_jitter_m: [0.005, 0.005, 0.002]
+    physics_profile: nominal
+
+  # State-copy diagnostics used to isolate the two R3 mechanisms.  Formal
+  # DAgger rounds never select these profiles.
+  diagnostic_delay_only:
+    initial_state:
+      pose:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      velocity:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      joint_position: [0.0, 0.0]
+    observation_noise_std: 0.0
+    action_delay_steps: 1
+    platform_position_jitter_m: [0.0, 0.0, 0.0]
+    physics_profile: nominal
+
+  diagnostic_platform_only:
+    initial_state:
+      pose:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      velocity:
+        x: [0.0, 0.0]
+        y: [0.0, 0.0]
+        z: [0.0, 0.0]
+        roll: [0.0, 0.0]
+        pitch: [0.0, 0.0]
+        yaw: [0.0, 0.0]
+      joint_position: [0.0, 0.0]
+    observation_noise_std: 0.0
+    action_delay_steps: 0
+    platform_position_jitter_m: [0.005, 0.005, 0.002]
+    physics_profile: nominal
+
+  diagnostic_r3_initial_only:
+    initial_state:
+      pose:
+        x: [-0.010, 0.010]
+        y: [-0.006, 0.006]
+        z: [-0.004, 0.004]
+        roll: [-0.008, 0.008]
+        pitch: [-0.008, 0.008]
+        yaw: [-0.010, 0.010]
+      velocity:
+        x: [-0.010, 0.010]
+        y: [-0.015, 0.015]
+        z: [-0.008, 0.008]
+        roll: [-0.010, 0.010]
+        pitch: [-0.010, 0.010]
+        yaw: [-0.010, 0.010]
+      joint_position: [-0.008, 0.008]
+    observation_noise_std: 0.003
+    action_delay_steps: 0
+    platform_position_jitter_m: [0.0, 0.0, 0.0]
+    physics_profile: nominal

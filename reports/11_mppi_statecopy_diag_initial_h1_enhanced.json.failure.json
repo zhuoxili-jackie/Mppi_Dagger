@@ -1,0 +1,31 @@
+{
+  "arguments": {
+    "active_gpu": 0,
+    "anim_recording_enabled": false,
+    "anim_recording_start_time": 0,
+    "anim_recording_stop_time": 10,
+    "cpu": false,
+    "create_new_stage": false,
+    "device": "cuda:0",
+    "disable_fabric": false,
+    "enable_cameras": false,
+    "headless": true,
+    "hide_ui": true,
+    "horizon": 1,
+    "info": false,
+    "kit_args": "",
+    "physics_gpu": 0,
+    "ref_id": 3,
+    "rendering_mode": null,
+    "report": "reports/11_mppi_statecopy_diag_initial_h1_enhanced.json",
+    "samples": 16,
+    "scenario": "diagnostic_r3_initial_only",
+    "seed": 1803,
+    "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+    "verbose": false,
+    "xr": false
+  },
+  "error_type": "RuntimeError",
+  "message": "MPPI state-copy gate failed; see reports/11_mppi_statecopy_diag_initial_h1_enhanced.json",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/scripts/validate_mppi_rollout.py\", line 256, in <module>\n    main()\n  File \"/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/scripts/validate_mppi_rollout.py\", line 248, in main\n    raise RuntimeError(f\"MPPI state-copy gate failed; see {args_cli.report}\")\nRuntimeError: MPPI state-copy gate failed; see reports/11_mppi_statecopy_diag_initial_h1_enhanced.json\n"
+}

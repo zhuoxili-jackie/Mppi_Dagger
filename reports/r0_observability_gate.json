@@ -1,0 +1,20 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "dynamic_reference": {
+    "cases": [],
+    "close_pair_rate": 0.0,
+    "conflict_rate": 0.0,
+    "median_neighbor_distance": 0.3254746198654175,
+    "samples": 12000
+  },
+  "fixed_prefix": {
+    "cases": [],
+    "close_pair_rate": 0.0,
+    "conflict_rate": 0.0,
+    "median_neighbor_distance": 0.29533320665359497,
+    "samples": 12000
+  },
+  "fixed_prefix_systematically_aliased": false,
+  "gate": "PASS",
+  "schema_version": "pcbc-observability-gate-v1"
+}

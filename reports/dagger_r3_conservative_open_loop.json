@@ -1,0 +1,13 @@
+{
+  "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3_conservative/student_best_checkpoint.pt",
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "metrics": {
+    "action_mae": 0.2688712477684021,
+    "action_max_abs": 5.930052757263184,
+    "action_rmse": 0.5714633464813232,
+    "valid_frames": 9348,
+    "wheel_max_abs": 0.0
+  },
+  "schema_version": "pcbc-open-loop-evaluation-v1",
+  "split": "validation"
+}

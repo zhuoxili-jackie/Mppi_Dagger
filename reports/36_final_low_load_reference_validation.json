@@ -1,0 +1,249 @@
+{
+  "candidate_contact_schedule": {
+    "ref_0_npz": {
+      "contact_fraction_per_wheel": [
+        0.8042168674698795,
+        0.8283132530120482,
+        0.8102409638554217,
+        0.8283132530120482
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        20,
+        18,
+        19,
+        18
+      ]
+    },
+    "ref_1_npz": {
+      "contact_fraction_per_wheel": [
+        0.8433734939759037,
+        0.8403614457831325,
+        0.8343373493975904,
+        0.8674698795180723
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        10,
+        9,
+        10,
+        8
+      ]
+    },
+    "ref_2_npz": {
+      "contact_fraction_per_wheel": [
+        0.8554216867469879,
+        0.8554216867469879,
+        0.8433734939759037,
+        0.8825301204819277
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        8,
+        8,
+        8,
+        6
+      ]
+    },
+    "ref_3_npz": {
+      "contact_fraction_per_wheel": [
+        0.9006024096385542,
+        0.9006024096385542,
+        0.9036144578313253,
+        0.9246987951807228
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        4,
+        4,
+        4,
+        3
+      ]
+    },
+    "ref_4_npz": {
+      "contact_fraction_per_wheel": [
+        0.9006024096385542,
+        0.9006024096385542,
+        0.9036144578313253,
+        0.9246987951807228
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        4,
+        4,
+        4,
+        3
+      ]
+    },
+    "ref_5_npz": {
+      "contact_fraction_per_wheel": [
+        0.8554216867469879,
+        0.8554216867469879,
+        0.8433734939759037,
+        0.8825301204819277
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        8,
+        8,
+        8,
+        6
+      ]
+    },
+    "ref_6_npz": {
+      "contact_fraction_per_wheel": [
+        0.8433734939759037,
+        0.8403614457831325,
+        0.8343373493975904,
+        0.8674698795180723
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        10,
+        9,
+        10,
+        8
+      ]
+    },
+    "ref_7_npz": {
+      "contact_fraction_per_wheel": [
+        0.8042168674698795,
+        0.8283132530120482,
+        0.8102409638554217,
+        0.8283132530120482
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        20,
+        18,
+        19,
+        18
+      ]
+    },
+    "ref_8_derived_standing_first_frame": {
+      "contact_fraction_per_wheel": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "checks": {
+    "all_first_frames_equal": true,
+    "control_reference_hz_match": true,
+    "q_reset_max_abs": 0.0,
+    "root_position_max_abs": 1.6298145055770874e-09,
+    "root_quaternion_max_abs": 0.0
+  },
+  "config": "configs/reference_low_load_v1.yaml",
+  "references": [
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_n060.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 0,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_n060.npz",
+      "sha256": "ed3546b22a391570e889e83fbb43f438e6a3269d49fe01fbf552aac709867afc",
+      "source_kind": "npz",
+      "target_vy": -0.06
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_n030.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 1,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_n030.npz",
+      "sha256": "54296e617f041bb40198a3b5dd3f98153772666483cae4b1a84bca6c78f63218",
+      "source_kind": "npz",
+      "target_vy": -0.03
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_n024.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 2,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_n024.npz",
+      "sha256": "68db63fa8488d2a93f3f4913db0a74b7d5cd2d63b28b3c7c21d62f365a8294ce",
+      "source_kind": "npz",
+      "target_vy": -0.024
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_n012.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 3,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_n012.npz",
+      "sha256": "1a741910e17ab33f78990757d65c1a46c66493769e12b577324778f83d5c2078",
+      "source_kind": "npz",
+      "target_vy": -0.012
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_p012.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 4,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_p012.npz",
+      "sha256": "3035651dd7ed20e2a91f3e0ad240802f06d0ac368d7413e628339f7f8b6ebeec",
+      "source_kind": "npz",
+      "target_vy": 0.012
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_p024.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 5,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_p024.npz",
+      "sha256": "7f131aa75581f59bf6c81b6ae3948009357e6913b2e270fa6da143aced379bcf",
+      "source_kind": "npz",
+      "target_vy": 0.024
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_p030.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 6,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_p030.npz",
+      "sha256": "1c5706b0aaad1cde5a2d14b1f1b5ac96b0c5a6d2a581f84784a8e6029ef2bc7d",
+      "source_kind": "npz",
+      "target_vy": 0.03
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "low_load_p060.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 7,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_p060.npz",
+      "sha256": "f5eae05ae78140a6c3683892a812b3089b9a7f164f3383f4f35c5faedaed2ec5",
+      "source_kind": "npz",
+      "target_vy": 0.06
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "derived_standing_from_low_load_n060.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 8,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/assets/references/low_load_v1/low_load_n060.npz",
+      "sha256": "e58311255dbc2f903829349cd4ec0888cfe0bc7614fba14ee8cdbc80d8cec355",
+      "source_kind": "derived_standing_first_frame",
+      "target_vy": 0.0
+    }
+  ],
+  "schema_version": "pcbc-reference-validation-v1"
+}

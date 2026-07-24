@@ -1,0 +1,157 @@
+{
+  "byte_parity": true,
+  "copied_bytes": 4397500,
+  "copied_steps": 2046,
+  "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "destination_episodes_after": 140,
+  "destination_episodes_before": 122,
+  "episodes": [
+    {
+      "bytes": 221607,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref0_seed13000.npz",
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13000",
+      "sha256": "a325aa9f0963bb771ff782792056ad1e0585958acd1e42ab7eaf5d614b163741",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref0_seed13000.npz",
+      "steps": 102
+    },
+    {
+      "bytes": 277025,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref1_seed13001.npz",
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13001",
+      "sha256": "015c170c777dacf2aea136cf29439f28ea7ef4651d02bb372911962fd6ba6544",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref1_seed13001.npz",
+      "steps": 130
+    },
+    {
+      "bytes": 280769,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref2_seed13002.npz",
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13002",
+      "sha256": "25e79efbb7acdbca741d7115616c13e6dced3e40027a29b21ef4750b1a0b4839",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref2_seed13002.npz",
+      "steps": 132
+    },
+    {
+      "bytes": 243066,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref3_seed13003.npz",
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13003",
+      "sha256": "88484b0775cc12bc014de6f98e208193907f8b2de2eb740a90d858b808f0cb2d",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref3_seed13003.npz",
+      "steps": 113
+    },
+    {
+      "bytes": 255170,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref4_seed13004.npz",
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13004",
+      "sha256": "d339ac5aaaf7804abc3635964368a4758b5e5d19921fce0f6dc0a342ab7abf46",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref4_seed13004.npz",
+      "steps": 119
+    },
+    {
+      "bytes": 242496,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref5_seed13005.npz",
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13005",
+      "sha256": "c4584d005109c7d4bba0fae019d0efe6762f6eda4c8bc55d784a294a41b1f364",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref5_seed13005.npz",
+      "steps": 113
+    },
+    {
+      "bytes": 196809,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref0_seed13006.npz",
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13006",
+      "sha256": "5ac02901cfdf01d556e9c240c83614a5d5f5317d3579127b9409f658bfd834a0",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref0_seed13006.npz",
+      "steps": 90
+    },
+    {
+      "bytes": 236909,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref1_seed13007.npz",
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13007",
+      "sha256": "b47654c0d268e0bf4aaa596e81fb8078b9fc729a4c6d89b520881b38ddfd9c85",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref1_seed13007.npz",
+      "steps": 110
+    },
+    {
+      "bytes": 277283,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref2_seed13008.npz",
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13008",
+      "sha256": "2e38036462b82c0f1b2c0b423e05d3e525c63faf6726653f653cad5584983a87",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref2_seed13008.npz",
+      "steps": 130
+    },
+    {
+      "bytes": 191027,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref3_seed13009.npz",
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13009",
+      "sha256": "8861489bd055b764c62a23e496844b183e344b8338b44fec44466abb83aca5b0",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref3_seed13009.npz",
+      "steps": 87
+    },
+    {
+      "bytes": 308999,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref4_seed13010.npz",
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13010",
+      "sha256": "995b41d7c526545310606599cbdcec262e88766b9c5cb9c1f7313e8a2bda49a5",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref4_seed13010.npz",
+      "steps": 146
+    },
+    {
+      "bytes": 204725,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_train_ref5_seed13011.npz",
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13011",
+      "sha256": "a14a98c5ab1393c7985218c7155ef326cbfe015bc74643afa1a6c973d4b7abed",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_train_ref5_seed13011.npz",
+      "steps": 94
+    },
+    {
+      "bytes": 216892,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref0_seed13500.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref0_seed13500",
+      "sha256": "8e22464f97a3289be75def7832453657b098b98f44cf135c391f65772a781355",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref0_seed13500.npz",
+      "steps": 100
+    },
+    {
+      "bytes": 294946,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref1_seed13501.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref1_seed13501",
+      "sha256": "324993f41a502fbc8684eebf2b20e5940aab1f9c1e187c1c8c7c3147bfc21a58",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref1_seed13501.npz",
+      "steps": 139
+    },
+    {
+      "bytes": 224898,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref2_seed13502.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref2_seed13502",
+      "sha256": "f6a5948df67bbf80a6b197ef90163eadbbb6b73bfc0b65be17358bf97f774f54",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref2_seed13502.npz",
+      "steps": 104
+    },
+    {
+      "bytes": 245074,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref3_seed13503.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref3_seed13503",
+      "sha256": "2e53c80a69a6de65c7a15c4e7519b7face97e60c793d0b73ac7f32e486f1ce29",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref3_seed13503.npz",
+      "steps": 114
+    },
+    {
+      "bytes": 238778,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref4_seed13504.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref4_seed13504",
+      "sha256": "b8ac62091bccac7285bcf5c0a1128f7956cdcf40b0182a47514ff9d426d4d9a6",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref4_seed13504.npz",
+      "steps": 111
+    },
+    {
+      "bytes": 241027,
+      "destination": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate/episodes/dagger_r2_repair1_validation_ref5_seed13505.npz",
+      "episode_id": "dagger_r2_repair1_validation_ref5_seed13505",
+      "sha256": "ab1c206f72434b13b76fe40be96bd4932a6057ac13273121f9580aa29581fce5",
+      "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1/episodes/dagger_r2_repair1_validation_ref5_seed13505.npz",
+      "steps": 112
+    }
+  ],
+  "schema_version": "pcbc-dataset-merge-v1",
+  "source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1",
+  "source_episodes": 18
+}

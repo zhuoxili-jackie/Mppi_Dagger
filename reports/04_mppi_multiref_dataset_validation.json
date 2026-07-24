@@ -1,0 +1,58 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_multiref_gate6",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "mppi_multiref_gate6_ref0_seed1400",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_multiref_gate6_ref1_seed1401",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_multiref_gate6_ref2_seed1402",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_multiref_gate6_ref3_seed1403",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_multiref_gate6_ref4_seed1404",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_multiref_gate6_ref5_seed1405",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "test": 6
+  }
+}

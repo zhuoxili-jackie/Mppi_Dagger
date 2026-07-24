@@ -1,0 +1,142 @@
+bundle:
+  name: pcbc_baseline_residual_sim2sim
+  source_git_commit: cb079937ac3112b1b4bed9d26db3ea8cbee13771
+  note: "residual_candidate.onnx predates the latest y/yaw reward changes; replace it after final export."
+
+runtime:
+  policy_frequency_hz: 50
+  observation_dim: 93
+  action_dim: 16
+  baseline_model: "runtime/models/baseline.onnx"
+  residual_model: "runtime/models/residual_candidate.onnx"
+  motion_csv: "runtime/motion/pcbv2_x6u_60hz_stage_up_531.csv"
+
+joint_order_policy:
+  - FL_hip_joint
+  - FR_hip_joint
+  - RL_hip_joint
+  - RR_hip_joint
+  - FL_thigh_joint
+  - FR_thigh_joint
+  - RL_thigh_joint
+  - RR_thigh_joint
+  - FL_calf_joint
+  - FR_calf_joint
+  - RL_calf_joint
+  - RR_calf_joint
+  - FL_foot_joint
+  - FR_foot_joint
+  - RL_foot_joint
+  - RR_foot_joint
+
+runtime_index_map_from_policy:
+  - 0
+  - 3
+  - 6
+  - 9
+  - 1
+  - 4
+  - 7
+  - 10
+  - 2
+  - 5
+  - 8
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+
+default_joint_position_policy:
+  - -0.00634721
+  - 0.00638027
+  - -0.00635801
+  - 0.00634459
+  - 0.726606
+  - 0.724651
+  - -0.743733
+  - -0.747285
+  - -1.30170
+  - -1.29884
+  - 1.29775
+  - 1.30355
+  - 0.000125342
+  - 0.0000198542
+  - -0.0000104716
+  - -0.000134248
+
+action_scale_policy:
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 5.0
+  - 5.0
+  - 5.0
+  - 5.0
+
+residual_scale_policy:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+
+observation_layout:
+  - {name: motion_command, size: 32}
+  - {name: motion_anchor_ori_b, size: 6}
+  - {name: base_ang_vel, size: 3}
+  - {name: joint_pos_rel_without_wheel, size: 16}
+  - {name: joint_vel_rel, size: 16}
+  - {name: previous_action, size: 16}
+  - {name: velocity_command, size: 3}
+  - {name: constant_zero, size: 1}
+
+history_semantics:
+  baseline_previous_action: "previous final_raw action"
+  residual_previous_action: "previous residual_raw action"
+
+state_machine:
+  before_ready: "final_raw = realtime baseline_raw"
+  on_ready: "latch current baseline_raw once"
+  after_ready: "final_raw = latched baseline_raw + residual_scale * residual_raw"
+  post_ready_zero_command_steps: 0
+  ready_thresholds:
+    anchor_rotation_rad: 0.30
+    mean_body_position_m: 0.15
+    base_linear_velocity_mps: 0.35
+    base_angular_velocity_radps: 0.90
+    stable_steps: 3
+    force_ready_after_hold_steps: 50
+
+command_contract:
+  axes_are_sampled_separately: true
+  x_range_mps: [0.0, 0.0]
+  y_range_mps: [-0.30, 0.30]
+  y_min_abs_mps: 0.10
+  yaw_range_radps: [-0.45, 0.45]
+  yaw_min_abs_radps: 0.22
+  training_mix_approx:
+    yaw: 0.55
+    y: 0.30
+    standing: 0.15
+

@@ -1,0 +1,223 @@
+{
+  "candidates": [
+    {
+      "action_mae": 0.9231739640235901,
+      "action_max_abs": 4.486791133880615,
+      "action_rmse": 1.2808974981307983,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_best_checkpoint.pt",
+      "checkpoint_sha256": "aa2c4a86a5c63687f08eb83588daae75ee0774fd2cad60deb3db013117e44034",
+      "epoch": 1,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.9310429096221924,
+      "action_max_abs": 5.4626874923706055,
+      "action_rmse": 1.3142297267913818,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0004.pt",
+      "checkpoint_sha256": "04b594fcda1dda565dae0b1386cc3caa9d16ba06c173387d17863ff79330d166",
+      "epoch": 4,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.9463903903961182,
+      "action_max_abs": 5.581572532653809,
+      "action_rmse": 1.3599982261657715,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0009.pt",
+      "checkpoint_sha256": "43fe3e9fb271035e96647c698be8b0e5c4ed846a83ba35918c4cc1d8239ed811",
+      "epoch": 9,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.9436874985694885,
+      "action_max_abs": 5.728769302368164,
+      "action_rmse": 1.3761045932769775,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0014.pt",
+      "checkpoint_sha256": "300ff0afa16654bd71ae1d27d000c7cb0da15121769836e11967a11b1931035b",
+      "epoch": 14,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0516822338104248,
+      "action_max_abs": 4.022919654846191,
+      "action_rmse": 1.4171172380447388,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r2_recovery1/student_best_checkpoint.pt",
+      "checkpoint_sha256": "3165eefcb8fa9e28379e587bffbd5c5b4eb1d08e9f14661c2cbd2e925ea15c1f",
+      "epoch": 0,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.9546988606452942,
+      "action_max_abs": 6.841230392456055,
+      "action_rmse": 1.4196689128875732,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0019.pt",
+      "checkpoint_sha256": "67785e0d3ffac3cba4d3226574bdadf16847980dcde11faf32c44b82fff4b3e8",
+      "epoch": 19,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.977975606918335,
+      "action_max_abs": 6.791049480438232,
+      "action_rmse": 1.4733457565307617,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0024.pt",
+      "checkpoint_sha256": "9d4c7f93448e28fa8e92dbac7b3c2384a897b3ac259f61f172daa676749f8e5c",
+      "epoch": 24,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.990337610244751,
+      "action_max_abs": 7.020646572113037,
+      "action_rmse": 1.5042476654052734,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0029.pt",
+      "checkpoint_sha256": "6ebfd7792a1e63ce1646d41eee84268201331fca8f4c142f1e21dc58f0957b04",
+      "epoch": 29,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 0.9971199631690979,
+      "action_max_abs": 7.96541166305542,
+      "action_rmse": 1.5184141397476196,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0034.pt",
+      "checkpoint_sha256": "b2499869ec54c34a944b0664aee87bad1955c104801ead30f849bb4a42836529",
+      "epoch": 34,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0245909690856934,
+      "action_max_abs": 8.700272560119629,
+      "action_rmse": 1.5657685995101929,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0044.pt",
+      "checkpoint_sha256": "32cce61eebaa109e27c56df576d07af257f3bd50fcb909ca6aedd1b2c8667379",
+      "epoch": 44,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0237013101577759,
+      "action_max_abs": 8.160932540893555,
+      "action_rmse": 1.5665310621261597,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0039.pt",
+      "checkpoint_sha256": "45ac472da4cc2267d265ebe28e164194596c435b9da56c7f2063c44f32150fd0",
+      "epoch": 39,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0509449243545532,
+      "action_max_abs": 8.937788009643555,
+      "action_rmse": 1.6101082563400269,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0049.pt",
+      "checkpoint_sha256": "c2f8689981471d736551997f61c514ab1ae5e0cc8df6170b23264b574e5fdf60",
+      "epoch": 49,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0532578229904175,
+      "action_max_abs": 9.245424270629883,
+      "action_rmse": 1.6154366731643677,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0054.pt",
+      "checkpoint_sha256": "1fd0f7ae4ab9d92b33ea2d7bc8530758754c2678bffef490e5b14b7f2de5942d",
+      "epoch": 54,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0679949522018433,
+      "action_max_abs": 9.824304580688477,
+      "action_rmse": 1.6410328149795532,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0059.pt",
+      "checkpoint_sha256": "81f5878252cec2639a1fa107521f776137d9c49e7e27945d3aae75044c7d8662",
+      "epoch": 59,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.072746992111206,
+      "action_max_abs": 10.066360473632812,
+      "action_rmse": 1.6496434211730957,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0064.pt",
+      "checkpoint_sha256": "ed0584c9b5eb0e6084b36d50c24332bdb17bfd322c99e391abbb0b1da81485ec",
+      "epoch": 64,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0791869163513184,
+      "action_max_abs": 10.546638488769531,
+      "action_rmse": 1.661992073059082,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0069.pt",
+      "checkpoint_sha256": "7727848a3d0057fac984b5eeb696813c9a126c5f61f05719d3bac51b10d6b47f",
+      "epoch": 69,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.087345004081726,
+      "action_max_abs": 10.864840507507324,
+      "action_rmse": 1.6743347644805908,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0074.pt",
+      "checkpoint_sha256": "5bbbf527828d54a40769d4d332407ac79b125d07021621f52f9a2a4da507c7dd",
+      "epoch": 74,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0940464735031128,
+      "action_max_abs": 11.54672622680664,
+      "action_rmse": 1.6838982105255127,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0084.pt",
+      "checkpoint_sha256": "0c85d795b2268b2ea15095a4022a05a740a6dd653ff011782126408888476f8a",
+      "epoch": 84,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.0975459814071655,
+      "action_max_abs": 11.25623607635498,
+      "action_rmse": 1.6919108629226685,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0079.pt",
+      "checkpoint_sha256": "c9689db0db91db47f06a0fffbbbb8ca39b8dd6617ba99ac63d279c34d73aa149",
+      "epoch": 79,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.1081901788711548,
+      "action_max_abs": 11.66249942779541,
+      "action_rmse": 1.7086011171340942,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0089.pt",
+      "checkpoint_sha256": "1860f27586566a4a69f70a092e99aabdae7761c3a423df3ca645dfa9da30a7aa",
+      "epoch": 89,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.114785075187683,
+      "action_max_abs": 11.830162048339844,
+      "action_rmse": 1.7207881212234497,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0094.pt",
+      "checkpoint_sha256": "ce12d500308e9edb83fdfecfd6c02ba5467724f735218723b9bf90d13d1e4ad6",
+      "epoch": 94,
+      "wheel_max_abs": 0.0
+    },
+    {
+      "action_mae": 1.1242330074310303,
+      "action_max_abs": 12.224842071533203,
+      "action_rmse": 1.7358314990997314,
+      "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_epoch_0099.pt",
+      "checkpoint_sha256": "35fa30d607ad50eb38911b26fbf00562a440ef3339a1e3b28e17f7e61d238888",
+      "epoch": 99,
+      "wheel_max_abs": 0.0
+    }
+  ],
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": [
+    "dagger_r3_validation_ref1_seed13501",
+    "dagger_r3_validation_ref4_seed13504",
+    "dagger_r3_validation_ref5_seed13505"
+  ],
+  "frames": 900,
+  "latest_dagger_round": 3,
+  "schema_version": "pcbc-recovery-checkpoint-selection-v1",
+  "selected": {
+    "action_mae": 0.9231739640235901,
+    "action_max_abs": 4.486791133880615,
+    "action_rmse": 1.2808974981307983,
+    "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_best_checkpoint.pt",
+    "checkpoint_sha256": "aa2c4a86a5c63687f08eb83588daae75ee0774fd2cad60deb3db013117e44034",
+    "epoch": 1,
+    "wheel_max_abs": 0.0
+  },
+  "selection_behavior": "student",
+  "selection_label_source": "MPPI",
+  "selection_split": "validation"
+}

@@ -1,0 +1,47 @@
+schema_version: "pcbc-reference-low-load-v1"
+status: "kinematic_seed_requires_isaac_force_validation"
+fps: 50
+frames: 332
+duration_seconds: 6.62
+reference_directory: "assets/references/low_load_v1"
+generation_report: "assets/references/low_load_v1/generation_report.json"
+body_order:
+  [Base_link, FL_hip_link, FR_hip_link, RL_hip_link, RR_hip_link,
+   FL_thigh_link, FR_thigh_link, RL_thigh_link, RR_thigh_link,
+   FL_calf_link, FR_calf_link, RL_calf_link, RR_calf_link,
+   FL_foot_link, FR_foot_link, RL_foot_link, RR_foot_link]
+quaternion_order: wxyz
+gait:
+  family: "one_limb_at_a_time_load_shifted_crawl"
+  stride_m: 0.04
+  duty_factor: 0.80
+  front_detachment_m: 0.008
+  rear_clearance_m: 0.012
+  speed_scaling: "fixed stride; cadence = abs(target_vy) / stride"
+  rear_preload_x_m: 0.008
+  rear_load_shift_y_m: 0.008
+references:
+  - {index: 0, file: low_load_n060.npz, target_vy: -0.06, sha256: ed3546b22a391570e889e83fbb43f438e6a3269d49fe01fbf552aac709867afc}
+  - {index: 1, file: low_load_n030.npz, target_vy: -0.03, sha256: 54296e617f041bb40198a3b5dd3f98153772666483cae4b1a84bca6c78f63218}
+  - {index: 2, file: low_load_n024.npz, target_vy: -0.024, sha256: 68db63fa8488d2a93f3f4913db0a74b7d5cd2d63b28b3c7c21d62f365a8294ce}
+  - {index: 3, file: low_load_n012.npz, target_vy: -0.012, sha256: 1a741910e17ab33f78990757d65c1a46c66493769e12b577324778f83d5c2078}
+  - {index: 4, file: low_load_p012.npz, target_vy: 0.012, sha256: 3035651dd7ed20e2a91f3e0ad240802f06d0ac368d7413e628339f7f8b6ebeec}
+  - {index: 5, file: low_load_p024.npz, target_vy: 0.024, sha256: 7f131aa75581f59bf6c81b6ae3948009357e6913b2e270fa6da143aced379bcf}
+  - {index: 6, file: low_load_p030.npz, target_vy: 0.03, sha256: 1c5706b0aaad1cde5a2d14b1f1b5ac96b0c5a6d2a581f84784a8e6029ef2bc7d}
+  - {index: 7, file: low_load_p060.npz, target_vy: 0.06, sha256: f5eae05ae78140a6c3683892a812b3089b9a7f164f3383f4f35c5faedaed2ec5}
+standing_reference:
+  enabled: true
+  index: 8
+  source_reference_index: 0
+  derivation: "repeat verified common first frame; zero all velocities"
+  target_vy: 0.0
+contact_inference:
+  method: per_wheel_contact_normal_and_speed
+  body_indices: [13, 14, 15, 16]
+  per_wheel_height_quantile: 0.35
+  height_margin_m: [0.004, 0.004, 0.006, 0.006]
+  speed_threshold_mps: 0.10
+  minimum_contact_run_frames: 2
+  contact_axis_indices: [0, 0, 2, 2]
+  contact_surface_sides: [max, max, min, min]
+  status: candidate_requires_isaac_force_validation

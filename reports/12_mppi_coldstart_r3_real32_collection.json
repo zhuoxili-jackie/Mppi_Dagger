@@ -1,0 +1,299 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_coldstart_r3_real32",
+  "episodes": [
+    {
+      "episode_id": "mppi_coldstart_r3_real32_ref3_seed1960",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 116.47756958007812,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.009812912903726101,
+        "action_residual": 0.03862645849585533,
+        "base_orientation": 0.35753127932548523,
+        "base_position": 1.1787965297698975,
+        "box_x_drift": 0.6536999940872192,
+        "contact_mismatch": 2.671875,
+        "edge_drop": 0.10701630264520645,
+        "joint_acceleration": 0.010143051855266094,
+        "joint_limit": 0.0,
+        "joint_position": 0.9791793823242188,
+        "joint_velocity": 1.1440246105194092,
+        "lateral_velocity": 0.35400769114494324,
+        "terminal": 0.1315978467464447,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 0.35003191232681274,
+        "wheel_slip": 0.030063016340136528
+      },
+      "mppi_effective_sample_size_mean": 7.109441757202148,
+      "mppi_minimum_cost_mean": 8.016406059265137,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 32,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    }
+  ],
+  "expert_backend": "mppi",
+  "expert_config": {
+    "backend": "whole_body_mppi",
+    "closed_loop_gate": {
+      "fixed_seed_count": 50,
+      "full_episode_steps": 300,
+      "require_implementation_hashes": true,
+      "require_requested_reference_reset": true,
+      "required_scenario_resolved_name": "nominal",
+      "required_successes": 48,
+      "required_teacher_valid_rate": 0.99,
+      "reset_reference_tolerance": 1e-05,
+      "rotate_references": true,
+      "seed_file": "configs/seeds_nominal_100.txt",
+      "tracking_thresholds": {
+        "base_orientation_rmse_rad": 0.25,
+        "base_position_max_abs_m": [
+          0.2,
+          0.2,
+          0.12
+        ],
+        "box_local_x_drift_max_abs_m": 0.15,
+        "contact_mismatch_rate": 0.35,
+        "wheel_position_rmse_m": 0.25
+      }
+    },
+    "contact_force_threshold_n": 8.0,
+    "control_hz": 50,
+    "cost_weights": {
+      "action_rate": 0.025,
+      "action_residual": 0.04,
+      "base_orientation": 18.0,
+      "base_position": 35.0,
+      "box_x_drift": 60.0,
+      "contact_mismatch": 2.0,
+      "edge_drop": 120.0,
+      "joint_acceleration": 2e-06,
+      "joint_limit": 150.0,
+      "joint_position": 10.0,
+      "joint_velocity": 0.15,
+      "lateral_velocity": 4.0,
+      "terminal": 8.0,
+      "termination": 2500.0,
+      "torque_limit": 0.2,
+      "wheel_position": 45.0,
+      "wheel_slip": 0.3
+    },
+    "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+    "feasibility_gpu_hour_budget": 2,
+    "formal_gate_budget_adjustment_reason": "Measured 0.538 s/control step gives approximately 2.25 GPU-hours for 50x300 steps.",
+    "formal_gate_gpu_hour_budget": 3,
+    "horizon": 8,
+    "noise_scale": 1.0,
+    "noise_std_leg": [
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579
+    ],
+    "note": "Isaac-native reference-centred 12D MPPI with four exact-zero wheel actions; state-copy, ref-0 full episode, and six-reference coverage gates passed; formal 50-seed gate remains fail-closed.",
+    "official_repository": "https://github.com/jrapudg/RTWholeBodyMPPI",
+    "optimization_iterations": 1,
+    "reference_action_lookahead_steps": 1,
+    "reference_only_commit": "55e6dc35d042ed5f175ad6ae312c886282f32529",
+    "reference_only_runtime_dependency": false,
+    "runtime_config": {
+      "action_delay_steps": 1,
+      "backend": "whole_body_mppi",
+      "contact_force_threshold_n": 8.0,
+      "control_hz": 50,
+      "cost_weights": {
+        "action_rate": 0.025,
+        "action_residual": 0.04,
+        "base_orientation": 18.0,
+        "base_position": 35.0,
+        "box_x_drift": 60.0,
+        "contact_mismatch": 2.0,
+        "edge_drop": 120.0,
+        "joint_acceleration": 2e-06,
+        "joint_limit": 150.0,
+        "joint_position": 10.0,
+        "joint_velocity": 0.15,
+        "lateral_velocity": 4.0,
+        "terminal": 8.0,
+        "termination": 2500.0,
+        "torque_limit": 0.2,
+        "wheel_position": 45.0,
+        "wheel_slip": 0.3
+      },
+      "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+      "horizon": 8,
+      "implementation_sha256": {
+        "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+        "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+        "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+        "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+        "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+        "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+        "src/lateral_mppi_dagger/env/scenarios.py": "805df22ee622290ebbcb3c4a958c01a42d780c5578422778776b957ede499f90",
+        "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+        "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+      },
+      "mppi_seed": 42,
+      "noise_std_leg": [
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "optimization_iterations": 1,
+      "reference_action_lookahead_steps": 1,
+      "samples": 16,
+      "selection_mode": "weighted",
+      "temperature": 1.0,
+      "temporal_smoothing": 0.7,
+      "warm_start": true,
+      "wheel_action_mode": "hard_zero"
+    },
+    "runtime_config_hash": "c79fa2a2eba31b9ced5d6ce3d1fee675efb59fe092215fa00202892d4f967895",
+    "samples": 16,
+    "seed": 42,
+    "selection_mode": "weighted",
+    "smoke_episode_budget": 25,
+    "smoke_profile": {
+      "horizon": 8,
+      "optimization_iterations": 1,
+      "samples": 16
+    },
+    "source_vendored": false,
+    "state_copy_gate": {
+      "cost_max_abs": 1e-05,
+      "state_max_abs": 1e-05
+    },
+    "status": "multireference_coverage_passed_formal_gate_pending",
+    "temperature": 1.0,
+    "temporal_smoothing": 0.7,
+    "warm_start": true
+  },
+  "expert_config_hash": "c79fa2a2eba31b9ced5d6ce3d1fee675efb59fe092215fa00202892d4f967895",
+  "expert_implementation_sha256": {
+    "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+    "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+    "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+    "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+    "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+    "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+    "src/lateral_mppi_dagger/env/scenarios.py": "805df22ee622290ebbcb3c4a958c01a42d780c5578422778776b957ede499f90",
+    "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+    "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+  },
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "observation_noise_std": 0.003,
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "scenario_config_hash": "b84ff0edaf686dbd1bc0a17c2e4ebae5baa5f4dba8ccf7d42401b5ba1ee30144",
+  "scenario_profile": {
+    "action_delay_steps": 1,
+    "initial_state": {
+      "joint_position": [
+        -0.008,
+        0.008
+      ],
+      "pose": {
+        "pitch": [
+          -0.008,
+          0.008
+        ],
+        "roll": [
+          -0.008,
+          0.008
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.006,
+          0.006
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.004,
+          0.004
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          -0.01,
+          0.01
+        ],
+        "roll": [
+          -0.01,
+          0.01
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.015,
+          0.015
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.008,
+          0.008
+        ]
+      }
+    },
+    "observation_noise_std": 0.003,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.005,
+      0.005,
+      0.002
+    ],
+    "requested_name": "light_delay_platform_pose",
+    "resolved_name": "light_delay_platform_pose"
+  },
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "student_checkpoint": null,
+  "summary": {
+    "episodes": 1,
+    "mean_solve_ms": 116.47756958007812,
+    "shield_intervention_rate": 0.0,
+    "success_rate": 1.0,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "video_dir": null
+}

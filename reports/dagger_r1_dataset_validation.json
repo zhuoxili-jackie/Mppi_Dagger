@@ -1,0 +1,780 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1000",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1001",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1002",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1003",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1004",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1005",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1006",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1007",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1008",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1009",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1010",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1011",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1012",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1013",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1014",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1015",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1016",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1017",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1018",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1019",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1020",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1021",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1022",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1023",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1024",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1025",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1026",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1027",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1028",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1029",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1030",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1031",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1032",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1033",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1034",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1035",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1036",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1037",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1038",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1039",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1040",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1041",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1042",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1043",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref2_seed1044",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref3_seed1045",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref4_seed1046",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref5_seed1047",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref0_seed1048",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "mppi_formal_gate50_v3_ref1_seed1049",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref0_seed20000",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref1_seed20001",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref2_seed20002",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref3_seed20003",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref4_seed20004",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref5_seed20005",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref0_seed20006",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref1_seed20007",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref2_seed20008",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref3_seed20009",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref4_seed20010",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref5_seed20011",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref0_seed20012",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_train_ref1_seed20013",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_validation_ref0_seed21000",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_validation_ref1_seed21001",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_validation_ref2_seed21002",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_validation_ref3_seed21003",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_test_ref0_seed22000",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "r0_test_ref1_seed22001",
+      "split": "test",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref0_seed11000",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref1_seed11001",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref2_seed11002",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref3_seed11003",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref4_seed11004",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref5_seed11005",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref0_seed11006",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref1_seed11007",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref2_seed11008",
+      "split": "train",
+      "steps": 294,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref3_seed11009",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref4_seed11010",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref5_seed11011",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref0_seed11012",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref1_seed11013",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref2_seed11014",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref3_seed11015",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref4_seed11016",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref5_seed11017",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref0_seed11018",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_train_ref1_seed11019",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref0_seed11500",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref1_seed11501",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref2_seed11502",
+      "split": "validation",
+      "steps": 237,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref3_seed11503",
+      "split": "validation",
+      "steps": 223,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref4_seed11504",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r1_validation_ref5_seed11505",
+      "split": "validation",
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "test": 7,
+    "train": 69,
+    "validation": 20
+  }
+}

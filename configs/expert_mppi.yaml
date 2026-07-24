@@ -1,0 +1,90 @@
+backend: whole_body_mppi
+status: multireference_coverage_passed_formal_gate_pending
+official_repository: "https://github.com/jrapudg/RTWholeBodyMPPI"
+source_vendored: false
+reference_only_commit: "55e6dc35d042ed5f175ad6ae312c886282f32529"
+reference_only_runtime_dependency: false
+control_hz: 50
+horizon: 20
+samples: 256
+optimization_iterations: 2
+temperature: 1.0
+# Effective standard deviations selected by the ref-0 120/300-step gates.
+# Entry points use these values directly; no extra CLI multiplier is required.
+noise_std_leg: [0.40, 0.40, 0.40, 0.40, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60]
+temporal_smoothing: 0.70
+warm_start: true
+selection_mode: weighted
+reference_action_lookahead_steps: 1
+seed: 42
+contact_force_threshold_n: 8.0
+physical_target_rate_limit_rad_s: 2.25
+cost_weights:
+  base_position: 35.0
+  base_orientation: 18.0
+  joint_position: 10.0
+  joint_velocity: 0.15
+  wheel_position: 45.0
+  lateral_velocity: 4.0
+  box_x_drift: 60.0
+  wheel_slip: 0.30
+  contact_mismatch: 2.0
+  front_normal_support: 8.0
+  rear_force_overload: 18.0
+  rear_force_imbalance: 3.0
+  rear_support_loss: 30.0
+  edge_drop: 120.0
+  action_residual: 0.04
+  action_rate: 0.025
+  joint_acceleration: 0.000002
+  torque_limit: 0.20
+  joint_limit: 150.0
+  termination: 2500.0
+  terminal: 8.0
+load_limits:
+  # Front wheels press into the trunk along world x; rear wheels support
+  # gravity on the ground along world z.
+  front_normal_min_n: 6.0
+  rear_normal_overload_n: 105.0
+  rear_normal_scale_n: 35.0
+  rear_balance_scale_n: 70.0
+state_copy_gate:
+  cost_max_abs: 0.00001
+  state_max_abs: 0.00001
+closed_loop_gate:
+  seed_file: configs/seeds_nominal_100.txt
+  fixed_seed_count: 50
+  required_successes: 48
+  required_teacher_valid_rate: 0.99
+  full_episode_steps: 300
+  rotate_references: true
+  required_scenario_resolved_name: nominal
+  require_requested_reference_reset: true
+  reset_reference_tolerance: 0.00001
+  require_implementation_hashes: true
+  tracking_thresholds:
+    # x reference tracking is distinct from safety drift: the 708 reference
+    # itself moves slightly in x.  The true reset-relative box-local x guard
+    # below is therefore tighter than the reference-error x guard.
+    base_position_max_abs_m: [0.20, 0.20, 0.12]
+    box_local_x_drift_max_abs_m: 0.15
+    base_orientation_rmse_rad: 0.25
+    wheel_position_rmse_m: 0.25
+    contact_mismatch_rate: 0.35
+    lateral_velocity_mae_max_m_s: 0.03
+    lateral_displacement_error_max_abs_m: 0.10
+    signed_lateral_progress_ratio_min: 0.55
+    rear_normal_force_p95_max_n: 135.0
+    rear_single_support_fraction_max: 0.45
+    rear_no_support_fraction_max: 0.01
+    front_normal_below_6n_fraction_max: 0.20
+    physical_leg_target_step_max_rad: 0.055
+smoke_profile:
+  horizon: 8
+  samples: 16
+  optimization_iterations: 1
+smoke_episode_budget: 25
+feasibility_gpu_hour_budget: 2
+formal_gate_gpu_hour_budget: 3
+formal_gate_budget_adjustment_reason: "Measured 0.538 s/control step gives approximately 2.25 GPU-hours for 50x300 steps."
+note: "Isaac-native reference-centred 12D MPPI with four exact-zero wheel actions; moving-reference gates passed; deployment-alignment v2 adds the task's derived zero-command standing reference as ref 6."

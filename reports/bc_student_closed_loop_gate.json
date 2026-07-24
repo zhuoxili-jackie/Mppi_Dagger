@@ -1,0 +1,2435 @@
+{
+  "checks": {
+    "hard_invariant_failures_empty": true,
+    "overall_success_rate": false,
+    "per_reference_success_rate": false,
+    "required_reference_coverage": true,
+    "seed_set_exact": true,
+    "shield_intervention_rate": true,
+    "single_student_checkpoint": true,
+    "structural_failures_empty": true,
+    "teacher_valid_rate": true
+  },
+  "config": {
+    "expected_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1025,
+      1026,
+      1027,
+      1028,
+      1029,
+      1030,
+      1031,
+      1032,
+      1033,
+      1034,
+      1035,
+      1036,
+      1037,
+      1038,
+      1039,
+      1040,
+      1041,
+      1042,
+      1043,
+      1044,
+      1045,
+      1046,
+      1047,
+      1048,
+      1049
+    ],
+    "full_episode_steps": 300,
+    "nominal_reset_reference_tolerance": 1e-05,
+    "per_reference_success_rate_min": 0.5,
+    "require_reset_reference_identity": true,
+    "required_ref_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "required_scenario_resolved_name": "nominal",
+    "shield_intervention_rate_max": 0.01,
+    "success_rate_min": 0.8,
+    "teacher_valid_rate_min": 0.0,
+    "tracking_thresholds": {
+      "base_orientation_rmse_rad": 0.25,
+      "base_position_max_abs_m": [
+        0.2,
+        0.2,
+        0.12
+      ],
+      "box_local_x_drift_max_abs_m": 0.15,
+      "contact_mismatch_rate": 0.35,
+      "wheel_position_rmse_m": 0.25
+    }
+  },
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/student_gate_bc_nominal",
+  "episodes": [
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1000",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1000,
+      "shield_intervention_rate": 0.0,
+      "steps": 278,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.5272889137268066,
+        "action_rate_mean_abs": 0.029611535370349884,
+        "base_orientation_rmse_rad": 0.3913198411464691,
+        "base_position_max_abs_m": [
+          0.16506999731063843,
+          0.35931453108787537,
+          0.22538578510284424
+        ],
+        "base_position_rmse_m": [
+          0.0747857540845871,
+          0.23244546353816986,
+          0.040701862424612045
+        ],
+        "box_local_x_drift_max_abs_m": 0.17733234167099,
+        "contact_mismatch_rate": 0.4091726618705036,
+        "contact_wheel_planar_speed_max_m_s": 1.1098902225494385,
+        "joint_position_rmse_rad": 0.4852798879146576,
+        "joint_velocity_rmse_rad_s": 1.0924038887023926,
+        "lateral_displacement_error_m": 0.1817830204963684,
+        "lateral_velocity_mae_m_s": 0.11406819522380829,
+        "leg_action_saturation_rate": 0.001498800959232614,
+        "wheel_center_rmse_m": 0.3719610273838043,
+        "wheel_position_rmse_m": [
+          0.3283326327800751,
+          0.3621855080127716,
+          0.3756284713745117,
+          0.4163443148136139
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1001",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1001,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02489047683775425,
+        "base_orientation_rmse_rad": 0.10156510770320892,
+        "base_position_max_abs_m": [
+          0.25585901737213135,
+          0.49815794825553894,
+          0.0603790283203125
+        ],
+        "base_position_rmse_m": [
+          0.12808816134929657,
+          0.25415441393852234,
+          0.036834966391325
+        ],
+        "box_local_x_drift_max_abs_m": 0.2660922110080719,
+        "contact_mismatch_rate": 0.4116666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.4446999132633209,
+        "joint_position_rmse_rad": 0.502082347869873,
+        "joint_velocity_rmse_rad_s": 0.8819319009780884,
+        "lateral_displacement_error_m": 0.49815794825553894,
+        "lateral_velocity_mae_m_s": 0.09271550178527832,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3026205599308014,
+        "wheel_position_rmse_m": [
+          0.3110564351081848,
+          0.2763863503932953,
+          0.3155510425567627,
+          0.30593910813331604
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1002",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1002,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.019731508567929268,
+        "base_orientation_rmse_rad": 0.06635347008705139,
+        "base_position_max_abs_m": [
+          0.2148520052433014,
+          0.28212153911590576,
+          0.057145893573760986
+        ],
+        "base_position_rmse_m": [
+          0.1154913678765297,
+          0.13823392987251282,
+          0.03436233103275299
+        ],
+        "box_local_x_drift_max_abs_m": 0.22686104476451874,
+        "contact_mismatch_rate": 0.3908333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.23193788528442383,
+        "joint_position_rmse_rad": 0.5051921606063843,
+        "joint_velocity_rmse_rad_s": 0.7446336150169373,
+        "lateral_displacement_error_m": 0.28212153911590576,
+        "lateral_velocity_mae_m_s": 0.06838662177324295,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17532135546207428,
+        "wheel_position_rmse_m": [
+          0.19747593998908997,
+          0.17006535828113556,
+          0.17093729972839355,
+          0.16066043078899384
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1003",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1003,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.02308700792491436,
+        "base_orientation_rmse_rad": 0.115634486079216,
+        "base_position_max_abs_m": [
+          0.19348223507404327,
+          0.16157351434230804,
+          0.06476330757141113
+        ],
+        "base_position_rmse_m": [
+          0.11636596918106079,
+          0.0953158438205719,
+          0.03710072487592697
+        ],
+        "box_local_x_drift_max_abs_m": 0.2103513479232788,
+        "contact_mismatch_rate": 0.32166666666666666,
+        "contact_wheel_planar_speed_max_m_s": 0.25433072447776794,
+        "joint_position_rmse_rad": 0.44815894961357117,
+        "joint_velocity_rmse_rad_s": 0.7273625731468201,
+        "lateral_displacement_error_m": -0.14911194145679474,
+        "lateral_velocity_mae_m_s": 0.06277164816856384,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.18021005392074585,
+        "wheel_position_rmse_m": [
+          0.22826455533504486,
+          0.1745256632566452,
+          0.15459339320659637,
+          0.15310002863407135
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1004",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 4,
+      "seed": 1004,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6671512126922607,
+        "action_rate_mean_abs": 0.03503647446632385,
+        "base_orientation_rmse_rad": 0.19299644231796265,
+        "base_position_max_abs_m": [
+          0.1438731551170349,
+          0.26689577102661133,
+          0.09131687879562378
+        ],
+        "base_position_rmse_m": [
+          0.0723215863108635,
+          0.15416468679904938,
+          0.04685736447572708
+        ],
+        "box_local_x_drift_max_abs_m": 0.1569991111755371,
+        "contact_mismatch_rate": 0.33666666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.5112268924713135,
+        "joint_position_rmse_rad": 0.32347336411476135,
+        "joint_velocity_rmse_rad_s": 0.9576857089996338,
+        "lateral_displacement_error_m": -0.26631203293800354,
+        "lateral_velocity_mae_m_s": 0.09074468165636063,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.23331834375858307,
+        "wheel_position_rmse_m": [
+          0.21422086656093597,
+          0.12769506871700287,
+          0.27920860052108765,
+          0.27856016159057617
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1005",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1005,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.5734145045280457,
+        "action_rate_mean_abs": 0.030016187578439713,
+        "base_orientation_rmse_rad": 0.21646606922149658,
+        "base_position_max_abs_m": [
+          0.09650671482086182,
+          0.5389357209205627,
+          0.09332883358001709
+        ],
+        "base_position_rmse_m": [
+          0.041856467723846436,
+          0.28728359937667847,
+          0.047463126480579376
+        ],
+        "box_local_x_drift_max_abs_m": 0.11367388814687729,
+        "contact_mismatch_rate": 0.3958333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.420951247215271,
+        "joint_position_rmse_rad": 0.2892528772354126,
+        "joint_velocity_rmse_rad_s": 1.0011279582977295,
+        "lateral_displacement_error_m": -0.5345029234886169,
+        "lateral_velocity_mae_m_s": 0.1208542138338089,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.35679754614830017,
+        "wheel_position_rmse_m": [
+          0.32275184988975525,
+          0.22486387193202972,
+          0.4271107316017151,
+          0.4148034155368805
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1006",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1006,
+      "shield_intervention_rate": 0.0,
+      "steps": 279,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.5986957550048828,
+        "action_rate_mean_abs": 0.029596472159028053,
+        "base_orientation_rmse_rad": 0.38480523228645325,
+        "base_position_max_abs_m": [
+          0.1504310667514801,
+          0.3727632761001587,
+          0.2460041046142578
+        ],
+        "base_position_rmse_m": [
+          0.06705786287784576,
+          0.23512579500675201,
+          0.04376060515642166
+        ],
+        "box_local_x_drift_max_abs_m": 0.1672496199607849,
+        "contact_mismatch_rate": 0.41935483870967744,
+        "contact_wheel_planar_speed_max_m_s": 0.8404272794723511,
+        "joint_position_rmse_rad": 0.4536953866481781,
+        "joint_velocity_rmse_rad_s": 1.1145066022872925,
+        "lateral_displacement_error_m": 0.1807287335395813,
+        "lateral_velocity_mae_m_s": 0.11802233010530472,
+        "leg_action_saturation_rate": 0.0017921146953405018,
+        "wheel_center_rmse_m": 0.37182992696762085,
+        "wheel_position_rmse_m": [
+          0.3279408812522888,
+          0.3564050793647766,
+          0.37710464000701904,
+          0.41982418298721313
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1007",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1007,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02633216790854931,
+        "base_orientation_rmse_rad": 0.1077641099691391,
+        "base_position_max_abs_m": [
+          0.2837653160095215,
+          0.473443865776062,
+          0.06478577852249146
+        ],
+        "base_position_rmse_m": [
+          0.15018272399902344,
+          0.24560001492500305,
+          0.03874312341213226
+        ],
+        "box_local_x_drift_max_abs_m": 0.2957972586154938,
+        "contact_mismatch_rate": 0.4375,
+        "contact_wheel_planar_speed_max_m_s": 0.35857221484184265,
+        "joint_position_rmse_rad": 0.5678802728652954,
+        "joint_velocity_rmse_rad_s": 0.8839610815048218,
+        "lateral_displacement_error_m": 0.473443865776062,
+        "lateral_velocity_mae_m_s": 0.09352434426546097,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.30457770824432373,
+        "wheel_position_rmse_m": [
+          0.3086867928504944,
+          0.2770645320415497,
+          0.32211506366729736,
+          0.30864202976226807
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1008",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1008,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.019757136702537537,
+        "base_orientation_rmse_rad": 0.06700894236564636,
+        "base_position_max_abs_m": [
+          0.2131674438714981,
+          0.2806580662727356,
+          0.058063387870788574
+        ],
+        "base_position_rmse_m": [
+          0.12196211516857147,
+          0.14002150297164917,
+          0.03462539240717888
+        ],
+        "box_local_x_drift_max_abs_m": 0.22408567368984222,
+        "contact_mismatch_rate": 0.4,
+        "contact_wheel_planar_speed_max_m_s": 0.2546747326850891,
+        "joint_position_rmse_rad": 0.46427813172340393,
+        "joint_velocity_rmse_rad_s": 0.7483879327774048,
+        "lateral_displacement_error_m": 0.2806580662727356,
+        "lateral_velocity_mae_m_s": 0.06846532225608826,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17834962904453278,
+        "wheel_position_rmse_m": [
+          0.2053070366382599,
+          0.17739787697792053,
+          0.16836687922477722,
+          0.1589527577161789
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1009",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1009,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.023396950215101242,
+        "base_orientation_rmse_rad": 0.11434780806303024,
+        "base_position_max_abs_m": [
+          0.19236332178115845,
+          0.15805716812610626,
+          0.0657758116722107
+        ],
+        "base_position_rmse_m": [
+          0.11386020481586456,
+          0.0952434316277504,
+          0.03688378259539604
+        ],
+        "box_local_x_drift_max_abs_m": 0.20839276909828186,
+        "contact_mismatch_rate": 0.31833333333333336,
+        "contact_wheel_planar_speed_max_m_s": 0.2544085681438446,
+        "joint_position_rmse_rad": 0.43906858563423157,
+        "joint_velocity_rmse_rad_s": 0.7315518856048584,
+        "lateral_displacement_error_m": -0.1457938849925995,
+        "lateral_velocity_mae_m_s": 0.06343995779752731,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17913362383842468,
+        "wheel_position_rmse_m": [
+          0.2280392050743103,
+          0.17045703530311584,
+          0.15428784489631653,
+          0.15327498316764832
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1010",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 4,
+      "seed": 1010,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6880854368209839,
+        "action_rate_mean_abs": 0.034092385321855545,
+        "base_orientation_rmse_rad": 0.19877871870994568,
+        "base_position_max_abs_m": [
+          0.1293860375881195,
+          0.26403525471687317,
+          0.10786134004592896
+        ],
+        "base_position_rmse_m": [
+          0.056106530129909515,
+          0.15531204640865326,
+          0.05073646456003189
+        ],
+        "box_local_x_drift_max_abs_m": 0.13957880437374115,
+        "contact_mismatch_rate": 0.35333333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.257249116897583,
+        "joint_position_rmse_rad": 0.3067762553691864,
+        "joint_velocity_rmse_rad_s": 0.977057695388794,
+        "lateral_displacement_error_m": -0.2637600898742676,
+        "lateral_velocity_mae_m_s": 0.0961492583155632,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.23352248966693878,
+        "wheel_position_rmse_m": [
+          0.21126648783683777,
+          0.122045136988163,
+          0.28181126713752747,
+          0.28139811754226685
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1011",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1011,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.48834389448165894,
+        "action_rate_mean_abs": 0.029018720611929893,
+        "base_orientation_rmse_rad": 0.2489713728427887,
+        "base_position_max_abs_m": [
+          0.13494355976581573,
+          0.5200021266937256,
+          0.11102581024169922
+        ],
+        "base_position_rmse_m": [
+          0.07022344321012497,
+          0.2658744752407074,
+          0.06243913620710373
+        ],
+        "box_local_x_drift_max_abs_m": 0.13902351260185242,
+        "contact_mismatch_rate": 0.38916666666666666,
+        "contact_wheel_planar_speed_max_m_s": 0.24676008522510529,
+        "joint_position_rmse_rad": 0.34577712416648865,
+        "joint_velocity_rmse_rad_s": 0.9785125255584717,
+        "lateral_displacement_error_m": -0.5200021266937256,
+        "lateral_velocity_mae_m_s": 0.11944259703159332,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3616461455821991,
+        "wheel_position_rmse_m": [
+          0.33274948596954346,
+          0.224351167678833,
+          0.4284355342388153,
+          0.4225388765335083
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1012",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1012,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.02085399627685547,
+        "base_orientation_rmse_rad": 0.24554522335529327,
+        "base_position_max_abs_m": [
+          0.2154405564069748,
+          0.6267213821411133,
+          0.06332623958587646
+        ],
+        "base_position_rmse_m": [
+          0.10690769553184509,
+          0.33174920082092285,
+          0.034944385290145874
+        ],
+        "box_local_x_drift_max_abs_m": 0.22578930854797363,
+        "contact_mismatch_rate": 0.4041666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.21681036055088043,
+        "joint_position_rmse_rad": 0.5423012971878052,
+        "joint_velocity_rmse_rad_s": 0.9859699606895447,
+        "lateral_displacement_error_m": 0.6267213821411133,
+        "lateral_velocity_mae_m_s": 0.11071665585041046,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.42485228180885315,
+        "wheel_position_rmse_m": [
+          0.39221009612083435,
+          0.4035886824131012,
+          0.44201424717903137,
+          0.4581579864025116
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1013",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1013,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02678605355322361,
+        "base_orientation_rmse_rad": 0.11186091601848602,
+        "base_position_max_abs_m": [
+          0.2945473790168762,
+          0.4801531136035919,
+          0.06562262773513794
+        ],
+        "base_position_rmse_m": [
+          0.15694600343704224,
+          0.24278956651687622,
+          0.03900490701198578
+        ],
+        "box_local_x_drift_max_abs_m": 0.30313247442245483,
+        "contact_mismatch_rate": 0.4275,
+        "contact_wheel_planar_speed_max_m_s": 0.23424912989139557,
+        "joint_position_rmse_rad": 0.6027690172195435,
+        "joint_velocity_rmse_rad_s": 0.8918665051460266,
+        "lateral_displacement_error_m": 0.4801531136035919,
+        "lateral_velocity_mae_m_s": 0.09390947222709656,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3053441047668457,
+        "wheel_position_rmse_m": [
+          0.3062680661678314,
+          0.28007397055625916,
+          0.3242470622062683,
+          0.30913156270980835
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1014",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1014,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.020499207079410553,
+        "base_orientation_rmse_rad": 0.06271877884864807,
+        "base_position_max_abs_m": [
+          0.20573729276657104,
+          0.28152504563331604,
+          0.057180583477020264
+        ],
+        "base_position_rmse_m": [
+          0.10480494797229767,
+          0.13345462083816528,
+          0.03478711098432541
+        ],
+        "box_local_x_drift_max_abs_m": 0.21893493831157684,
+        "contact_mismatch_rate": 0.37916666666666665,
+        "contact_wheel_planar_speed_max_m_s": 0.242527037858963,
+        "joint_position_rmse_rad": 0.46370062232017517,
+        "joint_velocity_rmse_rad_s": 0.7485300302505493,
+        "lateral_displacement_error_m": 0.28152504563331604,
+        "lateral_velocity_mae_m_s": 0.06627265363931656,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.16990196704864502,
+        "wheel_position_rmse_m": [
+          0.18368880450725555,
+          0.16574831306934357,
+          0.16917790472507477,
+          0.16009822487831116
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1015",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1015,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.42964744567871094,
+        "action_rate_mean_abs": 0.023882078006863594,
+        "base_orientation_rmse_rad": 0.12364880740642548,
+        "base_position_max_abs_m": [
+          0.1963185966014862,
+          0.14806777238845825,
+          0.06577026844024658
+        ],
+        "base_position_rmse_m": [
+          0.12041724473237991,
+          0.08538676053285599,
+          0.036161892116069794
+        ],
+        "box_local_x_drift_max_abs_m": 0.21009330451488495,
+        "contact_mismatch_rate": 0.315,
+        "contact_wheel_planar_speed_max_m_s": 0.2910814881324768,
+        "joint_position_rmse_rad": 0.4590756297111511,
+        "joint_velocity_rmse_rad_s": 0.7850190997123718,
+        "lateral_displacement_error_m": -0.13614150881767273,
+        "lateral_velocity_mae_m_s": 0.06160575896501541,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.1784438192844391,
+        "wheel_position_rmse_m": [
+          0.2286788672208786,
+          0.16608552634716034,
+          0.15409323573112488,
+          0.15409620106220245
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1016",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position"
+      ],
+      "ref_id": 4,
+      "seed": 1016,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6728925704956055,
+        "action_rate_mean_abs": 0.035335395485162735,
+        "base_orientation_rmse_rad": 0.19409658014774323,
+        "base_position_max_abs_m": [
+          0.1343947798013687,
+          0.26046431064605713,
+          0.1037854552268982
+        ],
+        "base_position_rmse_m": [
+          0.06185954436659813,
+          0.15650247037410736,
+          0.04951167851686478
+        ],
+        "box_local_x_drift_max_abs_m": 0.14645208418369293,
+        "contact_mismatch_rate": 0.33166666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.30237877368927,
+        "joint_position_rmse_rad": 0.30701711773872375,
+        "joint_velocity_rmse_rad_s": 0.9814369082450867,
+        "lateral_displacement_error_m": -0.26046431064605713,
+        "lateral_velocity_mae_m_s": 0.09472589939832687,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.23441873490810394,
+        "wheel_position_rmse_m": [
+          0.21482858061790466,
+          0.12176036834716797,
+          0.28191038966178894,
+          0.2817058861255646
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1017",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1017,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.5359883904457092,
+        "action_rate_mean_abs": 0.03145483508706093,
+        "base_orientation_rmse_rad": 0.2286459505558014,
+        "base_position_max_abs_m": [
+          0.11165198683738708,
+          0.5180354118347168,
+          0.10331261157989502
+        ],
+        "base_position_rmse_m": [
+          0.05274011567234993,
+          0.27026334404945374,
+          0.05583763122558594
+        ],
+        "box_local_x_drift_max_abs_m": 0.1208300068974495,
+        "contact_mismatch_rate": 0.3983333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.28370586037635803,
+        "joint_position_rmse_rad": 0.3111203610897064,
+        "joint_velocity_rmse_rad_s": 0.978081226348877,
+        "lateral_displacement_error_m": -0.5180354118347168,
+        "lateral_velocity_mae_m_s": 0.1219286248087883,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3543192446231842,
+        "wheel_position_rmse_m": [
+          0.3300211727619171,
+          0.22230544686317444,
+          0.41937533020973206,
+          0.4098280966281891
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1018",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1018,
+      "shield_intervention_rate": 0.0,
+      "steps": 267,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.029818538576364517,
+        "base_orientation_rmse_rad": 0.38200655579566956,
+        "base_position_max_abs_m": [
+          0.13477647304534912,
+          0.3470781743526459,
+          0.23657822608947754
+        ],
+        "base_position_rmse_m": [
+          0.06146462261676788,
+          0.21584853529930115,
+          0.043649058789014816
+        ],
+        "box_local_x_drift_max_abs_m": 0.1549251228570938,
+        "contact_mismatch_rate": 0.398876404494382,
+        "contact_wheel_planar_speed_max_m_s": 1.144904613494873,
+        "joint_position_rmse_rad": 0.43330273032188416,
+        "joint_velocity_rmse_rad_s": 1.0984102487564087,
+        "lateral_displacement_error_m": 0.14489960670471191,
+        "lateral_velocity_mae_m_s": 0.11811720579862595,
+        "leg_action_saturation_rate": 0.0012484394506866417,
+        "wheel_center_rmse_m": 0.35430285334587097,
+        "wheel_position_rmse_m": [
+          0.31179434061050415,
+          0.3419570028781891,
+          0.35743826627731323,
+          0.40026208758354187
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1019",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1019,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02272852323949337,
+        "base_orientation_rmse_rad": 0.09742216020822525,
+        "base_position_max_abs_m": [
+          0.2501399517059326,
+          0.5108572840690613,
+          0.05989420413970947
+        ],
+        "base_position_rmse_m": [
+          0.1423356682062149,
+          0.2654590308666229,
+          0.03666401654481888
+        ],
+        "box_local_x_drift_max_abs_m": 0.25647690892219543,
+        "contact_mismatch_rate": 0.3958333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.28568488359451294,
+        "joint_position_rmse_rad": 0.5298964977264404,
+        "joint_velocity_rmse_rad_s": 0.8680548667907715,
+        "lateral_displacement_error_m": 0.5108572840690613,
+        "lateral_velocity_mae_m_s": 0.09650161862373352,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.31009045243263245,
+        "wheel_position_rmse_m": [
+          0.3249829113483429,
+          0.2858427166938782,
+          0.3198671340942383,
+          0.3082035183906555
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1020",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1020,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.01993364468216896,
+        "base_orientation_rmse_rad": 0.06884246319532394,
+        "base_position_max_abs_m": [
+          0.2148527354001999,
+          0.2783341109752655,
+          0.05755615234375
+        ],
+        "base_position_rmse_m": [
+          0.12625880539417267,
+          0.14203329384326935,
+          0.03476148843765259
+        ],
+        "box_local_x_drift_max_abs_m": 0.2269107699394226,
+        "contact_mismatch_rate": 0.39916666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.37950628995895386,
+        "joint_position_rmse_rad": 0.48002421855926514,
+        "joint_velocity_rmse_rad_s": 0.7554510831832886,
+        "lateral_displacement_error_m": 0.2783341109752655,
+        "lateral_velocity_mae_m_s": 0.0676795020699501,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17983590066432953,
+        "wheel_position_rmse_m": [
+          0.20900273323059082,
+          0.17674902081489563,
+          0.17081457376480103,
+          0.1589459478855133
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1021",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1021,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.023921387270092964,
+        "base_orientation_rmse_rad": 0.1074792817234993,
+        "base_position_max_abs_m": [
+          0.1955462545156479,
+          0.16732466220855713,
+          0.06496232748031616
+        ],
+        "base_position_rmse_m": [
+          0.11213938891887665,
+          0.10206792503595352,
+          0.036918167024850845
+        ],
+        "box_local_x_drift_max_abs_m": 0.21276475489139557,
+        "contact_mismatch_rate": 0.325,
+        "contact_wheel_planar_speed_max_m_s": 0.25385868549346924,
+        "joint_position_rmse_rad": 0.4336932897567749,
+        "joint_velocity_rmse_rad_s": 0.7338930368423462,
+        "lateral_displacement_error_m": -0.15537166595458984,
+        "lateral_velocity_mae_m_s": 0.0576503612101078,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.18004469573497772,
+        "wheel_position_rmse_m": [
+          0.2244008332490921,
+          0.17699097096920013,
+          0.15577030181884766,
+          0.1540079265832901
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1022",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position"
+      ],
+      "ref_id": 4,
+      "seed": 1022,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6736481189727783,
+        "action_rate_mean_abs": 0.03410326689481735,
+        "base_orientation_rmse_rad": 0.20757408440113068,
+        "base_position_max_abs_m": [
+          0.13148827850818634,
+          0.2504926323890686,
+          0.10955977439880371
+        ],
+        "base_position_rmse_m": [
+          0.06078668683767319,
+          0.14767467975616455,
+          0.05271770432591438
+        ],
+        "box_local_x_drift_max_abs_m": 0.14287243783473969,
+        "contact_mismatch_rate": 0.3416666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.25445446372032166,
+        "joint_position_rmse_rad": 0.3129229247570038,
+        "joint_velocity_rmse_rad_s": 0.8970097899436951,
+        "lateral_displacement_error_m": -0.2498428225517273,
+        "lateral_velocity_mae_m_s": 0.0944211557507515,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.2297481745481491,
+        "wheel_position_rmse_m": [
+          0.20241734385490417,
+          0.11007194966077805,
+          0.2808915078639984,
+          0.2813328802585602
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1023",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1023,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.983870267868042,
+        "action_rate_mean_abs": 0.03101169317960739,
+        "base_orientation_rmse_rad": 0.20305657386779785,
+        "base_position_max_abs_m": [
+          0.05874862149357796,
+          0.5684420466423035,
+          0.08070051670074463
+        ],
+        "base_position_rmse_m": [
+          0.021873094141483307,
+          0.2979544699192047,
+          0.0446152426302433
+        ],
+        "box_local_x_drift_max_abs_m": 0.06111767515540123,
+        "contact_mismatch_rate": 0.42,
+        "contact_wheel_planar_speed_max_m_s": 0.2904369831085205,
+        "joint_position_rmse_rad": 0.25332093238830566,
+        "joint_velocity_rmse_rad_s": 1.0588390827178955,
+        "lateral_displacement_error_m": -0.5684420466423035,
+        "lateral_velocity_mae_m_s": 0.12985430657863617,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.36414897441864014,
+        "wheel_position_rmse_m": [
+          0.3489401042461395,
+          0.23155012726783752,
+          0.4277816414833069,
+          0.41478443145751953
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1024",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1024,
+      "shield_intervention_rate": 0.0,
+      "steps": 259,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.031617421656847,
+        "base_orientation_rmse_rad": 0.376473993062973,
+        "base_position_max_abs_m": [
+          0.15311050415039062,
+          0.33328166604042053,
+          0.24290573596954346
+        ],
+        "base_position_rmse_m": [
+          0.06059126555919647,
+          0.2054523527622223,
+          0.042953576892614365
+        ],
+        "box_local_x_drift_max_abs_m": 0.15848203003406525,
+        "contact_mismatch_rate": 0.3947876447876448,
+        "contact_wheel_planar_speed_max_m_s": 1.0137938261032104,
+        "joint_position_rmse_rad": 0.4194263517856598,
+        "joint_velocity_rmse_rad_s": 1.1127878427505493,
+        "lateral_displacement_error_m": 0.130848228931427,
+        "lateral_velocity_mae_m_s": 0.11841798573732376,
+        "leg_action_saturation_rate": 0.0016087516087516086,
+        "wheel_center_rmse_m": 0.3420087993144989,
+        "wheel_position_rmse_m": [
+          0.3054613769054413,
+          0.32495182752609253,
+          0.3440869450569153,
+          0.3880513906478882
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1025",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1025,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.021674765273928642,
+        "base_orientation_rmse_rad": 0.09137243032455444,
+        "base_position_max_abs_m": [
+          0.2368059903383255,
+          0.5292795896530151,
+          0.05864828824996948
+        ],
+        "base_position_rmse_m": [
+          0.12048593163490295,
+          0.2727067470550537,
+          0.03571581095457077
+        ],
+        "box_local_x_drift_max_abs_m": 0.2450585514307022,
+        "contact_mismatch_rate": 0.385,
+        "contact_wheel_planar_speed_max_m_s": 0.23141273856163025,
+        "joint_position_rmse_rad": 0.5071675777435303,
+        "joint_velocity_rmse_rad_s": 0.8628858923912048,
+        "lateral_displacement_error_m": 0.5292795896530151,
+        "lateral_velocity_mae_m_s": 0.09742841124534607,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3078218698501587,
+        "wheel_position_rmse_m": [
+          0.325141578912735,
+          0.27843934297561646,
+          0.31760814785957336,
+          0.3080531358718872
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1026",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1026,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.020238911733031273,
+        "base_orientation_rmse_rad": 0.06411314010620117,
+        "base_position_max_abs_m": [
+          0.20383143424987793,
+          0.28715962171554565,
+          0.05634415149688721
+        ],
+        "base_position_rmse_m": [
+          0.10810191184282303,
+          0.13557712733745575,
+          0.03467937186360359
+        ],
+        "box_local_x_drift_max_abs_m": 0.2193813920021057,
+        "contact_mismatch_rate": 0.37916666666666665,
+        "contact_wheel_planar_speed_max_m_s": 0.28919345140457153,
+        "joint_position_rmse_rad": 0.4802563488483429,
+        "joint_velocity_rmse_rad_s": 0.7457558512687683,
+        "lateral_displacement_error_m": 0.28715962171554565,
+        "lateral_velocity_mae_m_s": 0.06796786934137344,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17150548100471497,
+        "wheel_position_rmse_m": [
+          0.1867486983537674,
+          0.16872058808803558,
+          0.1692754626274109,
+          0.16018937528133392
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1027",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1027,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.023918166756629944,
+        "base_orientation_rmse_rad": 0.11274614930152893,
+        "base_position_max_abs_m": [
+          0.1914573311805725,
+          0.16191406548023224,
+          0.06504666805267334
+        ],
+        "base_position_rmse_m": [
+          0.11342724412679672,
+          0.09757861495018005,
+          0.03686914220452309
+        ],
+        "box_local_x_drift_max_abs_m": 0.20818188786506653,
+        "contact_mismatch_rate": 0.3225,
+        "contact_wheel_planar_speed_max_m_s": 0.2440686672925949,
+        "joint_position_rmse_rad": 0.4417050778865814,
+        "joint_velocity_rmse_rad_s": 0.7268843054771423,
+        "lateral_displacement_error_m": -0.14918266236782074,
+        "lateral_velocity_mae_m_s": 0.06441370397806168,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17929105460643768,
+        "wheel_position_rmse_m": [
+          0.22676865756511688,
+          0.1719103455543518,
+          0.1551206260919571,
+          0.15343251824378967
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1028",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 4,
+      "seed": 1028,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6699436902999878,
+        "action_rate_mean_abs": 0.0339091494679451,
+        "base_orientation_rmse_rad": 0.19151858985424042,
+        "base_position_max_abs_m": [
+          0.14324849843978882,
+          0.27771344780921936,
+          0.09127992391586304
+        ],
+        "base_position_rmse_m": [
+          0.07271859049797058,
+          0.16001859307289124,
+          0.04670795425772667
+        ],
+        "box_local_x_drift_max_abs_m": 0.15657183527946472,
+        "contact_mismatch_rate": 0.32083333333333336,
+        "contact_wheel_planar_speed_max_m_s": 0.265888512134552,
+        "joint_position_rmse_rad": 0.3137470483779907,
+        "joint_velocity_rmse_rad_s": 0.895100474357605,
+        "lateral_displacement_error_m": -0.2771124839782715,
+        "lateral_velocity_mae_m_s": 0.08900368958711624,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.2401120960712433,
+        "wheel_position_rmse_m": [
+          0.22803348302841187,
+          0.13464705646038055,
+          0.28404656052589417,
+          0.2824954688549042
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1029",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 5,
+      "seed": 1029,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6427526473999023,
+        "action_rate_mean_abs": 0.033845752477645874,
+        "base_orientation_rmse_rad": 0.20869478583335876,
+        "base_position_max_abs_m": [
+          0.31413736939430237,
+          0.5704169869422913,
+          0.16047042608261108
+        ],
+        "base_position_rmse_m": [
+          0.060586266219615936,
+          0.30493056774139404,
+          0.0463707335293293
+        ],
+        "box_local_x_drift_max_abs_m": 0.26719561219215393,
+        "contact_mismatch_rate": 0.43083333333333335,
+        "contact_wheel_planar_speed_max_m_s": 0.29483669996261597,
+        "joint_position_rmse_rad": 0.3101329803466797,
+        "joint_velocity_rmse_rad_s": 1.0125902891159058,
+        "lateral_displacement_error_m": -0.5350667238235474,
+        "lateral_velocity_mae_m_s": 0.13550710678100586,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3688299357891083,
+        "wheel_position_rmse_m": [
+          0.36433085799217224,
+          0.22763773798942566,
+          0.42837122082710266,
+          0.4196240305900574
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1030",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1030,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.021919840946793556,
+        "base_orientation_rmse_rad": 0.20648004114627838,
+        "base_position_max_abs_m": [
+          0.25708267092704773,
+          0.6858961582183838,
+          0.06297409534454346
+        ],
+        "base_position_rmse_m": [
+          0.11330318450927734,
+          0.3488810062408447,
+          0.03784913942217827
+        ],
+        "box_local_x_drift_max_abs_m": 0.2624469995498657,
+        "contact_mismatch_rate": 0.41,
+        "contact_wheel_planar_speed_max_m_s": 0.22406499087810516,
+        "joint_position_rmse_rad": 0.5455356240272522,
+        "joint_velocity_rmse_rad_s": 1.0097370147705078,
+        "lateral_displacement_error_m": 0.6858961582183838,
+        "lateral_velocity_mae_m_s": 0.1209205612540245,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.4308972954750061,
+        "wheel_position_rmse_m": [
+          0.39588186144828796,
+          0.40685567259788513,
+          0.4567214250564575,
+          0.4602624773979187
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1031",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1031,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.025510715320706367,
+        "base_orientation_rmse_rad": 0.10633192956447601,
+        "base_position_max_abs_m": [
+          0.2591092884540558,
+          0.46910732984542847,
+          0.06507265567779541
+        ],
+        "base_position_rmse_m": [
+          0.14263588190078735,
+          0.24434682726860046,
+          0.03699375316500664
+        ],
+        "box_local_x_drift_max_abs_m": 0.26961180567741394,
+        "contact_mismatch_rate": 0.4425,
+        "contact_wheel_planar_speed_max_m_s": 0.2031623125076294,
+        "joint_position_rmse_rad": 0.5149139165878296,
+        "joint_velocity_rmse_rad_s": 0.8791583180427551,
+        "lateral_displacement_error_m": 0.46910732984542847,
+        "lateral_velocity_mae_m_s": 0.09057759493589401,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.297656387090683,
+        "wheel_position_rmse_m": [
+          0.2899805009365082,
+          0.26268470287323,
+          0.3238639235496521,
+          0.31051167845726013
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1032",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1032,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.02233187109231949,
+        "base_orientation_rmse_rad": 0.06635847687721252,
+        "base_position_max_abs_m": [
+          0.21757182478904724,
+          0.28064587712287903,
+          0.05798822641372681
+        ],
+        "base_position_rmse_m": [
+          0.1256435215473175,
+          0.13713029026985168,
+          0.03480036184191704
+        ],
+        "box_local_x_drift_max_abs_m": 0.23313160240650177,
+        "contact_mismatch_rate": 0.36666666666666664,
+        "contact_wheel_planar_speed_max_m_s": 0.20552173256874084,
+        "joint_position_rmse_rad": 0.5006122589111328,
+        "joint_velocity_rmse_rad_s": 0.7745426893234253,
+        "lateral_displacement_error_m": 0.28064587712287903,
+        "lateral_velocity_mae_m_s": 0.06844957917928696,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.18038348853588104,
+        "wheel_position_rmse_m": [
+          0.2039787769317627,
+          0.18281897902488708,
+          0.17191919684410095,
+          0.15989524126052856
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1033",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1033,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.022686170414090157,
+        "base_orientation_rmse_rad": 0.11653055250644684,
+        "base_position_max_abs_m": [
+          0.1913723647594452,
+          0.16712327301502228,
+          0.06558173894882202
+        ],
+        "base_position_rmse_m": [
+          0.11705184727907181,
+          0.09644636511802673,
+          0.03759343549609184
+        ],
+        "box_local_x_drift_max_abs_m": 0.20743054151535034,
+        "contact_mismatch_rate": 0.32,
+        "contact_wheel_planar_speed_max_m_s": 0.2525602877140045,
+        "joint_position_rmse_rad": 0.4545455276966095,
+        "joint_velocity_rmse_rad_s": 0.7226608395576477,
+        "lateral_displacement_error_m": -0.15574049949645996,
+        "lateral_velocity_mae_m_s": 0.06160139665007591,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.1812278777360916,
+        "wheel_position_rmse_m": [
+          0.22917874157428741,
+          0.17735005915164948,
+          0.1550564467906952,
+          0.15282577276229858
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1034",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position"
+      ],
+      "ref_id": 4,
+      "seed": 1034,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.689966082572937,
+        "action_rate_mean_abs": 0.034440066665410995,
+        "base_orientation_rmse_rad": 0.1980905681848526,
+        "base_position_max_abs_m": [
+          0.13527993857860565,
+          0.26196062564849854,
+          0.10073709487915039
+        ],
+        "base_position_rmse_m": [
+          0.06512285768985748,
+          0.15455447137355804,
+          0.04968865588307381
+        ],
+        "box_local_x_drift_max_abs_m": 0.14961425960063934,
+        "contact_mismatch_rate": 0.3383333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.3307182490825653,
+        "joint_position_rmse_rad": 0.30910900235176086,
+        "joint_velocity_rmse_rad_s": 0.9004935622215271,
+        "lateral_displacement_error_m": -0.26121968030929565,
+        "lateral_velocity_mae_m_s": 0.09256602078676224,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.23465222120285034,
+        "wheel_position_rmse_m": [
+          0.21484430134296417,
+          0.12311925739049911,
+          0.282381147146225,
+          0.2814091742038727
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1035",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1035,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.5127085447311401,
+        "action_rate_mean_abs": 0.03219667449593544,
+        "base_orientation_rmse_rad": 0.20025590062141418,
+        "base_position_max_abs_m": [
+          0.05481724441051483,
+          0.5549657344818115,
+          0.08182787895202637
+        ],
+        "base_position_rmse_m": [
+          0.019132958725094795,
+          0.28924989700317383,
+          0.0450003407895565
+        ],
+        "box_local_x_drift_max_abs_m": 0.0578097365796566,
+        "contact_mismatch_rate": 0.41,
+        "contact_wheel_planar_speed_max_m_s": 0.4131907522678375,
+        "joint_position_rmse_rad": 0.24245773255825043,
+        "joint_velocity_rmse_rad_s": 0.9199503660202026,
+        "lateral_displacement_error_m": -0.5549657344818115,
+        "lateral_velocity_mae_m_s": 0.12920819222927094,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.35296618938446045,
+        "wheel_position_rmse_m": [
+          0.3241369426250458,
+          0.23244540393352509,
+          0.41843873262405396,
+          0.4051591753959656
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1036",
+      "failures": [
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1036,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.02222411148250103,
+        "base_orientation_rmse_rad": 0.25385165214538574,
+        "base_position_max_abs_m": [
+          0.2229967713356018,
+          0.6249027252197266,
+          0.057943522930145264
+        ],
+        "base_position_rmse_m": [
+          0.11197454482316971,
+          0.3308037519454956,
+          0.0316179133951664
+        ],
+        "box_local_x_drift_max_abs_m": 0.2283291220664978,
+        "contact_mismatch_rate": 0.4041666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.24317693710327148,
+        "joint_position_rmse_rad": 0.5608752965927124,
+        "joint_velocity_rmse_rad_s": 0.9996185302734375,
+        "lateral_displacement_error_m": 0.6249027252197266,
+        "lateral_velocity_mae_m_s": 0.11057531833648682,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.42446157336235046,
+        "wheel_position_rmse_m": [
+          0.3896583318710327,
+          0.40645942091941833,
+          0.43881964683532715,
+          0.45941799879074097
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1037",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1037,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02196105569601059,
+        "base_orientation_rmse_rad": 0.09226416796445847,
+        "base_position_max_abs_m": [
+          0.2567685544490814,
+          0.5162258148193359,
+          0.05895477533340454
+        ],
+        "base_position_rmse_m": [
+          0.13770735263824463,
+          0.2712855935096741,
+          0.035473648458719254
+        ],
+        "box_local_x_drift_max_abs_m": 0.26646965742111206,
+        "contact_mismatch_rate": 0.39916666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.20137396454811096,
+        "joint_position_rmse_rad": 0.549473226070404,
+        "joint_velocity_rmse_rad_s": 0.8707581162452698,
+        "lateral_displacement_error_m": 0.5162258148193359,
+        "lateral_velocity_mae_m_s": 0.0953606441617012,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.31019577383995056,
+        "wheel_position_rmse_m": [
+          0.3252441883087158,
+          0.28238728642463684,
+          0.32233384251594543,
+          0.3089663088321686
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1038",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1038,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.019932590425014496,
+        "base_orientation_rmse_rad": 0.0623420849442482,
+        "base_position_max_abs_m": [
+          0.2000822275876999,
+          0.2878631353378296,
+          0.05649900436401367
+        ],
+        "base_position_rmse_m": [
+          0.1076073870062828,
+          0.1364137977361679,
+          0.034393928945064545
+        ],
+        "box_local_x_drift_max_abs_m": 0.21284763514995575,
+        "contact_mismatch_rate": 0.38166666666666665,
+        "contact_wheel_planar_speed_max_m_s": 0.2814614772796631,
+        "joint_position_rmse_rad": 0.4700068533420563,
+        "joint_velocity_rmse_rad_s": 0.7478065490722656,
+        "lateral_displacement_error_m": 0.2878631353378296,
+        "lateral_velocity_mae_m_s": 0.06864500790834427,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17193596065044403,
+        "wheel_position_rmse_m": [
+          0.1887841522693634,
+          0.16650421917438507,
+          0.17051196098327637,
+          0.16065633296966553
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1039",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1039,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.0226714089512825,
+        "base_orientation_rmse_rad": 0.11570783704519272,
+        "base_position_max_abs_m": [
+          0.1917686015367508,
+          0.16641584038734436,
+          0.06518322229385376
+        ],
+        "base_position_rmse_m": [
+          0.11642392724752426,
+          0.096563421189785,
+          0.03744324669241905
+        ],
+        "box_local_x_drift_max_abs_m": 0.2078031301498413,
+        "contact_mismatch_rate": 0.31916666666666665,
+        "contact_wheel_planar_speed_max_m_s": 0.25111323595046997,
+        "joint_position_rmse_rad": 0.45066577196121216,
+        "joint_velocity_rmse_rad_s": 0.7267547845840454,
+        "lateral_displacement_error_m": -0.15464046597480774,
+        "lateral_velocity_mae_m_s": 0.062099914997816086,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.1806257963180542,
+        "wheel_position_rmse_m": [
+          0.22795644402503967,
+          0.1765914410352707,
+          0.15486589074134827,
+          0.1528744250535965
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1040",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 4,
+      "seed": 1040,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6468733549118042,
+        "action_rate_mean_abs": 0.0343049019575119,
+        "base_orientation_rmse_rad": 0.19764281809329987,
+        "base_position_max_abs_m": [
+          0.13818307220935822,
+          0.27137213945388794,
+          0.09446769952774048
+        ],
+        "base_position_rmse_m": [
+          0.06920486688613892,
+          0.15500019490718842,
+          0.04802016541361809
+        ],
+        "box_local_x_drift_max_abs_m": 0.1518077254295349,
+        "contact_mismatch_rate": 0.33916666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.3406083583831787,
+        "joint_position_rmse_rad": 0.3117593228816986,
+        "joint_velocity_rmse_rad_s": 0.8989457488059998,
+        "lateral_displacement_error_m": -0.27070146799087524,
+        "lateral_velocity_mae_m_s": 0.09154406189918518,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.23585131764411926,
+        "wheel_position_rmse_m": [
+          0.21816755831241608,
+          0.1280723214149475,
+          0.2824047803878784,
+          0.2806265652179718
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1041",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 5,
+      "seed": 1041,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.5011605024337769,
+        "action_rate_mean_abs": 0.03397999331355095,
+        "base_orientation_rmse_rad": 0.21854987740516663,
+        "base_position_max_abs_m": [
+          0.1421249508857727,
+          0.5021882653236389,
+          0.09798449277877808
+        ],
+        "base_position_rmse_m": [
+          0.07285977900028229,
+          0.26091015338897705,
+          0.05286865308880806
+        ],
+        "box_local_x_drift_max_abs_m": 0.15067580342292786,
+        "contact_mismatch_rate": 0.3875,
+        "contact_wheel_planar_speed_max_m_s": 0.32861438393592834,
+        "joint_position_rmse_rad": 0.3175428807735443,
+        "joint_velocity_rmse_rad_s": 0.9758773446083069,
+        "lateral_displacement_error_m": -0.5021882653236389,
+        "lateral_velocity_mae_m_s": 0.1265886425971985,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.35287463665008545,
+        "wheel_position_rmse_m": [
+          0.3427868187427521,
+          0.23840288817882538,
+          0.4076805114746094,
+          0.3969130218029022
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1042",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1042,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4984901547431946,
+        "action_rate_mean_abs": 0.021428687497973442,
+        "base_orientation_rmse_rad": 0.20345470309257507,
+        "base_position_max_abs_m": [
+          0.26111289858818054,
+          0.6915116906166077,
+          0.06939464807510376
+        ],
+        "base_position_rmse_m": [
+          0.11527469754219055,
+          0.3497942090034485,
+          0.03845201060175896
+        ],
+        "box_local_x_drift_max_abs_m": 0.2670040726661682,
+        "contact_mismatch_rate": 0.4025,
+        "contact_wheel_planar_speed_max_m_s": 0.2648144066333771,
+        "joint_position_rmse_rad": 0.5577393770217896,
+        "joint_velocity_rmse_rad_s": 0.9821392893791199,
+        "lateral_displacement_error_m": 0.6915116906166077,
+        "lateral_velocity_mae_m_s": 0.12121205776929855,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.43149518966674805,
+        "wheel_position_rmse_m": [
+          0.3987761437892914,
+          0.4063587486743927,
+          0.4571979343891144,
+          0.45997023582458496
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1043",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1043,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.021635767072439194,
+        "base_orientation_rmse_rad": 0.09196338802576065,
+        "base_position_max_abs_m": [
+          0.24377843737602234,
+          0.5216392874717712,
+          0.057740986347198486
+        ],
+        "base_position_rmse_m": [
+          0.12699821591377258,
+          0.27144986391067505,
+          0.03556925058364868
+        ],
+        "box_local_x_drift_max_abs_m": 0.2534222900867462,
+        "contact_mismatch_rate": 0.41083333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.30788668990135193,
+        "joint_position_rmse_rad": 0.534252405166626,
+        "joint_velocity_rmse_rad_s": 0.8664897084236145,
+        "lateral_displacement_error_m": 0.5216392874717712,
+        "lateral_velocity_mae_m_s": 0.09553549438714981,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.3084844946861267,
+        "wheel_position_rmse_m": [
+          0.3218165338039398,
+          0.2804540991783142,
+          0.32031023502349854,
+          0.3095669448375702
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref2_seed1044",
+      "failures": [
+        "tracking:base_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 2,
+      "seed": 1044,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4340269863605499,
+        "action_rate_mean_abs": 0.018765300512313843,
+        "base_orientation_rmse_rad": 0.056522857397794724,
+        "base_position_max_abs_m": [
+          0.2052386850118637,
+          0.29231369495391846,
+          0.058880746364593506
+        ],
+        "base_position_rmse_m": [
+          0.09364719688892365,
+          0.13704019784927368,
+          0.035114191472530365
+        ],
+        "box_local_x_drift_max_abs_m": 0.22285422682762146,
+        "contact_mismatch_rate": 0.39416666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.34515416622161865,
+        "joint_position_rmse_rad": 0.40439334511756897,
+        "joint_velocity_rmse_rad_s": 0.7437716126441956,
+        "lateral_displacement_error_m": 0.29231369495391846,
+        "lateral_velocity_mae_m_s": 0.06748845428228378,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.16926218569278717,
+        "wheel_position_rmse_m": [
+          0.18809427320957184,
+          0.16088838875293732,
+          0.1667189747095108,
+          0.15980927646160126
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref3_seed1045",
+      "failures": [
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 3,
+      "seed": 1045,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.38601937890052795,
+        "action_rate_mean_abs": 0.02543162740767002,
+        "base_orientation_rmse_rad": 0.11037153005599976,
+        "base_position_max_abs_m": [
+          0.19059759378433228,
+          0.15786418318748474,
+          0.06708109378814697
+        ],
+        "base_position_rmse_m": [
+          0.10797411948442459,
+          0.09735272824764252,
+          0.036195192486047745
+        ],
+        "box_local_x_drift_max_abs_m": 0.20646129548549652,
+        "contact_mismatch_rate": 0.3175,
+        "contact_wheel_planar_speed_max_m_s": 0.2527456283569336,
+        "joint_position_rmse_rad": 0.4174366593360901,
+        "joint_velocity_rmse_rad_s": 0.7273339629173279,
+        "lateral_displacement_error_m": -0.14642535150051117,
+        "lateral_velocity_mae_m_s": 0.06617045402526855,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.17538204789161682,
+        "wheel_position_rmse_m": [
+          0.22012214362621307,
+          0.16364747285842896,
+          0.15519550442695618,
+          0.1539985090494156
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref4_seed1046",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 4,
+      "seed": 1046,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.6852477788925171,
+        "action_rate_mean_abs": 0.03386758267879486,
+        "base_orientation_rmse_rad": 0.19189225137233734,
+        "base_position_max_abs_m": [
+          0.15656645596027374,
+          0.2828472852706909,
+          0.0854077935218811
+        ],
+        "base_position_rmse_m": [
+          0.08053036034107208,
+          0.15721674263477325,
+          0.045092299580574036
+        ],
+        "box_local_x_drift_max_abs_m": 0.16533853113651276,
+        "contact_mismatch_rate": 0.3408333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.355365514755249,
+        "joint_position_rmse_rad": 0.31701406836509705,
+        "joint_velocity_rmse_rad_s": 0.9310107231140137,
+        "lateral_displacement_error_m": -0.2820892930030823,
+        "lateral_velocity_mae_m_s": 0.09728929400444031,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.2389761507511139,
+        "wheel_position_rmse_m": [
+          0.22645583748817444,
+          0.1394900232553482,
+          0.28187668323516846,
+          0.2797216773033142
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref5_seed1047",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch"
+      ],
+      "ref_id": 5,
+      "seed": 1047,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.4870082139968872,
+        "action_rate_mean_abs": 0.03096597269177437,
+        "base_orientation_rmse_rad": 0.2393426150083542,
+        "base_position_max_abs_m": [
+          0.12351112812757492,
+          0.51083904504776,
+          0.10760462284088135
+        ],
+        "base_position_rmse_m": [
+          0.061275042593479156,
+          0.26566097140312195,
+          0.058128878474235535
+        ],
+        "box_local_x_drift_max_abs_m": 0.13632851839065552,
+        "contact_mismatch_rate": 0.39666666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.23457762598991394,
+        "joint_position_rmse_rad": 0.34910842776298523,
+        "joint_velocity_rmse_rad_s": 0.9746413826942444,
+        "lateral_displacement_error_m": -0.51083904504776,
+        "lateral_velocity_mae_m_s": 0.12166760861873627,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.35440921783447266,
+        "wheel_position_rmse_m": [
+          0.3238542079925537,
+          0.2199932038784027,
+          0.4225302040576935,
+          0.41305363178253174
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref0_seed1048",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 0,
+      "seed": 1048,
+      "shield_intervention_rate": 0.0,
+      "steps": 297,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.5373096466064453,
+        "action_rate_mean_abs": 0.02935650758445263,
+        "base_orientation_rmse_rad": 0.39925616979599,
+        "base_position_max_abs_m": [
+          0.1635666936635971,
+          0.4099685251712799,
+          0.24391984939575195
+        ],
+        "base_position_rmse_m": [
+          0.07806652784347534,
+          0.26615238189697266,
+          0.04289216175675392
+        ],
+        "box_local_x_drift_max_abs_m": 0.17642071843147278,
+        "contact_mismatch_rate": 0.43434343434343436,
+        "contact_wheel_planar_speed_max_m_s": 0.8388981223106384,
+        "joint_position_rmse_rad": 0.5094638466835022,
+        "joint_velocity_rmse_rad_s": 1.0997977256774902,
+        "lateral_displacement_error_m": 0.22050517797470093,
+        "lateral_velocity_mae_m_s": 0.11714436858892441,
+        "leg_action_saturation_rate": 0.001964085297418631,
+        "wheel_center_rmse_m": 0.4064197540283203,
+        "wheel_position_rmse_m": [
+          0.3643905222415924,
+          0.3949469327926636,
+          0.4100034236907959,
+          0.451488196849823
+        ]
+      }
+    },
+    {
+      "episode_id": "student_gate_bc_nominal_ref1_seed1049",
+      "failures": [
+        "tracking:base_position",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift"
+      ],
+      "ref_id": 1,
+      "seed": 1049,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.46561166644096375,
+        "action_rate_mean_abs": 0.02374163083732128,
+        "base_orientation_rmse_rad": 0.10086966305971146,
+        "base_position_max_abs_m": [
+          0.27210554480552673,
+          0.48767203092575073,
+          0.06300860643386841
+        ],
+        "base_position_rmse_m": [
+          0.14891444146633148,
+          0.2534107565879822,
+          0.036917105317115784
+        ],
+        "box_local_x_drift_max_abs_m": 0.2873893082141876,
+        "contact_mismatch_rate": 0.4225,
+        "contact_wheel_planar_speed_max_m_s": 0.22805528342723846,
+        "joint_position_rmse_rad": 0.6017149686813354,
+        "joint_velocity_rmse_rad_s": 0.8776244521141052,
+        "lateral_displacement_error_m": 0.48767203092575073,
+        "lateral_velocity_mae_m_s": 0.09194279462099075,
+        "leg_action_saturation_rate": 0.0,
+        "wheel_center_rmse_m": 0.30666384100914,
+        "wheel_position_rmse_m": [
+          0.30977320671081543,
+          0.2850782871246338,
+          0.32201340794563293,
+          0.3086245059967041
+        ]
+      }
+    }
+  ],
+  "hard_invariant_failures": [],
+  "ok": false,
+  "schema_version": "pcbc-student-closed-loop-gate-v1",
+  "structural_failures": [],
+  "summary": {
+    "episodes": 50,
+    "per_reference_success_rate": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0,
+      "5": 0.0
+    },
+    "shield_intervention_rate": 0.0,
+    "student_checkpoint_hashes": [
+      "6b1ae47e4adf8c2c3393afb7bc662fd83336fa705c9939ee0910601f19a8e0d6"
+    ],
+    "success_rate": 0.0,
+    "successes": 0,
+    "teacher_valid_rate": 0.0,
+    "termination_reason_counts": {
+      "1": 45,
+      "2": 5
+    }
+  }
+}

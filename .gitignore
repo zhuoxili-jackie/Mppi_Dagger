@@ -1,0 +1,56 @@
+# Local continuation/handoff documents.
+CONTINUATION*
+/AGENTS.md
+
+# Local experiment logs, metrics and notes.
+training_records/
+
+# Generated datasets and training products.
+datasets/*
+checkpoints/*
+exported/*
+runs/
+videos/
+wandb/
+
+# Keep empty output directories in the repository.
+!datasets/.gitkeep
+!checkpoints/.gitkeep
+!exported/.gitkeep
+
+# The upstream MPPI checkout is reference-only and contains its own .git data.
+reference_only/RTWholeBodyMPPI/
+
+# Python environments, packaging products and caches.
+__pycache__/
+*.py[cod]
+*.so
+.python-version
+.venv/
+/venv/
+/env/
+*.egg-info/
+build/
+dist/
+
+# Test, lint and coverage caches.
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Simulator/runtime output.
+logs/
+*.log
+reports/failures/
+
+# Editors and operating-system metadata.
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

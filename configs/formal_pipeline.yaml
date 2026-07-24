@@ -1,0 +1,38 @@
+schema_version: pcbc-formal-pipeline-v1
+episode_steps: 300
+
+r0:
+  dataset: datasets/dagger_aggregate
+  base_dataset: datasets/mppi_formal_gate50_v3
+  base_frames: 15000
+  train: {episodes: 14, seed: 20000}
+  validation: {episodes: 4, seed: 21000}
+  test: {episodes: 2, seed: 22000}
+  total_frames: 21000
+  train_frames: 14700
+  scenario: nominal
+  dagger_round: 0
+
+bc:
+  output: checkpoints/bc_formal
+  epochs: 100
+  batch_size: 1024
+
+closed_loop_gates:
+  episodes: 50
+  seed: 1000
+  nominal_success_rate_min_before_dagger: 0.80
+  nominal_per_reference_success_rate_min_before_dagger: 0.50
+  dagger_admission_full_horizon_success_rate_min: 0.80
+  dagger_admission_per_reference_mean_horizon_fraction_min: 0.95
+  dagger_admission_minimum_episode_horizon_fraction: 0.85
+  final_success_rate_min: 0.95
+  final_per_reference_success_rate_min: 0.90
+  maximum_expert_success_gap: 0.05
+
+dagger:
+  train_episodes_per_round: 20
+  validation_episodes_per_round: 6
+  seed_base: 10000
+  required_rounds: [1, 2, 3]
+  frames_per_round: 7800

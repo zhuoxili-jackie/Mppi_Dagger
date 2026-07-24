@@ -1,0 +1,30 @@
+{
+  "schema_version": "robot-lab-vendor-snapshot-v1",
+  "copied_at": "2026-07-23T13:17:02+08:00",
+  "source_repository": {
+    "remote": "https://github.com/jmxaaa/Robot_cooperation.git",
+    "branch": "wlt_dev2",
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty_at_copy_time": true,
+    "source_status_sha256": "295a80fea513949ac74870da7fe43bad1941572b2cad0cbd60a734dab91672da",
+    "robot_lab_tracked_diff_sha256": "921cee573ddb312eec5ed2eb6be0af365ff69a3d6553c16c193d3d1fed9c2a58"
+  },
+  "vendored_content": {
+    "python_package": "robot_lab/",
+    "extension_config": "config/",
+    "robot_assets": "data/Robots/pcbC/",
+    "reference_motions": "data/Motions/pcbc_lateral_708/",
+    "package_file_count_excluding_runtime_caches": 279,
+    "python_file_count": 247,
+    "robot_asset_file_count": 40,
+    "reference_file_count": 12
+  },
+  "runtime_dependency_policy": {
+    "uses_original_repository_at_runtime": false,
+    "robot_lab_import_must_resolve_below": "vendor/robot_lab",
+    "external_runtime_components": [
+      "Isaac Sim",
+      "Python packages declared by the standalone project"
+    ]
+  }
+}

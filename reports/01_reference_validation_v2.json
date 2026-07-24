@@ -1,0 +1,196 @@
+{
+  "candidate_contact_schedule": {
+    "ref_0_npz": {
+      "contact_fraction_per_wheel": [
+        0.5753012048192772,
+        0.5783132530120482,
+        0.5180722891566265,
+        0.5753012048192772
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        16,
+        21,
+        15
+      ]
+    },
+    "ref_1_npz": {
+      "contact_fraction_per_wheel": [
+        0.5783132530120482,
+        0.5903614457831325,
+        0.4819277108433735,
+        0.5873493975903614
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        16,
+        21,
+        17
+      ]
+    },
+    "ref_2_npz": {
+      "contact_fraction_per_wheel": [
+        0.5873493975903614,
+        0.5903614457831325,
+        0.5481927710843374,
+        0.6114457831325302
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        16,
+        27,
+        19
+      ]
+    },
+    "ref_3_npz": {
+      "contact_fraction_per_wheel": [
+        0.5873493975903614,
+        0.5813253012048193,
+        0.5783132530120482,
+        0.608433734939759
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        16,
+        25,
+        19
+      ]
+    },
+    "ref_4_npz": {
+      "contact_fraction_per_wheel": [
+        0.5873493975903614,
+        0.5753012048192772,
+        0.5572289156626506,
+        0.5813253012048193
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        18,
+        23,
+        17
+      ]
+    },
+    "ref_5_npz": {
+      "contact_fraction_per_wheel": [
+        0.5753012048192772,
+        0.5783132530120482,
+        0.5331325301204819,
+        0.5542168674698795
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        15,
+        16,
+        21,
+        15
+      ]
+    },
+    "ref_6_derived_standing_first_frame": {
+      "contact_fraction_per_wheel": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "status": "candidate_requires_isaac_force_validation",
+      "transitions_per_wheel": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "checks": {
+    "all_first_frames_equal": true,
+    "control_reference_hz_match": true,
+    "q_reset_max_abs": 0.0,
+    "root_position_max_abs": 1.6298145055770874e-09,
+    "root_quaternion_max_abs": 0.0
+  },
+  "references": [
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_f015.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 0,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz",
+      "sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "source_kind": "npz",
+      "target_vy": -0.15
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_f01.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 1,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f01.npz",
+      "sha256": "aad139fb5abb4f36ecc61936502ee153ed9dad7a9a76efd86f5e71ee60e0c47e",
+      "source_kind": "npz",
+      "target_vy": -0.1
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_f005.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 2,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f005.npz",
+      "sha256": "250172f0e876130bed9d52021a4f02b10601b62ceb56890f128fea5ea1c8094f",
+      "source_kind": "npz",
+      "target_vy": -0.05
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_005.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 3,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_005.npz",
+      "sha256": "5b80c9c7faf9e82396fb55369d29c72f1362ec9b64737f3ec3cd255ae3847419",
+      "source_kind": "npz",
+      "target_vy": 0.05
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_01.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 4,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_01.npz",
+      "sha256": "c4e440e23948bb929949b17cc1d1f7264be980204d880da56d445b3c3eec2c5c",
+      "source_kind": "npz",
+      "target_vy": 0.1
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "trajectory_trotting_acc_015.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 5,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_015.npz",
+      "sha256": "4d4653088a6a34abbfd35f3c92514d4f4e2e8203b289549282bb341881e628ab",
+      "source_kind": "npz",
+      "target_vy": 0.15
+    },
+    {
+      "duration_seconds": 6.62,
+      "file": "derived_standing_from_trajectory_trotting_acc_f015.npz",
+      "fps": 50,
+      "frames": 332,
+      "index": 6,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz",
+      "sha256": "2ced94f95b766c0962bae34d9672c2b0fff96bb34ee3cc11f3b2151cde4b7b87",
+      "source_kind": "derived_standing_first_frame",
+      "target_vy": 0.0
+    }
+  ],
+  "schema_version": "pcbc-reference-validation-v1"
+}

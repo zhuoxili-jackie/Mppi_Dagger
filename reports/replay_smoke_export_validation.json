@@ -1,0 +1,25 @@
+{
+  "hard_zero_all_backends": true,
+  "onnx_cpu_mean_ms": 0.0129617728816811,
+  "onnx_cpu_total_ms": 1.6591069288551807,
+  "onnx_input_name": "obs",
+  "onnx_input_shape": [
+    1,
+    93
+  ],
+  "onnx_output_name": "actions",
+  "onnx_output_shape": [
+    1,
+    16
+  ],
+  "onnx_vs_eager": {
+    "max_abs_error": 2.980232238769531e-07,
+    "mean_abs_error": 3.2317529985448346e-08
+  },
+  "opset": 18,
+  "samples": 128,
+  "torchscript_vs_eager": {
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0
+  }
+}

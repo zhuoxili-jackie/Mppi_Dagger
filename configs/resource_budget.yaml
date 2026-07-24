@@ -1,0 +1,10 @@
+smoke_job_minutes: 20
+formal_job_gpu_hours: 6
+automatic_retries_per_failed_config: 2
+dagger_max_round: 5
+generated_data_and_models_gb: 100
+feasibility:
+  dwmpc_max_closed_loop_episodes: 25
+  mppi_max_closed_loop_episodes: 25
+  each_backend_gpu_hours: 2
+

@@ -1,0 +1,370 @@
+{
+  "checks": {
+    "all_student_actions_valid": true,
+    "all_valid_labels_mppi": true,
+    "episode_failures_empty": true,
+    "expected_episode_count": true,
+    "initial_state_perturbation_exercised": true,
+    "minimum_student_behavior_episodes": true,
+    "observation_noise_exercised": true,
+    "real_student_visited_states_labeled": true,
+    "scenario_runtime_matches": true,
+    "single_student_checkpoint": true,
+    "teacher_valid_rate": true
+  },
+  "config": {
+    "expected_beta": 0.25,
+    "expected_episodes": 26,
+    "expected_scenario": "light_delay_platform_pose",
+    "minimum_student_behavior_episodes": 1,
+    "round_number": 3,
+    "teacher_valid_rate_min": 0.99
+  },
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": [
+    {
+      "episode_id": "dagger_r3_train_ref0_seed13000",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref1_seed13001",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref2_seed13002",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref3_seed13003",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref4_seed13004",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref5_seed13005",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref0_seed13006",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref1_seed13007",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref2_seed13008",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref3_seed13009",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref4_seed13010",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref5_seed13011",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref0_seed13012",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref1_seed13013",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref2_seed13014",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref3_seed13015",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref4_seed13016",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref5_seed13017",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref0_seed13018",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_train_ref1_seed13019",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref0_seed13500",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref1_seed13501",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref2_seed13502",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref3_seed13503",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref4_seed13504",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r3_validation_ref5_seed13505",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    }
+  ],
+  "ok": true,
+  "schema_version": "pcbc-dagger-collection-gate-v1",
+  "summary": {
+    "episodes": 26,
+    "initial_state_perturbation_exercised": true,
+    "initial_state_perturbation_requested": true,
+    "scenario_profile": {
+      "action_delay_steps": 1,
+      "initial_state": {
+        "joint_position": [
+          -0.008,
+          0.008
+        ],
+        "pose": {
+          "pitch": [
+            -0.008,
+            0.008
+          ],
+          "roll": [
+            -0.008,
+            0.008
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.006,
+            0.006
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.004,
+            0.004
+          ]
+        },
+        "velocity": {
+          "pitch": [
+            -0.01,
+            0.01
+          ],
+          "roll": [
+            -0.01,
+            0.01
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.015,
+            0.015
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.008,
+            0.008
+          ]
+        }
+      },
+      "observation_noise_std": 0.003,
+      "physics_profile": "nominal",
+      "platform_position_jitter_m": [
+        0.005,
+        0.005,
+        0.002
+      ],
+      "requested_name": "light_delay_platform_pose",
+      "resolved_name": "light_delay_platform_pose"
+    },
+    "steps": 7800,
+    "student_behavior_episodes": 16,
+    "student_behavior_steps": 4800,
+    "student_checkpoint_hashes": [
+      "3165eefcb8fa9e28379e587bffbd5c5b4eb1d08e9f14661c2cbd2e925ea15c1f"
+    ],
+    "teacher_valid_rate": 1.0
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "checks": {
+    "all_student_actions_valid": true,
+    "all_valid_labels_mppi": true,
+    "episode_failures_empty": true,
+    "expected_episode_count": true,
+    "initial_state_perturbation_exercised": true,
+    "minimum_student_behavior_episodes": true,
+    "observation_noise_exercised": true,
+    "real_student_visited_states_labeled": true,
+    "scenario_runtime_matches": true,
+    "single_student_checkpoint": true,
+    "teacher_valid_rate": true
+  },
+  "config": {
+    "expected_beta": 0.0,
+    "expected_episodes": 18,
+    "expected_scenario": "light_friction_mass_observation_noise",
+    "minimum_student_behavior_episodes": 18,
+    "round_number": 2,
+    "teacher_valid_rate_min": 0.99
+  },
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1",
+  "episodes": [
+    {
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13000",
+      "failures": [],
+      "split": "train",
+      "steps": 102,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13001",
+      "failures": [],
+      "split": "train",
+      "steps": 130,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13002",
+      "failures": [],
+      "split": "train",
+      "steps": 132,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13003",
+      "failures": [],
+      "split": "train",
+      "steps": 113,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13004",
+      "failures": [],
+      "split": "train",
+      "steps": 119,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13005",
+      "failures": [],
+      "split": "train",
+      "steps": 113,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13006",
+      "failures": [],
+      "split": "train",
+      "steps": 90,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13007",
+      "failures": [],
+      "split": "train",
+      "steps": 110,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13008",
+      "failures": [],
+      "split": "train",
+      "steps": 130,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13009",
+      "failures": [],
+      "split": "train",
+      "steps": 87,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13010",
+      "failures": [],
+      "split": "train",
+      "steps": 146,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13011",
+      "failures": [],
+      "split": "train",
+      "steps": 94,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref0_seed13500",
+      "failures": [],
+      "split": "validation",
+      "steps": 100,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref1_seed13501",
+      "failures": [],
+      "split": "validation",
+      "steps": 139,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref2_seed13502",
+      "failures": [],
+      "split": "validation",
+      "steps": 104,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref3_seed13503",
+      "failures": [],
+      "split": "validation",
+      "steps": 114,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref4_seed13504",
+      "failures": [],
+      "split": "validation",
+      "steps": 111,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref5_seed13505",
+      "failures": [],
+      "split": "validation",
+      "steps": 112,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    }
+  ],
+  "ok": true,
+  "schema_version": "pcbc-dagger-collection-gate-v1",
+  "summary": {
+    "episodes": 18,
+    "initial_state_perturbation_exercised": true,
+    "initial_state_perturbation_requested": true,
+    "scenario_profile": {
+      "action_delay_steps": 0,
+      "fixed_physics": {
+        "box_dynamic_friction": 0.9,
+        "box_static_friction": 1.1,
+        "front_wheel_dynamic_friction": 0.82,
+        "front_wheel_static_friction": 1.0,
+        "rear_wheel_dynamic_friction": 0.82,
+        "rear_wheel_static_friction": 1.0,
+        "robot_mass_scale": 1.02,
+        "robot_non_wheel_dynamic_friction": 0.7,
+        "robot_non_wheel_static_friction": 0.85
+      },
+      "initial_state": {
+        "joint_position": [
+          -0.008,
+          0.008
+        ],
+        "pose": {
+          "pitch": [
+            -0.008,
+            0.008
+          ],
+          "roll": [
+            -0.008,
+            0.008
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.006,
+            0.006
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.004,
+            0.004
+          ]
+        },
+        "velocity": {
+          "pitch": [
+            -0.01,
+            0.01
+          ],
+          "roll": [
+            -0.01,
+            0.01
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.015,
+            0.015
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.008,
+            0.008
+          ]
+        }
+      },
+      "observation_noise_std": 0.005,
+      "physics_profile": "fixed_light_shift",
+      "platform_position_jitter_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "requested_name": "light_friction_mass_observation_noise",
+      "resolved_name": "light_friction_mass_observation_noise"
+    },
+    "steps": 2046,
+    "student_behavior_episodes": 18,
+    "student_behavior_steps": 2046,
+    "student_checkpoint_hashes": [
+      "db23bf31b826ca7ee5bcdf3cac845d20bc176fdabaf637de02a195748169b97b"
+    ],
+    "teacher_valid_rate": 1.0
+  }
+}

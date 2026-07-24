@@ -1,0 +1,69 @@
+{
+  "compressed_bytes": 64559651,
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": 122,
+  "expert_config_hashes": [
+    "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6"
+  ],
+  "frames": 33805,
+  "mean_teacher_solve_ms": 564.5508422851562,
+  "p95_teacher_solve_ms": 597.1016357421875,
+  "reference_episodes": {
+    "0": 24,
+    "1": 24,
+    "2": 19,
+    "3": 19,
+    "4": 18,
+    "5": 18
+  },
+  "round_episodes": {
+    "0": 70,
+    "1": 26,
+    "2": 26
+  },
+  "round_frames": {
+    "0": 21000,
+    "1": 7654,
+    "2": 5151
+  },
+  "round_student_behavior_frames": {
+    "0": 0,
+    "1": 3454,
+    "2": 351
+  },
+  "scenario_episodes": {
+    "light_friction_mass_observation_noise": 26,
+    "nominal": 20,
+    "nominal_fixed_gate": 50,
+    "nominal_small_initial_state": 26
+  },
+  "scenario_frames": {
+    "light_friction_mass_observation_noise": 5151,
+    "nominal": 6000,
+    "nominal_fixed_gate": 15000,
+    "nominal_small_initial_state": 7654
+  },
+  "schema_version": "pcbc-dataset-summary-v1",
+  "shield_intervention_rate": 0.010235172311788197,
+  "split_episodes": {
+    "test": 7,
+    "train": 89,
+    "validation": 26
+  },
+  "split_frames": {
+    "test": 2100,
+    "train": 24837,
+    "validation": 6868
+  },
+  "student_checkpoint_hashes": [
+    "6b1ae47e4adf8c2c3393afb7bc662fd83336fa705c9939ee0910601f19a8e0d6",
+    "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a"
+  ],
+  "student_valid_rate": 0.3787901198047626,
+  "success_counts": {
+    "failure": 13,
+    "success": 109
+  },
+  "teacher_valid_rate": 1.0,
+  "wheel_action_exact_zero": true
+}

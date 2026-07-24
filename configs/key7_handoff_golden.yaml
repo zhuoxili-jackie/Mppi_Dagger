@@ -1,0 +1,49 @@
+schema_version: "pcbc-key7-handoff-golden-v1"
+scope: "read-only snapshot of the existing deployment ABI; MPPI tests have no runtime dependency on loco_rl_deploy"
+captured_at: "2026-07-24"
+deployment_evidence_sha256:
+  observation_builder_hpp: "18be57ed7e786a3f5d482df1b60fa89cd715edbe385070d627995756b4e04f88"
+  observation_builder_cpp: "680d2e2d8426abeacab9795a3969ab4258189bc18b1ac8d60f5a18ea545b4906"
+  robot_cfg_yaml: "75ba0717fc7e7566a07e45316ad4153b91b0be906693e5c54d38b869662de2e8"
+  key7_motion_csv: "995d04c7fd343bfa2f66d41330eb61024f7ee6fc734bc5ac6fd8091985ab9fbd"
+  key4_motion_csv: "709a3c34aa40f887204cdb567ce5ae88400298bf1898aaa7e1f7282b4a515662"
+key7:
+  keyboard_key: 7
+  submode_id: 0x57
+  model_name: "policy_zx_714.onnx"
+  history_size: 1
+  dry_inference_cycles_before_first_applied_action: 3
+  observation_components:
+    [motion_command, motion_anchor_ori_b, base_ang_vel,
+     joint_pos_rel_without_wheel, joint_vel, prev_action, command, zeros]
+  observation_component_sizes: [32, 6, 3, 16, 16, 16, 3, 1]
+  rotation_flattened_elements: [R00, R01, R10, R11, R20, R21]
+nominal_handoff:
+  description: "stationary final key4 reference pose, then key7 loader yaw alignment"
+  robot_quaternion_wxyz:
+    [0.7690911889, 0.0020834904, -0.6391310692, 0.0025254807]
+  robot_joint_position_policy:
+    [-0.0039349799, 0.0118404003, -0.0102196997, 0.0057828301,
+     0.6108700037, 0.6108660102, 0.6981279850, 0.6981260180,
+     -0.7853959799, -0.7853990197, 1.0472099781, 1.0471999645,
+     0.0111015001, 0.0139669012, 6.8221797943, 6.8219900131]
+  robot_joint_velocity_policy:
+    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  base_angular_velocity_body:
+    [0.0, 0.0, 0.0]
+  previous_raw_action:
+    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  velocity_command:
+    [0.0, 0.0, 0.0]
+  expected_aligned_reference_quaternion_wxyz:
+    [0.7514454126, 0.0021404014, -0.6597873569, 0.0024537337]
+  expected_rotation_columns6:
+    [0.9985241294, 0.0000088511, -0.0000069509,
+     1.0, 0.0543096103, -0.0000347487]
+gates:
+  rotation_atol: 1.0e-6
+  handoff_leg_position_error_max_rad: 0.02
+  first_applied_action_physical_delta_max_rad: 0.20
+  normalized_rotation_max_abs: 8.0

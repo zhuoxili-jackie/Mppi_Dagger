@@ -1,0 +1,155 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_r2_repair1",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13000",
+      "split": "train",
+      "steps": 102,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13001",
+      "split": "train",
+      "steps": 130,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13002",
+      "split": "train",
+      "steps": 132,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13003",
+      "split": "train",
+      "steps": 113,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13004",
+      "split": "train",
+      "steps": 119,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13005",
+      "split": "train",
+      "steps": 113,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref0_seed13006",
+      "split": "train",
+      "steps": 90,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref1_seed13007",
+      "split": "train",
+      "steps": 110,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref2_seed13008",
+      "split": "train",
+      "steps": 130,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref3_seed13009",
+      "split": "train",
+      "steps": 87,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref4_seed13010",
+      "split": "train",
+      "steps": 146,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_train_ref5_seed13011",
+      "split": "train",
+      "steps": 94,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref0_seed13500",
+      "split": "validation",
+      "steps": 100,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref1_seed13501",
+      "split": "validation",
+      "steps": 139,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref2_seed13502",
+      "split": "validation",
+      "steps": 104,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref3_seed13503",
+      "split": "validation",
+      "steps": 114,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref4_seed13504",
+      "split": "validation",
+      "steps": 111,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "dagger_r2_repair1_validation_ref5_seed13505",
+      "split": "validation",
+      "steps": 112,
+      "student_valid_rate": 1.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "train": 12,
+    "validation": 6
+  }
+}

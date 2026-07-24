@@ -1,0 +1,34 @@
+schema_version: "pcbc-reference-708-v1"
+fps: 50
+frames: 332
+duration_seconds: 6.62
+reference_directory: "vendor/robot_lab/data/Motions/pcbc_lateral_708"
+body_order:
+  [Base_link, FL_hip_link, FR_hip_link, RL_hip_link, RR_hip_link,
+   FL_thigh_link, FR_thigh_link, RL_thigh_link, RR_thigh_link,
+   FL_calf_link, FR_calf_link, RL_calf_link, RR_calf_link,
+   FL_foot_link, FR_foot_link, RL_foot_link, RR_foot_link]
+quaternion_order: wxyz
+references:
+  - {index: 0, file: trajectory_trotting_acc_f015.npz, target_vy: -0.15, sha256: b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae}
+  - {index: 1, file: trajectory_trotting_acc_f01.npz, target_vy: -0.10, sha256: aad139fb5abb4f36ecc61936502ee153ed9dad7a9a76efd86f5e71ee60e0c47e}
+  - {index: 2, file: trajectory_trotting_acc_f005.npz, target_vy: -0.05, sha256: 250172f0e876130bed9d52021a4f02b10601b62ceb56890f128fea5ea1c8094f}
+  - {index: 3, file: trajectory_trotting_acc_005.npz, target_vy: 0.05, sha256: 5b80c9c7faf9e82396fb55369d29c72f1362ec9b64737f3ec3cd255ae3847419}
+  - {index: 4, file: trajectory_trotting_acc_01.npz, target_vy: 0.10, sha256: c4e440e23948bb929949b17cc1d1f7264be980204d880da56d445b3c3eec2c5c}
+  - {index: 5, file: trajectory_trotting_acc_015.npz, target_vy: 0.15, sha256: 4d4653088a6a34abbfd35f3c92514d4f4e2e8203b289549282bb341881e628ab}
+standing_reference:
+  enabled: true
+  index: 6
+  source_reference_index: 0
+  derivation: "repeat verified source frame 0 for 332 frames; zero all velocities"
+  target_vy: 0.0
+contact_inference:
+  method: per_wheel_contact_normal_and_speed
+  body_indices: [13, 14, 15, 16]
+  per_wheel_height_quantile: 0.35
+  height_margin_m: 0.018
+  speed_threshold_mps: 0.30
+  minimum_contact_run_frames: 2
+  contact_axis_indices: [0, 0, 2, 2]
+  contact_surface_sides: [max, max, min, min]
+  status: candidate_requires_isaac_force_validation

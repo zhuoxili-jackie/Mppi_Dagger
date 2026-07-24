@@ -1,0 +1,18 @@
+seed: 42
+max_round: 5
+rounds:
+  - {round: 0, beta: 1.00, scenario: nominal}
+  - {round: 1, beta: 0.75, scenario: nominal_small_initial_state}
+  - {round: 2, beta: 0.50, scenario: light_friction_mass_observation_noise}
+  - {round: 3, beta: 0.25, scenario: light_delay_platform_pose}
+  - {round: 4, beta: 0.10, scenario: student_dominant_near_failure}
+  - {round: 5, beta: 0.00, scenario: student_exec_expert_labels}
+behavior_selection: episode
+sampling_mix:
+  initial_expert: 0.30
+  latest_round: 0.40
+  historical_hard: 0.30
+minimum_required_real_student_state_rounds: [1, 2, 3]
+validation_episodes_per_round: 50
+lower_beta_only_after_safety_gate: true
+

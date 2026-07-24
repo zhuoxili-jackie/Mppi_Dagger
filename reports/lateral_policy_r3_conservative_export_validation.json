@@ -1,0 +1,38 @@
+{
+  "file_hashes_verified": {
+    "golden_io.npz": "4b9b75b0eb03a7baea225eb65d6b29e54af625128db7535542f78b5cfe4fc76c",
+    "policy.onnx": "45719ba3e1afa3a52db49212f0baa61b36885860edb09b5ac9d8f129f239961b",
+    "policy.pt": "17bdc2e95a6f89122583a4c75e10f359e494555e22abb28ea06b301995376256"
+  },
+  "hard_zero_all_backends": true,
+  "latency_50hz_pass": true,
+  "latency_p95_threshold_ms": 20.0,
+  "onnx_cpu_max_ms": 0.09528105147182941,
+  "onnx_cpu_mean_ms": 0.011190812074346468,
+  "onnx_cpu_p50_ms": 0.010529998689889908,
+  "onnx_cpu_p95_ms": 0.011655909474939108,
+  "onnx_cpu_p99_ms": 0.012800411786884068,
+  "onnx_cpu_total_ms": 2.8648478910326958,
+  "onnx_input_name": "obs",
+  "onnx_input_shape": [
+    1,
+    93
+  ],
+  "onnx_metadata_verified": true,
+  "onnx_output_name": "actions",
+  "onnx_output_shape": [
+    1,
+    16
+  ],
+  "onnx_vs_eager": {
+    "max_abs_error": 7.152557373046875e-07,
+    "mean_abs_error": 6.705272426188458e-08
+  },
+  "opset": 18,
+  "samples": 256,
+  "sha256sums_verified": true,
+  "torchscript_vs_eager": {
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0
+  }
+}

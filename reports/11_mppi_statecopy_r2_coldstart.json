@@ -1,0 +1,140 @@
+{
+  "action_delay_steps": 0,
+  "clone_spread_max_abs": 0.0,
+  "cost_components_for_best_candidate": {
+    "action_rate": 0.0014662949834018946,
+    "action_residual": 0.0002944755251519382,
+    "base_orientation": 0.11505327373743057,
+    "base_position": 0.679972767829895,
+    "box_x_drift": 0.08106999844312668,
+    "contact_mismatch": 5.5,
+    "edge_drop": 0.01952391117811203,
+    "joint_acceleration": 0.007507269270718098,
+    "joint_limit": 0.0,
+    "joint_position": 0.6874017715454102,
+    "joint_velocity": 1.5266003608703613,
+    "lateral_velocity": 0.41711336374282837,
+    "terminal": 0.08816797286272049,
+    "termination": 0.0,
+    "torque_limit": 0.0,
+    "wheel_position": 0.13746511936187744,
+    "wheel_slip": 0.05951634421944618
+  },
+  "determinism": {
+    "cost_max_abs": 0.0,
+    "cost_max_candidate": 0,
+    "pass": true,
+    "state_group_max_abs": {
+      "joint_position": 0.0,
+      "joint_velocity": 0.0,
+      "root_pose": 0.0,
+      "root_velocity": 0.0
+    },
+    "state_max_abs": 0.0,
+    "state_max_candidate": 0,
+    "state_max_dimension": 0
+  },
+  "device": "cuda:0",
+  "finite_costs": true,
+  "hard_zero_rollout_actions": true,
+  "horizon": 8,
+  "maximum_cost": 10.753583908081055,
+  "minimum_cost": 9.321151733398438,
+  "nominal_reset_matches_requested_reference": true,
+  "pass": true,
+  "platform_position_jitter_m_sampled": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "ref_id": 2,
+  "reset_reference_max_abs": {
+    "anchor_orientation_rad": 0.0,
+    "anchor_position_m": 5.960464477539063e-08,
+    "anchor_twist": 0.0,
+    "joint_position_rad": 0.0,
+    "joint_velocity_rad_s": 0.0
+  },
+  "round_trip_delay_queue_max_abs": 0.0,
+  "round_trip_platform_pose_max_abs": 0.0,
+  "round_trip_previous_command_max_abs": 0.0,
+  "round_trip_state_max_abs": 0.0,
+  "samples": 16,
+  "scenario": {
+    "action_delay_steps": 0,
+    "initial_state": {
+      "joint_position": [
+        0.0,
+        0.0
+      ],
+      "pose": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "observation_noise_std": 0.0,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "requested_name": "dagger_r2",
+    "resolved_name": "nominal"
+  },
+  "schema_version": "pcbc-mppi-state-copy-gate-v1",
+  "seed": 1802,
+  "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "thresholds": {
+    "cost_max_abs": 1e-05,
+    "state_max_abs": 1e-05
+  }
+}

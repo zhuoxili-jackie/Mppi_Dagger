@@ -1,0 +1,757 @@
+{
+  "asset_summary": {
+    "bytes": 47420551,
+    "file_count": 58,
+    "npz_count": 7,
+    "stl_count": 30,
+    "urdf_count": 2,
+    "usd_count": 4
+  },
+  "assets": [
+    {
+      "path": "vendor/deployment_evidence/deployment_manifest.yaml",
+      "sha256": "77662d6f913094a3286cba9e7a8a3207dad5118fa7c69e553b68e87f9d8fc106",
+      "size_bytes": 2660
+    },
+    {
+      "path": "vendor/deployment_evidence/reference/pcbv2_x6u_60hz_stage_up_531.npz",
+      "sha256": "313e120c0a5b2e08f984053a1a0c2181ec8b8bee9505f93965412d7aa044c938",
+      "size_bytes": 732458
+    },
+    {
+      "path": "vendor/deployment_evidence/reference/training_params/baseline_agent.yaml",
+      "sha256": "ab902b53e791f8bd3b83e75f6daa7cde7ba431e0041c37576b0b9db2181ed4a4",
+      "size_bytes": 1007
+    },
+    {
+      "path": "vendor/deployment_evidence/reference/training_params/baseline_env.yaml",
+      "sha256": "25d9831f9ab1f7d49e78619cf2dcd6f14ddb6e51c3553ef81d88a3e7f58b1174",
+      "size_bytes": 48876
+    },
+    {
+      "path": "vendor/deployment_evidence/reference/training_params/residual_candidate_agent.yaml",
+      "sha256": "abdf91bf5e889bc0df3484afa8b020b8508feb953b9600fe640a4943516ab310",
+      "size_bytes": 1025
+    },
+    {
+      "path": "vendor/deployment_evidence/reference/training_params/residual_candidate_env.yaml",
+      "sha256": "5cf65e5d0f242a57054f2ea2589043eaf79dda5b99994e18105be6c0eb09e45e",
+      "size_bytes": 55857
+    },
+    {
+      "path": "vendor/deployment_evidence/runtime/motion/pcbv2_x6u_60hz_stage_up_531.csv",
+      "sha256": "379b2d1f67bafc20f55952e6646d6ccf1b759529fec20c210646594c25334374",
+      "size_bytes": 198980
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_005.csv",
+      "sha256": "76bdb82e43054df9a90af245acd965f17fba0e24ec5441131dd0f99146ce2ffa",
+      "size_bytes": 262943
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_005.npz",
+      "sha256": "5b80c9c7faf9e82396fb55369d29c72f1362ec9b64737f3ec3cd255ae3847419",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_01.csv",
+      "sha256": "5ed285ac5b8d67742fbde749885ddbe7042bf72957f5e70097131b8e689625df",
+      "size_bytes": 262263
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_01.npz",
+      "sha256": "c4e440e23948bb929949b17cc1d1f7264be980204d880da56d445b3c3eec2c5c",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_015.csv",
+      "sha256": "46f6331ba8bac2100a959f3f39c987f9e1675a4b775ec9db08d95062e217e0ef",
+      "size_bytes": 261677
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_015.npz",
+      "sha256": "4d4653088a6a34abbfd35f3c92514d4f4e2e8203b289549282bb341881e628ab",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f005.csv",
+      "sha256": "3e2e3ab1e440ab1b47e97b327e527e99a2ac969bfa3a918d6c234e161f38d7af",
+      "size_bytes": 263686
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f005.npz",
+      "sha256": "250172f0e876130bed9d52021a4f02b10601b62ceb56890f128fea5ea1c8094f",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f01.csv",
+      "sha256": "fc6356675501ed8afa025112fcab069e43b0c4b0145b18c06e23c2c573a27fd7",
+      "size_bytes": 263020
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f01.npz",
+      "sha256": "aad139fb5abb4f36ecc61936502ee153ed9dad7a9a76efd86f5e71ee60e0c47e",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.csv",
+      "sha256": "66db6d541f26aa7a1f50ddd763ab73844c5935418f7ade15f58283bfae211d1d",
+      "size_bytes": 262504
+    },
+    {
+      "path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz",
+      "sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "size_bytes": 337778
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.stl",
+      "sha256": "a2156a278ab9847c5ce586b1f152178813f094e772c6445f1dd3b78e846fd378",
+      "size_bytes": 21584
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.usd",
+      "sha256": "0e52ce79c269707ea1a7702cef1faa9ab10900e6ada24b4a9d8e21b7989f8ac8",
+      "size_bytes": 34550
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/Base_link.STL",
+      "sha256": "fb809f6e3d78beefcd3b219dbf0d9f9b08a47c2b4de737e3b0198ab3604f74db",
+      "size_bytes": 2618334
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/F2N-0420.stl",
+      "sha256": "22622df369c3536081a2828dc98796996418224f2588dd4a78921d8e671dece6",
+      "size_bytes": 752734
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_calf_link.STL",
+      "sha256": "157c690031843480578b39dbdd307696b28317d9f4bd1240bba16ab0308c6df1",
+      "size_bytes": 915184
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_foot_link.STL",
+      "sha256": "87e5c386270df2709f3b68ee88a0bce5e1f0c7ef9faf15630b0825e7c5a22106",
+      "size_bytes": 723384
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_foot_link1.STL",
+      "sha256": "d29f9c8d066b9f5ebdd1fd7a7bcbb970341b10edd7748e06cc95084d2d657228",
+      "size_bytes": 5446784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_hip_link.STL",
+      "sha256": "a30e5504f25a11ffc76724ff00b08e36a4bf47c8782c56d6a98005260506644a",
+      "size_bytes": 872984
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_thigh_link.STL",
+      "sha256": "09b78e156310d9e1f7a05dad9c420f51d17ea6d4f374b4e3a6b4aa13caa2a274",
+      "size_bytes": 478484
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_wheel_link.STL",
+      "sha256": "f0ac530d9ec5bb1c23f0bd00d59f7d07a0b4ed52ea8793eba326719218324139",
+      "size_bytes": 1018684
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_calf_link.STL",
+      "sha256": "f3fadec8180690a6eb4132fef5ba7ca84f8dc1932b6ea65c8f9df518122f0c19",
+      "size_bytes": 933784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_foot_link.STL",
+      "sha256": "8e3be15fe7a54cc49aee9f4b7d89ec4eced21745e072ba9275500e57d2238379",
+      "size_bytes": 723384
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_foot_link1.STL",
+      "sha256": "28c4243426cbc2c0ed8d02250601c4ae6b0a2b36d979231dc3bb598249467286",
+      "size_bytes": 5446784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_hip_link.STL",
+      "sha256": "3a6b8b45acf63336d6ca8b533a94e753c366dd8a08dfa937bcd13bcfbd8307e6",
+      "size_bytes": 457484
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_thigh_link.STL",
+      "sha256": "dc167836b16ff31a1c8e973dc7c0d89e53963526ee432779de013e7cded550ab",
+      "size_bytes": 510784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_wheel_link.STL",
+      "sha256": "7ae9fd0973e7f4852ef934ea5c26b91bc2311af049b44eb0aa10d97db296ac6d",
+      "size_bytes": 1018684
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/Props/instanceable_meshes.usd",
+      "sha256": "b965d04d084ab2c2ff933d37af5fc7df038d88c7a24eace790dfb24120aca566",
+      "size_bytes": 34713
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_calf_link.STL",
+      "sha256": "bd3be3e0132df586fdababc7ea04a00873fe7d7676ed80404a4b26c4ffe0cb84",
+      "size_bytes": 433784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_foot_link.STL",
+      "sha256": "1b60067481ee22134d21a4a791afd12c98dc5a9ceb89187ec4e600770482e22d",
+      "size_bytes": 723384
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_foot_link1.STL",
+      "sha256": "c58524f1529ba246da0cab782b85249ffd7ac35652e350916af2bd28a24a1793",
+      "size_bytes": 5446784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_hip_link.STL",
+      "sha256": "941aaf8e0bc766c4c5c4055cb65c07e037f89c809c796a889d74e4aec28ba5a2",
+      "size_bytes": 457484
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_thigh_link.STL",
+      "sha256": "508de1ad9bc0f62d16af3524e408283e88a42c7157bd4bb4f2dcb9cd378f6352",
+      "size_bytes": 478884
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_wheel_link.STL",
+      "sha256": "20f65f464078959406c2705809a815fa591abfd7257415bc16282de02d9335c8",
+      "size_bytes": 1018684
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_calf_link.STL",
+      "sha256": "972819a8ffb9197b9bf4da2c56ef798cee05c537bee3ce2c2c42c082b12e8c1d",
+      "size_bytes": 415184
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_foot_link.STL",
+      "sha256": "da3aac1a4992453603245429fc889123ccdf96123960dc8b635e20668452e687",
+      "size_bytes": 723384
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_foot_link1.STL",
+      "sha256": "c236f7fcabf15caa6d90da75c505a0fa59bb0ed993124a75d4d0c008aca20ec3",
+      "size_bytes": 5446784
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_hip_link.STL",
+      "sha256": "6f1757392410dd8c6af0eba24bb19306cf0cdc749ce23c347df3b28a049f2f5c",
+      "size_bytes": 472984
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_thigh_link.STL",
+      "sha256": "58631cab7a2c15c3219f9430136e2e00160e923695b8c77ea3dee143d05d48d2",
+      "size_bytes": 978884
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_wheel_link.STL",
+      "sha256": "6ce425238ba931845bfb65225eb53b399aade394383843603aaf5a12db96cb81",
+      "size_bytes": 1018684
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/X6U_full_SIMPLE.stl",
+      "sha256": "00076dd518e42c2461561cf805fba6eead7a6749d0e9d955955af22dbfd08fba",
+      "size_bytes": 189634
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/X6U_full_SIMPLE.usd",
+      "sha256": "8471b68ccd7e13290da67be7b5ab0f78be3abead7fd216512d75a81a306c1b13",
+      "size_bytes": 276567
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/car.obj",
+      "sha256": "c5e91a5b909274501e7604b8b09a6af9ffabe68f62435ddbde3706e62df05a68",
+      "size_bytes": 476147
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/car.stl",
+      "sha256": "f775ca6c1c81da88d0d2d6b6b11a4ce9c595a42be7782f6347f35362e203d67a",
+      "size_bytes": 1182084
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/car_1.stl",
+      "sha256": "eccc2fcbe88a1153ddbcd12ddbb0c96a9157e5fc1358448904e8b3747a78bf02",
+      "size_bytes": 940134
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/config.yaml",
+      "sha256": "0457aef40aa667124c4c4386ba8df4bdaa91a6baacc18b08ee7fca2ea78022b7",
+      "size_bytes": 1473
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/x6u_simple_0515.usd",
+      "sha256": "c3c7ac2e74d39bd6028308689c32b521d3796498e99309b6a3db56bfb16ccbda",
+      "size_bytes": 35124
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf",
+      "sha256": "8db81376ab48c2f78c9f17af47704ea726fddc64c93e9a7db9651436c76a22fe",
+      "size_bytes": 22486
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/urdf_20260423.csv",
+      "sha256": "f0a8c44ac48d6aa72ef95420a06fd6a9cd9ddbb09f83b4d75372ebd2efd42cac",
+      "size_bytes": 9692
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/urdf_20260423.urdf",
+      "sha256": "4a26ae0c238c4c66a445c9a0e2563e64e14d394b08fe05e5c6b97357ef6254bb",
+      "size_bytes": 20355
+    }
+  ],
+  "contract_evidence": {
+    "legacy_baseline_onnx_present": false,
+    "legacy_residual_onnx_present": false
+  },
+  "contract_paths": [
+    {
+      "actual_sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "configured_path": "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz",
+      "expected_sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "hash_matches": true,
+      "inside_standalone_root": true,
+      "name": "motion_prefix.reference_file",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz"
+    },
+    {
+      "actual_sha256": "8db81376ab48c2f78c9f17af47704ea726fddc64c93e9a7db9651436c76a22fe",
+      "configured_path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf",
+      "expected_sha256": "8db81376ab48c2f78c9f17af47704ea726fddc64c93e9a7db9651436c76a22fe",
+      "hash_matches": true,
+      "inside_standalone_root": true,
+      "name": "assets.robot_urdf",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "actual_sha256": "0e52ce79c269707ea1a7702cef1faa9ab10900e6ada24b4a9d8e21b7989f8ac8",
+      "configured_path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.usd",
+      "expected_sha256": "0e52ce79c269707ea1a7702cef1faa9ab10900e6ada24b4a9d8e21b7989f8ac8",
+      "hash_matches": true,
+      "inside_standalone_root": true,
+      "name": "assets.trunk_usd",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.usd"
+    },
+    {
+      "actual_sha256": "a2156a278ab9847c5ce586b1f152178813f094e772c6445f1dd3b78e846fd378",
+      "configured_path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.stl",
+      "expected_sha256": "a2156a278ab9847c5ce586b1f152178813f094e772c6445f1dd3b78e846fd378",
+      "hash_matches": true,
+      "inside_standalone_root": true,
+      "name": "assets.trunk_stl",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.stl"
+    },
+    {
+      "actual_sha256": "77662d6f913094a3286cba9e7a8a3207dad5118fa7c69e553b68e87f9d8fc106",
+      "configured_path": "vendor/deployment_evidence/deployment_manifest.yaml",
+      "expected_sha256": "77662d6f913094a3286cba9e7a8a3207dad5118fa7c69e553b68e87f9d8fc106",
+      "hash_matches": true,
+      "inside_standalone_root": true,
+      "name": "source_evidence.legacy_bundle_manifest",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/deployment_evidence/deployment_manifest.yaml"
+    }
+  ],
+  "external_symlinks": [],
+  "failures": [],
+  "forbidden_runtime_references": [],
+  "host": {
+    "gpu": [
+      "ERROR(18): "
+    ],
+    "packages": {
+      "isaaclab": "0.50.3",
+      "isaaclab_assets": "0.2.3",
+      "isaaclab_tasks": "0.11.9",
+      "isaacsim": "5.1.0.0",
+      "onnx": "1.22.0",
+      "onnxruntime": "1.27.0",
+      "robot_lab": "2.3.2",
+      "rsl-rl-lib": "3.1.2",
+      "torch": "2.7.0+cu128"
+    },
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+    "python": "3.11.15",
+    "python_executable": "/home/zzc/miniconda3/envs/isaaclab/bin/python"
+  },
+  "isaaclab_snapshot": {
+    "copied_at": "2026-07-23T13:28:19+08:00",
+    "runtime_dependency_policy": {
+      "external_runtime_components": [
+        "Isaac Sim Python/Kit installation",
+        "CUDA driver and CUDA-enabled PyTorch",
+        "third-party Python packages"
+      ],
+      "uses_original_editable_isaaclab_at_runtime": false
+    },
+    "schema_version": "isaaclab-vendor-snapshot-v1",
+    "source_extensions": {
+      "isaaclab": "0.50.3",
+      "isaaclab_assets": "0.2.3",
+      "isaaclab_mimic": "vendored_from_same_tree",
+      "isaaclab_rl": "0.4.6",
+      "isaaclab_tasks": "0.11.9"
+    },
+    "source_repository": {
+      "branch": "wlt_dev2",
+      "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+      "isaaclab_tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "remote": "https://github.com/jmxaaa/Robot_cooperation.git",
+      "source_status_sha256": "3c8bdfc78c93912a16b76de23d4b50b16ea9da596c102fb3788597d0506bce72"
+    },
+    "vendored_content": {
+      "apps": "apps/",
+      "copied_source_file_count_excluding_runtime_caches": 902,
+      "extensions": [
+        "source/isaaclab",
+        "source/isaaclab_assets",
+        "source/isaaclab_tasks",
+        "source/isaaclab_rl",
+        "source/isaaclab_mimic"
+      ]
+    },
+    "version": "2.3.0"
+  },
+  "ok": true,
+  "original_repository_accessed": false,
+  "reference_files": [
+    {
+      "actual_sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "expected_sha256": "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae",
+      "hash_matches": true,
+      "index": 0,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz",
+      "present": true
+    },
+    {
+      "actual_sha256": "aad139fb5abb4f36ecc61936502ee153ed9dad7a9a76efd86f5e71ee60e0c47e",
+      "expected_sha256": "aad139fb5abb4f36ecc61936502ee153ed9dad7a9a76efd86f5e71ee60e0c47e",
+      "hash_matches": true,
+      "index": 1,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f01.npz",
+      "present": true
+    },
+    {
+      "actual_sha256": "250172f0e876130bed9d52021a4f02b10601b62ceb56890f128fea5ea1c8094f",
+      "expected_sha256": "250172f0e876130bed9d52021a4f02b10601b62ceb56890f128fea5ea1c8094f",
+      "hash_matches": true,
+      "index": 2,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f005.npz",
+      "present": true
+    },
+    {
+      "actual_sha256": "5b80c9c7faf9e82396fb55369d29c72f1362ec9b64737f3ec3cd255ae3847419",
+      "expected_sha256": "5b80c9c7faf9e82396fb55369d29c72f1362ec9b64737f3ec3cd255ae3847419",
+      "hash_matches": true,
+      "index": 3,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_005.npz",
+      "present": true
+    },
+    {
+      "actual_sha256": "c4e440e23948bb929949b17cc1d1f7264be980204d880da56d445b3c3eec2c5c",
+      "expected_sha256": "c4e440e23948bb929949b17cc1d1f7264be980204d880da56d445b3c3eec2c5c",
+      "hash_matches": true,
+      "index": 4,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_01.npz",
+      "present": true
+    },
+    {
+      "actual_sha256": "4d4653088a6a34abbfd35f3c92514d4f4e2e8203b289549282bb341881e628ab",
+      "expected_sha256": "4d4653088a6a34abbfd35f3c92514d4f4e2e8203b289549282bb341881e628ab",
+      "hash_matches": true,
+      "index": 5,
+      "inside_standalone_root": true,
+      "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_015.npz",
+      "present": true
+    }
+  ],
+  "required_paths": [
+    {
+      "path": "configs/deployment_contract.yaml",
+      "present": true
+    },
+    {
+      "path": "configs/reference_708.yaml",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/SNAPSHOT.json",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/LICENSE",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/config/extension.toml",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/robot_lab/__init__.py",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.usd",
+      "present": true
+    },
+    {
+      "path": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.stl",
+      "present": true
+    },
+    {
+      "path": "vendor/deployment_evidence/deployment_manifest.yaml",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/SNAPSHOT.json",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/LICENSE",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/apps/isaaclab.python.headless.kit",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/source/isaaclab_assets/isaaclab_assets/__init__.py",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/__init__.py",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/source/isaaclab_rl/isaaclab_rl/__init__.py",
+      "present": true
+    },
+    {
+      "path": "vendor/IsaacLab/source/isaaclab_mimic/isaaclab_mimic/__init__.py",
+      "present": true
+    },
+    {
+      "path": "reference_only/README.md",
+      "present": true
+    },
+    {
+      "path": "reference_only/SNAPSHOT.json",
+      "present": true
+    },
+    {
+      "path": "reference_only/RTWholeBodyMPPI/README.md",
+      "present": true
+    },
+    {
+      "path": "reference_only/RTWholeBodyMPPI/LICENSE",
+      "present": true
+    }
+  ],
+  "robot_lab_snapshot": {
+    "copied_at": "2026-07-23T13:17:02+08:00",
+    "runtime_dependency_policy": {
+      "external_runtime_components": [
+        "Isaac Sim",
+        "Python packages declared by the standalone project"
+      ],
+      "robot_lab_import_must_resolve_below": "vendor/robot_lab",
+      "uses_original_repository_at_runtime": false
+    },
+    "schema_version": "robot-lab-vendor-snapshot-v1",
+    "source_repository": {
+      "branch": "wlt_dev2",
+      "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+      "dirty_at_copy_time": true,
+      "remote": "https://github.com/jmxaaa/Robot_cooperation.git",
+      "robot_lab_tracked_diff_sha256": "921cee573ddb312eec5ed2eb6be0af365ff69a3d6553c16c193d3d1fed9c2a58",
+      "source_status_sha256": "295a80fea513949ac74870da7fe43bad1941572b2cad0cbd60a734dab91672da"
+    },
+    "vendored_content": {
+      "extension_config": "config/",
+      "package_file_count_excluding_runtime_caches": 279,
+      "python_file_count": 247,
+      "python_package": "robot_lab/",
+      "reference_file_count": 12,
+      "reference_motions": "data/Motions/pcbc_lateral_708/",
+      "robot_asset_file_count": 40,
+      "robot_assets": "data/Robots/pcbC/"
+    }
+  },
+  "schema_version": "pcbc-standalone-audit-v2",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "timestamp_timezone": "system",
+  "urdf_mesh_references": [
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/Base_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/Base_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FL_hip_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_hip_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FL_thigh_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_thigh_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FL_calf_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_calf_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FL_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FL_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FL_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FR_hip_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_hip_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FR_thigh_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_thigh_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FR_calf_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_calf_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FR_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/FR_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/FR_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RL_hip_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_hip_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RL_thigh_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_thigh_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RL_calf_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_calf_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RL_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RL_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RL_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RR_hip_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_hip_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RR_thigh_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_thigh_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RR_calf_link.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_calf_link.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RR_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    },
+    {
+      "inside_standalone_root": true,
+      "mesh_reference": "../mesh/RR_foot_link1.STL",
+      "present": true,
+      "resolved_path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/RR_foot_link1.STL",
+      "urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    }
+  ],
+  "vendored_isaaclab_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab",
+  "vendored_isaaclab_sources": [
+    "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab",
+    "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab_assets",
+    "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab_tasks",
+    "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab_rl",
+    "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab_mimic"
+  ],
+  "vendored_robot_lab_source": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab"
+}

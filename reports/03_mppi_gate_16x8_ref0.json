@@ -1,0 +1,121 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_gate_16x8_ref0",
+  "episodes": [
+    {
+      "episode_id": "mppi_gate_16x8_ref0_seed1301",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 103.6191177368164,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.00885376613587141,
+        "action_residual": 0.027900056913495064,
+        "base_orientation": 0.6441919207572937,
+        "base_position": 0.5667601823806763,
+        "box_x_drift": 0.531013011932373,
+        "contact_mismatch": 5.4285712242126465,
+        "edge_drop": 0.5344796180725098,
+        "joint_acceleration": 0.012121738865971565,
+        "joint_limit": 0.0,
+        "joint_position": 1.8701839447021484,
+        "joint_velocity": 2.139782428741455,
+        "lateral_velocity": 0.4906854033470154,
+        "terminal": 0.176626056432724,
+        "termination": 274.72528076171875,
+        "torque_limit": 0.0,
+        "wheel_position": 0.7487099766731262,
+        "wheel_slip": 0.08643599599599838
+      },
+      "mppi_effective_sample_size_mean": 9.987674713134766,
+      "mppi_minimum_cost_mean": 287.9915771484375,
+      "mppi_rollout_termination_rate_mean": 0.11332417279481888,
+      "shield_intervention_rate": 0.5384615384615384,
+      "steps": 91,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2
+    }
+  ],
+  "expert_backend": "mppi",
+  "expert_config": {
+    "backend": "whole_body_mppi",
+    "contact_force_threshold_n": 8.0,
+    "control_hz": 50,
+    "cost_weights": {
+      "action_rate": 0.025,
+      "action_residual": 0.04,
+      "base_orientation": 18.0,
+      "base_position": 35.0,
+      "box_x_drift": 60.0,
+      "contact_mismatch": 2.0,
+      "edge_drop": 120.0,
+      "joint_acceleration": 2e-06,
+      "joint_limit": 150.0,
+      "joint_position": 10.0,
+      "joint_velocity": 0.15,
+      "lateral_velocity": 4.0,
+      "terminal": 8.0,
+      "termination": 2500.0,
+      "torque_limit": 0.2,
+      "wheel_position": 45.0,
+      "wheel_slip": 0.3
+    },
+    "gpu_hour_budget": 2,
+    "horizon": 8,
+    "noise_std_leg": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3,
+      0.3
+    ],
+    "note": "Reference-centred 12D candidates with four exact-zero wheel actions; state-copy and closed-loop gates remain fail-closed.",
+    "official_repository": "https://github.com/jrapudg/RTWholeBodyMPPI",
+    "optimization_iterations": 1,
+    "samples": 16,
+    "seed": 42,
+    "smoke_episode_budget": 25,
+    "smoke_profile": {
+      "horizon": 8,
+      "optimization_iterations": 1,
+      "samples": 16
+    },
+    "source_vendored": false,
+    "state_copy_gate": {
+      "cost_max_abs": 1e-05,
+      "state_max_abs": 1e-05
+    },
+    "status": "isaac_parallel_rollout_feasibility",
+    "temperature": 1.0,
+    "temporal_smoothing": 0.7,
+    "warm_start": true
+  },
+  "expert_config_hash": "c4356633b80e03f91fc573e13a4b23616640f222798999d0b7654039243f20ca",
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "summary": {
+    "episodes": 1,
+    "mean_solve_ms": 103.6191177368164,
+    "shield_intervention_rate": 0.5384615384615384,
+    "success_rate": 0.0,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0"
+}

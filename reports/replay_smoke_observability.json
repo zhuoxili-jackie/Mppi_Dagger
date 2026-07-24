@@ -1,0 +1,471 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/robot_move_lt/robot_move_lt/lateral_mppi_dagger/datasets/replay_smoke",
+  "dynamic_reference": {
+    "cases": [],
+    "close_pair_rate": 0.010416666666666666,
+    "conflict_rate": 0.0,
+    "median_neighbor_distance": 0.25120028853416443,
+    "samples": 768
+  },
+  "fixed_prefix": {
+    "cases": [
+      {
+        "contact_conflict": 1,
+        "distance": 0.07477952539920807,
+        "index": 591,
+        "max_action_delta": 0.05256223678588867,
+        "neighbor_index": 249,
+        "neighbor_phase": 0.17220543324947357,
+        "phase": 0.04531722143292427
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07477952539920807,
+        "index": 633,
+        "max_action_delta": 0.05256223678588867,
+        "neighbor_index": 207,
+        "neighbor_phase": 0.04531722143292427,
+        "phase": 0.17220543324947357
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07477952539920807,
+        "index": 207,
+        "max_action_delta": 0.05256223678588867,
+        "neighbor_index": 249,
+        "neighbor_phase": 0.17220543324947357,
+        "phase": 0.04531722143292427
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07477952539920807,
+        "index": 249,
+        "max_action_delta": 0.05256223678588867,
+        "neighbor_index": 207,
+        "neighbor_phase": 0.04531722143292427,
+        "phase": 0.17220543324947357
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07853737473487854,
+        "index": 632,
+        "max_action_delta": 0.05345052480697632,
+        "neighbor_index": 206,
+        "neighbor_phase": 0.04229607433080673,
+        "phase": 0.16918429732322693
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07853737473487854,
+        "index": 590,
+        "max_action_delta": 0.05345052480697632,
+        "neighbor_index": 248,
+        "neighbor_phase": 0.16918429732322693,
+        "phase": 0.04229607433080673
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07853737473487854,
+        "index": 206,
+        "max_action_delta": 0.05345052480697632,
+        "neighbor_index": 248,
+        "neighbor_phase": 0.16918429732322693,
+        "phase": 0.04229607433080673
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07853737473487854,
+        "index": 248,
+        "max_action_delta": 0.05345052480697632,
+        "neighbor_index": 206,
+        "neighbor_phase": 0.04229607433080673,
+        "phase": 0.16918429732322693
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07886442542076111,
+        "index": 587,
+        "max_action_delta": 0.05954265594482422,
+        "neighbor_index": 202,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07886442542076111,
+        "index": 586,
+        "max_action_delta": 0.05954265594482422,
+        "neighbor_index": 203,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07886442542076111,
+        "index": 202,
+        "max_action_delta": 0.05954265594482422,
+        "neighbor_index": 203,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07886442542076111,
+        "index": 203,
+        "max_action_delta": 0.05954265594482422,
+        "neighbor_index": 202,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08181445300579071,
+        "index": 650,
+        "max_action_delta": 0.06108492612838745,
+        "neighbor_index": 267,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08181445300579071,
+        "index": 267,
+        "max_action_delta": 0.06108492612838745,
+        "neighbor_index": 266,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08181445300579071,
+        "index": 266,
+        "max_action_delta": 0.06108492612838745,
+        "neighbor_index": 267,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08181445300579071,
+        "index": 651,
+        "max_action_delta": 0.06108492612838745,
+        "neighbor_index": 266,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08547110110521317,
+        "index": 9,
+        "max_action_delta": 0.1431846022605896,
+        "neighbor_index": 73,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08547110110521317,
+        "index": 73,
+        "max_action_delta": 0.1431846022605896,
+        "neighbor_index": 9,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08547110110521317,
+        "index": 393,
+        "max_action_delta": 0.1431846022605896,
+        "neighbor_index": 73,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08547110110521317,
+        "index": 457,
+        "max_action_delta": 0.1431846022605896,
+        "neighbor_index": 9,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0863196849822998,
+        "index": 183,
+        "max_action_delta": 0.08685645461082458,
+        "neighbor_index": 142,
+        "neighbor_phase": 0.04229607433080673,
+        "phase": 0.1661631464958191
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0863196849822998,
+        "index": 567,
+        "max_action_delta": 0.08685645461082458,
+        "neighbor_index": 142,
+        "neighbor_phase": 0.04229607433080673,
+        "phase": 0.1661631464958191
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08638642728328705,
+        "index": 331,
+        "max_action_delta": 0.0874289870262146,
+        "neighbor_index": 330,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08638642728328705,
+        "index": 330,
+        "max_action_delta": 0.0874289870262146,
+        "neighbor_index": 331,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08638642728328705,
+        "index": 715,
+        "max_action_delta": 0.0874289870262146,
+        "neighbor_index": 330,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.03323262929916382
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08638642728328705,
+        "index": 714,
+        "max_action_delta": 0.0874289870262146,
+        "neighbor_index": 331,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08692862838506699,
+        "index": 137,
+        "max_action_delta": 0.09575462341308594,
+        "neighbor_index": 138,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08692862838506699,
+        "index": 138,
+        "max_action_delta": 0.09575462341308594,
+        "neighbor_index": 137,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08692862838506699,
+        "index": 522,
+        "max_action_delta": 0.09575462341308594,
+        "neighbor_index": 137,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08692862838506699,
+        "index": 521,
+        "max_action_delta": 0.09575462341308594,
+        "neighbor_index": 138,
+        "neighbor_phase": 0.03021148033440113,
+        "phase": 0.027190333232283592
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0877133384346962,
+        "index": 626,
+        "max_action_delta": 0.0935964584350586,
+        "neighbor_index": 243,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0877133384346962,
+        "index": 243,
+        "max_action_delta": 0.0935964584350586,
+        "neighbor_index": 242,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0877133384346962,
+        "index": 627,
+        "max_action_delta": 0.0935964584350586,
+        "neighbor_index": 242,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0877133384346962,
+        "index": 242,
+        "max_action_delta": 0.0935964584350586,
+        "neighbor_index": 243,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08915514498949051,
+        "index": 74,
+        "max_action_delta": 0.09747934341430664,
+        "neighbor_index": 73,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.08915514498949051,
+        "index": 458,
+        "max_action_delta": 0.09747934341430664,
+        "neighbor_index": 73,
+        "neighbor_phase": 0.027190333232283592,
+        "phase": 0.03021148033440113
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0900954082608223,
+        "index": 221,
+        "max_action_delta": 0.10204362869262695,
+        "neighbor_index": 222,
+        "neighbor_phase": 0.09063444286584854,
+        "phase": 0.0876132920384407
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0900954082608223,
+        "index": 605,
+        "max_action_delta": 0.10204362869262695,
+        "neighbor_index": 222,
+        "neighbor_phase": 0.09063444286584854,
+        "phase": 0.0876132920384407
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0900954082608223,
+        "index": 606,
+        "max_action_delta": 0.10204362869262695,
+        "neighbor_index": 221,
+        "neighbor_phase": 0.0876132920384407,
+        "phase": 0.09063444286584854
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0900954082608223,
+        "index": 222,
+        "max_action_delta": 0.10204362869262695,
+        "neighbor_index": 221,
+        "neighbor_phase": 0.0876132920384407,
+        "phase": 0.09063444286584854
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09218613803386688,
+        "index": 562,
+        "max_action_delta": 0.10151529312133789,
+        "neighbor_index": 179,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09218613803386688,
+        "index": 563,
+        "max_action_delta": 0.10151529312133789,
+        "neighbor_index": 178,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09218613803386688,
+        "index": 178,
+        "max_action_delta": 0.10151529312133789,
+        "neighbor_index": 179,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09218613803386688,
+        "index": 179,
+        "max_action_delta": 0.10151529312133789,
+        "neighbor_index": 178,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09466759860515594,
+        "index": 691,
+        "max_action_delta": 0.10763834416866302,
+        "neighbor_index": 306,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09466759860515594,
+        "index": 307,
+        "max_action_delta": 0.10763834416866302,
+        "neighbor_index": 306,
+        "neighbor_phase": 0.1510574072599411,
+        "phase": 0.15407854318618774
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09466759860515594,
+        "index": 306,
+        "max_action_delta": 0.10763834416866302,
+        "neighbor_index": 307,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09466759860515594,
+        "index": 690,
+        "max_action_delta": 0.10763834416866302,
+        "neighbor_index": 307,
+        "neighbor_phase": 0.15407854318618774,
+        "phase": 0.1510574072599411
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09504618495702744,
+        "index": 332,
+        "max_action_delta": 0.0690440833568573,
+        "neighbor_index": 331,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03625377640128136
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09504618495702744,
+        "index": 716,
+        "max_action_delta": 0.0690440833568573,
+        "neighbor_index": 331,
+        "neighbor_phase": 0.03323262929916382,
+        "phase": 0.03625377640128136
+      }
+    ],
+    "close_pair_rate": 0.11458333333333333,
+    "conflict_rate": 0.06770833333333333,
+    "median_neighbor_distance": 0.20581334829330444,
+    "samples": 768
+  },
+  "fixed_prefix_systematically_aliased": true,
+  "gate": "BLOCK_FORMAL_BC_DAGGER",
+  "schema_version": "pcbc-observability-gate-v1"
+}

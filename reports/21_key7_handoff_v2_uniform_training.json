@@ -1,0 +1,181 @@
+{
+  "backends": {
+    "checkpoint": {
+      "artifact": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/deployment_v2_columns_uniform/student_best_checkpoint.pt",
+      "checks": {
+        "first_applied_physical_delta": false,
+        "hard_zero_wheels": true,
+        "normalized_rotation_in_distribution": true
+      },
+      "cycles": [
+        {
+          "applied": false,
+          "cycle": 1,
+          "physical_leg_delta_max_abs_rad": 0.10625214874744415,
+          "raw_action": [
+            -0.010070636868476868,
+            0.006577041000127792,
+            -0.0034393221139907837,
+            -0.0799068883061409,
+            0.182876318693161,
+            -0.029236771166324615,
+            0.24514561891555786,
+            0.20316238701343536,
+            -0.04286547005176544,
+            -0.06198287010192871,
+            -0.4250085949897766,
+            -0.2996842563152313,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw_leg_max_abs": 0.4250085949897766,
+          "wheel_action_max_abs": 0.0
+        },
+        {
+          "applied": false,
+          "cycle": 2,
+          "physical_leg_delta_max_abs_rad": 0.1797906905412674,
+          "raw_action": [
+            -0.015137962996959686,
+            0.032454486936330795,
+            0.006220467388629913,
+            -0.1594843566417694,
+            0.3121435046195984,
+            -0.011080875992774963,
+            0.41191139817237854,
+            0.3346403241157532,
+            -0.025004923343658447,
+            -0.05435037612915039,
+            -0.7191627621650696,
+            -0.45141273736953735,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw_leg_max_abs": 0.7191627621650696,
+          "wheel_action_max_abs": 0.0
+        },
+        {
+          "applied": false,
+          "cycle": 3,
+          "physical_leg_delta_max_abs_rad": 0.23747628927230835,
+          "raw_action": [
+            -0.017731353640556335,
+            0.06989569962024689,
+            0.023674964904785156,
+            -0.23892585933208466,
+            0.40481075644493103,
+            0.039903391152620316,
+            0.5353848934173584,
+            0.4174295961856842,
+            -0.002209901809692383,
+            -0.029988080263137817,
+            -0.9499051570892334,
+            -0.5362106561660767,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw_leg_max_abs": 0.9499051570892334,
+          "wheel_action_max_abs": 0.0
+        },
+        {
+          "applied": true,
+          "cycle": 4,
+          "physical_leg_delta_max_abs_rad": 0.283742755651474,
+          "raw_action": [
+            -0.020411834120750427,
+            0.11433354020118713,
+            0.04631195217370987,
+            -0.3214564323425293,
+            0.4641609191894531,
+            0.11247600615024567,
+            0.6308433413505554,
+            0.46495556831359863,
+            0.013261988759040833,
+            0.0011534355580806732,
+            -1.134971022605896,
+            -0.5860697627067566,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "raw_leg_max_abs": 1.134971022605896,
+          "wheel_action_max_abs": 0.0
+        }
+      ],
+      "dry_cycles": 3,
+      "first_applied": {
+        "applied": true,
+        "cycle": 4,
+        "physical_leg_delta_max_abs_rad": 0.283742755651474,
+        "raw_action": [
+          -0.020411834120750427,
+          0.11433354020118713,
+          0.04631195217370987,
+          -0.3214564323425293,
+          0.4641609191894531,
+          0.11247600615024567,
+          0.6308433413505554,
+          0.46495556831359863,
+          0.013261988759040833,
+          0.0011534355580806732,
+          -1.134971022605896,
+          -0.5860697627067566,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "raw_leg_max_abs": 1.134971022605896,
+        "wheel_action_max_abs": 0.0
+      },
+      "normalized_rotation": [
+        0.2491581290960312,
+        0.11593274027109146,
+        -0.11251433193683624,
+        0.3989596366882324,
+        0.4497966468334198,
+        0.0376351960003376
+      ],
+      "normalized_rotation_max_abs": 0.4497966468334198,
+      "sha256": "8c6c5bf32151fcf17aae75f67648475ff802e797e86031be3973cdae8820379e"
+    }
+  },
+  "checks": {
+    "aligned_reference_quaternion": true,
+    "checkpoint": false,
+    "handoff_leg_pose": true,
+    "rotation_columns": true
+  },
+  "deployment_repository_accessed": false,
+  "deployment_repository_modified": false,
+  "golden": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/configs/key7_handoff_golden.yaml",
+  "golden_sha256": "32c19a72fe74bf14b83c8732872e721e4e53116da04c8ea9bfbf1bae49550ce1",
+  "observation": {
+    "aligned_reference_quaternion_max_abs_error": 1.1920928955078125e-07,
+    "aligned_reference_quaternion_wxyz": [
+      0.7514452934265137,
+      0.002140395576134324,
+      -0.6597872972488403,
+      0.002453726017847657
+    ],
+    "handoff_leg_pose_max_abs_error_rad": 0.011840400286018848,
+    "rotation_columns6": [
+      0.9985241293907166,
+      8.856253771227784e-06,
+      -6.95502785674762e-06,
+      1.0,
+      0.0543096698820591,
+      -3.4766468161251396e-05
+    ],
+    "rotation_columns_max_abs_error": 5.960464477539063e-08
+  },
+  "ok": false,
+  "schema_version": "pcbc-key7-handoff-validation-v1"
+}

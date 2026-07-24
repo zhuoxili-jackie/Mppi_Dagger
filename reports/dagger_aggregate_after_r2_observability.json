@@ -1,0 +1,526 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "dynamic_reference": {
+    "cases": [
+      {
+        "contact_conflict": 1,
+        "distance": 0.07701986283063889,
+        "index": 10146,
+        "max_action_delta": 4.339088439941406,
+        "neighbor_index": 10167,
+        "neighbor_phase": 0.8761329054832458,
+        "phase": 0.7522658705711365
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.07701986283063889,
+        "index": 10167,
+        "max_action_delta": 4.339088439941406,
+        "neighbor_index": 10146,
+        "neighbor_phase": 0.7522658705711365,
+        "phase": 0.8761329054832458
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09158191829919815,
+        "index": 7626,
+        "max_action_delta": 0.5024933815002441,
+        "neighbor_index": 9728,
+        "neighbor_phase": 0.039274923503398895,
+        "phase": 0.04229607433080673
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.09158191829919815,
+        "index": 9728,
+        "max_action_delta": 0.5024933815002441,
+        "neighbor_index": 7626,
+        "neighbor_phase": 0.04229607433080673,
+        "phase": 0.039274923503398895
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.09690740704536438,
+        "index": 10148,
+        "max_action_delta": 2.62762188911438,
+        "neighbor_index": 10168,
+        "neighbor_phase": 0.8912386894226074,
+        "phase": 0.7643504738807678
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.09690740704536438,
+        "index": 10168,
+        "max_action_delta": 2.62762188911438,
+        "neighbor_index": 10148,
+        "neighbor_phase": 0.7643504738807678,
+        "phase": 0.8912386894226074
+      }
+    ],
+    "close_pair_rate": 0.0005,
+    "conflict_rate": 0.0005,
+    "median_neighbor_distance": 0.26005980372428894,
+    "samples": 12000
+  },
+  "fixed_prefix": {
+    "cases": [
+      {
+        "contact_conflict": 1,
+        "distance": 0.004600588697940111,
+        "index": 7700,
+        "max_action_delta": 1.2988550662994385,
+        "neighbor_index": 7699,
+        "neighbor_phase": 0.7432023882865906,
+        "phase": 0.7462235689163208
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.004600588697940111,
+        "index": 7699,
+        "max_action_delta": 1.2988550662994385,
+        "neighbor_index": 7700,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7432023882865906
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.004706363193690777,
+        "index": 7701,
+        "max_action_delta": 0.5562458038330078,
+        "neighbor_index": 7700,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7492446899414062
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.005785403307527304,
+        "index": 7914,
+        "max_action_delta": 1.028119683265686,
+        "neighbor_index": 7913,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7492446899414062
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.005785403307527304,
+        "index": 7913,
+        "max_action_delta": 1.028119683265686,
+        "neighbor_index": 7914,
+        "neighbor_phase": 0.7492446899414062,
+        "phase": 0.7462235689163208
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0060758888721466064,
+        "index": 7926,
+        "max_action_delta": 1.5970187187194824,
+        "neighbor_index": 7925,
+        "neighbor_phase": 0.8851963877677917,
+        "phase": 0.8912386894226074
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0060758888721466064,
+        "index": 7925,
+        "max_action_delta": 1.5970187187194824,
+        "neighbor_index": 7926,
+        "neighbor_phase": 0.8912386894226074,
+        "phase": 0.8851963877677917
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0060893758200109005,
+        "index": 7924,
+        "max_action_delta": 1.3943507671356201,
+        "neighbor_index": 7925,
+        "neighbor_phase": 0.8851963877677917,
+        "phase": 0.8821752071380615
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.00663110613822937,
+        "index": 7922,
+        "max_action_delta": 0.946994423866272,
+        "neighbor_index": 7921,
+        "neighbor_phase": 0.870090663433075,
+        "phase": 0.8731117844581604
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.00663110613822937,
+        "index": 7921,
+        "max_action_delta": 0.946994423866272,
+        "neighbor_index": 7922,
+        "neighbor_phase": 0.8731117844581604,
+        "phase": 0.870090663433075
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0068621388636529446,
+        "index": 10163,
+        "max_action_delta": 3.007401943206787,
+        "neighbor_index": 10156,
+        "neighbor_phase": 0.8187311291694641,
+        "phase": 0.8489425778388977
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0068621388636529446,
+        "index": 10156,
+        "max_action_delta": 3.007401943206787,
+        "neighbor_index": 10163,
+        "neighbor_phase": 0.8489425778388977,
+        "phase": 0.8187311291694641
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0071087609976530075,
+        "index": 10146,
+        "max_action_delta": 2.7584433555603027,
+        "neighbor_index": 10150,
+        "neighbor_phase": 0.7794561982154846,
+        "phase": 0.7522658705711365
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0071087609976530075,
+        "index": 10150,
+        "max_action_delta": 2.7584433555603027,
+        "neighbor_index": 10146,
+        "neighbor_phase": 0.7522658705711365,
+        "phase": 0.7794561982154846
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.007120291702449322,
+        "index": 10168,
+        "max_action_delta": 4.159618854522705,
+        "neighbor_index": 10163,
+        "neighbor_phase": 0.8489425778388977,
+        "phase": 0.8912386894226074
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.007268528454005718,
+        "index": 10155,
+        "max_action_delta": 2.215299606323242,
+        "neighbor_index": 10156,
+        "neighbor_phase": 0.8187311291694641,
+        "phase": 0.8096676468849182
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.00733593525364995,
+        "index": 7923,
+        "max_action_delta": 1.3133386373519897,
+        "neighbor_index": 7925,
+        "neighbor_phase": 0.8851963877677917,
+        "phase": 0.8761329054832458
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.0077067781239748,
+        "index": 10159,
+        "max_action_delta": 1.5155982971191406,
+        "neighbor_index": 10156,
+        "neighbor_phase": 0.8187311291694641,
+        "phase": 0.8277945518493652
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.008181796409189701,
+        "index": 10166,
+        "max_action_delta": 4.637113094329834,
+        "neighbor_index": 10168,
+        "neighbor_phase": 0.8912386894226074,
+        "phase": 0.8731117844581604
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.008892872370779514,
+        "index": 10149,
+        "max_action_delta": 1.8926180601119995,
+        "neighbor_index": 10146,
+        "neighbor_phase": 0.7522658705711365,
+        "phase": 0.7764350175857544
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.009156489744782448,
+        "index": 10167,
+        "max_action_delta": 3.4251203536987305,
+        "neighbor_index": 10163,
+        "neighbor_phase": 0.8489425778388977,
+        "phase": 0.8761329054832458
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.009438836947083473,
+        "index": 7927,
+        "max_action_delta": 2.1283352375030518,
+        "neighbor_index": 7925,
+        "neighbor_phase": 0.8851963877677917,
+        "phase": 0.8972809910774231
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.00947353895753622,
+        "index": 7703,
+        "max_action_delta": 0.8432283401489258,
+        "neighbor_index": 7702,
+        "neighbor_phase": 0.7583081722259521,
+        "phase": 0.7643504738807678
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.00947353895753622,
+        "index": 7702,
+        "max_action_delta": 0.8432283401489258,
+        "neighbor_index": 7703,
+        "neighbor_phase": 0.7643504738807678,
+        "phase": 0.7583081722259521
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.009611092507839203,
+        "index": 10157,
+        "max_action_delta": 4.872739791870117,
+        "neighbor_index": 10149,
+        "neighbor_phase": 0.7764350175857544,
+        "phase": 0.8217522501945496
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.010069613344967365,
+        "index": 10161,
+        "max_action_delta": 2.2673287391662598,
+        "neighbor_index": 10156,
+        "neighbor_phase": 0.8187311291694641,
+        "phase": 0.8368580341339111
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.010585927404463291,
+        "index": 10148,
+        "max_action_delta": 3.87774395942688,
+        "neighbor_index": 10154,
+        "neighbor_phase": 0.8006042242050171,
+        "phase": 0.7643504738807678
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.010585927404463291,
+        "index": 10154,
+        "max_action_delta": 3.87774395942688,
+        "neighbor_index": 10148,
+        "neighbor_phase": 0.7643504738807678,
+        "phase": 0.8006042242050171
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.010876425541937351,
+        "index": 10147,
+        "max_action_delta": 1.6828486919403076,
+        "neighbor_index": 10149,
+        "neighbor_phase": 0.7764350175857544,
+        "phase": 0.7552869915962219
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.010988982394337654,
+        "index": 7928,
+        "max_action_delta": 2.118556499481201,
+        "neighbor_index": 7924,
+        "neighbor_phase": 0.8821752071380615,
+        "phase": 0.9003021121025085
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.011988658457994461,
+        "index": 10152,
+        "max_action_delta": 3.0476744174957275,
+        "neighbor_index": 10162,
+        "neighbor_phase": 0.842900276184082,
+        "phase": 0.791540801525116
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.011988658457994461,
+        "index": 10162,
+        "max_action_delta": 3.0476744174957275,
+        "neighbor_index": 10152,
+        "neighbor_phase": 0.791540801525116,
+        "phase": 0.842900276184082
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.012219101190567017,
+        "index": 10158,
+        "max_action_delta": 2.1199138164520264,
+        "neighbor_index": 10154,
+        "neighbor_phase": 0.8006042242050171,
+        "phase": 0.8247734308242798
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.012556836940348148,
+        "index": 10165,
+        "max_action_delta": 3.731692314147949,
+        "neighbor_index": 10159,
+        "neighbor_phase": 0.8277945518493652,
+        "phase": 0.8640483617782593
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.012917516753077507,
+        "index": 7698,
+        "max_action_delta": 1.6622912883758545,
+        "neighbor_index": 7700,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7371601462364197
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.013125419616699219,
+        "index": 10153,
+        "max_action_delta": 3.5977354049682617,
+        "neighbor_index": 10161,
+        "neighbor_phase": 0.8368580341339111,
+        "phase": 0.7975831031799316
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.015069075860083103,
+        "index": 10160,
+        "max_action_delta": 2.87994384765625,
+        "neighbor_index": 10154,
+        "neighbor_phase": 0.8006042242050171,
+        "phase": 0.8338368535041809
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.015598726458847523,
+        "index": 10145,
+        "max_action_delta": 0.8665977716445923,
+        "neighbor_index": 10146,
+        "neighbor_phase": 0.7522658705711365,
+        "phase": 0.7462235689163208
+      },
+      {
+        "contact_conflict": 0,
+        "distance": 0.015988299623131752,
+        "index": 10164,
+        "max_action_delta": 3.0483334064483643,
+        "neighbor_index": 10158,
+        "neighbor_phase": 0.8247734308242798,
+        "phase": 0.861027181148529
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.01684286817908287,
+        "index": 7910,
+        "max_action_delta": 1.7677056789398193,
+        "neighbor_index": 7913,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7220543622970581
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.01714697666466236,
+        "index": 7905,
+        "max_action_delta": 1.0783580541610718,
+        "neighbor_index": 7906,
+        "neighbor_phase": 0.6888217329978943,
+        "phase": 0.6858006119728088
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.01714697666466236,
+        "index": 7906,
+        "max_action_delta": 1.0783580541610718,
+        "neighbor_index": 7905,
+        "neighbor_phase": 0.6858006119728088,
+        "phase": 0.6888217329978943
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.01793273724615574,
+        "index": 7916,
+        "max_action_delta": 3.640972137451172,
+        "neighbor_index": 7917,
+        "neighbor_phase": 0.8247734308242798,
+        "phase": 0.8006042242050171
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.01793273724615574,
+        "index": 7917,
+        "max_action_delta": 3.640972137451172,
+        "neighbor_index": 7916,
+        "neighbor_phase": 0.8006042242050171,
+        "phase": 0.8247734308242798
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.018178092315793037,
+        "index": 7912,
+        "max_action_delta": 1.1309831142425537,
+        "neighbor_index": 7913,
+        "neighbor_phase": 0.7462235689163208,
+        "phase": 0.7371601462364197
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.018790559843182564,
+        "index": 7920,
+        "max_action_delta": 2.270285129547119,
+        "neighbor_index": 7922,
+        "neighbor_phase": 0.8731117844581604,
+        "phase": 0.8459214568138123
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.020812321454286575,
+        "index": 7915,
+        "max_action_delta": 4.488780498504639,
+        "neighbor_index": 7917,
+        "neighbor_phase": 0.8247734308242798,
+        "phase": 0.7945619225502014
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.021752851083874702,
+        "index": 9313,
+        "max_action_delta": 1.739104986190796,
+        "neighbor_index": 9314,
+        "neighbor_phase": 0.8912386894226074,
+        "phase": 0.8851963877677917
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.021752851083874702,
+        "index": 9314,
+        "max_action_delta": 1.739104986190796,
+        "neighbor_index": 9313,
+        "neighbor_phase": 0.8851963877677917,
+        "phase": 0.8912386894226074
+      },
+      {
+        "contact_conflict": 1,
+        "distance": 0.02225983887910843,
+        "index": 8124,
+        "max_action_delta": 1.3551229238510132,
+        "neighbor_index": 8123,
+        "neighbor_phase": 0.8187311291694641,
+        "phase": 0.8217522501945496
+      }
+    ],
+    "close_pair_rate": 0.01975,
+    "conflict_rate": 0.0195,
+    "median_neighbor_distance": 0.2245793342590332,
+    "samples": 12000
+  },
+  "fixed_prefix_systematically_aliased": false,
+  "gate": "PASS",
+  "schema_version": "pcbc-observability-gate-v1"
+}

@@ -1,0 +1,876 @@
+{
+  "checks": {
+    "aggregate_at_least_20000_frames": true,
+    "checkpoint_matches_export_manifest": true,
+    "dagger_r1_r3_collection_gates": true,
+    "fixed_93_to_16_abi": true,
+    "formal_mppi_expert_gate": true,
+    "golden_parity": true,
+    "hard_zero_all_backends": true,
+    "onnx_closed_loop_admission": true,
+    "onnx_closed_loop_hash_matches_final_file": true,
+    "onnx_cpu_50hz_latency": true,
+    "reference_validation": true,
+    "required_export_files": true,
+    "selected_torch_closed_loop_admission": true,
+    "standalone_audit": true
+  },
+  "dagger": {
+    "collection_gates": {
+      "1": {
+        "ok": true,
+        "path": "reports/dagger_r1_collection_gate.json",
+        "summary": {
+          "episodes": 26,
+          "initial_state_perturbation_exercised": true,
+          "initial_state_perturbation_requested": true,
+          "scenario_profile": {
+            "action_delay_steps": 0,
+            "initial_state": {
+              "joint_position": [
+                -0.012,
+                0.012
+              ],
+              "pose": {
+                "pitch": [
+                  -0.012,
+                  0.012
+                ],
+                "roll": [
+                  -0.012,
+                  0.012
+                ],
+                "x": [
+                  -0.015,
+                  0.015
+                ],
+                "y": [
+                  -0.01,
+                  0.01
+                ],
+                "yaw": [
+                  -0.015,
+                  0.015
+                ],
+                "z": [
+                  -0.005,
+                  0.005
+                ]
+              },
+              "velocity": {
+                "pitch": [
+                  -0.015,
+                  0.015
+                ],
+                "roll": [
+                  -0.015,
+                  0.015
+                ],
+                "x": [
+                  -0.015,
+                  0.015
+                ],
+                "y": [
+                  -0.02,
+                  0.02
+                ],
+                "yaw": [
+                  -0.015,
+                  0.015
+                ],
+                "z": [
+                  -0.01,
+                  0.01
+                ]
+              }
+            },
+            "observation_noise_std": 0.0,
+            "physics_profile": "nominal",
+            "platform_position_jitter_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "requested_name": "nominal_small_initial_state",
+            "resolved_name": "nominal_small_initial_state"
+          },
+          "steps": 7654,
+          "student_behavior_episodes": 12,
+          "student_behavior_steps": 3454,
+          "student_checkpoint_hashes": [
+            "6b1ae47e4adf8c2c3393afb7bc662fd83336fa705c9939ee0910601f19a8e0d6"
+          ],
+          "teacher_valid_rate": 1.0
+        }
+      },
+      "2": {
+        "ok": true,
+        "path": "reports/dagger_r2_collection_gate.json",
+        "summary": {
+          "episodes": 26,
+          "initial_state_perturbation_exercised": true,
+          "initial_state_perturbation_requested": true,
+          "scenario_profile": {
+            "action_delay_steps": 0,
+            "fixed_physics": {
+              "box_dynamic_friction": 0.9,
+              "box_static_friction": 1.1,
+              "front_wheel_dynamic_friction": 0.82,
+              "front_wheel_static_friction": 1.0,
+              "rear_wheel_dynamic_friction": 0.82,
+              "rear_wheel_static_friction": 1.0,
+              "robot_mass_scale": 1.02,
+              "robot_non_wheel_dynamic_friction": 0.7,
+              "robot_non_wheel_static_friction": 0.85
+            },
+            "initial_state": {
+              "joint_position": [
+                -0.008,
+                0.008
+              ],
+              "pose": {
+                "pitch": [
+                  -0.008,
+                  0.008
+                ],
+                "roll": [
+                  -0.008,
+                  0.008
+                ],
+                "x": [
+                  -0.01,
+                  0.01
+                ],
+                "y": [
+                  -0.006,
+                  0.006
+                ],
+                "yaw": [
+                  -0.01,
+                  0.01
+                ],
+                "z": [
+                  -0.004,
+                  0.004
+                ]
+              },
+              "velocity": {
+                "pitch": [
+                  -0.01,
+                  0.01
+                ],
+                "roll": [
+                  -0.01,
+                  0.01
+                ],
+                "x": [
+                  -0.01,
+                  0.01
+                ],
+                "y": [
+                  -0.015,
+                  0.015
+                ],
+                "yaw": [
+                  -0.01,
+                  0.01
+                ],
+                "z": [
+                  -0.008,
+                  0.008
+                ]
+              }
+            },
+            "observation_noise_std": 0.005,
+            "physics_profile": "fixed_light_shift",
+            "platform_position_jitter_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "requested_name": "light_friction_mass_observation_noise",
+            "resolved_name": "light_friction_mass_observation_noise"
+          },
+          "steps": 5151,
+          "student_behavior_episodes": 10,
+          "student_behavior_steps": 351,
+          "student_checkpoint_hashes": [
+            "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a"
+          ],
+          "teacher_valid_rate": 1.0
+        }
+      },
+      "3": {
+        "ok": true,
+        "path": "reports/dagger_r3_collection_gate.json",
+        "summary": {
+          "episodes": 26,
+          "initial_state_perturbation_exercised": true,
+          "initial_state_perturbation_requested": true,
+          "scenario_profile": {
+            "action_delay_steps": 1,
+            "initial_state": {
+              "joint_position": [
+                -0.008,
+                0.008
+              ],
+              "pose": {
+                "pitch": [
+                  -0.008,
+                  0.008
+                ],
+                "roll": [
+                  -0.008,
+                  0.008
+                ],
+                "x": [
+                  -0.01,
+                  0.01
+                ],
+                "y": [
+                  -0.006,
+                  0.006
+                ],
+                "yaw": [
+                  -0.01,
+                  0.01
+                ],
+                "z": [
+                  -0.004,
+                  0.004
+                ]
+              },
+              "velocity": {
+                "pitch": [
+                  -0.01,
+                  0.01
+                ],
+                "roll": [
+                  -0.01,
+                  0.01
+                ],
+                "x": [
+                  -0.01,
+                  0.01
+                ],
+                "y": [
+                  -0.015,
+                  0.015
+                ],
+                "yaw": [
+                  -0.01,
+                  0.01
+                ],
+                "z": [
+                  -0.008,
+                  0.008
+                ]
+              }
+            },
+            "observation_noise_std": 0.003,
+            "physics_profile": "nominal",
+            "platform_position_jitter_m": [
+              0.005,
+              0.005,
+              0.002
+            ],
+            "requested_name": "light_delay_platform_pose",
+            "resolved_name": "light_delay_platform_pose"
+          },
+          "steps": 7800,
+          "student_behavior_episodes": 16,
+          "student_behavior_steps": 4800,
+          "student_checkpoint_hashes": [
+            "3165eefcb8fa9e28379e587bffbd5c5b4eb1d08e9f14661c2cbd2e925ea15c1f"
+          ],
+          "teacher_valid_rate": 1.0
+        }
+      }
+    },
+    "rounds_completed": [
+      1,
+      2,
+      3
+    ]
+  },
+  "dataset": {
+    "episodes": 166,
+    "frames": 43651,
+    "per_round": {
+      "0": {
+        "cumulative_teacher_solve_hours": 3.279312009947035,
+        "episodes": 70,
+        "frames": 21000,
+        "mean_teacher_solve_ms": 562.1677731337775,
+        "student_behavior_frames": 0,
+        "teacher_valid_frames": 21000
+      },
+      "1": {
+        "cumulative_teacher_solve_hours": 1.2043989832814535,
+        "episodes": 26,
+        "frames": 7654,
+        "mean_teacher_solve_ms": 566.4797935475872,
+        "student_behavior_frames": 3454,
+        "teacher_valid_frames": 7654
+      },
+      "2": {
+        "cumulative_teacher_solve_hours": 1.1339256352912055,
+        "episodes": 44,
+        "frames": 7197,
+        "mean_teacher_solve_ms": 567.1991506250298,
+        "student_behavior_frames": 2397,
+        "teacher_valid_frames": 7197
+      },
+      "3": {
+        "cumulative_teacher_solve_hours": 1.2874514836035835,
+        "episodes": 26,
+        "frames": 7800,
+        "mean_teacher_solve_ms": 594.2083770478077,
+        "student_behavior_frames": 4800,
+        "teacher_valid_frames": 7800
+      }
+    },
+    "root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+    "split_episode_counts": {
+      "test": 7,
+      "train": 121,
+      "validation": 38
+    }
+  },
+  "engineering_release_ready": true,
+  "expert": {
+    "backend": "whole_body_mppi",
+    "gate": "reports/13_mppi_formal_gate50_v3_gate.json",
+    "reference_repository_policy": "RTWholeBodyMPPI_reference_only",
+    "summary": {
+      "episodes_found": 50,
+      "expert_config_hashes": [
+        "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6"
+      ],
+      "observed_ref_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "requested_reference_resets_match": true,
+      "shield_interventions": 0,
+      "success_rate": 1.0,
+      "successes": 50,
+      "teacher_valid_rate": 1.0,
+      "tracking_successes": 50,
+      "wheel_action_exact_zero": true
+    },
+    "tracking": {
+      "failure_counts": {},
+      "metrics": {
+        "action_rate_max_abs": {
+          "maximum": 2.2655935287475586,
+          "mean": 1.4737964391708374,
+          "minimum": 1.0547733306884766
+        },
+        "action_rate_mean_abs": {
+          "maximum": 0.1565614938735962,
+          "mean": 0.1286325201392174,
+          "minimum": 0.10235895961523056
+        },
+        "base_orientation_rmse_rad": {
+          "maximum": 0.13583658635616302,
+          "mean": 0.08804908767342567,
+          "minimum": 0.06035393476486206
+        },
+        "base_position_max_abs_m": {
+          "maximum": [
+            0.042324066162109375,
+            0.1664581298828125,
+            0.06562000513076782
+          ],
+          "mean": [
+            0.03137405395507813,
+            0.10427139282226562,
+            0.047488671541213986
+          ],
+          "minimum": [
+            0.022335052490234375,
+            0.07613563537597656,
+            0.0360332727432251
+          ]
+        },
+        "base_position_rmse_m": {
+          "maximum": [
+            0.018768690526485443,
+            0.08658559620380402,
+            0.027059607207775116
+          ],
+          "mean": [
+            0.015240009725093841,
+            0.06357732594013214,
+            0.02312571793794632
+          ],
+          "minimum": [
+            0.011787564493715763,
+            0.04398670420050621,
+            0.018308699131011963
+          ]
+        },
+        "box_local_x_drift_max_abs_m": {
+          "maximum": 0.0394744873046875,
+          "mean": 0.03194713592529297,
+          "minimum": 0.025606155395507812
+        },
+        "contact_mismatch_rate": {
+          "maximum": 0.12916666666666668,
+          "mean": 0.09721666666666666,
+          "minimum": 0.06166666666666667
+        },
+        "contact_wheel_planar_speed_max_m_s": {
+          "maximum": 1.0566012859344482,
+          "mean": 0.5224902677536011,
+          "minimum": 0.3413580656051636
+        },
+        "joint_position_rmse_rad": {
+          "maximum": 0.5433846116065979,
+          "mean": 0.2800927726924419,
+          "minimum": 0.11851004511117935
+        },
+        "joint_velocity_rmse_rad_s": {
+          "maximum": 1.3368992805480957,
+          "mean": 1.0440591740608216,
+          "minimum": 0.8507227301597595
+        },
+        "lateral_displacement_error_m": {
+          "maximum": 0.1664581298828125,
+          "mean": 0.008512535095214845,
+          "minimum": -0.1143646240234375
+        },
+        "lateral_velocity_mae_m_s": {
+          "maximum": 0.09465676546096802,
+          "mean": 0.07149699941277504,
+          "minimum": 0.045258183032274246
+        },
+        "leg_action_saturation_rate": {
+          "maximum": 0.0,
+          "mean": 0.0,
+          "minimum": 0.0
+        },
+        "wheel_center_rmse_m": {
+          "maximum": 0.12795627117156982,
+          "mean": 0.09603034809231759,
+          "minimum": 0.07093445956707001
+        },
+        "wheel_position_rmse_m": {
+          "maximum": [
+            0.06812285631895065,
+            0.07025529444217682,
+            0.14939318597316742,
+            0.18919749557971954
+          ],
+          "mean": [
+            0.04926241524517536,
+            0.051359303891658784,
+            0.1248399892449379,
+            0.126066415309906
+          ],
+          "minimum": [
+            0.03390927612781525,
+            0.033725518733263016,
+            0.09534385800361633,
+            0.08414167910814285
+          ]
+        }
+      }
+    }
+  },
+  "export": {
+    "checkpoint_sha256": "c91ef211b25731da80348aa21b90598a22731c0b31e02f7634655f708dd0a8b6",
+    "directory": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/exported",
+    "manifest_model_hash": "86ee65227c0e5650734cbcdbc3b0638d2b28b62824e0c7efad790bc850347e7b",
+    "onnx_sha256": "45719ba3e1afa3a52db49212f0baa61b36885860edb09b5ac9d8f129f239961b",
+    "torchscript_sha256": "e3084022366f83fce9e32d8af71cd10bc29ec2824c8c5b8f00e562c9daca7534",
+    "validation": {
+      "file_hashes_verified": {
+        "golden_io.npz": "4b9b75b0eb03a7baea225eb65d6b29e54af625128db7535542f78b5cfe4fc76c",
+        "policy.onnx": "45719ba3e1afa3a52db49212f0baa61b36885860edb09b5ac9d8f129f239961b",
+        "policy.pt": "e3084022366f83fce9e32d8af71cd10bc29ec2824c8c5b8f00e562c9daca7534"
+      },
+      "hard_zero_all_backends": true,
+      "latency_50hz_pass": true,
+      "latency_p95_threshold_ms": 20.0,
+      "onnx_cpu_max_ms": 0.20250817760825157,
+      "onnx_cpu_mean_ms": 0.012254933608346619,
+      "onnx_cpu_p50_ms": 0.01040915958583355,
+      "onnx_cpu_p95_ms": 0.011918076779693365,
+      "onnx_cpu_p99_ms": 0.050875311717390154,
+      "onnx_cpu_total_ms": 3.1372630037367344,
+      "onnx_input_name": "obs",
+      "onnx_input_shape": [
+        1,
+        93
+      ],
+      "onnx_metadata_verified": true,
+      "onnx_output_name": "actions",
+      "onnx_output_shape": [
+        1,
+        16
+      ],
+      "onnx_vs_eager": {
+        "max_abs_error": 7.152557373046875e-07,
+        "mean_abs_error": 6.705272426188458e-08
+      },
+      "opset": 18,
+      "samples": 256,
+      "sha256sums_verified": true,
+      "torchscript_vs_eager": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      }
+    }
+  },
+  "production_acceptance_passed": false,
+  "release_status": "engineering_release_candidate_not_production_accepted",
+  "schema_version": "pcbc-final-metrics-v1",
+  "selected_student": {
+    "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3_conservative/student_best_checkpoint.pt",
+    "checkpoint_sha256": "c91ef211b25731da80348aa21b90598a22731c0b31e02f7634655f708dd0a8b6",
+    "onnx_closed_loop_gate": "reports/onnx_r3_conservative_dagger_admission_gate.json",
+    "onnx_summary": {
+      "episodes": 50,
+      "full_horizon_success_rate": 1.0,
+      "full_horizon_successes": 50,
+      "mean_horizon_fraction": 1.0,
+      "minimum_horizon_fraction": 1.0,
+      "per_reference_full_horizon_success_rate": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0
+      },
+      "per_reference_mean_horizon_fraction": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0
+      },
+      "per_reference_success_rate": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "shield_intervention_rate": 0.0,
+      "student_checkpoint_hashes": [
+        "45719ba3e1afa3a52db49212f0baa61b36885860edb09b5ac9d8f129f239961b"
+      ],
+      "success_rate": 0.0,
+      "successes": 0,
+      "teacher_valid_rate": 0.0,
+      "termination_reason_counts": {
+        "1": 50
+      }
+    },
+    "onnx_tracking": {
+      "failure_counts": {
+        "tracking:base_position": 50,
+        "tracking:box_local_x_drift": 50,
+        "tracking:contact_mismatch": 50,
+        "tracking:wheel_position": 50
+      },
+      "metrics": {
+        "action_rate_max_abs": {
+          "maximum": 2.2652013301849365,
+          "mean": 1.7924985027313232,
+          "minimum": 1.4309487342834473
+        },
+        "action_rate_mean_abs": {
+          "maximum": 0.238097682595253,
+          "mean": 0.21716065764427184,
+          "minimum": 0.19750893115997314
+        },
+        "base_orientation_rmse_rad": {
+          "maximum": 0.18616682291030884,
+          "mean": 0.14259895652532578,
+          "minimum": 0.12110712379217148
+        },
+        "base_position_max_abs_m": {
+          "maximum": [
+            0.2471550703048706,
+            0.8423447012901306,
+            0.10983997583389282
+          ],
+          "mean": [
+            0.23481856286525726,
+            0.5572689461708069,
+            0.09564455032348633
+          ],
+          "minimum": [
+            0.2177145928144455,
+            0.27183225750923157,
+            0.08126837015151978
+          ]
+        },
+        "base_position_rmse_m": {
+          "maximum": [
+            0.1958179473876953,
+            0.4888920187950134,
+            0.07306431233882904
+          ],
+          "mean": [
+            0.17993164092302322,
+            0.31975722312927246,
+            0.06325835183262825
+          ],
+          "minimum": [
+            0.161936417222023,
+            0.14921826124191284,
+            0.05450329929590225
+          ]
+        },
+        "box_local_x_drift_max_abs_m": {
+          "maximum": 0.25126832723617554,
+          "mean": 0.24210723519325256,
+          "minimum": 0.23551373183727264
+        },
+        "contact_mismatch_rate": {
+          "maximum": 0.46,
+          "mean": 0.42295,
+          "minimum": 0.39416666666666667
+        },
+        "contact_wheel_planar_speed_max_m_s": {
+          "maximum": 0.4741040766239166,
+          "mean": 0.3484434998035431,
+          "minimum": 0.27152925729751587
+        },
+        "joint_position_rmse_rad": {
+          "maximum": 0.9520047307014465,
+          "mean": 0.893742903470993,
+          "minimum": 0.7968546748161316
+        },
+        "joint_velocity_rmse_rad_s": {
+          "maximum": 1.1265037059783936,
+          "mean": 0.9843989098072052,
+          "minimum": 0.8671005368232727
+        },
+        "lateral_displacement_error_m": {
+          "maximum": 0.8423447012901306,
+          "mean": 0.03638292253017426,
+          "minimum": -0.8293967247009277
+        },
+        "lateral_velocity_mae_m_s": {
+          "maximum": 0.15361160039901733,
+          "mean": 0.11066622361540794,
+          "minimum": 0.06293193250894547
+        },
+        "leg_action_saturation_rate": {
+          "maximum": 0.0,
+          "mean": 0.0,
+          "minimum": 0.0
+        },
+        "wheel_center_rmse_m": {
+          "maximum": 0.5099946856498718,
+          "mean": 0.3638518154621124,
+          "minimum": 0.2200927883386612
+        },
+        "wheel_position_rmse_m": {
+          "maximum": [
+            0.5350073575973511,
+            0.5444254279136658,
+            0.49933645129203796,
+            0.47758758068084717
+          ],
+          "mean": [
+            0.3952194780111313,
+            0.39899343490600586,
+            0.330947345495224,
+            0.31873705595731733
+          ],
+          "minimum": [
+            0.2552955448627472,
+            0.2625322639942169,
+            0.16157296299934387,
+            0.15665532648563385
+          ]
+        }
+      }
+    },
+    "torch_closed_loop_gate": "reports/r3_conservative_dagger_admission_gate.json",
+    "torch_summary": {
+      "episodes": 50,
+      "full_horizon_success_rate": 1.0,
+      "full_horizon_successes": 50,
+      "mean_horizon_fraction": 1.0,
+      "minimum_horizon_fraction": 1.0,
+      "per_reference_full_horizon_success_rate": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0
+      },
+      "per_reference_mean_horizon_fraction": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0
+      },
+      "per_reference_success_rate": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "shield_intervention_rate": 0.0,
+      "student_checkpoint_hashes": [
+        "c91ef211b25731da80348aa21b90598a22731c0b31e02f7634655f708dd0a8b6"
+      ],
+      "success_rate": 0.0,
+      "successes": 0,
+      "teacher_valid_rate": 0.0,
+      "termination_reason_counts": {
+        "1": 50
+      }
+    },
+    "torch_tracking": {
+      "failure_counts": {
+        "tracking:base_position": 50,
+        "tracking:box_local_x_drift": 50,
+        "tracking:contact_mismatch": 50,
+        "tracking:wheel_position": 50
+      },
+      "metrics": {
+        "action_rate_max_abs": {
+          "maximum": 2.265644073486328,
+          "mean": 1.7717223858833313,
+          "minimum": 1.3825372457504272
+        },
+        "action_rate_mean_abs": {
+          "maximum": 0.23903894424438477,
+          "mean": 0.21703845679759978,
+          "minimum": 0.19742447137832642
+        },
+        "base_orientation_rmse_rad": {
+          "maximum": 0.18283872306346893,
+          "mean": 0.14114957436919212,
+          "minimum": 0.1236320436000824
+        },
+        "base_position_max_abs_m": {
+          "maximum": [
+            0.25130173563957214,
+            0.8468620777130127,
+            0.10989528894424438
+          ],
+          "mean": [
+            0.23602325439453126,
+            0.5570250582695008,
+            0.09529754519462585
+          ],
+          "minimum": [
+            0.21689830720424652,
+            0.2681511640548706,
+            0.08003616333007812
+          ]
+        },
+        "base_position_rmse_m": {
+          "maximum": [
+            0.1965322494506836,
+            0.4854165017604828,
+            0.07137924432754517
+          ],
+          "mean": [
+            0.18058509021997451,
+            0.31993322461843493,
+            0.0630013383179903
+          ],
+          "minimum": [
+            0.15867061913013458,
+            0.14822128415107727,
+            0.05392463132739067
+          ]
+        },
+        "box_local_x_drift_max_abs_m": {
+          "maximum": 0.25213193893432617,
+          "mean": 0.24304616779088975,
+          "minimum": 0.2341877818107605
+        },
+        "contact_mismatch_rate": {
+          "maximum": 0.4508333333333333,
+          "mean": 0.42141666666666666,
+          "minimum": 0.39916666666666667
+        },
+        "contact_wheel_planar_speed_max_m_s": {
+          "maximum": 0.6298295855522156,
+          "mean": 0.35646152138710024,
+          "minimum": 0.2708703577518463
+        },
+        "joint_position_rmse_rad": {
+          "maximum": 0.9452021718025208,
+          "mean": 0.8951925551891327,
+          "minimum": 0.8210551142692566
+        },
+        "joint_velocity_rmse_rad_s": {
+          "maximum": 1.1255701780319214,
+          "mean": 0.9848668134212494,
+          "minimum": 0.8664519190788269
+        },
+        "lateral_displacement_error_m": {
+          "maximum": 0.8468620777130127,
+          "mean": 0.03528071820735931,
+          "minimum": -0.8241124749183655
+        },
+        "lateral_velocity_mae_m_s": {
+          "maximum": 0.154195174574852,
+          "mean": 0.11152036920189858,
+          "minimum": 0.06820899993181229
+        },
+        "leg_action_saturation_rate": {
+          "maximum": 0.0,
+          "mean": 0.0,
+          "minimum": 0.0
+        },
+        "wheel_center_rmse_m": {
+          "maximum": 0.5109196305274963,
+          "mean": 0.3643103042244911,
+          "minimum": 0.2222210317850113
+        },
+        "wheel_position_rmse_m": {
+          "maximum": [
+            0.540824830532074,
+            0.5493608713150024,
+            0.49748608469963074,
+            0.47574734687805176
+          ],
+          "mean": [
+            0.395838708281517,
+            0.39980358302593233,
+            0.3310557967424393,
+            0.3188199442625046
+          ],
+          "minimum": [
+            0.2549504041671753,
+            0.26054397225379944,
+            0.16284479200839996,
+            0.15689605474472046
+          ]
+        }
+      }
+    }
+  },
+  "unresolved": [
+    "Strict reference-tracking success is 0/50 on the current ONNX gate.",
+    "The required final 100 episodes per reference production gate was not run because the 50-episode precursor already failed tracking thresholds.",
+    "Legacy baseline/residual ONNX graphs were absent from the supplied deployment evidence.",
+    "No final behavior video has been accepted by a human reviewer."
+  ]
+}

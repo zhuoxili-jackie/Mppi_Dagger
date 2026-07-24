@@ -1,0 +1,13 @@
+{
+  "checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/robot_move_lt/robot_move_lt/lateral_mppi_dagger/checkpoints/replay_smoke/student_best_checkpoint.pt",
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/robot_move_lt/robot_move_lt/lateral_mppi_dagger/datasets/replay_smoke",
+  "metrics": {
+    "action_mae": 0.09470664709806442,
+    "action_max_abs": 1.2097705602645874,
+    "action_rmse": 0.14854736626148224,
+    "valid_frames": 128,
+    "wheel_max_abs": 0.0
+  },
+  "schema_version": "pcbc-open-loop-evaluation-v1",
+  "split": "test"
+}

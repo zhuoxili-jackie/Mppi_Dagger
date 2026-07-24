@@ -1,0 +1,31 @@
+schema_version: "pcbc-lateral-evaluation-v1"
+nominal_seeds: 100
+gate_seed_file: "configs/seeds_nominal_100.txt"
+success_rate_min: 0.95
+per_reference_success_rate_min: 0.90
+max_expert_student_success_gap: 0.05
+no_nan_inf: true
+no_illegal_contact: true
+wheel_action_mode: hard_zero
+wheel_action_exact_zero: true
+export:
+  max_abs_error: 1.0e-5
+  mean_abs_error: 1.0e-6
+  frequency_hz: 50
+metrics:
+  - success_rate
+  - base_pose_rmse
+  - base_orientation_rmse
+  - joint_q_rmse
+  - joint_dq_rmse
+  - lateral_displacement_error
+  - lateral_velocity_mae
+  - box_local_x_drift
+  - wheel_center_reference_error
+  - wheel_slip
+  - contact_mismatch
+  - minimum_edge_margin
+  - action_saturation
+  - action_rate
+  - termination_reason
+

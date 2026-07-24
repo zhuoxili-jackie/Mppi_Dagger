@@ -1,0 +1,70 @@
+{
+  "active_round": null,
+  "best_checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_best_checkpoint.pt",
+  "completed_rounds": [
+    1,
+    2,
+    3
+  ],
+  "failure": null,
+  "round_outputs": {
+    "1": {
+      "best_checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r1/student_best_checkpoint.pt",
+      "best_checkpoint_sha256": "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a",
+      "beta": 0.75,
+      "collection_gate_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r1_collection_gate.json",
+      "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+      "dataset_validation_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r1_dataset_validation.json",
+      "input_checkpoint": {
+        "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/bc_formal/student_best_checkpoint.pt",
+        "sha256": "6b1ae47e4adf8c2c3393afb7bc662fd83336fa705c9939ee0910601f19a8e0d6"
+      },
+      "open_loop_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r1_open_loop.json",
+      "previous_gate": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/bc_dagger_admission_gate.json",
+      "previous_gate_success_rate": 0.0,
+      "round": 1,
+      "scenario": "nominal_small_initial_state",
+      "train_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r1_train_collection.json",
+      "validation_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r1_validation_collection.json"
+    },
+    "2": {
+      "best_checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r2/student_best_checkpoint.pt",
+      "best_checkpoint_sha256": "db23bf31b826ca7ee5bcdf3cac845d20bc176fdabaf637de02a195748169b97b",
+      "beta": 0.5,
+      "collection_gate_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r2_collection_gate.json",
+      "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+      "dataset_validation_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r2_dataset_validation.json",
+      "input_checkpoint": {
+        "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r1/student_best_checkpoint.pt",
+        "sha256": "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a"
+      },
+      "open_loop_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r2_open_loop.json",
+      "previous_gate": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/r1_dagger_admission_gate.json",
+      "previous_gate_success_rate": 0.0,
+      "round": 2,
+      "scenario": "light_friction_mass_observation_noise",
+      "train_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r2_train_collection.json",
+      "validation_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r2_validation_collection.json"
+    },
+    "3": {
+      "best_checkpoint": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r3/student_best_checkpoint.pt",
+      "best_checkpoint_sha256": "aa2c4a86a5c63687f08eb83588daae75ee0774fd2cad60deb3db013117e44034",
+      "beta": 0.25,
+      "collection_gate_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r3_collection_gate.json",
+      "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+      "dataset_validation_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r3_dataset_validation.json",
+      "input_checkpoint": {
+        "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r2_recovery1/student_best_checkpoint.pt",
+        "sha256": "3165eefcb8fa9e28379e587bffbd5c5b4eb1d08e9f14661c2cbd2e925ea15c1f"
+      },
+      "open_loop_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r3_open_loop.json",
+      "previous_gate": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/r2_recovery1_dagger_admission_gate.json",
+      "previous_gate_success_rate": 0.0,
+      "round": 3,
+      "scenario": "light_delay_platform_pose",
+      "train_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r3_train_collection.json",
+      "validation_collection_report": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/dagger_r3_validation_collection.json"
+    }
+  },
+  "schema_version": "pcbc-dagger-run-state-v1"
+}

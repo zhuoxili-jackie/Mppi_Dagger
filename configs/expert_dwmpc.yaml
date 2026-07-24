@@ -1,0 +1,8 @@
+backend: dwmpc
+status: not_selected_do_not_clone
+official_repository: "https://github.com/iit-DLSLab/DWMPC"
+source_vendored: false
+reason: "The migration explicitly selects MPPI as the only formal label provider for R0-R3; DWMPC must not be cloned or adapted in this first version."
+smoke_episode_budget: 25
+gpu_hour_budget: 2
+required_outputs: [q_des_leg, wheel_vel_des, predicted_grf, solver_status, solve_ms]

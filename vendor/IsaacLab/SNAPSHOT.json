@@ -1,0 +1,38 @@
+{
+  "schema_version": "isaaclab-vendor-snapshot-v1",
+  "copied_at": "2026-07-23T13:28:19+08:00",
+  "version": "2.3.0",
+  "source_extensions": {
+    "isaaclab": "0.50.3",
+    "isaaclab_assets": "0.2.3",
+    "isaaclab_tasks": "0.11.9",
+    "isaaclab_rl": "0.4.6",
+    "isaaclab_mimic": "vendored_from_same_tree"
+  },
+  "source_repository": {
+    "remote": "https://github.com/jmxaaa/Robot_cooperation.git",
+    "branch": "wlt_dev2",
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "source_status_sha256": "3c8bdfc78c93912a16b76de23d4b50b16ea9da596c102fb3788597d0506bce72",
+    "isaaclab_tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "vendored_content": {
+    "apps": "apps/",
+    "extensions": [
+      "source/isaaclab",
+      "source/isaaclab_assets",
+      "source/isaaclab_tasks",
+      "source/isaaclab_rl",
+      "source/isaaclab_mimic"
+    ],
+    "copied_source_file_count_excluding_runtime_caches": 902
+  },
+  "runtime_dependency_policy": {
+    "uses_original_editable_isaaclab_at_runtime": false,
+    "external_runtime_components": [
+      "Isaac Sim Python/Kit installation",
+      "CUDA driver and CUDA-enabled PyTorch",
+      "third-party Python packages"
+    ]
+  }
+}

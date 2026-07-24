@@ -1,0 +1,35 @@
+{
+  "schema_version": "pcbc-standalone-isolation-v1",
+  "tested_at": "2026-07-23T13:30:08+08:00",
+  "method": "rsync standalone tree to a fresh /tmp directory while excluding all generated datasets, checkpoints, exports, reports and Python caches",
+  "original_moveit_repository_available_to_runtime": false,
+  "checks": {
+    "standalone_asset_audit": true,
+    "reference_validation": true,
+    "pytest_passed": 15,
+    "pytest_failed": 0,
+    "isaac_environment_created": true,
+    "isaac_steps_completed": 1,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0,
+    "isaaclab_import_below_isolated_copy": true,
+    "robot_lab_import_below_isolated_copy": true,
+    "kit_experience_below_isolated_copy": true,
+    "provenance_original_repository_accessed": false
+  },
+  "runtime_boundary": {
+    "vendored": [
+      "robot_lab source",
+      "Isaac Lab 2.3.0 source extensions and app files",
+      "pcbC URDF/USD/STL/OBJ assets",
+      "708 reference NPZ/CSV files",
+      "deployment contract evidence"
+    ],
+    "externally_installed": [
+      "Isaac Sim",
+      "CUDA/PyTorch",
+      "Python dependencies"
+    ]
+  },
+  "result": "pass"
+}

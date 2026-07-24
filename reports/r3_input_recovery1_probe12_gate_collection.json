@@ -1,0 +1,280 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/student_probe_r3_input_recovery1_12",
+  "episodes": [
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref0_seed1000",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref1_seed1001",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref2_seed1002",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref3_seed1003",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref4_seed1004",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref5_seed1005",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref0_seed1006",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref1_seed1007",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref2_seed1008",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref3_seed1009",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref4_seed1010",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "student_probe_r3_input_recovery1_12_ref5_seed1011",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 0.0,
+      "mppi_cost_component_mean": {},
+      "mppi_effective_sample_size_mean": null,
+      "mppi_minimum_cost_mean": null,
+      "mppi_rollout_termination_rate_mean": null,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 0.0,
+      "termination_reason": 1
+    }
+  ],
+  "expert_backend": "disabled",
+  "expert_config": {
+    "backend": "disabled",
+    "scope": "student_only_closed_loop_evaluation",
+    "valid_label_provider": false
+  },
+  "expert_config_hash": "a2f9ac0b29115eb107604575248ce4988f20fc0abcfa9bd0ba904c6ef84e0530",
+  "expert_implementation_sha256": {},
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "observation_noise_std": 0.003,
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "scenario_config_hash": "b84ff0edaf686dbd1bc0a17c2e4ebae5baa5f4dba8ccf7d42401b5ba1ee30144",
+  "scenario_profile": {
+    "action_delay_steps": 1,
+    "initial_state": {
+      "joint_position": [
+        -0.008,
+        0.008
+      ],
+      "pose": {
+        "pitch": [
+          -0.008,
+          0.008
+        ],
+        "roll": [
+          -0.008,
+          0.008
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.006,
+          0.006
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.004,
+          0.004
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          -0.01,
+          0.01
+        ],
+        "roll": [
+          -0.01,
+          0.01
+        ],
+        "x": [
+          -0.01,
+          0.01
+        ],
+        "y": [
+          -0.015,
+          0.015
+        ],
+        "yaw": [
+          -0.01,
+          0.01
+        ],
+        "z": [
+          -0.008,
+          0.008
+        ]
+      }
+    },
+    "observation_noise_std": 0.003,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.005,
+      0.005,
+      0.002
+    ],
+    "requested_name": "light_delay_platform_pose",
+    "resolved_name": "light_delay_platform_pose"
+  },
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "student_checkpoint": {
+    "path": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/checkpoints/dagger_r2_recovery1/student_best_checkpoint.pt",
+    "sha256": "3165eefcb8fa9e28379e587bffbd5c5b4eb1d08e9f14661c2cbd2e925ea15c1f"
+  },
+  "summary": {
+    "episodes": 12,
+    "mean_solve_ms": 0.0,
+    "shield_intervention_rate": 0.0,
+    "success_rate": 1.0,
+    "teacher_valid_rate": 0.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "video_dir": null
+}

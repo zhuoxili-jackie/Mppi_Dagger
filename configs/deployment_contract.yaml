@@ -1,0 +1,183 @@
+schema_version: "pcbc-standalone-93x16-v2-deployment-columns"
+policy_family: "standalone_mppi_dagger_student"
+contract_status: "key7_aligned_with_continuous_activation_and_load_safe_rate_2026-07-24"
+
+observation:
+  dtype: float32
+  dim: 93
+  inference_noise: false
+  external_normalization: false
+  slices:
+    - {name: motion_joint_pos, start: 0, stop: 16}
+    - {name: motion_joint_vel, start: 16, stop: 32}
+    - {name: motion_anchor_ori_b_columns01, start: 32, stop: 38}
+    - {name: base_ang_vel_b, start: 38, stop: 41}
+    - {name: joint_pos_rel_wheels_zero, start: 41, stop: 57}
+    - {name: joint_vel_rel, start: 57, stop: 73}
+    - {name: previous_executed_raw_action, start: 73, stop: 89}
+    - {name: velocity_command, start: 89, stop: 92}
+    - {name: legacy_constant_zero, start: 92, stop: 93}
+  rotation_6d:
+    transform: "reference_anchor expressed in robot_anchor frame"
+    matrix_selection: "R[..., :, :2] (equivalent to PyTorch R[..., :2])"
+    flatten_order: "C"
+    flattened_elements: [R00, R01, R10, R11, R20, R21]
+  previous_action_semantics: "previous_raw_model_output16_in_key7_runtime"
+  training_previous_action_proxy: "previous_executed_raw_action16_after_wrapper_and_safety in migrated v1 episodes; exact whenever shield does not intervene"
+  reset_previous_action: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  legacy_scalar_semantics: "constant_zero"
+
+runtime_handoff:
+  deployment_key: 7
+  deployment_submode_id: 0x57
+  observation_history_size: 1
+  dry_inference_cycles_before_first_applied_action: 3
+  legacy_zero_command_previous_action_deadband: 0.03
+  legacy_deadband_status: "disabled for newly trained policies because it coincides with the first A/D target"
+  continuous_lateral_activation_m_s: {start: 0.0, full: 0.012}
+  zero_command_behavior: "continuous activation gates previous-action feedback and target; zero handoff with zero previous action remains exact"
+  physical_leg_target_rate_limit_rad_s: 2.25
+  physical_leg_target_abs_limit_rad_by_joint:
+    [0.12, 0.12, 0.30, 0.30, 0.15, 0.15, 0.15, 0.15,
+     0.20, 0.20, 0.20, 0.20]
+  golden_contract: "configs/key7_handoff_golden.yaml"
+  golden_gate: "scripts/validate_key7_handoff.py"
+
+runtime_lateral_command:
+  operator_keys: {A: "left/+y", D: "right/-y", Space: "zero"}
+  keyboard_accumulator_step: 0.10
+  maximum_lateral_velocity_m_s: 0.30
+  first_key_target_velocity_m_s: 0.03
+  acceleration_min_m_s2: -0.60
+  acceleration_max_m_s2: 0.60
+  control_dt_s: 0.02
+  first_key_ramp_m_s: [0.012, 0.024, 0.030]
+  semantics: "velocity target, not displacement or step count"
+  training_reset_profile: "frame0=0, then apply the identical 0.012 m/s per-control-step acceleration ramp toward the selected target"
+
+motion_prefix:
+  semantics: "fixed_first_frame"
+  reference_file: "vendor/robot_lab/data/Motions/pcbc_lateral_708/trajectory_trotting_acc_f015.npz"
+  reference_sha256: "b0d19be2c44418455996fc707fbd625afab467018657bf10009a03d9189335ae"
+  reference_index: 0
+  first_frame_joint_pos:
+    [0.0, 0.0, 0.0, 0.0, 0.6108120084, 0.6108120084, 0.6981229782, 0.6981229782,
+     -0.7853170037, -0.7853170037, 1.0471999645, 1.0471999645, 0.0, 0.0, 0.0, 0.0]
+  first_frame_joint_vel:
+    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  first_frame_anchor_quat_wxyz:
+    [0.7514101267, -0.0067587122, -0.6597561836, -0.0076816520]
+  diagnostic_candidate_semantics: "dynamic_reference"
+
+joint_order_policy:
+  - FL_hip_joint
+  - FR_hip_joint
+  - RL_hip_joint
+  - RR_hip_joint
+  - FL_thigh_joint
+  - FR_thigh_joint
+  - RL_thigh_joint
+  - RR_thigh_joint
+  - FL_calf_joint
+  - FR_calf_joint
+  - RL_calf_joint
+  - RR_calf_joint
+  - FL_foot_joint
+  - FR_foot_joint
+  - RL_foot_joint
+  - RR_foot_joint
+
+joint_order_runtime:
+  - FL_hip_joint
+  - FL_thigh_joint
+  - FL_calf_joint
+  - FR_hip_joint
+  - FR_thigh_joint
+  - FR_calf_joint
+  - RL_hip_joint
+  - RL_thigh_joint
+  - RL_calf_joint
+  - RR_hip_joint
+  - RR_thigh_joint
+  - RR_calf_joint
+  - FL_foot_joint
+  - FR_foot_joint
+  - RL_foot_joint
+  - RR_foot_joint
+
+runtime_index_map_from_policy:
+  operation: "runtime[map[p]] = policy[p]"
+  values: [0, 3, 6, 9, 1, 4, 7, 10, 2, 5, 8, 11, 12, 13, 14, 15]
+
+pose_layout:
+  base_pose_w: [x, y, z, qw, qx, qy, qz]
+  wheel_body_pose_w: [x, y, z, qw, qx, qy, qz]
+  quaternion_order: wxyz
+
+reset:
+  q_reset_ref0:
+    [0.0, 0.0, 0.0, 0.0, 0.6108120084, 0.6108120084, 0.6981229782, 0.6981229782,
+     -0.7853170037, -0.7853170037, 1.0471999645, 1.0471999645, 0.0, 0.0, 0.0, 0.0]
+  root_position: [0.0, 0.0, 0.7418059111]
+  root_quaternion_wxyz: [0.7514101267, -0.0067587122, -0.6597561836, -0.0076816520]
+
+action:
+  dtype: float32
+  dim: 16
+  wheel_action_mode: hard_zero
+  wheel_mode_rationale: "Intentional migration semantic required by the migration acceptance contract; legacy lateral actor used learned velocity."
+  q_action_offset_runtime:
+    [0.0, 0.0, 0.0, 0.0, 0.6108120084, 0.6108120084, 0.6981229782, 0.6981229782,
+     -0.7853170037, -0.7853170037, 1.0471999645, 1.0471999645, 0.0, 0.0, 0.0, 0.0]
+  qd_action_offset_runtime:
+    [0.0, 0.0, 0.0, 0.0]
+  scale:
+    [0.125, 0.125, 0.125, 0.125, 0.25, 0.25, 0.25, 0.25,
+     0.25, 0.25, 0.25, 0.25, 5.0, 5.0, 5.0, 5.0]
+  raw_min:
+    [-4.88448, -2.79112, -4.88448, -2.79112, -11.243248, -11.243248, -10.992492, -10.992492,
+     -7.848732, -7.848732, -10.085200, -10.085200, 0.0, 0.0, 0.0, 0.0]
+  raw_max:
+    [2.79112, 4.88448, 2.79112, 4.88448, 5.756752, 5.756752, 6.007508, 6.007508,
+     9.037668, 9.037668, 6.801200, 6.801200, 0.0, 0.0, 0.0, 0.0]
+  max_raw_delta_per_step:
+    [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5,
+     2.5, 2.5, 2.5, 2.5, 0.0, 0.0, 0.0, 0.0]
+  model_embedded_max_physical_leg_target_delta_per_step_rad: 0.045
+
+timebase:
+  sim_dt: 0.005
+  decimation: 4
+  control_hz: 50
+  reference_hz: 50
+  frame_advance_per_control_step: 1
+
+export:
+  input_name: obs
+  input_shape: [1, 93]
+  output_name: actions
+  output_shape: [1, 16]
+  dtype: float32
+  opset: 18
+  dynamic_axes: {}
+  max_abs_error: 1.0e-5
+  mean_abs_error: 1.0e-6
+
+assets:
+  robot_urdf:
+    path: "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf"
+    sha256: "8db81376ab48c2f78c9f17af47704ea726fddc64c93e9a7db9651436c76a22fe"
+  trunk_usd:
+    path: "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.usd"
+    sha256: "0e52ce79c269707ea1a7702cef1faa9ab10900e6ada24b4a9d8e21b7989f8ac8"
+  trunk_stl:
+    path: "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/mesh/530X6U_simple.stl"
+    sha256: "a2156a278ab9847c5ce586b1f152178813f094e772c6445f1dd3b78e846fd378"
+  trunk_position: [4.851, 0.0, 0.0]
+  trunk_scale: [1.0, 6.0, 1.0]
+
+source_evidence:
+  legacy_bundle_manifest: "vendor/deployment_evidence/deployment_manifest.yaml"
+  legacy_bundle_manifest_sha256: "77662d6f913094a3286cba9e7a8a3207dad5118fa7c69e553b68e87f9d8fc106"
+  legacy_graphs_present: false
+  legacy_graph_note: "runtime/models/baseline.onnx and residual_candidate.onnx are named by the manifest but absent on disk."

@@ -1,0 +1,381 @@
+{
+  "checks": {
+    "all_student_actions_valid": true,
+    "all_valid_labels_mppi": true,
+    "episode_failures_empty": true,
+    "expected_episode_count": true,
+    "initial_state_perturbation_exercised": true,
+    "minimum_student_behavior_episodes": true,
+    "observation_noise_exercised": true,
+    "real_student_visited_states_labeled": true,
+    "scenario_runtime_matches": true,
+    "single_student_checkpoint": true,
+    "teacher_valid_rate": true
+  },
+  "config": {
+    "expected_beta": 0.5,
+    "expected_episodes": 26,
+    "expected_scenario": "light_friction_mass_observation_noise",
+    "minimum_student_behavior_episodes": 1,
+    "round_number": 2,
+    "teacher_valid_rate_min": 0.99
+  },
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": [
+    {
+      "episode_id": "dagger_r2_train_ref0_seed12000",
+      "failures": [],
+      "split": "train",
+      "steps": 30,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref1_seed12001",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref2_seed12002",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref3_seed12003",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref4_seed12004",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref5_seed12005",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref0_seed12006",
+      "failures": [],
+      "split": "train",
+      "steps": 24,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref1_seed12007",
+      "failures": [],
+      "split": "train",
+      "steps": 44,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref2_seed12008",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref3_seed12009",
+      "failures": [],
+      "split": "train",
+      "steps": 31,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref4_seed12010",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref5_seed12011",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref0_seed12012",
+      "failures": [],
+      "split": "train",
+      "steps": 45,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref1_seed12013",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref2_seed12014",
+      "failures": [],
+      "split": "train",
+      "steps": 37,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref3_seed12015",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref4_seed12016",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref5_seed12017",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref0_seed12018",
+      "failures": [],
+      "split": "train",
+      "steps": 32,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_train_ref1_seed12019",
+      "failures": [],
+      "split": "train",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref0_seed12500",
+      "failures": [],
+      "split": "validation",
+      "steps": 35,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref1_seed12501",
+      "failures": [],
+      "split": "validation",
+      "steps": 36,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref2_seed12502",
+      "failures": [],
+      "split": "validation",
+      "steps": 37,
+      "student_behavior": true,
+      "student_valid_rate": 1.0,
+      "success": false,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref3_seed12503",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref4_seed12504",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    },
+    {
+      "episode_id": "dagger_r2_validation_ref5_seed12505",
+      "failures": [],
+      "split": "validation",
+      "steps": 300,
+      "student_behavior": false,
+      "student_valid_rate": 1.0,
+      "success": true,
+      "teacher_valid_rate": 1.0
+    }
+  ],
+  "ok": true,
+  "schema_version": "pcbc-dagger-collection-gate-v1",
+  "summary": {
+    "episodes": 26,
+    "initial_state_perturbation_exercised": true,
+    "initial_state_perturbation_requested": true,
+    "scenario_profile": {
+      "action_delay_steps": 0,
+      "fixed_physics": {
+        "box_dynamic_friction": 0.9,
+        "box_static_friction": 1.1,
+        "front_wheel_dynamic_friction": 0.82,
+        "front_wheel_static_friction": 1.0,
+        "rear_wheel_dynamic_friction": 0.82,
+        "rear_wheel_static_friction": 1.0,
+        "robot_mass_scale": 1.02,
+        "robot_non_wheel_dynamic_friction": 0.7,
+        "robot_non_wheel_static_friction": 0.85
+      },
+      "initial_state": {
+        "joint_position": [
+          -0.008,
+          0.008
+        ],
+        "pose": {
+          "pitch": [
+            -0.008,
+            0.008
+          ],
+          "roll": [
+            -0.008,
+            0.008
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.006,
+            0.006
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.004,
+            0.004
+          ]
+        },
+        "velocity": {
+          "pitch": [
+            -0.01,
+            0.01
+          ],
+          "roll": [
+            -0.01,
+            0.01
+          ],
+          "x": [
+            -0.01,
+            0.01
+          ],
+          "y": [
+            -0.015,
+            0.015
+          ],
+          "yaw": [
+            -0.01,
+            0.01
+          ],
+          "z": [
+            -0.008,
+            0.008
+          ]
+        }
+      },
+      "observation_noise_std": 0.005,
+      "physics_profile": "fixed_light_shift",
+      "platform_position_jitter_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "requested_name": "light_friction_mass_observation_noise",
+      "resolved_name": "light_friction_mass_observation_noise"
+    },
+    "steps": 5151,
+    "student_behavior_episodes": 10,
+    "student_behavior_steps": 351,
+    "student_checkpoint_hashes": [
+      "8384fc8bea88ad6075ffabe79b1cfdf9c71e22ee7b90fbe6ffaa4aa426ff033a"
+    ],
+    "teacher_valid_rate": 1.0
+  }
+}

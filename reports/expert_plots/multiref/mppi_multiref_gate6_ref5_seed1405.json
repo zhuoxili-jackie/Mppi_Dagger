@@ -1,0 +1,30 @@
+{
+  "base_orientation_rmse_rad": 0.08330041170120239,
+  "base_position_max_abs_m": [
+    0.043498992919921875,
+    0.07847976684570312,
+    0.03615081310272217
+  ],
+  "base_position_rmse_m": [
+    0.023088812828063965,
+    0.05455483868718147,
+    0.018921131268143654
+  ],
+  "contact_mismatch_rate": 0.0808333307504654,
+  "csv": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/expert_plots/multiref/mppi_multiref_gate6_ref5_seed1405.csv",
+  "episode_id": "mppi_multiref_gate6_ref5_seed1405",
+  "max_rollout_termination_rate": 0.0859375,
+  "mean_solve_ms": 542.177001953125,
+  "plot": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/reports/expert_plots/multiref/mppi_multiref_gate6_ref5_seed1405.png",
+  "ref_id": 5,
+  "schema_version": "pcbc-expert-tracking-plot-v1",
+  "steps": 300,
+  "target_vy": 0.15,
+  "wheel_action_exact_zero": true,
+  "wheel_position_rmse_m": [
+    0.04348652437329292,
+    0.04219694063067436,
+    0.12747782468795776,
+    0.1041041910648346
+  ]
+}

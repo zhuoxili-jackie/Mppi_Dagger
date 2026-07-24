@@ -1,0 +1,395 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/dagger_aggregate",
+  "episodes": [
+    {
+      "episode_id": "r0_validation_ref0_seed21000",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 562.5647583007812,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.023663537576794624,
+        "action_residual": 0.40257731080055237,
+        "base_orientation": 8.737809181213379,
+        "base_position": 8.194744110107422,
+        "box_x_drift": 0.9446069598197937,
+        "contact_mismatch": 5.715000152587891,
+        "edge_drop": 0.21205444633960724,
+        "joint_acceleration": 0.0364878885447979,
+        "joint_limit": 1.88121891397941e-08,
+        "joint_position": 2.8661043643951416,
+        "joint_velocity": 3.3426952362060547,
+        "lateral_velocity": 0.908379316329956,
+        "terminal": 0.20829840004444122,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 6.130728244781494,
+        "wheel_slip": 0.19887775182724
+      },
+      "mppi_effective_sample_size_mean": 16.898508071899414,
+      "mppi_minimum_cost_mean": 37.8532829284668,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "r0_validation_ref1_seed21001",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 561.9736328125,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.016791140660643578,
+        "action_residual": 0.27191999554634094,
+        "base_orientation": 4.706193447113037,
+        "base_position": 5.5142130851745605,
+        "box_x_drift": 0.6078491806983948,
+        "contact_mismatch": 5.675000190734863,
+        "edge_drop": 0.1869892179965973,
+        "joint_acceleration": 0.030172942206263542,
+        "joint_limit": 0.0,
+        "joint_position": 1.747707486152649,
+        "joint_velocity": 2.694321632385254,
+        "lateral_velocity": 0.8264939188957214,
+        "terminal": 0.13292787969112396,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 4.187498569488525,
+        "wheel_slip": 0.14207850396633148
+      },
+      "mppi_effective_sample_size_mean": 17.3109130859375,
+      "mppi_minimum_cost_mean": 26.67778968811035,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "r0_validation_ref2_seed21002",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 566.5032348632812,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.01331440731883049,
+        "action_residual": 0.25239118933677673,
+        "base_orientation": 2.618034601211548,
+        "base_position": 4.4011993408203125,
+        "box_x_drift": 0.5805562138557434,
+        "contact_mismatch": 4.820000171661377,
+        "edge_drop": 0.1442316770553589,
+        "joint_acceleration": 0.02469707280397415,
+        "joint_limit": 0.0,
+        "joint_position": 1.365893006324768,
+        "joint_velocity": 2.0670197010040283,
+        "lateral_velocity": 0.5118246674537659,
+        "terminal": 0.10493515431880951,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 2.7360970973968506,
+        "wheel_slip": 0.09672857075929642
+      },
+      "mppi_effective_sample_size_mean": 17.07499122619629,
+      "mppi_minimum_cost_mean": 19.654569625854492,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    },
+    {
+      "episode_id": "r0_validation_ref3_seed21003",
+      "max_abs_wheel_action": 0.0,
+      "mean_solve_ms": 561.746337890625,
+      "mppi_cost_component_mean": {
+        "action_rate": 0.011921550147235394,
+        "action_residual": 0.2644382119178772,
+        "base_orientation": 2.2744874954223633,
+        "base_position": 3.160066604614258,
+        "box_x_drift": 0.6075877547264099,
+        "contact_mismatch": 4.793333530426025,
+        "edge_drop": 0.11493605375289917,
+        "joint_acceleration": 0.025944417342543602,
+        "joint_limit": 0.0,
+        "joint_position": 1.3155419826507568,
+        "joint_velocity": 2.047287940979004,
+        "lateral_velocity": 0.3356155455112457,
+        "terminal": 0.08873673528432846,
+        "termination": 0.0,
+        "torque_limit": 0.0,
+        "wheel_position": 2.192878484725952,
+        "wheel_slip": 0.09975307434797287
+      },
+      "mppi_effective_sample_size_mean": 17.7778263092041,
+      "mppi_minimum_cost_mean": 17.233619689941406,
+      "mppi_rollout_termination_rate_mean": 0.0,
+      "shield_intervention_rate": 0.0,
+      "steps": 300,
+      "success": true,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1
+    }
+  ],
+  "expert_backend": "mppi",
+  "expert_config": {
+    "backend": "whole_body_mppi",
+    "closed_loop_gate": {
+      "fixed_seed_count": 50,
+      "full_episode_steps": 300,
+      "require_implementation_hashes": true,
+      "require_requested_reference_reset": true,
+      "required_scenario_resolved_name": "nominal",
+      "required_successes": 48,
+      "required_teacher_valid_rate": 0.99,
+      "reset_reference_tolerance": 1e-05,
+      "rotate_references": true,
+      "seed_file": "configs/seeds_nominal_100.txt",
+      "tracking_thresholds": {
+        "base_orientation_rmse_rad": 0.25,
+        "base_position_max_abs_m": [
+          0.2,
+          0.2,
+          0.12
+        ],
+        "box_local_x_drift_max_abs_m": 0.15,
+        "contact_mismatch_rate": 0.35,
+        "wheel_position_rmse_m": 0.25
+      }
+    },
+    "contact_force_threshold_n": 8.0,
+    "control_hz": 50,
+    "cost_weights": {
+      "action_rate": 0.025,
+      "action_residual": 0.04,
+      "base_orientation": 18.0,
+      "base_position": 35.0,
+      "box_x_drift": 60.0,
+      "contact_mismatch": 2.0,
+      "edge_drop": 120.0,
+      "joint_acceleration": 2e-06,
+      "joint_limit": 150.0,
+      "joint_position": 10.0,
+      "joint_velocity": 0.15,
+      "lateral_velocity": 4.0,
+      "terminal": 8.0,
+      "termination": 2500.0,
+      "torque_limit": 0.2,
+      "wheel_position": 45.0,
+      "wheel_slip": 0.3
+    },
+    "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+    "feasibility_gpu_hour_budget": 2,
+    "formal_gate_budget_adjustment_reason": "Measured 0.538 s/control step gives approximately 2.25 GPU-hours for 50x300 steps.",
+    "formal_gate_gpu_hour_budget": 3,
+    "horizon": 20,
+    "noise_scale": 1.0,
+    "noise_std_leg": [
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.4000000059604645,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579,
+      0.6000000238418579
+    ],
+    "note": "Isaac-native reference-centred 12D MPPI with four exact-zero wheel actions; state-copy, ref-0 full episode, and six-reference coverage gates passed; formal 50-seed gate remains fail-closed.",
+    "official_repository": "https://github.com/jrapudg/RTWholeBodyMPPI",
+    "optimization_iterations": 2,
+    "reference_action_lookahead_steps": 1,
+    "reference_only_commit": "55e6dc35d042ed5f175ad6ae312c886282f32529",
+    "reference_only_runtime_dependency": false,
+    "runtime_config": {
+      "action_delay_steps": 0,
+      "backend": "whole_body_mppi",
+      "contact_force_threshold_n": 8.0,
+      "control_hz": 50,
+      "cost_weights": {
+        "action_rate": 0.025,
+        "action_residual": 0.04,
+        "base_orientation": 18.0,
+        "base_position": 35.0,
+        "box_x_drift": 60.0,
+        "contact_mismatch": 2.0,
+        "edge_drop": 120.0,
+        "joint_acceleration": 2e-06,
+        "joint_limit": 150.0,
+        "joint_position": 10.0,
+        "joint_velocity": 0.15,
+        "lateral_velocity": 4.0,
+        "terminal": 8.0,
+        "termination": 2500.0,
+        "torque_limit": 0.2,
+        "wheel_position": 45.0,
+        "wheel_slip": 0.3
+      },
+      "episode_rng_seed_semantics": "mppi_config_seed_plus_episode_seed",
+      "horizon": 20,
+      "implementation_sha256": {
+        "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+        "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+        "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+        "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+        "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+        "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+        "src/lateral_mppi_dagger/env/scenarios.py": "54a28a8da31181f1fe527143ad71a314c6a67a8b716f750725358c22158928ce",
+        "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+        "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+      },
+      "mppi_seed": 42,
+      "noise_std_leg": [
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.4000000059604645,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.6000000238418579
+      ],
+      "optimization_iterations": 2,
+      "reference_action_lookahead_steps": 1,
+      "samples": 256,
+      "selection_mode": "weighted",
+      "temperature": 1.0,
+      "temporal_smoothing": 0.7,
+      "warm_start": true,
+      "wheel_action_mode": "hard_zero"
+    },
+    "runtime_config_hash": "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6",
+    "samples": 256,
+    "seed": 42,
+    "selection_mode": "weighted",
+    "smoke_episode_budget": 25,
+    "smoke_profile": {
+      "horizon": 8,
+      "optimization_iterations": 1,
+      "samples": 16
+    },
+    "source_vendored": false,
+    "state_copy_gate": {
+      "cost_max_abs": 1e-05,
+      "state_max_abs": 1e-05
+    },
+    "status": "multireference_coverage_passed_formal_gate_pending",
+    "temperature": 1.0,
+    "temporal_smoothing": 0.7,
+    "warm_start": true
+  },
+  "expert_config_hash": "c23207c9b345e0b5fb2d3138f59278399aab5ed5c711415b9ec6e7cba6d02cc6",
+  "expert_implementation_sha256": {
+    "scripts/_isaac_workflow.py": "7a1bbb5033cd1404dc6a07fef0339705fa7d82a9fbf346c28caa66b99d828e87",
+    "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+    "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+    "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+    "src/lateral_mppi_dagger/env/isaac_adapter.py": "f6ea6cc8e91a74581b0ce7e5fa6ff2fcd773f513b2b013cc424f19aeda25a699",
+    "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "09d93725774bc788fd145a17f7b4f30038014aad65b1960113b87599ef170987",
+    "src/lateral_mppi_dagger/env/scenarios.py": "54a28a8da31181f1fe527143ad71a314c6a67a8b716f750725358c22158928ce",
+    "src/lateral_mppi_dagger/expert/mppi_expert.py": "6c0ecffb0b5f343a696f471aa1fa2ff257baa8af20624884de01b0945097fc95",
+    "src/lateral_mppi_dagger/reference/loader.py": "f868ce01389015f1797571d80ea41f5c79723a4d37e27245060f5621e5ceea33"
+  },
+  "isaaclab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+  "observation_noise_std": 0.0,
+  "provenance": {
+    "commit": "e45d9f9597b2cd7b42e46b304032ee0b508e5a78",
+    "dirty": null,
+    "dirty_status": [],
+    "original_repository_accessed": false,
+    "robot_lab_snapshot": "vendor/robot_lab/SNAPSHOT.json",
+    "robot_lab_source_dirty_at_copy_time": true,
+    "scope": "vendored_source_snapshot"
+  },
+  "robot_lab_import": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/vendor/robot_lab/robot_lab/__init__.py",
+  "scenario_config_hash": "3a23be4876c6217510e69fd5c4a9f656f7506f6b33a39aa9977e070fd2021a01",
+  "scenario_profile": {
+    "action_delay_steps": 0,
+    "initial_state": {
+      "joint_position": [
+        0.0,
+        0.0
+      ],
+      "pose": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "observation_noise_std": 0.0,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "requested_name": "nominal",
+    "resolved_name": "nominal"
+  },
+  "schema_version": "pcbc-isaac-collection-report-v1",
+  "standalone_root": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger",
+  "student_checkpoint": null,
+  "summary": {
+    "episodes": 4,
+    "mean_solve_ms": 563.1969909667969,
+    "shield_intervention_rate": 0.0,
+    "success_rate": 1.0,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_max_abs": 0.0
+  },
+  "task_id": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "video_dir": null
+}

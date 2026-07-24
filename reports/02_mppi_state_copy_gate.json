@@ -1,0 +1,44 @@
+{
+  "clone_spread_max_abs": 0.0,
+  "cost_components_for_best_candidate": {
+    "action_rate": 0.001595228211954236,
+    "action_residual": 0.0003052291867788881,
+    "base_orientation": 0.07345637679100037,
+    "base_position": 0.665147066116333,
+    "box_x_drift": 0.10119487345218658,
+    "contact_mismatch": 6.0,
+    "edge_drop": 0.02217395231127739,
+    "joint_acceleration": 0.007327789440751076,
+    "joint_limit": 0.0,
+    "joint_position": 0.6714086532592773,
+    "joint_velocity": 1.6909441947937012,
+    "lateral_velocity": 0.41826021671295166,
+    "terminal": 0.0861450731754303,
+    "termination": 0.0,
+    "torque_limit": 0.0,
+    "wheel_position": 0.14095595479011536,
+    "wheel_slip": 0.08283927291631699
+  },
+  "determinism": {
+    "cost_max_abs": 0.0,
+    "pass": true,
+    "state_max_abs": 0.0
+  },
+  "device": "cuda:0",
+  "finite_costs": true,
+  "hard_zero_rollout_actions": true,
+  "horizon": 8,
+  "maximum_cost": 11.672307014465332,
+  "minimum_cost": 9.961753845214844,
+  "pass": true,
+  "ref_id": 0,
+  "round_trip_state_max_abs": 0.0,
+  "samples": 16,
+  "schema_version": "pcbc-mppi-state-copy-gate-v1",
+  "seed": 1200,
+  "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "thresholds": {
+    "cost_max_abs": 1e-05,
+    "state_max_abs": 1e-05
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/transfer/lateral_mppi_dagger/datasets/mppi_coldstart_r3_32",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "mppi_coldstart_r3_32_ref3_seed1960",
+      "split": "train",
+      "steps": 32,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "train": 1
+  }
+}

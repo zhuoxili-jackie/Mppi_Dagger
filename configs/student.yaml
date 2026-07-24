@@ -1,0 +1,32 @@
+seed: 42
+wheel_action_mode: hard_zero
+# Legacy checkpoints used a hard 0.03 m/s switch.  It coincides with the
+# first key7 A/D target and creates a previous-action feedback discontinuity.
+zero_command_previous_action_deadband: 0.0
+lateral_command_activation_start_m_s: 0.0
+lateral_command_activation_full_m_s: 0.012
+lateral_command_abs_limit_m_s: 0.060
+physical_target_rate_limit_rad_s: 2.25
+physical_target_abs_limit_rad: 0.0
+# Policy joint order: front hips, rear hips, thighs, calves.
+physical_target_abs_limit_rad_by_joint:
+  [0.12, 0.12, 0.30, 0.30, 0.15, 0.15, 0.15, 0.15,
+   0.20, 0.20, 0.20, 0.20]
+control_dt_s: 0.02
+hidden_dims: [256, 256, 128]
+activation: elu
+normalize_observation: true
+normalization_std_floor: 1.0e-4
+optimizer: adamw
+learning_rate: 3.0e-4
+weight_decay: 1.0e-5
+batch_size: 1024
+epochs: 100
+window_length: 3
+window_stride: 1
+huber_delta: 0.5
+first_difference_weight: 0.01
+second_difference_weight: 0.002
+gradient_clip_norm: 5.0
+checkpoint_every_epochs: 5
+num_workers: 0
