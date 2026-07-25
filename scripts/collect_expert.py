@@ -66,6 +66,15 @@ parser.add_argument(
 )
 parser.add_argument("--mppi-noise-scale", type=float, default=1.0)
 parser.add_argument(
+    "--mppi-server-socket",
+    type=Path,
+    default=None,
+    help=(
+        "Use a persistent isolated Isaac MPPI server at this Unix socket; "
+        "the public collection environment then contains exactly one env."
+    ),
+)
+parser.add_argument(
     "--resume",
     action="store_true",
     help="Reuse already completed, schema-valid episode shards with identical metadata.",

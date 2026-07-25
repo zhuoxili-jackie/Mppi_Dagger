@@ -1,0 +1,178 @@
+backend: whole_body_mppi
+status: qualified_9x100_pending_formal_50x300
+task_id: low_load_lateral
+training_id: train_001
+reference_config: configs/low_load_lateral/train_001/reference.yaml
+official_repository: "https://github.com/jrapudg/RTWholeBodyMPPI"
+reference_only_runtime_dependency: false
+control_hz: 50
+horizon: 40
+samples: 256
+optimization_iterations: 2
+temperature: 5.0
+noise_std_leg: [0.25, 0.25, 0.25, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35]
+temporal_smoothing: 0.80
+warm_start: true
+selection_mode: weighted
+reference_action_lookahead_steps: 1
+seed: 42
+contact_force_threshold_n: 8.0
+physical_target_rate_limit_rad_s: 2.25
+output_front_force_feedback_target_n: 0.0
+output_front_force_feedback_min_contact_n: 0.0
+output_front_force_feedback_gain_leg:
+  [0.0, 0.0, 0.0, 0.0,
+   0.0, 0.0, 0.0, 0.0,
+   0.0, 0.0, 0.0, 0.0]
+nominal_action_reference:
+  entries:
+    - ref_id: 0
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_00_n060.npz
+      sha256: fe9162b35d0ebf1f2c9b419b3ced91f2707bfedb236d39420ef72e0a01afe5eb
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 1
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_01_n030.npz
+      sha256: 2572d66bb15918b6ec80546090dedb2b81eb9a8379e6e375aa6393c177865c40
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 2
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_02_n024.npz
+      sha256: 7c460e51f58214ca7b367898bcb520a037e0defa565e9840be5f802d6ad024e1
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 3
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_03_n012.npz
+      sha256: 9934a6bccde20a60ea4be1563ee7965e0881692b142652e1866d81e3a8be5e1a
+      raw_action_key: raw_action_leg
+      solver_schedule:
+        - start_frame: 0
+          action_residual_weight: 5000.0
+          selection_mode: best_sample
+          warm_start: false
+        - start_frame: 72
+          action_residual_weight: 1000.0
+          selection_mode: best_sample
+          warm_start: false
+    - ref_id: 4
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_04_p012.npz
+      sha256: 7515e3b177a1ca683736266f64c3fb94b638c03a530b77eece9c40f0b6b5b592
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 5
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_05_p024.npz
+      sha256: 15ada57894c6120c2bbce05d26d0a67b87012c7333320c4e5c618e0c6dad4576
+      raw_action_key: raw_action_leg
+      solver_schedule:
+        - start_frame: 0
+          action_residual_weight: 5000.0
+          selection_mode: best_sample
+          warm_start: false
+        - start_frame: 50
+          action_residual_weight: 1000.0
+          selection_mode: best_sample
+          warm_start: false
+        - start_frame: 60
+          action_residual_weight: 500.0
+          selection_mode: best_sample
+          warm_start: false
+    - ref_id: 6
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_06_p030.npz
+      sha256: 3f83a55cf65dec12981dce07531d996d128b3e8d1c256bd2100443c42ad5d878
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 7
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_07_p060.npz
+      sha256: 4e30e6d37262540dc7b03ff3789dece192f6292d75ccd1f0dafcfb72d6530113
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+    - ref_id: 8
+      path: assets/low_load_lateral/train_001/nominal_actions/ref_08_standing.npz
+      sha256: b5fa11447f714663e67029ac6852c646a1b23c74ab89b3c99839535978511576
+      raw_action_key: raw_action_leg
+      action_residual_weight: 5000.0
+      selection_mode: best_sample
+      warm_start: false
+cost_weights:
+  base_position: 400.0
+  base_height_drop: 20000.0
+  base_orientation: 22.0
+  joint_position: 8.0
+  joint_velocity: 0.12
+  wheel_position: 60.0
+  lateral_velocity: 12800.0
+  lateral_position: 20000.0
+  box_x_drift: 70.0
+  wheel_slip: 0.50
+  contact_mismatch: 4.0
+  front_normal_support: 192.0
+  rear_force_overload: 26.0
+  rear_force_imbalance: 5.0
+  rear_support_loss: 40.0
+  edge_drop: 140.0
+  action_residual: 0.06
+  action_rate: 0.10
+  joint_acceleration: 0.000004
+  torque_limit: 0.30
+  joint_limit: 180.0
+  termination: 3000.0
+  terminal: 10.0
+load_limits:
+  front_normal_min_n: 8.0
+  front_normal_deficit_power: 1.0
+  front_support_worst_fraction: 1.0
+  front_contact_position_margin_m: 0.0
+  front_contact_position_scale_m: 0.040
+  front_contact_position_max_normalized: 1.0
+  rear_normal_overload_n: 105.0
+  rear_normal_scale_n: 35.0
+  rear_balance_scale_n: 70.0
+  base_height_drop_margin_m: 0.08
+  base_height_drop_stop_frame: 0
+  lateral_position_start_frame: 50
+state_copy_gate:
+  cost_max_abs: 0.00001
+  state_max_abs: 0.00001
+closed_loop_gate:
+  seed_file: configs/seeds_nominal_100.txt
+  fixed_seed_count: 50
+  required_successes: 48
+  required_teacher_valid_rate: 0.99
+  full_episode_steps: 300
+  rotate_references: true
+  required_scenario_resolved_name: nominal
+  require_requested_reference_reset: true
+  reset_reference_tolerance: 0.00001
+  require_implementation_hashes: true
+  tracking_thresholds:
+    base_position_max_abs_m: [0.12, 0.10, 0.10]
+    box_local_x_drift_max_abs_m: 0.10
+    base_orientation_rmse_rad: 0.20
+    wheel_position_rmse_m: 0.08
+    contact_mismatch_rate: 0.25
+    lateral_velocity_mae_max_m_s: 0.025
+    lateral_displacement_error_max_abs_m: 0.08
+    signed_lateral_progress_ratio_min: 0.60
+    rear_normal_force_p95_max_n: 135.0
+    rear_single_support_fraction_max: 0.45
+    rear_no_support_fraction_max: 0.01
+    front_normal_below_6n_fraction_max: 0.20
+    physical_leg_target_step_max_rad: 0.055
+smoke_profile:
+  horizon: 12
+  samples: 16
+  optimization_iterations: 1
+smoke_episode_budget: 25
+note: "Qualified train_001 expert baseline. The nine hashed proposal centres, costs, hard gates, frozen ABI, physical limits, and exact-zero wheels are fixed for the formal 50x300 gate. Ref 3 uses residual weight 5000 through frame 71 and 1000 from frame 72; ref 5 uses its declared three-phase schedule. Any optimization must use a new training_id and re-run state-copy plus all-reference gates."

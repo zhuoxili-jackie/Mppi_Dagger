@@ -1,0 +1,338 @@
+{
+  "action_delay_steps": 0,
+  "clone_spread_max_abs": 0.0,
+  "cost_components_for_best_candidate": {
+    "action_rate": 0.05136483162641525,
+    "action_residual": 0.0,
+    "base_orientation": 0.7448817491531372,
+    "base_position": 23.161083221435547,
+    "box_x_drift": 0.002958253724500537,
+    "contact_mismatch": 1.0,
+    "edge_drop": 0.0,
+    "front_normal_support": 0.0,
+    "joint_acceleration": 0.030875522643327713,
+    "joint_limit": 0.0,
+    "joint_position": 2.6635327339172363,
+    "joint_velocity": 2.250795602798462,
+    "lateral_position": 0.0,
+    "lateral_velocity": 115.81574249267578,
+    "rear_force_imbalance": 2.959160566329956,
+    "rear_force_overload": 67.75932312011719,
+    "rear_leg_position": 0.0,
+    "rear_support_loss": 0.0,
+    "terminal": 0.32570359110832214,
+    "termination": 0.0,
+    "torque_limit": 0.0,
+    "wheel_position": 0.0626467689871788,
+    "wheel_slip": 0.00773587403818965
+  },
+  "determinism": {
+    "cost_max_abs": 0.0,
+    "cost_max_candidate": 0,
+    "pass": true,
+    "state_group_max_abs": {
+      "joint_position": 0.0,
+      "joint_velocity": 0.0,
+      "root_pose": 0.0,
+      "root_velocity": 0.0
+    },
+    "state_max_abs": 0.0,
+    "state_max_candidate": 0,
+    "state_max_dimension": 0
+  },
+  "device": "cuda:0",
+  "effective_action_residual_weight": 5000.0,
+  "effective_base_orientation_cost_multiplier": 1.0,
+  "effective_selection_mode": "best_sample",
+  "effective_warm_start": false,
+  "finite_costs": true,
+  "hard_zero_rollout_actions": true,
+  "horizon": 12,
+  "maximum_cost": 315.96771240234375,
+  "minimum_cost": 216.8358154296875,
+  "nominal_action_reference": {
+    "enabled": true,
+    "entries": [
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_00_n060.npz",
+        "ref_id": 0,
+        "representation": "raw_action",
+        "sha256": "fe9162b35d0ebf1f2c9b419b3ced91f2707bfedb236d39420ef72e0a01afe5eb",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_01_n030.npz",
+        "ref_id": 1,
+        "representation": "raw_action",
+        "sha256": "2572d66bb15918b6ec80546090dedb2b81eb9a8379e6e375aa6393c177865c40",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_02_n024.npz",
+        "ref_id": 2,
+        "representation": "raw_action",
+        "sha256": "7c460e51f58214ca7b367898bcb520a037e0defa565e9840be5f802d6ad024e1",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_03_n012.npz",
+        "ref_id": 3,
+        "representation": "raw_action",
+        "sha256": "9934a6bccde20a60ea4be1563ee7965e0881692b142652e1866d81e3a8be5e1a",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 72,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_04_p012.npz",
+        "ref_id": 4,
+        "representation": "raw_action",
+        "sha256": "7515e3b177a1ca683736266f64c3fb94b638c03a530b77eece9c40f0b6b5b592",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_05_p024.npz",
+        "ref_id": 5,
+        "representation": "raw_action",
+        "sha256": "15ada57894c6120c2bbce05d26d0a67b87012c7333320c4e5c618e0c6dad4576",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 50,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 500.0,
+              "selection_mode": "best_sample",
+              "start_frame": 60,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_06_p030.npz",
+        "ref_id": 6,
+        "representation": "raw_action",
+        "sha256": "3f83a55cf65dec12981dce07531d996d128b3e8d1c256bd2100443c42ad5d878",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_07_p060.npz",
+        "ref_id": 7,
+        "representation": "raw_action",
+        "sha256": "4e30e6d37262540dc7b03ff3789dece192f6292d75ccd1f0dafcfb72d6530113",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_08_standing.npz",
+        "ref_id": 8,
+        "representation": "raw_action",
+        "sha256": "b5fa11447f714663e67029ac6852c646a1b23c74ab89b3c99839535978511576",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      }
+    ]
+  },
+  "nominal_reset_matches_requested_reference": true,
+  "pass": true,
+  "platform_position_jitter_m_sampled": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "ref_id": 1,
+  "reference_bridge": {
+    "active_reference_count": 9,
+    "id_mapping": "identity_after_runtime_bank_replacement",
+    "legacy_reference_count": 7,
+    "moving_reference_count": 8,
+    "semantics": "standalone_reference_set_replaces_isaac_runtime_bank",
+    "standing_reference_id": 8
+  },
+  "reset_reference_max_abs": {
+    "anchor_orientation_rad": 0.0,
+    "anchor_position_m": 5.960464477539063e-08,
+    "anchor_twist": 0.0,
+    "joint_position_rad": 0.0,
+    "joint_velocity_rad_s": 0.0
+  },
+  "round_trip_delay_queue_max_abs": 0.0,
+  "round_trip_platform_pose_max_abs": 0.0,
+  "round_trip_previous_command_max_abs": 0.0,
+  "round_trip_state_max_abs": 0.0,
+  "samples": 16,
+  "scenario": {
+    "action_delay_steps": 0,
+    "initial_state": {
+      "joint_position": [
+        0.0,
+        0.0
+      ],
+      "pose": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "observation_noise_std": 0.0,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "requested_name": "nominal",
+    "resolved_name": "nominal"
+  },
+  "schema_version": "pcbc-mppi-state-copy-gate-v1",
+  "seed": 1200,
+  "solver_schedule_phase": null,
+  "solver_schedule_start_frame": null,
+  "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "thresholds": {
+    "cost_max_abs": 1e-05,
+    "state_max_abs": 1e-05
+  },
+  "validated_reference_frame": 0
+}

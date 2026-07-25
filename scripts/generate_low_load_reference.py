@@ -199,6 +199,11 @@ def _generate_motion(
     rear_clearance_m: float,
     rear_preload_x_m: float,
     rear_load_shift_y_m: float,
+    support_preload_x_m: float,
+    support_front_penetration_x_m: float,
+    support_front_drop_z_m: float,
+    support_preload_seconds: float,
+    support_joint_bias_leg: np.ndarray,
     acceleration_seconds: float,
 ) -> tuple[dict[str, np.ndarray], dict[str, float]]:
     frames = int(source["joint_pos"].shape[0])
@@ -220,6 +225,14 @@ def _generate_motion(
         acceleration_seconds,
     )
     direction = float(np.sign(target_vy))
+    phase_offsets = dict(PHASE_OFFSET)
+    if direction < 0.0:
+        phase_offsets = {
+            "FL": PHASE_OFFSET["FR"],
+            "FR": PHASE_OFFSET["FL"],
+            "RL": PHASE_OFFSET["RR"],
+            "RR": PHASE_OFFSET["RL"],
+        }
 
     joint_pos = np.zeros((frames, 16), dtype=np.float64)
     body_pos = np.zeros((frames, len(BODY_ORDER), 3), dtype=np.float64)
@@ -234,7 +247,7 @@ def _generate_motion(
         progress = displacement[frame]
         base_phase = (progress / stride_m) % 1.0
         leg_phase = {
-            leg: (base_phase + PHASE_OFFSET[leg]) % 1.0
+            leg: (base_phase + phase_offsets[leg]) % 1.0
             for leg in LEGS
         }
         rear_pulses = {
@@ -242,6 +255,13 @@ def _generate_motion(
             for leg in ("RL", "RR")
         }
         root_position = root_position0.copy()
+        support_ramp = _smoothstep(
+            min(
+                (frame / fps) / max(support_preload_seconds, 1.0e-9),
+                1.0,
+            )
+        )
+        root_position[0] += support_preload_x_m * support_ramp
         root_position[0] += rear_preload_x_m * max(rear_pulses.values())
         root_position[1] += direction * progress
         load_shift_gain = _smoothstep(
@@ -249,8 +269,12 @@ def _generate_motion(
         )
         # Shift toward the remaining rear support over the entire gait cycle,
         # rather than making a fast pulse only after rear-leg lift-off.
+        # The support sequence is mirrored with the commanded direction.  An
+        # unsigned pulse makes both nominal directions inject the same +Y
+        # body motion and can reverse low-speed negative-command progress.
         root_position[1] += (
-            rear_load_shift_y_m
+            direction
+            * rear_load_shift_y_m
             * load_shift_gain
             * np.cos(2.0 * np.pi * (base_phase + 0.10))
         )
@@ -262,7 +286,7 @@ def _generate_motion(
             phases[frame, leg_index] = phase
             relative_now = _phase_relative_y(phase, stride_m, duty_factor)
             relative_initial = _phase_relative_y(
-                PHASE_OFFSET[leg],
+                phase_offsets[leg],
                 stride_m,
                 duty_factor,
             )
@@ -272,6 +296,10 @@ def _generate_motion(
             )
             clearance = _swing_clearance(phase, duty_factor)
             if leg.startswith("F"):
+                target[0] += (
+                    support_front_penetration_x_m * support_ramp
+                )
+                target[2] -= support_front_drop_z_m * support_ramp
                 target[0] -= front_clearance_m * clearance
             else:
                 target[2] += rear_clearance_m * clearance
@@ -324,6 +352,18 @@ def _generate_motion(
                 ik_residual_max,
                 float(np.max(np.abs(error))),
             )
+        current_q[:12] += (
+            support_ramp
+            * np.asarray(support_joint_bias_leg, dtype=np.float64)
+        )
+        for joint_index, joint_name in enumerate(JOINT_ORDER[:12]):
+            joint = tree.joint_by_name[joint_name]
+            if not joint.lower < current_q[joint_index] < joint.upper:
+                raise ValueError(
+                    "Support balance bias places "
+                    f"{joint_name}={current_q[joint_index]:.6f} outside "
+                    f"({joint.lower:.6f}, {joint.upper:.6f})."
+                )
         current_q[12:] = 0.0
         joint_pos[frame] = current_q
         previous_q = current_q
@@ -355,14 +395,36 @@ def _generate_motion(
     front_indices = (0, 1)
     rear_indices = (2, 3)
     initial_targets = foot_targets[0]
+    front_support_coordinate = np.max(
+        foot_targets[:, front_indices, 0],
+        axis=0,
+    )
     front_detachment = np.maximum(
-        initial_targets[None, front_indices, 0]
+        front_support_coordinate[None]
         - foot_targets[:, front_indices, 0],
         0.0,
     )
     rear_clearance = np.maximum(
         foot_targets[:, rear_indices, 2]
         - initial_targets[None, rear_indices, 2],
+        0.0,
+    )
+    actual_feet = body_pos[
+        :,
+        [BODY_ORDER.index(f"{leg}_foot_link") for leg in LEGS],
+    ]
+    actual_front_support_coordinate = np.max(
+        actual_feet[:, front_indices, 0],
+        axis=0,
+    )
+    actual_front_detachment = np.maximum(
+        actual_front_support_coordinate[None]
+        - actual_feet[:, front_indices, 0],
+        0.0,
+    )
+    actual_rear_clearance = np.maximum(
+        actual_feet[:, rear_indices, 2]
+        - actual_feet[0:1, rear_indices, 2],
         0.0,
     )
     outputs = {
@@ -381,6 +443,23 @@ def _generate_motion(
         "duty_factor": float(duty_factor),
         "front_detachment_max_m": float(np.max(front_detachment)),
         "rear_clearance_max_m": float(np.max(rear_clearance)),
+        "lateral_load_shift_directional": True,
+        "negative_direction_phase_mirrored": True,
+        "actual_front_detachment_max_m": float(
+            np.max(actual_front_detachment)
+        ),
+        "actual_rear_clearance_max_m": float(
+            np.max(actual_rear_clearance)
+        ),
+        "support_preload_x_m": float(support_preload_x_m),
+        "support_front_penetration_x_m": float(
+            support_front_penetration_x_m
+        ),
+        "support_front_drop_z_m": float(support_front_drop_z_m),
+        "support_preload_seconds": float(support_preload_seconds),
+        "support_joint_bias_leg_rad": (
+            np.asarray(support_joint_bias_leg, dtype=np.float64).tolist()
+        ),
         "joint_velocity_max_abs_rad_s": float(np.max(np.abs(joint_vel[:, :12]))),
         "joint_step_max_abs_rad": float(np.max(np.abs(np.diff(joint_pos[:, :12], axis=0)))),
         "ik_residual_max_abs_m": float(ik_residual_max),
@@ -418,7 +497,11 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "assets/references/low_load_v1",
+        required=True,
+        help=(
+            "Candidate output directory inside this project. The qualified "
+            "train_001 reference bank must never be overwritten in place."
+        ),
     )
     parser.add_argument(
         "--target-speeds",
@@ -432,14 +515,69 @@ def main() -> None:
     parser.add_argument("--rear-clearance-m", type=float, default=0.012)
     parser.add_argument("--rear-preload-x-m", type=float, default=0.008)
     parser.add_argument("--rear-load-shift-y-m", type=float, default=0.008)
+    parser.add_argument("--support-preload-x-m", type=float, default=0.0)
+    parser.add_argument(
+        "--support-front-penetration-x-m",
+        type=float,
+        default=0.0,
+    )
+    parser.add_argument(
+        "--support-front-drop-z-m",
+        type=float,
+        default=0.0,
+    )
+    parser.add_argument("--support-preload-seconds", type=float, default=0.40)
+    parser.add_argument(
+        "--support-joint-bias-leg",
+        type=float,
+        nargs=12,
+        default=(0.0,) * 12,
+        metavar=(
+            "FL_HIP",
+            "FR_HIP",
+            "RL_HIP",
+            "RR_HIP",
+            "FL_THIGH",
+            "FR_THIGH",
+            "RL_THIGH",
+            "RR_THIGH",
+            "FL_CALF",
+            "FR_CALF",
+            "RL_CALF",
+            "RR_CALF",
+        ),
+        help=(
+            "Physical joint-space balance bias ramped with the support "
+            "preload. The first frame remains bit-identical."
+        ),
+    )
     parser.add_argument("--acceleration-seconds", type=float, default=0.60)
     args = parser.parse_args()
     if not 0.75 < args.duty_factor < 1.0:
         parser.error("--duty-factor must be greater than 0.75 and below 1.")
     if args.stride_m <= 0.0:
         parser.error("--stride-m must be positive.")
-    if any(speed == 0.0 for speed in args.target_speeds):
-        parser.error("Moving target speeds must be non-zero.")
+    if args.support_preload_x_m < 0.0:
+        parser.error("--support-preload-x-m must be non-negative.")
+    if args.support_front_penetration_x_m < 0.0:
+        parser.error(
+            "--support-front-penetration-x-m must be non-negative."
+        )
+    if args.support_front_drop_z_m < 0.0:
+        parser.error("--support-front-drop-z-m must be non-negative.")
+    if args.support_preload_seconds <= 0.0:
+        parser.error("--support-preload-seconds must be positive.")
+    support_joint_bias_leg = np.asarray(
+        args.support_joint_bias_leg,
+        dtype=np.float64,
+    )
+    if (
+        support_joint_bias_leg.shape != (12,)
+        or not np.isfinite(support_joint_bias_leg).all()
+    ):
+        parser.error(
+            "--support-joint-bias-leg must contain 12 finite values."
+        )
 
     with np.load(args.source.resolve(), allow_pickle=False) as archive:
         source = {name: np.asarray(archive[name]) for name in archive.files}
@@ -448,9 +586,12 @@ def main() -> None:
     args.output.mkdir(parents=True, exist_ok=True)
     records = []
     for target_vy in args.target_speeds:
-        sign = "p" if target_vy > 0.0 else "n"
-        millimeters = int(round(abs(target_vy) * 1000.0))
-        filename = f"low_load_{sign}{millimeters:03d}.npz"
+        if target_vy == 0.0:
+            filename = "low_load_standing.npz"
+        else:
+            sign = "p" if target_vy > 0.0 else "n"
+            millimeters = int(round(abs(target_vy) * 1000.0))
+            filename = f"low_load_{sign}{millimeters:03d}.npz"
         path = args.output / filename
         arrays, metrics = _generate_motion(
             tree,
@@ -463,6 +604,11 @@ def main() -> None:
             args.rear_clearance_m,
             args.rear_preload_x_m,
             args.rear_load_shift_y_m,
+            args.support_preload_x_m,
+            args.support_front_penetration_x_m,
+            args.support_front_drop_z_m,
+            args.support_preload_seconds,
+            support_joint_bias_leg,
             args.acceleration_seconds,
         )
         np.savez_compressed(path, **arrays)
@@ -476,7 +622,7 @@ def main() -> None:
             }
         )
     report = {
-        "schema_version": "pcbc-low-load-reference-generation-v1",
+        "schema_version": "pcbc-low-load-reference-generation-v3",
         "status": "kinematic_seed_requires_isaac_force_validation",
         "source": _portable_project_path(args.source),
         "source_sha256": _sha256(args.source.resolve()),
@@ -489,6 +635,17 @@ def main() -> None:
             "rear_clearance_m": args.rear_clearance_m,
             "rear_preload_x_m": args.rear_preload_x_m,
             "rear_load_shift_y_m": args.rear_load_shift_y_m,
+            "lateral_load_shift_directional": True,
+            "negative_direction_phase_mirrored": True,
+            "support_preload_x_m": args.support_preload_x_m,
+            "support_front_penetration_x_m": (
+                args.support_front_penetration_x_m
+            ),
+            "support_front_drop_z_m": args.support_front_drop_z_m,
+            "support_preload_seconds": args.support_preload_seconds,
+            "support_joint_bias_leg_rad": (
+                support_joint_bias_leg.tolist()
+            ),
             "acceleration_seconds": args.acceleration_seconds,
         },
         "references": records,

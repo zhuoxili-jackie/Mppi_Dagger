@@ -25,6 +25,123 @@ from lateral_mppi_dagger.env.action_delay import advance_action_delay
 WHEEL_BODY_NAMES = ("FL_foot_link", "FR_foot_link", "RL_foot_link", "RR_foot_link")
 
 
+def synchronize_motion_command_reference_bank(
+    command: Any,
+    references: ReferenceSet,
+) -> dict[str, Any]:
+    """Bind the selected standalone ``ReferenceSet`` to the Isaac command.
+
+    The vendored task is configured with the six legacy moving motions plus
+    its derived standing motion.  A standalone workflow may select a different
+    reference set (the low-load set has eight moving motions plus standing).
+    Reusing or wrapping the legacy IDs would make reset state, command-manager
+    state, episode metadata, and MPPI targets disagree.  Replace the runtime
+    command's immutable reference bank instead, preserving its reset
+    perturbation implementation and mutable command buffers.
+    """
+
+    body_names = tuple(command.cfg.body_names)
+    if body_names != references.body_order:
+        raise RuntimeError(
+            "Reference body order differs from the Isaac MotionCommand: "
+            f"reference={references.body_order}, command={body_names}"
+        )
+    if not isinstance(command.motion_ids, torch.Tensor):
+        raise TypeError("Isaac MotionCommand.motion_ids must be a tensor.")
+    if int(command.motion.time_step_total) != references.fixed_motion.frames:
+        raise RuntimeError(
+            "Reference frame count differs from the Isaac MotionCommand "
+            f"timebase: reference={references.fixed_motion.frames}, "
+            f"command={int(command.motion.time_step_total)}"
+        )
+
+    moving_ids = [
+        motion.index
+        for motion in references.motions
+        if motion.target_vy != 0.0
+    ]
+    standing_ids = [
+        motion.index
+        for motion in references.motions
+        if motion.target_vy == 0.0
+    ]
+    if moving_ids != list(range(len(moving_ids))):
+        raise RuntimeError(
+            "Moving reference IDs must be contiguous and precede standing."
+        )
+    if len(standing_ids) > 1 or (
+        standing_ids and standing_ids[0] != len(moving_ids)
+    ):
+        raise RuntimeError(
+            "The optional standing reference must immediately follow all "
+            "moving references."
+        )
+    standing_probability = float(
+        getattr(command.cfg, "standing_probability", 0.0)
+    )
+    if standing_probability > 0.0 and not standing_ids:
+        raise RuntimeError(
+            "Isaac MotionCommand can sample standing, but the selected "
+            "ReferenceSet has no standing reference."
+        )
+
+    device = command.motion_ids.device
+
+    def stacked(name: str) -> torch.Tensor:
+        return torch.as_tensor(
+            np.stack(
+                [getattr(motion, name) for motion in references.motions],
+                axis=0,
+            ),
+            dtype=torch.float32,
+            device=device,
+        ).contiguous()
+
+    legacy_reference_count = int(command._joint_pos_refs.shape[0])
+    command._joint_pos_refs = stacked("joint_pos")
+    command._joint_vel_refs = stacked("joint_vel")
+    command._body_pos_refs = stacked("body_pos_w")
+    command._body_quat_refs = stacked("body_quat_w")
+    command._body_lin_vel_refs = stacked("body_lin_vel_w")
+    command._body_ang_vel_refs = stacked("body_ang_vel_w")
+    command._reference_lateral_velocities = torch.as_tensor(
+        [motion.target_vy for motion in references.motions],
+        dtype=torch.float32,
+        device=device,
+    )
+    command._moving_motion_count = len(moving_ids)
+
+    fixed = references.fixed_motion
+    command._actor_joint_pos = command._joint_pos_refs[0, 0].unsqueeze(0).expand(
+        command.num_envs,
+        -1,
+    )
+    command._actor_joint_vel = torch.zeros_like(command._actor_joint_pos)
+    command._actor_anchor_quat_w = command._body_quat_refs[
+        0,
+        0,
+        command.motion_anchor_body_index,
+    ].unsqueeze(0).expand(command.num_envs, -1)
+
+    # The command instance was constructed and may already contain an ID from
+    # its legacy bank.  The adapter always performs an explicit reset before
+    # use, but clearing the mutable selection here prevents any interim access
+    # from observing a stale ID under the newly-bound bank.
+    command.motion_ids.zero_()
+    command.time_steps.zero_()
+    command._target_lateral_velocities.zero_()
+    return {
+        "semantics": "standalone_reference_set_replaces_isaac_runtime_bank",
+        "legacy_reference_count": legacy_reference_count,
+        "active_reference_count": len(references),
+        "moving_reference_count": len(moving_ids),
+        "standing_reference_id": (
+            standing_ids[0] if standing_ids else None
+        ),
+        "id_mapping": "identity_after_runtime_bank_replacement",
+    }
+
+
 def deployment_lateral_command_ramp_value(
     goal_m_s: float,
     frame: int,
@@ -81,6 +198,10 @@ class IsaacLateralAdapter:
         assert_compatible_timebase(self.control_dt, references.fixed_motion.fps)
         self.robot = self.base.scene["robot"]
         self.command = self.base.command_manager.get_term("motion")
+        self.reference_bridge = synchronize_motion_command_reference_bank(
+            self.command,
+            references,
+        )
         self.joint_ids, resolved_joint_names = self.robot.find_joints(
             list(POLICY_JOINT_ORDER), preserve_order=True
         )
@@ -331,6 +452,7 @@ class IsaacLateralAdapter:
         )
         return {
             "action_delay_steps": self.action_delay_steps,
+            "reference_bridge": dict(self.reference_bridge),
             "lateral_command_profile": {
                 "semantics": "deployment_acceleration_ramp_from_zero",
                 "goal_m_s": self._lateral_command_goal_m_s,

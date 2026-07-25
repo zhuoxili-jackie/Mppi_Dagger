@@ -114,7 +114,8 @@ class ReferenceCenteredMPPI:
         previous_action: torch.Tensor | None = None,
         max_delta: torch.Tensor | None = None,
         initial_sequence: torch.Tensor | None = None,
-    ) -> tuple[torch.Tensor, dict[str, float]]:
+        selection_mode: str | None = None,
+    ) -> tuple[torch.Tensor, dict[str, float | str]]:
         if nominal.shape != (self.config.horizon, 12):
             raise ValueError(f"nominal must have shape {(self.config.horizon, 12)}, got {tuple(nominal.shape)}")
         raw_min = raw_min.to(self.device, dtype=torch.float32)
@@ -130,6 +131,15 @@ class ReferenceCenteredMPPI:
         start = nominal if initial_sequence is None else initial_sequence
         if start.shape != nominal.shape:
             raise ValueError("initial_sequence must have the same shape as nominal.")
+        effective_selection_mode = (
+            self.config.selection_mode
+            if selection_mode is None
+            else str(selection_mode)
+        )
+        if effective_selection_mode not in {"weighted", "best_sample"}:
+            raise ValueError(
+                "selection_mode must be 'weighted' or 'best_sample'."
+            )
         sequence = self.project_sequence(
             start.to(self.device, dtype=torch.float32).clone(),
             raw_min,
@@ -172,7 +182,7 @@ class ReferenceCenteredMPPI:
             minimum_cost = min(minimum_cost, float(costs.min().item()))
             mean_cost = float(costs.mean().item())
             effective_sample_size = float((1.0 / torch.sum(weights.square())).item())
-        if self.config.selection_mode == "best_sample":
+        if effective_selection_mode == "best_sample":
             if best_candidate is None:
                 raise RuntimeError("MPPI did not produce a best sampled candidate.")
             sequence = best_candidate
@@ -181,6 +191,7 @@ class ReferenceCenteredMPPI:
             "mean_total_cost": mean_cost,
             "effective_sample_size": effective_sample_size,
             "selected_best_sample_cost": best_candidate_cost,
+            "selection_mode": effective_selection_mode,
         }
 
 

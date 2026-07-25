@@ -98,3 +98,37 @@ def test_best_sample_mode_returns_an_actually_evaluated_sequence() -> None:
         cost(sequence.unsqueeze(0))[0],
         torch.tensor(diagnostics["minimum_total_cost"]),
     )
+
+
+def test_selection_mode_can_be_overridden_per_solve() -> None:
+    config = MPPIConfig(
+        horizon=3,
+        samples=32,
+        iterations=1,
+        temperature=0.5,
+        selection_mode="weighted",
+        seed=19,
+    )
+    optimizer = ReferenceCenteredMPPI(
+        config,
+        torch.full((12,), 0.4),
+        device="cpu",
+    )
+    target = torch.full((3, 12), 0.25)
+
+    def cost(candidates: torch.Tensor) -> torch.Tensor:
+        return torch.sum(torch.square(candidates - target), dim=(1, 2))
+
+    sequence, diagnostics = optimizer.optimize(
+        torch.zeros_like(target),
+        cost,
+        raw_min=torch.full((12,), -1.0),
+        raw_max=torch.full((12,), 1.0),
+        selection_mode="best_sample",
+    )
+
+    assert diagnostics["selection_mode"] == "best_sample"
+    assert torch.isclose(
+        cost(sequence.unsqueeze(0))[0],
+        torch.tensor(diagnostics["minimum_total_cost"]),
+    )

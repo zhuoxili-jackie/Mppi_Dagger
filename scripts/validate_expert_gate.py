@@ -29,6 +29,21 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=ROOT / "reports/05_expert_gate.json")
     parser.add_argument("--episode-count", type=int, default=None)
     parser.add_argument("--required-successes", type=int, default=None)
+    parser.add_argument(
+        "--seed-start",
+        type=int,
+        default=None,
+        help=(
+            "Use a contiguous diagnostic seed set instead of the configured "
+            "formal-gate seed file."
+        ),
+    )
+    parser.add_argument(
+        "--full-episode-steps",
+        type=int,
+        default=None,
+        help="Override the formal horizon for a bounded smoke gate.",
+    )
     args = parser.parse_args()
 
     expert_config = load_yaml(args.config)
@@ -40,6 +55,11 @@ def main() -> None:
         else gate["required_successes"]
     )
     seed_path = resolve_project_path(gate["seed_file"])
+    expected_seeds = (
+        tuple(range(args.seed_start, args.seed_start + episode_count))
+        if args.seed_start is not None
+        else load_gate_seeds(seed_path, episode_count)
+    )
     implementation_paths = (
         "scripts/_isaac_workflow.py",
         "src/lateral_mppi_dagger/expert/mppi_expert.py",
@@ -50,6 +70,9 @@ def main() -> None:
         "src/lateral_mppi_dagger/data/collector.py",
         "src/lateral_mppi_dagger/contract/action16.py",
         "src/lateral_mppi_dagger/reference/loader.py",
+        "src/lateral_mppi_dagger/reference/action_reference.py",
+        "src/lateral_mppi_dagger/env/isolated_mppi.py",
+        "scripts/run_isolated_mppi_server.py",
     )
     expected_implementation_sha256 = {
         path: sha256_file(ROOT / path) for path in implementation_paths
@@ -64,9 +87,13 @@ def main() -> None:
     result = evaluate_expert_gate(
         args.dataset,
         ExpertGateConfig(
-            expected_seeds=load_gate_seeds(seed_path, episode_count),
+            expected_seeds=expected_seeds,
             required_successes=required_successes,
-            full_episode_steps=int(gate["full_episode_steps"]),
+            full_episode_steps=int(
+                args.full_episode_steps
+                if args.full_episode_steps is not None
+                else gate["full_episode_steps"]
+            ),
             required_ref_ids=tuple(range(len(references))),
             required_teacher_valid_rate=float(gate["required_teacher_valid_rate"]),
             required_scenario_resolved_name=gate.get(

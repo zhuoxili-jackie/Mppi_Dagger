@@ -136,7 +136,7 @@ def main() -> None:
     parser.add_argument(
         "--candidate-reference-config",
         type=str,
-        default="configs/reference_low_load_v1.yaml",
+        default="configs/low_load_lateral/train_001/reference.yaml",
     )
     parser.add_argument(
         "--onnx",

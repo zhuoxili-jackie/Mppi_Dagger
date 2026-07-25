@@ -35,8 +35,9 @@ TorchScript / ONNX 导出
 ## 项目结构
 
 ```text
-assets/                 项目生成的参考轨迹等资产
+assets/                 项目生成的参考轨迹、动作参考等哈希资产
 configs/                控制合同、参考、MPPI、学生、DAgger 和门禁配置
+  low_load_lateral/     按 train_NNN 隔离的稳定横移训练配置
 scripts/                数据采集、训练、评估、导出与审计入口
 src/lateral_mppi_dagger/
   contract/             93D observation、16D action 和 joint mapping
@@ -55,6 +56,24 @@ datasets/               生成的数据集，不提交 Git
 checkpoints/            训练 checkpoint，不提交 Git
 exported/               导出模型，不提交 Git
 ```
+
+## Low-load 训练编号
+
+稳定横移使用 `task_id/training_id/stage` 三层命名，而不是用每次参数试错的
+`v1...v146` 作为训练版本。当前第一条正式训练链是：
+
+```text
+task_id       low_load_lateral
+training_id   train_001
+reference     configs/low_load_lateral/train_001/reference.yaml
+expert        configs/low_load_lateral/train_001/expert.yaml
+assets        assets/low_load_lateral/train_001/
+```
+
+`qualification`、`r0`、`r1`、`r2`、`r3`、`performance` 和 `release`
+表示阶段。以后 reference、cost、proposal 或 solver schedule 发生实质变化
+时创建 `train_002`，并从 state-copy 和 9-reference 门重新验证。完整命令和
+保留规则见 `STABLE_LATERAL_RUNBOOK.md`。
 
 ## Clone 后从零运行
 
@@ -185,9 +204,9 @@ vendor/IsaacLab/apps/isaaclab.python.headless.kit
 主要配置：
 
 - `configs/expert_mppi.yaml`
-- `configs/expert_mppi_low_load_v1.yaml`
 - `configs/reference_708.yaml`
-- `configs/reference_low_load_v1.yaml`
+- `configs/low_load_lateral/train_001/expert.yaml`
+- `configs/low_load_lateral/train_001/reference.yaml`
 
 参考配置与 Isaac task 内部的 motion/reset 定义必须保持一致。更换参考集合后，应先逐条运行 reset 和短时 MPPI smoke，再启用 rotating-reference 正式采集。
 

@@ -135,6 +135,18 @@ def main() -> None:
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     config = load_yaml(args.config)
+    expert_config_path = (
+        ROOT / config.get("expert_config", "configs/expert_mppi.yaml")
+    ).resolve()
+    reference_config_path = str(
+        config.get("reference_config", "configs/reference_708.yaml")
+    )
+    report_root = (
+        ROOT / config.get("report_root", "reports")
+    ).resolve()
+    if report_root != ROOT and ROOT not in report_root.parents:
+        raise ValueError("formal_pipeline report_root must remain inside ROOT.")
+    report_root.mkdir(parents=True, exist_ok=True)
     expert_gate_path = args.expert_gate.resolve()
     expert_gate = json.loads(expert_gate_path.read_text(encoding="utf-8"))
     if expert_gate.get("ok") is not True:
@@ -178,7 +190,7 @@ def main() -> None:
     scenario = str(r0["scenario"])
     for split in ("train", "validation", "test"):
         split_cfg = r0[split]
-        report = ROOT / f"reports/r0_{split}_collection.json"
+        report = report_root / f"r0_{split}_collection.json"
         _run(
             [
                 sys.executable,
@@ -188,6 +200,10 @@ def main() -> None:
                 args.device,
                 "--expert-backend",
                 "mppi",
+                "--mppi-config",
+                str(expert_config_path),
+                "--reference-config",
+                reference_config_path,
                 "--dataset",
                 str(dataset),
                 "--episodes",
@@ -211,8 +227,8 @@ def main() -> None:
             ]
         )
 
-    dataset_validation = ROOT / "reports/r0_dataset_validation.json"
-    observability = ROOT / "reports/r0_observability_gate.json"
+    dataset_validation = report_root / "r0_dataset_validation.json"
+    observability = report_root / "r0_observability_gate.json"
     _run(
         [
             sys.executable,
@@ -251,7 +267,7 @@ def main() -> None:
             f"R0 train frame count mismatch: {train_frames} != {r0['train_frames']}"
         )
 
-    mppi_gate_config = load_yaml("configs/expert_mppi.yaml")["closed_loop_gate"]
+    mppi_gate_config = load_yaml(expert_config_path)["closed_loop_gate"]
     r0_gate = evaluate_expert_gate(
         dataset,
         ExpertGateConfig(
@@ -281,10 +297,10 @@ def main() -> None:
                 mppi_gate_config["tracking_thresholds"]
             ),
         ),
-        references=ReferenceSet.from_config(),
+        references=ReferenceSet.from_config(reference_config_path),
         action_contract=ActionContract.from_dict(load_contract()),
     )
-    r0_gate_output = ROOT / "reports/r0_expert_dataset_gate.json"
+    r0_gate_output = report_root / "r0_expert_dataset_gate.json"
     write_json(r0_gate_output, r0_gate)
     if not r0_gate["ok"]:
         raise RuntimeError(
@@ -325,7 +341,7 @@ def main() -> None:
     best = output / "student_best_checkpoint.pt"
     if not best.is_file():
         raise FileNotFoundError(f"BC did not produce {best}")
-    open_loop = ROOT / "reports/bc_formal_open_loop_test.json"
+    open_loop = report_root / "bc_formal_open_loop_test.json"
     _run(
         [
             sys.executable,
@@ -344,6 +360,10 @@ def main() -> None:
     )
     result = {
         "schema_version": "pcbc-bc-stage-result-v1",
+        "task_id": config.get("task_id"),
+        "training_id": config.get("training_id"),
+        "expert_config": str(expert_config_path),
+        "reference_config": reference_config_path,
         "expert_gate": str(expert_gate_path),
         "dataset": str(dataset),
         "base_seed_info": base_seed_info,
@@ -356,7 +376,7 @@ def main() -> None:
         "best_checkpoint_sha256": sha256_file(best),
         "open_loop_report": str(open_loop),
     }
-    output_report = ROOT / "reports/bc_stage_result.json"
+    output_report = report_root / "bc_stage_result.json"
     write_json(output_report, result)
     print(json.dumps(result, sort_keys=True))
 

@@ -22,7 +22,12 @@ from lateral_mppi_dagger.contract.action16 import (
     SafetyShield,
     WheelActionMode,
 )
-from lateral_mppi_dagger.config import canonical_hash, load_yaml, sha256_file
+from lateral_mppi_dagger.config import (
+    canonical_hash,
+    load_yaml,
+    resolve_project_path,
+    sha256_file,
+)
 from lateral_mppi_dagger.data.collector import CollectorConfig, collect_episode
 from lateral_mppi_dagger.data.dataset import load_manifest
 from lateral_mppi_dagger.data.schema import read_episode_shard, write_episode_shard
@@ -31,6 +36,9 @@ from lateral_mppi_dagger.env.isaac_mppi_rollout import (
     IsaacRolloutCostWeights,
     IsaacRolloutLoadLimits,
     IsaacWholeBodyMPPIProvider,
+)
+from lateral_mppi_dagger.env.isolated_mppi import (
+    IsolatedIsaacMPPIProvider,
 )
 from lateral_mppi_dagger.env.scenarios import (
     configure_env_for_scenario,
@@ -41,6 +49,9 @@ from lateral_mppi_dagger.expert.disabled import DisabledLabelExpert
 from lateral_mppi_dagger.expert.mppi_expert import MPPIConfig, WholeBodyMPPIExpert
 from lateral_mppi_dagger.expert.reference_wbc import ReferenceWBCExpert
 from lateral_mppi_dagger.reference.loader import ReferenceSet
+from lateral_mppi_dagger.reference.action_reference import (
+    load_nominal_action_references,
+)
 from lateral_mppi_dagger.student.model import build_student_from_checkpoint
 
 
@@ -171,6 +182,11 @@ def run_isaac_collection(
     if observation_noise_std < 0.0:
         raise ValueError("--observation-noise-std must be non-negative.")
     expert_backend = getattr(args, "expert_backend", "reference_wbc")
+    mppi_server_socket = getattr(args, "mppi_server_socket", None)
+    if mppi_server_socket is not None and expert_backend != "mppi":
+        raise ValueError(
+            "--mppi-server-socket requires --expert-backend mppi."
+        )
     if expert_backend == "disabled" and (
         args.student_checkpoint is None or float(args.beta) != 0.0
     ):
@@ -179,7 +195,10 @@ def run_isaac_collection(
             "evaluation with --student-checkpoint."
         )
     if expert_backend == "mppi":
-        num_envs = int(args.mppi_samples or mppi_yaml["samples"])
+        requested_mppi_samples = int(
+            args.mppi_samples or mppi_yaml["samples"]
+        )
+        num_envs = 1 if mppi_server_socket is not None else requested_mppi_samples
     elif expert_backend in {"reference_wbc", "disabled"}:
         num_envs = 1
     else:
@@ -223,9 +242,17 @@ def run_isaac_collection(
     provider = None
     expert_implementation_sha256: dict[str, str] = {}
     if expert_backend == "mppi":
+        (
+            nominal_action_reference_q_des_by_ref,
+            nominal_action_reference_raw_by_ref,
+            nominal_action_reference_overrides_by_ref,
+            nominal_action_reference_record,
+        ) = load_nominal_action_references(
+            mppi_yaml.get("nominal_action_reference")
+        )
         mppi_config = MPPIConfig(
             horizon=int(args.mppi_horizon or mppi_yaml["horizon"]),
-            samples=num_envs,
+            samples=requested_mppi_samples,
             iterations=int(args.mppi_iterations or mppi_yaml["optimization_iterations"]),
             temperature=float(
                 args.mppi_temperature
@@ -255,26 +282,129 @@ def run_isaac_collection(
             )
             * noise_scale
         )
-        provider = IsaacWholeBodyMPPIProvider(
-            adapter,
-            references,
-            action_adapter,
-            mppi_config,
-            noise_std,
-            IsaacRolloutCostWeights.from_dict(mppi_yaml.get("cost_weights")),
-            load_limits=IsaacRolloutLoadLimits.from_dict(
-                mppi_yaml.get("load_limits")
-            ),
-            contact_force_threshold_n=float(
-                mppi_yaml["contact_force_threshold_n"]
-            ),
-            physical_target_rate_limit_rad_s=(
-                float(mppi_yaml["physical_target_rate_limit_rad_s"])
-                if mppi_yaml.get("physical_target_rate_limit_rad_s")
-                is not None
-                else None
-            ),
+        mppi_config_path = resolve_project_path(
+            getattr(
+                args,
+                "mppi_config",
+                ROOT / "configs/expert_mppi.yaml",
+            )
         )
+        isolated_server_identity = {
+            "schema_version": "pcbc-isolated-mppi-server-v1",
+            "mppi_config_sha256": sha256_file(mppi_config_path),
+            "reference_config": str(reference_config),
+            "samples": mppi_config.samples,
+            "horizon": mppi_config.horizon,
+            "optimization_iterations": mppi_config.iterations,
+        }
+        if mppi_server_socket is None:
+            provider = IsaacWholeBodyMPPIProvider(
+                adapter,
+                references,
+                action_adapter,
+                mppi_config,
+                noise_std,
+                IsaacRolloutCostWeights.from_dict(
+                    mppi_yaml.get("cost_weights")
+                ),
+                load_limits=IsaacRolloutLoadLimits.from_dict(
+                    mppi_yaml.get("load_limits")
+                ),
+                contact_force_threshold_n=float(
+                    mppi_yaml["contact_force_threshold_n"]
+                ),
+                physical_target_rate_limit_rad_s=(
+                    float(
+                        mppi_yaml["physical_target_rate_limit_rad_s"]
+                    )
+                    if mppi_yaml.get("physical_target_rate_limit_rad_s")
+                    is not None
+                    else None
+                ),
+                nominal_action_reference_q_des_by_ref=(
+                    nominal_action_reference_q_des_by_ref
+                ),
+                nominal_action_reference_raw_by_ref=(
+                    nominal_action_reference_raw_by_ref
+                ),
+                nominal_action_reference_overrides_by_ref=(
+                    nominal_action_reference_overrides_by_ref
+                ),
+                nominal_joint_position_bias_leg=mppi_yaml.get(
+                    "nominal_joint_position_bias_leg"
+                ),
+                nominal_joint_position_bias_start_frame=int(
+                    mppi_yaml.get(
+                        "nominal_joint_position_bias_start_frame",
+                        0,
+                    )
+                ),
+                nominal_joint_position_bias_ramp_frames=int(
+                    mppi_yaml.get(
+                        "nominal_joint_position_bias_ramp_frames",
+                        0,
+                    )
+                ),
+                nominal_front_force_feedback_target_n=float(
+                    mppi_yaml.get(
+                        "nominal_front_force_feedback_target_n",
+                        0.0,
+                    )
+                ),
+                nominal_front_force_feedback_gain_leg=mppi_yaml.get(
+                    "nominal_front_force_feedback_gain_leg"
+                ),
+                output_front_force_feedback_target_n=float(
+                    mppi_yaml.get(
+                        "output_front_force_feedback_target_n",
+                        0.0,
+                    )
+                ),
+                output_front_force_feedback_min_contact_n=float(
+                    mppi_yaml.get(
+                        "output_front_force_feedback_min_contact_n",
+                        0.0,
+                    )
+                ),
+                output_front_force_feedback_lookahead_steps=mppi_yaml.get(
+                    "output_front_force_feedback_lookahead_steps"
+                ),
+                output_front_force_feedback_gain_leg=mppi_yaml.get(
+                    "output_front_force_feedback_gain_leg"
+                ),
+                output_pitch_feedback_ref_ids=mppi_yaml.get(
+                    "output_pitch_feedback_ref_ids"
+                ),
+                output_pitch_feedback_gain_leg=mppi_yaml.get(
+                    "output_pitch_feedback_gain_leg"
+                ),
+                output_pitch_feedback_max_abs_rad=float(
+                    mppi_yaml.get(
+                        "output_pitch_feedback_max_abs_rad",
+                        0.0,
+                    )
+                ),
+                output_joint_position_offset_leg=mppi_yaml.get(
+                    "output_joint_position_offset_leg"
+                ),
+            )
+            execution_isolation = {
+                "mode": "shared_isaac_scene",
+                "public_env_count": num_envs,
+            }
+        else:
+            provider = IsolatedIsaacMPPIProvider(
+                adapter,
+                references,
+                action_contract,
+                mppi_server_socket,
+                expected_server=isolated_server_identity,
+            )
+            execution_isolation = {
+                "mode": "separate_persistent_isaac_process",
+                "public_env_count": 1,
+                "server": isolated_server_identity,
+            }
         expert = WholeBodyMPPIExpert(provider)
         expert_implementation_sha256 = {
             path: sha256_file(ROOT / path)
@@ -288,6 +418,9 @@ def run_isaac_collection(
                 "src/lateral_mppi_dagger/data/collector.py",
                 "src/lateral_mppi_dagger/contract/action16.py",
                 "src/lateral_mppi_dagger/reference/loader.py",
+                "src/lateral_mppi_dagger/reference/action_reference.py",
+                "src/lateral_mppi_dagger/env/isolated_mppi.py",
+                "scripts/run_isolated_mppi_server.py",
             )
         }
         expert_runtime_config = {
@@ -310,6 +443,71 @@ def run_isaac_collection(
             "load_limits": dict(mppi_yaml["load_limits"]),
             "physical_target_rate_limit_rad_s": mppi_yaml.get(
                 "physical_target_rate_limit_rad_s"
+            ),
+            "nominal_action_reference": nominal_action_reference_record,
+            "execution_isolation": execution_isolation,
+            "nominal_joint_position_bias_leg": list(
+                mppi_yaml.get("nominal_joint_position_bias_leg", [0.0] * 12)
+            ),
+            "nominal_joint_position_bias_start_frame": int(
+                mppi_yaml.get("nominal_joint_position_bias_start_frame", 0)
+            ),
+            "nominal_joint_position_bias_ramp_frames": int(
+                mppi_yaml.get("nominal_joint_position_bias_ramp_frames", 0)
+            ),
+            "nominal_front_force_feedback_target_n": float(
+                mppi_yaml.get("nominal_front_force_feedback_target_n", 0.0)
+            ),
+            "nominal_front_force_feedback_gain_leg": list(
+                mppi_yaml.get(
+                    "nominal_front_force_feedback_gain_leg",
+                    [0.0] * 12,
+                )
+            ),
+            "output_front_force_feedback_target_n": float(
+                mppi_yaml.get("output_front_force_feedback_target_n", 0.0)
+            ),
+            "output_front_force_feedback_min_contact_n": float(
+                mppi_yaml.get(
+                    "output_front_force_feedback_min_contact_n",
+                    0.0,
+                )
+            ),
+            "output_front_force_feedback_lookahead_steps": int(
+                mppi_yaml.get(
+                    "output_front_force_feedback_lookahead_steps",
+                    mppi_yaml.get(
+                        "reference_action_lookahead_steps",
+                        1,
+                    ),
+                )
+            ),
+            "output_front_force_feedback_gain_leg": list(
+                mppi_yaml.get(
+                    "output_front_force_feedback_gain_leg",
+                    [0.0] * 12,
+                )
+            ),
+            "output_pitch_feedback_ref_ids": list(
+                mppi_yaml.get("output_pitch_feedback_ref_ids", [])
+            ),
+            "output_pitch_feedback_gain_leg": list(
+                mppi_yaml.get(
+                    "output_pitch_feedback_gain_leg",
+                    [0.0] * 12,
+                )
+            ),
+            "output_pitch_feedback_max_abs_rad": float(
+                mppi_yaml.get(
+                    "output_pitch_feedback_max_abs_rad",
+                    0.0,
+                )
+            ),
+            "output_joint_position_offset_leg": list(
+                mppi_yaml.get(
+                    "output_joint_position_offset_leg",
+                    [0.0] * 12,
+                )
             ),
             "wheel_action_mode": action_contract.wheel_action_mode.value,
             "implementation_sha256": expert_implementation_sha256,
@@ -526,6 +724,8 @@ def run_isaac_collection(
                 flush=True,
             )
     finally:
+        if provider is not None and hasattr(provider, "close"):
+            provider.close()
         adapter.close()
 
     report = {

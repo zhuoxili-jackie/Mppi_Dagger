@@ -1,0 +1,62 @@
+schema_version: "pcbc-reference-low-load-train-001"
+status: "qualified_9x100_pending_formal_50x300"
+task_id: "low_load_lateral"
+training_id: "train_001"
+fps: 50
+frames: 332
+duration_seconds: 6.62
+reference_directory: "assets/low_load_lateral/train_001/references"
+generation_report: "assets/low_load_lateral/train_001/references/generation_report.json"
+body_order:
+  [Base_link, FL_hip_link, FR_hip_link, RL_hip_link, RR_hip_link,
+   FL_thigh_link, FR_thigh_link, RL_thigh_link, RR_thigh_link,
+   FL_calf_link, FR_calf_link, RL_calf_link, RR_calf_link,
+   FL_foot_link, FR_foot_link, RL_foot_link, RR_foot_link]
+quaternion_order: wxyz
+gait:
+  family: "direction_mirrored_one_limb_at_a_time_load_shifted_crawl"
+  stride_m: 0.04
+  duty_factor: 0.80
+  front_detachment_m: 0.008
+  rear_clearance_m: 0.012
+  speed_scaling: "fixed stride; cadence = abs(target_vy) / stride"
+  rear_preload_x_m: 0.0
+  rear_load_shift_y_m: 0.003
+  lateral_load_shift_directional: true
+  negative_direction_phase_mirrored: true
+  support_preload_x_m: 0.008
+  support_front_penetration_x_m: 0.008
+  support_front_drop_z_m: 0.007
+  support_preload_seconds: 0.40
+references:
+  - {index: 0, file: low_load_n060.npz, target_vy: -0.06, sha256: 5105702740764effb27d8a7ac9db28989eec30db298f9c3caec9815979b0ab48}
+  - {index: 1, file: low_load_n030.npz, target_vy: -0.03, sha256: b85e66998f4d3238790941e4ecf884805010528f8afd5d980b2536d5768158c4}
+  - {index: 2, file: low_load_n024.npz, target_vy: -0.024, sha256: 7b8c847ab135dcd99f78e3a9c22d7a2b295668783195b9dfea5d177362c55907}
+  - {index: 3, file: low_load_n012.npz, target_vy: -0.012, sha256: eb75e56b1d7bdf5277be0354de5cdda71e57a5e46b13677e0e55dfc9490bb337}
+  - {index: 4, file: low_load_p012.npz, target_vy: 0.012, sha256: 5915f112cc2613abc6aedbaf0eddd9a0d2f0937745ab88c72c08e90bb92f80e1}
+  - {index: 5, file: low_load_p024.npz, target_vy: 0.024, sha256: dc2262f94f413aeb2e36575c64bd8022fd6fd82c59e2de26268de70e508daa23}
+  - {index: 6, file: low_load_p030.npz, target_vy: 0.03, sha256: 6f8170b8e91cb85f80158551d149b32120d2296c173288c39abe5cd1dd8253ac}
+  - {index: 7, file: low_load_p060.npz, target_vy: 0.06, sha256: e261ee8f0c591dcabfa07a586f3249844e39c805ef2e63d323dd45549b6643b6}
+standing_reference:
+  enabled: true
+  index: 8
+  file: low_load_standing.npz
+  sha256: ec88b43d6ef6a6bbf0793622293bf7dc5d6006364a7395cbe01de1249b2b016e
+  derivation: "explicit fixed-first-frame trajectory matched to historical sustained front-contact geometry"
+  target_vy: 0.0
+contact_inference:
+  method: generated_crawl_phase_with_geometric_preload
+  body_indices: [13, 14, 15, 16]
+  per_wheel_height_quantile: 0.35
+  height_margin_m: [0.0015, 0.0015, 0.006, 0.006]
+  speed_threshold_mps: 0.10
+  minimum_contact_run_frames: 2
+  contact_axis_indices: [0, 0, 2, 2]
+  contact_surface_sides: [max, max, min, min]
+  stride_m: 0.04
+  duty_factor: 0.80
+  acceleration_seconds: 0.60
+  support_preload_seconds: 0.40
+  phase_offsets: [0.75, 0.25, 0.50, 0.00]
+  negative_direction_phase_mirrored: true
+  status: "geometry only during fixed-frame support preload; explicit generator phase thereafter"

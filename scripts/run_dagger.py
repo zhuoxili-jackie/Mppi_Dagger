@@ -94,6 +94,12 @@ def main() -> None:
     parser.add_argument("--previous-gate", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--state", type=Path, default=ROOT / "reports/dagger_state.json")
+    parser.add_argument(
+        "--report-dir",
+        type=Path,
+        default=ROOT / "reports",
+        help="Run-scoped report directory; keeps separate training IDs isolated.",
+    )
     parser.add_argument("--train-episodes", type=int, default=20)
     parser.add_argument("--validation-episodes", type=int, default=6)
     parser.add_argument("--steps", type=int, default=300)
@@ -120,6 +126,10 @@ def main() -> None:
     previous_gate = args.previous_gate.resolve()
     output = args.output.resolve()
     state_path = args.state.resolve()
+    report_dir = args.report_dir.resolve()
+    if report_dir != ROOT and ROOT not in report_dir.parents:
+        raise ValueError("--report-dir must remain inside the project root.")
+    report_dir.mkdir(parents=True, exist_ok=True)
     if not checkpoint.is_file():
         parser.error(f"Input checkpoint does not exist: {checkpoint}")
     if not previous_gate.is_file():
@@ -177,9 +187,9 @@ def main() -> None:
         str(checkpoint),
         "--resume",
     ]
-    train_report = ROOT / f"reports/dagger_r{round_config.round}_train_collection.json"
+    train_report = report_dir / f"dagger_r{round_config.round}_train_collection.json"
     validation_report = (
-        ROOT / f"reports/dagger_r{round_config.round}_validation_collection.json"
+        report_dir / f"dagger_r{round_config.round}_validation_collection.json"
     )
     try:
         _run(
@@ -213,7 +223,7 @@ def main() -> None:
             ]
         )
         validation_output = (
-            ROOT / f"reports/dagger_r{round_config.round}_dataset_validation.json"
+            report_dir / f"dagger_r{round_config.round}_dataset_validation.json"
         )
         _run(
             [
@@ -225,7 +235,7 @@ def main() -> None:
             ]
         )
         round_gate_output = (
-            ROOT / f"reports/dagger_r{round_config.round}_collection_gate.json"
+            report_dir / f"dagger_r{round_config.round}_collection_gate.json"
         )
         _run(
             [
@@ -271,7 +281,7 @@ def main() -> None:
                 f"DAgger training did not produce {best_checkpoint}"
             )
         open_loop_report = (
-            ROOT / f"reports/dagger_r{round_config.round}_open_loop.json"
+            report_dir / f"dagger_r{round_config.round}_open_loop.json"
         )
         _run(
             [

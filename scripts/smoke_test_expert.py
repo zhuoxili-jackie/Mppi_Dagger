@@ -9,6 +9,7 @@ from pathlib import Path
 from _bootstrap import ROOT, write_json
 
 from isaaclab.app import AppLauncher
+from lateral_mppi_dagger.reporting import failure_report_path
 
 
 parser = argparse.ArgumentParser(description="Run a bounded expert smoke test in the real 708 trunk task.")
@@ -59,7 +60,21 @@ parser.add_argument(
     default=None,
 )
 parser.add_argument("--mppi-noise-scale", type=float, default=1.0)
+parser.add_argument(
+    "--mppi-server-socket",
+    type=Path,
+    default=None,
+    help=(
+        "Use a persistent isolated Isaac MPPI server at this Unix socket; "
+        "the public collection environment then contains exactly one env."
+    ),
+)
 parser.add_argument("--disable-fabric", action="store_true")
+parser.add_argument(
+    "--report",
+    type=Path,
+    default=ROOT / "reports/02_expert_smoke.json",
+)
 AppLauncher.add_app_launcher_args(parser)
 args_cli = parser.parse_args()
 
@@ -71,10 +86,10 @@ from _isaac_workflow import run_isaac_collection
 
 if __name__ == "__main__":
     try:
-        run_isaac_collection(args_cli, ROOT / "reports/02_expert_smoke.json")
+        run_isaac_collection(args_cli, args_cli.report)
     except BaseException as exc:
         write_json(
-            ROOT / "reports/02_expert_smoke.failure.json",
+            failure_report_path(args_cli.report),
             {
                 "error_type": type(exc).__name__,
                 "message": str(exc),

@@ -1,0 +1,199 @@
+{
+  "error": null,
+  "nominal_action_reference": {
+    "enabled": true,
+    "entries": [
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_00_n060.npz",
+        "ref_id": 0,
+        "representation": "raw_action",
+        "sha256": "fe9162b35d0ebf1f2c9b419b3ced91f2707bfedb236d39420ef72e0a01afe5eb",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_01_n030.npz",
+        "ref_id": 1,
+        "representation": "raw_action",
+        "sha256": "2572d66bb15918b6ec80546090dedb2b81eb9a8379e6e375aa6393c177865c40",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_02_n024.npz",
+        "ref_id": 2,
+        "representation": "raw_action",
+        "sha256": "7c460e51f58214ca7b367898bcb520a037e0defa565e9840be5f802d6ad024e1",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_03_n012.npz",
+        "ref_id": 3,
+        "representation": "raw_action",
+        "sha256": "9934a6bccde20a60ea4be1563ee7965e0881692b142652e1866d81e3a8be5e1a",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 72,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_04_p012.npz",
+        "ref_id": 4,
+        "representation": "raw_action",
+        "sha256": "7515e3b177a1ca683736266f64c3fb94b638c03a530b77eece9c40f0b6b5b592",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_05_p024.npz",
+        "ref_id": 5,
+        "representation": "raw_action",
+        "sha256": "15ada57894c6120c2bbce05d26d0a67b87012c7333320c4e5c618e0c6dad4576",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 50,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 500.0,
+              "selection_mode": "best_sample",
+              "start_frame": 60,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_06_p030.npz",
+        "ref_id": 6,
+        "representation": "raw_action",
+        "sha256": "3f83a55cf65dec12981dce07531d996d128b3e8d1c256bd2100443c42ad5d878",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_07_p060.npz",
+        "ref_id": 7,
+        "representation": "raw_action",
+        "sha256": "4e30e6d37262540dc7b03ff3789dece192f6292d75ccd1f0dafcfb72d6530113",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_08_standing.npz",
+        "ref_id": 8,
+        "representation": "raw_action",
+        "sha256": "b5fa11447f714663e67029ac6852c646a1b23c74ab89b3c99839535978511576",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      }
+    ]
+  },
+  "request_count": 900,
+  "reset_count": 9,
+  "schema_version": "pcbc-isolated-mppi-server-report-v1",
+  "server": {
+    "horizon": 40,
+    "mppi_config_sha256": "cb65c7845ffb08b7d3f4b517963533120374e1070ef69a52db5297c7157b502f",
+    "optimization_iterations": 2,
+    "reference_config": "configs/low_load_lateral/train_001/reference.yaml",
+    "samples": 256,
+    "schema_version": "pcbc-isolated-mppi-server-v1"
+  },
+  "socket": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/artifacts/ll_t001_q.sock",
+  "solver_schedule_phase_counts": {
+    "0": 122,
+    "1": 38,
+    "2": 40
+  },
+  "solver_schedule_reset_events": [],
+  "status": "closed_by_client"
+}

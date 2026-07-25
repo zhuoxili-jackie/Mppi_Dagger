@@ -1,9 +1,14 @@
 schema_version: pcbc-formal-pipeline-v1
+task_id: low_load_lateral
+training_id: train_001
+expert_config: configs/low_load_lateral/train_001/expert.yaml
+reference_config: configs/low_load_lateral/train_001/reference.yaml
+report_root: reports/low_load_lateral/train_001/r0
 episode_steps: 300
 
 r0:
-  dataset: datasets/dagger_aggregate
-  base_dataset: datasets/mppi_formal_gate50_v3
+  dataset: datasets/low_load_lateral/train_001/dagger_aggregate
+  base_dataset: datasets/low_load_lateral/train_001/expert_50x300
   base_frames: 15000
   train: {episodes: 14, seed: 20000}
   validation: {episodes: 4, seed: 21000}
@@ -14,7 +19,7 @@ r0:
   dagger_round: 0
 
 bc:
-  output: checkpoints/bc_formal
+  output: checkpoints/low_load_lateral/train_001/bc
   epochs: 100
   batch_size: 1024
 

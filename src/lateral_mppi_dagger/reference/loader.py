@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import hashlib
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -203,18 +203,33 @@ class ReferenceSet:
         standing = config.get("standing_reference", {})
         if bool(standing.get("enabled", False)):
             index = int(standing["index"])
-            source_index = int(standing["source_reference_index"])
-            if source_index < 0 or source_index >= len(motions):
-                raise ValueError(
-                    "standing_reference.source_reference_index is outside the "
-                    "moving-reference range."
-                )
             if index != len(motions):
                 raise ValueError(
-                    "The derived standing reference must immediately follow the "
+                    "The standing reference must immediately follow the "
                     f"moving references; expected index {len(motions)}, got {index}."
                 )
-            motions.append(_derive_standing_reference(index, motions[source_index]))
+            if "file" in standing:
+                explicit = _load_motion(
+                    index=index,
+                    path=reference_dir / str(standing["file"]),
+                    expected_hash=str(standing["sha256"]),
+                    target_vy=0.0,
+                    expected_fps=int(config["fps"]),
+                    expected_frames=int(config["frames"]),
+                )
+                motions.append(
+                    replace(explicit, source_kind="explicit_standing_npz")
+                )
+            else:
+                source_index = int(standing["source_reference_index"])
+                if source_index < 0 or source_index >= len(motions):
+                    raise ValueError(
+                        "standing_reference.source_reference_index is outside "
+                        "the moving-reference range."
+                    )
+                motions.append(
+                    _derive_standing_reference(index, motions[source_index])
+                )
         return cls(
             motions,
             tuple(config["body_order"]),
@@ -223,6 +238,7 @@ class ReferenceSet:
 
     def contact_inference_kwargs(self) -> dict[str, Any]:
         supported = {
+            "method",
             "wheel_body_indices",
             "per_wheel_height_quantile",
             "height_margin_m",
@@ -230,6 +246,12 @@ class ReferenceSet:
             "minimum_contact_run_frames",
             "contact_axis_indices",
             "contact_surface_sides",
+            "stride_m",
+            "duty_factor",
+            "acceleration_seconds",
+            "support_preload_seconds",
+            "phase_offsets",
+            "negative_direction_phase_mirrored",
         }
         return {
             name: value
@@ -268,7 +290,7 @@ class ReferenceSet:
                 "path": str(motion.path),
                 "file": (
                     motion.path.name
-                    if motion.source_kind == "npz"
+                    if motion.source_kind in {"npz", "explicit_standing_npz"}
                     else f"derived_standing_from_{motion.path.name}"
                 ),
                 "sha256": motion.sha256,

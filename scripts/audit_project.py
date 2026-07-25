@@ -22,8 +22,8 @@ ASSET_SUFFIXES = {".csv", ".npz", ".obj", ".stl", ".urdf", ".usd"}
 REQUIRED_STANDALONE_PATHS = (
     "configs/deployment_contract.yaml",
     "configs/reference_708.yaml",
-    "configs/reference_low_load_v1.yaml",
-    "assets/references/low_load_v1/generation_report.json",
+    "configs/low_load_lateral/train_001/reference.yaml",
+    "assets/low_load_lateral/train_001/references/generation_report.json",
     "src/lateral_mppi_dagger/env/__init__.py",
     "src/lateral_mppi_dagger/env/action_delay.py",
     "src/lateral_mppi_dagger/env/isaac_adapter.py",
@@ -154,7 +154,7 @@ def validate_reference_files() -> list[dict]:
     checks = []
     for config_path in (
         "configs/reference_708.yaml",
-        "configs/reference_low_load_v1.yaml",
+        "configs/low_load_lateral/train_001/reference.yaml",
     ):
         config = load_yaml(config_path)
         reference_root = resolve_project_path(config["reference_directory"])

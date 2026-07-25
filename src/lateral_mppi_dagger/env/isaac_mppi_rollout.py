@@ -15,6 +15,10 @@ from lateral_mppi_dagger.expert.base import (
     FailureCode,
 )
 from lateral_mppi_dagger.expert.mppi_expert import MPPIConfig, ReferenceCenteredMPPI
+from lateral_mppi_dagger.reference.action_reference import (
+    normalize_nominal_solver_overrides,
+    resolve_nominal_solver_overrides,
+)
 from lateral_mppi_dagger.reference.loader import ReferenceSet
 from lateral_mppi_dagger.env.action_delay import advance_action_delay
 
@@ -49,6 +53,56 @@ def _quat_angle(lhs: torch.Tensor, rhs: torch.Tensor) -> torch.Tensor:
     return 2.0 * torch.acos(dot)
 
 
+def _signed_pitch_error_rad(
+    actual_quat_w: torch.Tensor,
+    target_quat_w: torch.Tensor,
+) -> torch.Tensor:
+    """Return the target-frame pitch component of the shortest rotation.
+
+    Both inputs use the frozen Isaac/deployment ``wxyz`` convention.  The
+    relative rotation maps the target orientation to the actual orientation,
+    so a negative value means that the robot is pitched negatively relative
+    to the aligned reference.
+    """
+
+    actual = actual_quat_w / torch.linalg.vector_norm(
+        actual_quat_w,
+        dim=-1,
+        keepdim=True,
+    ).clamp_min(torch.finfo(actual_quat_w.dtype).eps)
+    target = target_quat_w / torch.linalg.vector_norm(
+        target_quat_w,
+        dim=-1,
+        keepdim=True,
+    ).clamp_min(torch.finfo(target_quat_w.dtype).eps)
+    relative = _quat_multiply(_quat_conjugate(target), actual)
+    relative = torch.where(
+        relative[..., :1] < 0.0,
+        -relative,
+        relative,
+    )
+    vector = relative[..., 1:]
+    vector_norm = torch.linalg.vector_norm(
+        vector,
+        dim=-1,
+        keepdim=True,
+    )
+    angle = 2.0 * torch.atan2(
+        vector_norm,
+        relative[..., :1].clamp_min(
+            torch.finfo(relative.dtype).eps
+        ),
+    )
+    rotation_vector = torch.where(
+        vector_norm > torch.finfo(relative.dtype).eps,
+        vector * (angle / vector_norm.clamp_min(
+            torch.finfo(relative.dtype).eps
+        )),
+        2.0 * vector,
+    )
+    return rotation_vector[..., 1]
+
+
 def _tree_env0_clone(value: Any) -> Any:
     if isinstance(value, torch.Tensor):
         return value[0:1].detach().clone()
@@ -69,11 +123,14 @@ def _tree_repeat(value: Any, count: int) -> Any:
 @dataclass(frozen=True)
 class IsaacRolloutCostWeights:
     base_position: float = 35.0
+    base_height_drop: float = 0.0
     base_orientation: float = 18.0
     joint_position: float = 10.0
+    rear_leg_position: float = 0.0
     joint_velocity: float = 0.15
     wheel_position: float = 45.0
     lateral_velocity: float = 4.0
+    lateral_position: float = 0.0
     box_x_drift: float = 60.0
     wheel_slip: float = 0.30
     contact_mismatch: float = 2.0
@@ -106,7 +163,16 @@ class IsaacRolloutCostWeights:
 
 @dataclass(frozen=True)
 class IsaacRolloutLoadLimits:
+    base_height_drop_margin_m: float = 0.08
+    base_height_drop_stop_frame: float = 0.0
+    lateral_position_start_frame: float = 0.0
     front_normal_min_n: float = 6.0
+    front_normal_deficit_power: float = 2.0
+    front_support_worst_fraction: float = 0.0
+    front_force_balance_scale_n: float = 0.0
+    front_contact_position_margin_m: float = 0.0
+    front_contact_position_scale_m: float = 0.0
+    front_contact_position_max_normalized: float = 0.0
     rear_normal_overload_n: float = 105.0
     rear_normal_scale_n: float = 35.0
     rear_balance_scale_n: float = 70.0
@@ -123,8 +189,34 @@ class IsaacRolloutLoadLimits:
         if unknown:
             raise ValueError(f"Unknown MPPI load limits: {unknown}")
         result = cls(**{name: float(value) for name, value in values.items()})
-        if result.front_normal_min_n < 0.0:
-            raise ValueError("front_normal_min_n must be non-negative.")
+        if (
+            result.base_height_drop_margin_m < 0.0
+            or result.base_height_drop_stop_frame < 0.0
+            or result.lateral_position_start_frame < 0.0
+            or result.front_normal_min_n < 0.0
+        ):
+            raise ValueError(
+                "Scheduled tracking frames, base-height margin, and "
+                "front-normal minimum must be non-negative."
+            )
+        if not 1.0 <= result.front_normal_deficit_power <= 2.0:
+            raise ValueError(
+                "front_normal_deficit_power must be in [1, 2]."
+            )
+        if not 0.0 <= result.front_support_worst_fraction <= 1.0:
+            raise ValueError(
+                "front_support_worst_fraction must be in [0, 1]."
+            )
+        if (
+            result.front_force_balance_scale_n < 0.0
+            or result.front_contact_position_margin_m < 0.0
+            or result.front_contact_position_scale_m < 0.0
+            or result.front_contact_position_max_normalized < 0.0
+        ):
+            raise ValueError(
+                "Front force-balance scale and contact-position margin, "
+                "scale, and cap must be non-negative."
+            )
         if (
             result.rear_normal_overload_n <= 0.0
             or result.rear_normal_scale_n <= 0.0
@@ -134,11 +226,41 @@ class IsaacRolloutLoadLimits:
         return result
 
 
+def base_height_drop_cost(
+    base_position_error: torch.Tensor,
+    margin_m: float,
+) -> torch.Tensor:
+    """Penalize only downward base error beyond a protected height margin."""
+
+    if base_position_error.ndim != 2 or base_position_error.shape[1] != 3:
+        raise ValueError("base_position_error must have shape [batch,3].")
+    if margin_m < 0.0:
+        raise ValueError("margin_m must be non-negative.")
+    return torch.relu(
+        -base_position_error[:, 2] - margin_m
+    ).square()
+
+
+def rear_leg_position_cost(joint_position_error: torch.Tensor) -> torch.Tensor:
+    """Track the rear legs in type-grouped policy joint order."""
+
+    if (
+        joint_position_error.ndim != 2
+        or joint_position_error.shape[1] != 12
+    ):
+        raise ValueError(
+            "joint_position_error must have shape [batch,12]."
+        )
+    rear_leg_indices = (2, 3, 6, 7, 10, 11)
+    return joint_position_error[:, rear_leg_indices].square().mean(dim=-1)
+
+
 def load_support_cost_terms(
     contact_force_w: torch.Tensor,
     desired_contact: torch.Tensor,
     contact_force_threshold_n: float,
     limits: IsaacRolloutLoadLimits,
+    wheel_position_error_w: torch.Tensor | None = None,
 ) -> dict[str, torch.Tensor]:
     """Return orientation-aware trunk/ground support penalties.
 
@@ -161,9 +283,62 @@ def load_support_cost_terms(
     front_deficit = torch.relu(
         limits.front_normal_min_n - front_normal
     ) / front_denominator
+    front_deficit_cost = (
+        front_deficit.pow(limits.front_normal_deficit_power)
+        * desired_front
+    )
+    front_normal_support_mean = (
+        front_deficit_cost.sum(dim=-1)
+        / desired_front.sum(dim=-1).clamp_min(1.0)
+    )
+    front_normal_support_worst = front_deficit_cost.max(dim=-1).values
     front_normal_support = (
-        front_deficit.square() * desired_front
-    ).sum(dim=-1) / desired_front.sum(dim=-1).clamp_min(1.0)
+        (1.0 - limits.front_support_worst_fraction)
+        * front_normal_support_mean
+        + limits.front_support_worst_fraction
+        * front_normal_support_worst
+    )
+    if limits.front_force_balance_scale_n > 0.0:
+        # A force deficit already asks each desired front contact to carry the
+        # minimum load, but a low-ESS MPPI solve can still settle on one strong
+        # and one weak front wheel.  Add a bounded balance proxy only while
+        # both front wheels are scheduled as support; single-front swing
+        # phases must remain free to unload the moving limb.
+        front_imbalance = torch.clamp(
+            (front_normal[:, 0] - front_normal[:, 1])
+            / limits.front_force_balance_scale_n,
+            min=-1.0,
+            max=1.0,
+        ).square()
+        both_front_desired = torch.all(desired_contact[:, :2], dim=-1).float()
+        front_normal_support = (
+            front_normal_support + front_imbalance * both_front_desired
+        )
+    if limits.front_contact_position_scale_m > 0.0:
+        if (
+            wheel_position_error_w is None
+            or wheel_position_error_w.shape != contact_force_w.shape
+        ):
+            raise ValueError(
+                "wheel_position_error_w must have shape [batch,4,3] when "
+                "front contact-position support is enabled."
+            )
+        # The trunk is on the +world-X side of the robot.  A negative front
+        # wheel X error is therefore detachment, not harmless tangential slip.
+        # Gate the smooth geometric proxy by the kinematic contact schedule so
+        # the deliberate 8 mm front swing remains unpenalized.
+        front_detachment = torch.relu(
+            -wheel_position_error_w[:, :2, 0]
+            - limits.front_contact_position_margin_m
+        ) / limits.front_contact_position_scale_m
+        if limits.front_contact_position_max_normalized > 0.0:
+            front_detachment = torch.clamp(
+                front_detachment,
+                max=limits.front_contact_position_max_normalized,
+            )
+        front_normal_support = front_normal_support + (
+            front_detachment.square() * desired_front
+        ).sum(dim=-1) / desired_front.sum(dim=-1).clamp_min(1.0)
 
     rear_overload = torch.relu(
         rear_normal - limits.rear_normal_overload_n
@@ -430,11 +605,16 @@ class IsaacMPPIRolloutCloner:
         self.base.sim.step(render=False)
         self.base.scene.update(dt=self.base.physics_dt)
 
-    def restore(self, snapshot: IsaacRolloutSnapshot) -> None:
-        self._clear_contact_warm_start(snapshot)
+    def _restore_snapshot_state_and_buffers(
+        self,
+        snapshot: IsaacRolloutSnapshot,
+        *,
+        forward_after_state_write: bool = True,
+    ) -> None:
         repeated_state = _tree_repeat(snapshot.scene_state_relative, self.num_envs)
         self.base.scene.reset_to(repeated_state, env_ids=self.env_ids, is_relative=True)
-        self.base.sim.forward()
+        if forward_after_state_write:
+            self.base.sim.forward()
         # Refresh lazy articulation/body buffers after the direct tensor write.
         self.base.scene.update(dt=0.0)
 
@@ -465,6 +645,49 @@ class IsaacMPPIRolloutCloner:
         delay_queue = snapshot.action_delay_queue.repeat(1, self.num_envs, 1)
         self.adapter.action_delay_queue.copy_(delay_queue)
         self.base._sim_step_counter = snapshot.sim_step_counter
+
+    def restore(
+        self,
+        snapshot: IsaacRolloutSnapshot,
+        *,
+        clear_contact_warm_start: bool = True,
+        forward_after_state_write: bool = True,
+        contact_prime_substeps: int = 0,
+    ) -> None:
+        """Restore explicit state and optionally prime deterministic contacts.
+
+        Direct PhysX tensor writes cannot restore opaque solver impulses.  A
+        cold contact pair measurably changes the front normal load on the next
+        real control step.  Priming advances the already-processed snapshot
+        action for a small number of physics substeps, then restores every
+        explicit state and manager/sensor buffer once more without destroying
+        the newly-built contact pairs.
+        """
+
+        contact_prime_substeps = int(contact_prime_substeps)
+        if contact_prime_substeps < 0:
+            raise ValueError("contact_prime_substeps must be non-negative.")
+        if contact_prime_substeps and not clear_contact_warm_start:
+            raise ValueError(
+                "contact priming requires a cold contact restore."
+            )
+        if clear_contact_warm_start:
+            self._clear_contact_warm_start(snapshot)
+        self._restore_snapshot_state_and_buffers(
+            snapshot,
+            forward_after_state_write=forward_after_state_write,
+        )
+        for _ in range(contact_prime_substeps):
+            self.base._sim_step_counter += 1
+            self.base.action_manager.apply_action()
+            self.base.scene.write_data_to_sim()
+            self.base.sim.step(render=False)
+            self.base.scene.update(dt=self.base.physics_dt)
+        if contact_prime_substeps:
+            self._restore_snapshot_state_and_buffers(
+                snapshot,
+                forward_after_state_write=forward_after_state_write,
+            )
 
     def _physics_step(self, action16: torch.Tensor) -> None:
         if action16.shape != (self.num_envs, 16):
@@ -554,6 +777,9 @@ class IsaacMPPIRolloutCloner:
         candidates_leg: torch.Tensor,
         snapshot: IsaacRolloutSnapshot,
         nominal_leg: torch.Tensor,
+        *,
+        action_residual_weight: float | None = None,
+        base_orientation_cost_multiplier: float = 1.0,
     ) -> torch.Tensor:
         if candidates_leg.shape != (self.num_envs, self.horizon, 12):
             raise ValueError(
@@ -567,6 +793,29 @@ class IsaacMPPIRolloutCloner:
 
         self.restore(snapshot)
         weights = self.cost_weights
+        effective_action_residual_weight = (
+            weights.action_residual
+            if action_residual_weight is None
+            else float(action_residual_weight)
+        )
+        if (
+            not np.isfinite(effective_action_residual_weight)
+            or effective_action_residual_weight < 0.0
+        ):
+            raise ValueError(
+                "action_residual_weight must be finite and non-negative."
+            )
+        effective_base_orientation_cost_multiplier = float(
+            base_orientation_cost_multiplier
+        )
+        if (
+            not np.isfinite(effective_base_orientation_cost_multiplier)
+            or effective_base_orientation_cost_multiplier < 1.0
+        ):
+            raise ValueError(
+                "base_orientation_cost_multiplier must be finite and at "
+                "least 1.0."
+            )
         totals = torch.zeros(self.num_envs, dtype=torch.float32, device=self.device)
         alive = torch.ones(self.num_envs, dtype=torch.bool, device=self.device)
         previous_action = snapshot.previous_commanded_action[:, :12].expand(
@@ -616,13 +865,44 @@ class IsaacMPPIRolloutCloner:
             )
             orientation_error = _quat_angle(actual_anchor_quat, target_anchor_quat)
             add("base_position", base_pos_cost, weights.base_position, active)
-            add("base_orientation", orientation_error.square(), weights.base_orientation, active)
+            add(
+                "base_position",
+                base_height_drop_cost(
+                    base_pos_error,
+                    self.load_limits.base_height_drop_margin_m,
+                ),
+                weights.base_height_drop,
+                (
+                    active
+                    if (
+                        self.load_limits.base_height_drop_stop_frame <= 0.0
+                        or frame
+                        < self.load_limits.base_height_drop_stop_frame
+                    )
+                    else torch.zeros_like(active)
+                ),
+            )
+            add(
+                "base_orientation",
+                orientation_error.square(),
+                (
+                    weights.base_orientation
+                    * effective_base_orientation_cost_multiplier
+                ),
+                active,
+            )
 
             q = self.robot.data.joint_pos[:, self.joint_ids]
             dq = self.robot.data.joint_vel[:, self.joint_ids]
             q_error = q[:, :12] - target["joint_pos"][:12]
             dq_error = dq[:, :12] - target["joint_vel"][:12]
             add("joint_position", q_error.square().mean(dim=-1), weights.joint_position, active)
+            add(
+                "rear_leg_position",
+                rear_leg_position_cost(q_error),
+                weights.rear_leg_position,
+                active,
+            )
             add("joint_velocity", dq_error.square().mean(dim=-1), weights.joint_velocity, active)
 
             wheel_pos_local = (
@@ -640,6 +920,16 @@ class IsaacMPPIRolloutCloner:
                 weights.lateral_velocity,
                 active,
             )
+            add(
+                "lateral_position",
+                base_pos_error[:, 1].square(),
+                weights.lateral_position,
+                (
+                    active
+                    if frame >= self.load_limits.lateral_position_start_frame
+                    else torch.zeros_like(active)
+                ),
+            )
             add("box_x_drift", base_pos_error[:, 0].square(), weights.box_x_drift, active)
 
             contact_force = self.adapter.contact_sensor.data.net_forces_w[:, self.contact_body_ids]
@@ -651,6 +941,7 @@ class IsaacMPPIRolloutCloner:
                 desired_contact,
                 self.contact_force_threshold,
                 self.load_limits,
+                wheel_position_error_w=wheel_error,
             )
             slip_error = (wheel_lin_vel[..., :2] - target_wheel_lin_vel[None, :, :2]).square().sum(dim=-1)
             slip_cost = (slip_error * measured_contact.float()).mean(dim=-1)
@@ -689,7 +980,12 @@ class IsaacMPPIRolloutCloner:
             residual = leg_action - nominal_leg[horizon_step]
             action_rate = leg_action - previous_action
             joint_acceleration = (dq - previous_dq) / float(self.base.step_dt)
-            add("action_residual", residual.square().mean(dim=-1), weights.action_residual, active)
+            add(
+                "action_residual",
+                residual.square().mean(dim=-1),
+                effective_action_residual_weight,
+                active,
+            )
             add("action_rate", action_rate.square().mean(dim=-1), weights.action_rate, active)
             add(
                 "joint_acceleration",
@@ -768,12 +1064,31 @@ class IsaacMPPIRolloutCloner:
         self,
         candidates_leg: torch.Tensor,
         nominal_leg: torch.Tensor,
+        *,
+        action_residual_weight: float | None = None,
+        base_orientation_cost_multiplier: float = 1.0,
     ) -> dict[str, Any]:
         snapshot = self.capture()
         try:
-            first_cost = self.evaluate(candidates_leg, snapshot, nominal_leg).clone()
+            first_cost = self.evaluate(
+                candidates_leg,
+                snapshot,
+                nominal_leg,
+                action_residual_weight=action_residual_weight,
+                base_orientation_cost_multiplier=(
+                    base_orientation_cost_multiplier
+                ),
+            ).clone()
             first_state = self.state_vector().clone()
-            second_cost = self.evaluate(candidates_leg, snapshot, nominal_leg).clone()
+            second_cost = self.evaluate(
+                candidates_leg,
+                snapshot,
+                nominal_leg,
+                action_residual_weight=action_residual_weight,
+                base_orientation_cost_multiplier=(
+                    base_orientation_cost_multiplier
+                ),
+            ).clone()
             second_state = self.state_vector().clone()
             cost_abs = torch.abs(first_cost - second_cost)
             state_abs = torch.abs(first_state - second_state)
@@ -822,6 +1137,34 @@ class IsaacWholeBodyMPPIProvider:
         load_limits: IsaacRolloutLoadLimits | None = None,
         contact_force_threshold_n: float = 8.0,
         physical_target_rate_limit_rad_s: float | None = None,
+        nominal_action_reference_q_des_by_ref: dict[
+            int,
+            np.ndarray | torch.Tensor,
+        ]
+        | None = None,
+        nominal_action_reference_raw_by_ref: dict[
+            int,
+            np.ndarray | torch.Tensor,
+        ]
+        | None = None,
+        nominal_action_reference_overrides_by_ref: dict[
+            int,
+            dict[str, Any],
+        ]
+        | None = None,
+        nominal_joint_position_bias_leg: list[float] | tuple[float, ...] | torch.Tensor | None = None,
+        nominal_joint_position_bias_start_frame: int = 0,
+        nominal_joint_position_bias_ramp_frames: int = 0,
+        nominal_front_force_feedback_target_n: float = 0.0,
+        nominal_front_force_feedback_gain_leg: list[float] | tuple[float, ...] | torch.Tensor | None = None,
+        output_front_force_feedback_target_n: float = 0.0,
+        output_front_force_feedback_min_contact_n: float = 0.0,
+        output_front_force_feedback_lookahead_steps: int | None = None,
+        output_front_force_feedback_gain_leg: list[float] | tuple[float, ...] | torch.Tensor | None = None,
+        output_pitch_feedback_ref_ids: list[int] | tuple[int, ...] | None = None,
+        output_pitch_feedback_gain_leg: list[float] | tuple[float, ...] | torch.Tensor | None = None,
+        output_pitch_feedback_max_abs_rad: float = 0.0,
+        output_joint_position_offset_leg: list[float] | tuple[float, ...] | torch.Tensor | None = None,
     ):
         if adapter.num_envs != config.samples:
             raise ValueError(
@@ -848,6 +1191,382 @@ class IsaacWholeBodyMPPIProvider:
             contract.q_action_offset_runtime[:12], device=adapter.base.device
         )
         self.scale = torch.as_tensor(contract.scale[:12], device=adapter.base.device)
+        self.nominal_action_reference_q_des_by_ref: dict[
+            int,
+            torch.Tensor,
+        ] = {}
+        for ref_id, values in (
+            nominal_action_reference_q_des_by_ref or {}
+        ).items():
+            ref_id = int(ref_id)
+            if not 0 <= ref_id < len(references):
+                raise ValueError(
+                    "Nominal action reference ID is outside the active "
+                    f"reference bank: {ref_id}."
+                )
+            q_des = torch.as_tensor(
+                values,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            expected_shape = (references[ref_id].frames, 12)
+            if tuple(q_des.shape) != expected_shape:
+                raise ValueError(
+                    "Nominal action reference q_des shape mismatch for "
+                    f"ref {ref_id}: expected {expected_shape}, got "
+                    f"{tuple(q_des.shape)}."
+                )
+            if not torch.isfinite(q_des).all():
+                raise ValueError(
+                    f"Nominal action reference for ref {ref_id} contains "
+                    "NaN or Inf."
+                )
+            self.nominal_action_reference_q_des_by_ref[ref_id] = q_des
+        self.nominal_action_reference_raw_by_ref: dict[
+            int,
+            torch.Tensor,
+        ] = {}
+        for ref_id, values in (
+            nominal_action_reference_raw_by_ref or {}
+        ).items():
+            ref_id = int(ref_id)
+            if ref_id in self.nominal_action_reference_q_des_by_ref:
+                raise ValueError(
+                    "A reference ID cannot have both q_des and raw nominal "
+                    f"action references: ref {ref_id}."
+                )
+            if not 0 <= ref_id < len(references):
+                raise ValueError(
+                    "Nominal action reference ID is outside the active "
+                    f"reference bank: {ref_id}."
+                )
+            raw_action = torch.as_tensor(
+                values,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            expected_shape = (references[ref_id].frames, 12)
+            if tuple(raw_action.shape) != expected_shape:
+                raise ValueError(
+                    "Nominal raw action reference shape mismatch for "
+                    f"ref {ref_id}: expected {expected_shape}, got "
+                    f"{tuple(raw_action.shape)}."
+                )
+            if not torch.isfinite(raw_action).all():
+                raise ValueError(
+                    f"Nominal raw action reference for ref {ref_id} contains "
+                    "NaN or Inf."
+                )
+            if bool(
+                torch.any(raw_action < self.raw_min).item()
+                or torch.any(raw_action > self.raw_max).item()
+            ):
+                raise ValueError(
+                    f"Nominal raw action reference for ref {ref_id} exceeds "
+                    "the frozen raw-action bounds."
+                )
+            self.nominal_action_reference_raw_by_ref[ref_id] = raw_action
+        self.nominal_action_reference_overrides_by_ref: dict[
+            int,
+            dict[str, Any],
+        ] = {}
+        for ref_id, override in (
+            nominal_action_reference_overrides_by_ref or {}
+        ).items():
+            ref_id = int(ref_id)
+            if (
+                ref_id not in self.nominal_action_reference_q_des_by_ref
+                and ref_id not in self.nominal_action_reference_raw_by_ref
+            ):
+                raise ValueError(
+                    "Nominal action solver overrides require an action "
+                    f"reference for ref {ref_id}."
+                )
+            self.nominal_action_reference_overrides_by_ref[ref_id] = (
+                normalize_nominal_solver_overrides(override)
+            )
+        if nominal_joint_position_bias_leg is None:
+            self.nominal_joint_position_bias_leg = torch.zeros(
+                12,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+        else:
+            self.nominal_joint_position_bias_leg = torch.as_tensor(
+                nominal_joint_position_bias_leg,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            if self.nominal_joint_position_bias_leg.shape != (12,):
+                raise ValueError(
+                    "nominal_joint_position_bias_leg must contain 12 physical "
+                    "joint-position offsets."
+                )
+        if not torch.isfinite(self.nominal_joint_position_bias_leg).all():
+            raise ValueError(
+                "nominal_joint_position_bias_leg contains NaN or Inf."
+            )
+        self.nominal_joint_position_bias_start_frame = int(
+            nominal_joint_position_bias_start_frame
+        )
+        self.nominal_joint_position_bias_ramp_frames = int(
+            nominal_joint_position_bias_ramp_frames
+        )
+        if self.nominal_joint_position_bias_start_frame < 0:
+            raise ValueError(
+                "nominal_joint_position_bias_start_frame must be non-negative."
+            )
+        if self.nominal_joint_position_bias_ramp_frames < 0:
+            raise ValueError(
+                "nominal_joint_position_bias_ramp_frames must be non-negative."
+            )
+        self.nominal_front_force_feedback_target_n = float(
+            nominal_front_force_feedback_target_n
+        )
+        if (
+            not np.isfinite(self.nominal_front_force_feedback_target_n)
+            or self.nominal_front_force_feedback_target_n < 0.0
+        ):
+            raise ValueError(
+                "nominal_front_force_feedback_target_n must be finite and "
+                "non-negative."
+            )
+        if self.nominal_action_reference_raw_by_ref and (
+            bool(torch.any(self.nominal_joint_position_bias_leg != 0.0).item())
+            or self.nominal_front_force_feedback_target_n != 0.0
+        ):
+            raise ValueError(
+                "Raw nominal action references require zero nominal physical "
+                "bias and zero nominal front-force feedback so their stored "
+                "float32 actions remain exact."
+            )
+        if nominal_front_force_feedback_gain_leg is None:
+            self.nominal_front_force_feedback_gain_leg = torch.zeros(
+                12,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+        else:
+            self.nominal_front_force_feedback_gain_leg = torch.as_tensor(
+                nominal_front_force_feedback_gain_leg,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            if self.nominal_front_force_feedback_gain_leg.shape != (12,):
+                raise ValueError(
+                    "nominal_front_force_feedback_gain_leg must contain 12 "
+                    "physical joint-position offsets."
+                )
+            if not torch.isfinite(
+                self.nominal_front_force_feedback_gain_leg
+            ).all():
+                raise ValueError(
+                    "nominal_front_force_feedback_gain_leg contains NaN or "
+                    "Inf."
+                )
+        rear_joint_indices = torch.as_tensor(
+            (2, 3, 6, 7, 10, 11),
+            device=adapter.base.device,
+        )
+        if torch.any(
+            self.nominal_front_force_feedback_gain_leg[
+                rear_joint_indices
+            ] != 0.0
+        ):
+            raise ValueError(
+                "nominal_front_force_feedback_gain_leg must be zero for all "
+                "rear-leg joints."
+            )
+        if (
+            self.nominal_front_force_feedback_target_n == 0.0
+            and torch.any(self.nominal_front_force_feedback_gain_leg != 0.0)
+        ):
+            raise ValueError(
+                "A positive nominal_front_force_feedback_target_n is required "
+                "when force-feedback gains are non-zero."
+            )
+        self.output_front_force_feedback_target_n = float(
+            output_front_force_feedback_target_n
+        )
+        if (
+            not np.isfinite(self.output_front_force_feedback_target_n)
+            or self.output_front_force_feedback_target_n < 0.0
+        ):
+            raise ValueError(
+                "output_front_force_feedback_target_n must be finite and "
+                "non-negative."
+            )
+        self.output_front_force_feedback_min_contact_n = float(
+            output_front_force_feedback_min_contact_n
+        )
+        if (
+            not np.isfinite(
+                self.output_front_force_feedback_min_contact_n
+            )
+            or self.output_front_force_feedback_min_contact_n < 0.0
+        ):
+            raise ValueError(
+                "output_front_force_feedback_min_contact_n must be finite "
+                "and non-negative."
+            )
+        feedback_lookahead = (
+            config.reference_action_lookahead_steps
+            if output_front_force_feedback_lookahead_steps is None
+            else output_front_force_feedback_lookahead_steps
+        )
+        if (
+            isinstance(feedback_lookahead, bool)
+            or not isinstance(feedback_lookahead, (int, np.integer))
+            or feedback_lookahead < 0
+        ):
+            raise ValueError(
+                "output_front_force_feedback_lookahead_steps must be a "
+                "non-negative integer."
+            )
+        self.output_front_force_feedback_lookahead_steps = int(
+            feedback_lookahead
+        )
+        if output_front_force_feedback_gain_leg is None:
+            self.output_front_force_feedback_gain_leg = torch.zeros(
+                12,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+        else:
+            self.output_front_force_feedback_gain_leg = torch.as_tensor(
+                output_front_force_feedback_gain_leg,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            if self.output_front_force_feedback_gain_leg.shape != (12,):
+                raise ValueError(
+                    "output_front_force_feedback_gain_leg must contain 12 "
+                    "physical joint-position offsets."
+                )
+            if not torch.isfinite(
+                self.output_front_force_feedback_gain_leg
+            ).all():
+                raise ValueError(
+                    "output_front_force_feedback_gain_leg contains NaN or "
+                    "Inf."
+                )
+        if torch.any(
+            self.output_front_force_feedback_gain_leg[
+                rear_joint_indices
+            ] != 0.0
+        ):
+            raise ValueError(
+                "output_front_force_feedback_gain_leg must be zero for all "
+                "rear-leg joints."
+            )
+        if (
+            self.output_front_force_feedback_target_n == 0.0
+            and torch.any(self.output_front_force_feedback_gain_leg != 0.0)
+        ):
+            raise ValueError(
+                "A positive output_front_force_feedback_target_n is required "
+                "when output force-feedback gains are non-zero."
+            )
+        raw_pitch_feedback_ref_ids = tuple(
+            output_pitch_feedback_ref_ids or ()
+        )
+        if any(
+            isinstance(ref_id, bool)
+            or not isinstance(ref_id, (int, np.integer))
+            for ref_id in raw_pitch_feedback_ref_ids
+        ):
+            raise ValueError(
+                "output_pitch_feedback_ref_ids must contain only integer "
+                "reference IDs."
+            )
+        pitch_feedback_ref_ids = tuple(
+            int(ref_id) for ref_id in raw_pitch_feedback_ref_ids
+        )
+        if len(set(pitch_feedback_ref_ids)) != len(
+            pitch_feedback_ref_ids
+        ):
+            raise ValueError(
+                "output_pitch_feedback_ref_ids must not contain duplicates."
+            )
+        if any(
+            not 0 <= ref_id < len(references)
+            for ref_id in pitch_feedback_ref_ids
+        ):
+            raise ValueError(
+                "output_pitch_feedback_ref_ids contains an ID outside the "
+                "active reference bank."
+            )
+        self.output_pitch_feedback_ref_ids = frozenset(
+            pitch_feedback_ref_ids
+        )
+        if output_pitch_feedback_gain_leg is None:
+            self.output_pitch_feedback_gain_leg = torch.zeros(
+                12,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+        else:
+            self.output_pitch_feedback_gain_leg = torch.as_tensor(
+                output_pitch_feedback_gain_leg,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            if self.output_pitch_feedback_gain_leg.shape != (12,):
+                raise ValueError(
+                    "output_pitch_feedback_gain_leg must contain 12 "
+                    "physical joint-position gains."
+                )
+            if not torch.isfinite(
+                self.output_pitch_feedback_gain_leg
+            ).all():
+                raise ValueError(
+                    "output_pitch_feedback_gain_leg contains NaN or Inf."
+                )
+        self.output_pitch_feedback_max_abs_rad = float(
+            output_pitch_feedback_max_abs_rad
+        )
+        if (
+            not np.isfinite(self.output_pitch_feedback_max_abs_rad)
+            or self.output_pitch_feedback_max_abs_rad < 0.0
+        ):
+            raise ValueError(
+                "output_pitch_feedback_max_abs_rad must be finite and "
+                "non-negative."
+            )
+        if torch.any(self.output_pitch_feedback_gain_leg != 0.0):
+            if not self.output_pitch_feedback_ref_ids:
+                raise ValueError(
+                    "Non-zero output pitch-feedback gains require at least "
+                    "one output_pitch_feedback_ref_id."
+                )
+            if self.output_pitch_feedback_max_abs_rad == 0.0:
+                raise ValueError(
+                    "Non-zero output pitch-feedback gains require a positive "
+                    "output_pitch_feedback_max_abs_rad."
+                )
+        if output_joint_position_offset_leg is None:
+            self.output_joint_position_offset_leg = torch.zeros(
+                12,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+        else:
+            self.output_joint_position_offset_leg = torch.as_tensor(
+                output_joint_position_offset_leg,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            if self.output_joint_position_offset_leg.shape != (12,):
+                raise ValueError(
+                    "output_joint_position_offset_leg must contain 12 "
+                    "physical joint-position offsets."
+                )
+            if not torch.isfinite(
+                self.output_joint_position_offset_leg
+            ).all():
+                raise ValueError(
+                    "output_joint_position_offset_leg contains NaN or Inf."
+                )
         if physical_target_rate_limit_rad_s is None:
             self.max_delta = torch.as_tensor(
                 contract.max_raw_delta_per_step[:12],
@@ -864,10 +1583,12 @@ class IsaacWholeBodyMPPIProvider:
             )
             self.max_delta = maximum_physical_delta / self.scale
         self._warm_residual: torch.Tensor | None = None
+        self._active_solver_schedule_phase_by_ref: dict[int, int] = {}
         self.last_diagnostics: dict[str, Any] = {}
 
     def reset(self, episode_metadata: dict[str, Any] | None = None) -> None:
         self._warm_residual = None
+        self._active_solver_schedule_phase_by_ref = {}
         self.last_diagnostics = {}
         episode_seed = int((episode_metadata or {}).get("seed", 0))
         self.optimizer.reset_seed(self.config.seed + episode_seed)
@@ -882,12 +1603,382 @@ class IsaacWholeBodyMPPIProvider:
             + np.arange(self.config.horizon),
             reference.frames - 1,
         )
-        q_ref = torch.as_tensor(
-            reference.joint_pos[frames, :12],
+        raw_action_reference = (
+            self.nominal_action_reference_raw_by_ref.get(request.ref_id)
+        )
+        if raw_action_reference is not None:
+            return raw_action_reference[
+                torch.as_tensor(
+                    frames,
+                    dtype=torch.long,
+                    device=self.adapter.base.device,
+                )
+            ]
+        action_reference = (
+            self.nominal_action_reference_q_des_by_ref.get(request.ref_id)
+        )
+        if action_reference is None:
+            q_ref = torch.as_tensor(
+                reference.joint_pos[frames, :12],
+                dtype=torch.float32,
+                device=self.adapter.base.device,
+            )
+        else:
+            q_ref = action_reference[
+                torch.as_tensor(
+                    frames,
+                    dtype=torch.long,
+                    device=self.adapter.base.device,
+                )
+            ]
+        if self.nominal_joint_position_bias_ramp_frames == 0:
+            bias_factor = torch.as_tensor(
+                frames >= self.nominal_joint_position_bias_start_frame,
+                dtype=torch.float32,
+                device=self.adapter.base.device,
+            )
+        else:
+            bias_factor = torch.as_tensor(
+                (
+                    frames - self.nominal_joint_position_bias_start_frame
+                )
+                / self.nominal_joint_position_bias_ramp_frames,
+                dtype=torch.float32,
+                device=self.adapter.base.device,
+            ).clamp_(0.0, 1.0)
+        q_ref = q_ref + (
+            bias_factor.unsqueeze(-1) * self.nominal_joint_position_bias_leg
+        )
+        if self.nominal_front_force_feedback_target_n > 0.0:
+            front_normal = torch.abs(
+                self.adapter.contact_sensor.data.net_forces_w[
+                    0,
+                    self.adapter.contact_body_ids[:2],
+                    0,
+                ]
+            )
+            force_deficit = torch.clamp(
+                (
+                    self.nominal_front_force_feedback_target_n
+                    - front_normal
+                )
+                / self.nominal_front_force_feedback_target_n,
+                min=0.0,
+                max=1.0,
+            )
+            desired_front = torch.as_tensor(
+                self.adapter.contact_schedules[request.ref_id][frames, :2],
+                dtype=torch.float32,
+                device=self.adapter.base.device,
+            )
+            feedback_factor = torch.zeros(
+                (self.config.horizon, 12),
+                dtype=torch.float32,
+                device=self.adapter.base.device,
+            )
+            for front_index, joint_indices in enumerate(
+                ((0, 4, 8), (1, 5, 9))
+            ):
+                feedback_factor[:, joint_indices] = (
+                    desired_front[:, front_index : front_index + 1]
+                    * force_deficit[front_index]
+                )
+            q_ref = q_ref + (
+                feedback_factor
+                * self.nominal_front_force_feedback_gain_leg
+            )
+        return (q_ref - self.offset) / self.scale
+
+    def _apply_output_front_force_feedback(
+        self,
+        selected_leg: torch.Tensor,
+        nominal_leg: torch.Tensor,
+        request: ExpertRequest,
+        previous_action: torch.Tensor,
+    ) -> tuple[torch.Tensor, dict[str, Any]]:
+        """Apply measured front-load correction to the selected raw action.
+
+        Proposal centring alone does not guarantee that the finite-sample MPPI
+        solve executes the desired correction.  This final correction is
+        therefore deterministic, contact-schedule gated, and projected back
+        through the same raw bounds and per-step target-rate limits used by the
+        optimizer.  The caller still appends four exact-zero wheel actions.
+        """
+
+        if self.output_front_force_feedback_target_n == 0.0:
+            return selected_leg, {
+                "enabled": False,
+                "front_normal_n": [0.0, 0.0],
+                "desired_front_contact": [False, False],
+                "measured_front_contact": [False, False],
+                "force_deficit_fraction": [0.0, 0.0],
+                "requested_correction_rad": [0.0] * 12,
+                "absolute_feedback_limit_rad": [0.0] * 12,
+                "applied_correction_rad": [0.0] * 12,
+            }
+
+        front_normal = torch.abs(
+            self.adapter.contact_sensor.data.net_forces_w[
+                0,
+                self.adapter.contact_body_ids[:2],
+                0,
+            ]
+        )
+        force_deficit = torch.clamp(
+            (
+                self.output_front_force_feedback_target_n
+                - front_normal
+            )
+            / self.output_front_force_feedback_target_n,
+            min=0.0,
+            max=1.0,
+        )
+        measured_front_contact = (
+            front_normal
+            >= self.output_front_force_feedback_min_contact_n
+        )
+        schedule = self.adapter.contact_schedules[request.ref_id]
+        schedule_frame = min(
+            request.ref_frame
+            + self.output_front_force_feedback_lookahead_steps
+            + self.adapter.action_delay_steps,
+            len(schedule) - 1,
+        )
+        desired_front = torch.as_tensor(
+            schedule[schedule_frame, :2],
             dtype=torch.float32,
             device=self.adapter.base.device,
         )
-        return (q_ref - self.offset) / self.scale
+        feedback_factor = torch.zeros(
+            12,
+            dtype=torch.float32,
+            device=self.adapter.base.device,
+        )
+        for front_index, joint_indices in enumerate(
+            ((0, 4, 8), (1, 5, 9))
+        ):
+            feedback_factor[list(joint_indices)] = (
+                desired_front[front_index]
+                * measured_front_contact[front_index].float()
+                * force_deficit[front_index]
+            )
+        requested_correction = (
+            feedback_factor * self.output_front_force_feedback_gain_leg
+        )
+        proposed_leg = selected_leg + requested_correction / self.scale
+        # A raw additive correction can otherwise integrate through the
+        # previous-action constraint after contact is lost: every new solve is
+        # allowed to add the same positive offset again.  Bound each corrected
+        # dimension by one full configured feedback offset from this solve's
+        # reference-centred nominal action.  This retains the measured local
+        # response direction without creating an unbounded position ramp.
+        full_offset_raw = (
+            self.output_front_force_feedback_gain_leg / self.scale
+        )
+        feedback_limit = nominal_leg + full_offset_raw
+        positive_gain = self.output_front_force_feedback_gain_leg > 0.0
+        negative_gain = self.output_front_force_feedback_gain_leg < 0.0
+        proposed_leg = torch.where(
+            positive_gain,
+            torch.maximum(
+                selected_leg,
+                torch.minimum(proposed_leg, feedback_limit),
+            ),
+            proposed_leg,
+        )
+        proposed_leg = torch.where(
+            negative_gain,
+            torch.minimum(
+                selected_leg,
+                torch.maximum(proposed_leg, feedback_limit),
+            ),
+            proposed_leg,
+        )
+        lower = torch.maximum(
+            self.raw_min,
+            previous_action - self.max_delta,
+        )
+        upper = torch.minimum(
+            self.raw_max,
+            previous_action + self.max_delta,
+        )
+        corrected_leg = torch.minimum(
+            torch.maximum(proposed_leg, lower),
+            upper,
+        )
+        applied_correction = self.scale * (corrected_leg - selected_leg)
+        diagnostics = {
+            "enabled": True,
+            "schedule_frame": schedule_frame,
+            "schedule_lookahead_steps": (
+                self.output_front_force_feedback_lookahead_steps
+            ),
+            "front_normal_n": front_normal.detach().cpu().tolist(),
+            "desired_front_contact": (
+                desired_front.to(dtype=torch.bool).detach().cpu().tolist()
+            ),
+            "measured_front_contact": (
+                measured_front_contact.detach().cpu().tolist()
+            ),
+            "force_deficit_fraction": force_deficit.detach().cpu().tolist(),
+            "requested_correction_rad": (
+                requested_correction.detach().cpu().tolist()
+            ),
+            "absolute_feedback_limit_rad": (
+                (self.offset + self.scale * feedback_limit)
+                .detach()
+                .cpu()
+                .tolist()
+            ),
+            "applied_correction_rad": (
+                applied_correction.detach().cpu().tolist()
+            ),
+        }
+        return corrected_leg, diagnostics
+
+    def _apply_output_joint_position_offset(
+        self,
+        selected_leg: torch.Tensor,
+        previous_action: torch.Tensor,
+    ) -> tuple[torch.Tensor, dict[str, Any]]:
+        """Apply a fixed physical target offset under the frozen action limits."""
+
+        if not torch.any(self.output_joint_position_offset_leg != 0.0):
+            return selected_leg, {
+                "enabled": False,
+                "requested_correction_rad": [0.0] * 12,
+                "applied_correction_rad": [0.0] * 12,
+            }
+        proposed_leg = (
+            selected_leg
+            + self.output_joint_position_offset_leg / self.scale
+        )
+        lower = torch.maximum(
+            self.raw_min,
+            previous_action - self.max_delta,
+        )
+        upper = torch.minimum(
+            self.raw_max,
+            previous_action + self.max_delta,
+        )
+        corrected_leg = torch.minimum(
+            torch.maximum(proposed_leg, lower),
+            upper,
+        )
+        applied_correction = self.scale * (
+            corrected_leg - selected_leg
+        )
+        return corrected_leg, {
+            "enabled": True,
+            "requested_correction_rad": (
+                self.output_joint_position_offset_leg.detach().cpu().tolist()
+            ),
+            "applied_correction_rad": (
+                applied_correction.detach().cpu().tolist()
+            ),
+        }
+
+    def _apply_output_pitch_feedback(
+        self,
+        selected_leg: torch.Tensor,
+        nominal_leg: torch.Tensor,
+        ref_id: int,
+        actual_quat_w: torch.Tensor,
+        target_quat_w: torch.Tensor,
+        previous_action: torch.Tensor,
+    ) -> tuple[torch.Tensor, dict[str, Any]]:
+        """Apply bounded state feedback for signed base-pitch error.
+
+        The correction is expressed in physical joint-position radians and is
+        capped relative to this solve's nominal action.  It therefore cannot
+        integrate through the previous-action rate constraint.  Raw bounds and
+        the same per-step physical target-rate limit used by MPPI are applied
+        again before returning.
+        """
+
+        configured = bool(
+            torch.any(self.output_pitch_feedback_gain_leg != 0.0).item()
+        )
+        active_for_ref = ref_id in self.output_pitch_feedback_ref_ids
+        if not configured or not active_for_ref:
+            return selected_leg, {
+                "enabled": False,
+                "configured": configured,
+                "active_for_ref": active_for_ref,
+                "signed_pitch_error_rad": 0.0,
+                "requested_correction_rad": [0.0] * 12,
+                "absolute_feedback_limit_rad": [0.0] * 12,
+                "applied_correction_rad": [0.0] * 12,
+            }
+
+        signed_pitch_error = _signed_pitch_error_rad(
+            actual_quat_w,
+            target_quat_w,
+        )
+        requested_correction = torch.clamp(
+            signed_pitch_error
+            * self.output_pitch_feedback_gain_leg,
+            min=-self.output_pitch_feedback_max_abs_rad,
+            max=self.output_pitch_feedback_max_abs_rad,
+        )
+        proposed_leg = selected_leg + requested_correction / self.scale
+        feedback_limit = nominal_leg + requested_correction / self.scale
+        positive_correction = requested_correction > 0.0
+        negative_correction = requested_correction < 0.0
+        proposed_leg = torch.where(
+            positive_correction,
+            torch.maximum(
+                selected_leg,
+                torch.minimum(proposed_leg, feedback_limit),
+            ),
+            proposed_leg,
+        )
+        proposed_leg = torch.where(
+            negative_correction,
+            torch.minimum(
+                selected_leg,
+                torch.maximum(proposed_leg, feedback_limit),
+            ),
+            proposed_leg,
+        )
+        lower = torch.maximum(
+            self.raw_min,
+            previous_action - self.max_delta,
+        )
+        upper = torch.minimum(
+            self.raw_max,
+            previous_action + self.max_delta,
+        )
+        corrected_leg = torch.minimum(
+            torch.maximum(proposed_leg, lower),
+            upper,
+        )
+        applied_correction = self.scale * (
+            corrected_leg - selected_leg
+        )
+        return corrected_leg, {
+            "enabled": True,
+            "configured": True,
+            "active_for_ref": True,
+            "signed_pitch_error_rad": float(
+                signed_pitch_error.detach().cpu().item()
+            ),
+            "max_abs_correction_rad": (
+                self.output_pitch_feedback_max_abs_rad
+            ),
+            "requested_correction_rad": (
+                requested_correction.detach().cpu().tolist()
+            ),
+            "absolute_feedback_limit_rad": (
+                (self.offset + self.scale * feedback_limit)
+                .detach()
+                .cpu()
+                .tolist()
+            ),
+            "applied_correction_rad": (
+                applied_correction.detach().cpu().tolist()
+            ),
+        }
 
     def __call__(self, request: ExpertRequest) -> ExpertReply:
         start = time.perf_counter()
@@ -897,7 +1988,62 @@ class IsaacWholeBodyMPPIProvider:
             nominal = self._nominal(request)
             previous_action = self.adapter.previous_commanded_action[0, :12].clone()
             initial = nominal
-            if self.config.warm_start and self._warm_residual is not None:
+            configured_reference_overrides = (
+                self.nominal_action_reference_overrides_by_ref.get(
+                    request.ref_id,
+                    {},
+                )
+            )
+            reference_overrides, solver_schedule_phase = (
+                resolve_nominal_solver_overrides(
+                    configured_reference_overrides,
+                    request.ref_frame,
+                )
+            )
+            solver_schedule_start_frame: int | None = None
+            solver_schedule_reset_warm_start = False
+            if solver_schedule_phase is not None:
+                phase = configured_reference_overrides[
+                    "solver_schedule"
+                ][solver_schedule_phase]
+                solver_schedule_start_frame = int(phase["start_frame"])
+                previous_phase = (
+                    self._active_solver_schedule_phase_by_ref.get(
+                        request.ref_id
+                    )
+                )
+                phase_changed = previous_phase != solver_schedule_phase
+                solver_schedule_reset_warm_start = bool(
+                    phase_changed
+                    and phase.get("reset_warm_start", False)
+                )
+                if solver_schedule_reset_warm_start:
+                    self._warm_residual = None
+                self._active_solver_schedule_phase_by_ref[
+                    request.ref_id
+                ] = solver_schedule_phase
+            effective_warm_start = bool(
+                reference_overrides.get(
+                    "warm_start",
+                    self.config.warm_start,
+                )
+            )
+            effective_selection_mode = str(
+                reference_overrides.get(
+                    "selection_mode",
+                    self.config.selection_mode,
+                )
+            )
+            action_residual_weight = reference_overrides.get(
+                "action_residual_weight"
+            )
+            base_orientation_cost_multiplier = float(
+                reference_overrides.get(
+                    "base_orientation_cost_multiplier",
+                    1.0,
+                )
+            )
+            if effective_warm_start and self._warm_residual is not None:
                 shifted = torch.cat(
                     (self._warm_residual[1:], self._warm_residual[-1:]),
                     dim=0,
@@ -907,16 +2053,55 @@ class IsaacWholeBodyMPPIProvider:
             snapshot = self.rollout.capture()
             sequence, optimizer_diagnostics = self.optimizer.optimize(
                 nominal,
-                lambda candidates: self.rollout.evaluate(candidates, snapshot, nominal),
+                lambda candidates: self.rollout.evaluate(
+                    candidates,
+                    snapshot,
+                    nominal,
+                    action_residual_weight=action_residual_weight,
+                    base_orientation_cost_multiplier=(
+                        base_orientation_cost_multiplier
+                    ),
+                ),
                 self.raw_min,
                 self.raw_max,
                 previous_action=previous_action,
                 max_delta=self.max_delta,
                 initial_sequence=initial,
+                selection_mode=effective_selection_mode,
             )
             self.rollout.restore(snapshot)
             self._warm_residual = (sequence - nominal).detach().clone()
             selected_leg = sequence[0]
+            selected_leg, output_force_feedback = (
+                self._apply_output_front_force_feedback(
+                    selected_leg,
+                    nominal[0],
+                    request,
+                    previous_action,
+                )
+            )
+            aligned_target = self.rollout._aligned_reference(
+                snapshot,
+                request.ref_frame,
+            )
+            selected_leg, output_pitch_feedback = (
+                self._apply_output_pitch_feedback(
+                    selected_leg,
+                    nominal[0],
+                    request.ref_id,
+                    self.rollout.command.robot_anchor_quat_w[0],
+                    aligned_target["body_quat"][
+                        self.rollout.ref_anchor_body_id
+                    ],
+                    previous_action,
+                )
+            )
+            selected_leg, output_joint_offset = (
+                self._apply_output_joint_position_offset(
+                    selected_leg,
+                    previous_action,
+                )
+            )
             action16_t = torch.cat(
                 (selected_leg, torch.zeros(4, device=selected_leg.device)),
                 dim=0,
@@ -938,6 +2123,26 @@ class IsaacWholeBodyMPPIProvider:
                 "rollout_termination_rate": self.rollout.last_termination_rate,
                 "ref_id": request.ref_id,
                 "ref_frame": request.ref_frame,
+                "output_front_force_feedback": output_force_feedback,
+                "output_pitch_feedback": output_pitch_feedback,
+                "output_joint_position_offset": output_joint_offset,
+                "effective_warm_start": effective_warm_start,
+                "effective_selection_mode": effective_selection_mode,
+                "effective_action_residual_weight": (
+                    self.rollout.cost_weights.action_residual
+                    if action_residual_weight is None
+                    else float(action_residual_weight)
+                ),
+                "effective_base_orientation_cost_multiplier": (
+                    base_orientation_cost_multiplier
+                ),
+                "solver_schedule_phase": solver_schedule_phase,
+                "solver_schedule_start_frame": (
+                    solver_schedule_start_frame
+                ),
+                "solver_schedule_reset_warm_start": (
+                    solver_schedule_reset_warm_start
+                ),
             }
             status = "MPPI_VALID"
             reply_diagnostics = {

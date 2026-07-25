@@ -66,6 +66,10 @@ def main() -> dict:
     )
     from lateral_mppi_dagger.expert.mppi_expert import MPPIConfig, ReferenceCenteredMPPI
     from lateral_mppi_dagger.reference.loader import ReferenceSet
+    from lateral_mppi_dagger.reference.action_reference import (
+        load_nominal_action_references,
+        resolve_nominal_solver_overrides,
+    )
 
     mppi_yaml = load_yaml(args_cli.mppi_config)
     contract = load_contract()
@@ -75,6 +79,14 @@ def main() -> dict:
     )
     action_contract = ActionContract.from_dict(contract)
     action_adapter = Action16Adapter(action_contract)
+    (
+        nominal_action_reference_q_des_by_ref,
+        nominal_action_reference_raw_by_ref,
+        nominal_action_reference_overrides_by_ref,
+        nominal_action_reference_record,
+    ) = load_nominal_action_references(
+        mppi_yaml.get("nominal_action_reference")
+    )
     mppi_config = MPPIConfig(
         horizon=args_cli.horizon,
         samples=args_cli.samples,
@@ -128,6 +140,60 @@ def main() -> dict:
             if mppi_yaml.get("physical_target_rate_limit_rad_s") is not None
             else None
         ),
+        nominal_action_reference_q_des_by_ref=(
+            nominal_action_reference_q_des_by_ref
+        ),
+        nominal_action_reference_raw_by_ref=(
+            nominal_action_reference_raw_by_ref
+        ),
+        nominal_action_reference_overrides_by_ref=(
+            nominal_action_reference_overrides_by_ref
+        ),
+        nominal_joint_position_bias_leg=mppi_yaml.get(
+            "nominal_joint_position_bias_leg"
+        ),
+        nominal_joint_position_bias_start_frame=int(
+            mppi_yaml.get("nominal_joint_position_bias_start_frame", 0)
+        ),
+        nominal_joint_position_bias_ramp_frames=int(
+            mppi_yaml.get("nominal_joint_position_bias_ramp_frames", 0)
+        ),
+        nominal_front_force_feedback_target_n=float(
+            mppi_yaml.get("nominal_front_force_feedback_target_n", 0.0)
+        ),
+        nominal_front_force_feedback_gain_leg=mppi_yaml.get(
+            "nominal_front_force_feedback_gain_leg"
+        ),
+        output_front_force_feedback_target_n=float(
+            mppi_yaml.get("output_front_force_feedback_target_n", 0.0)
+        ),
+        output_front_force_feedback_min_contact_n=float(
+            mppi_yaml.get(
+                "output_front_force_feedback_min_contact_n",
+                0.0,
+            )
+        ),
+        output_front_force_feedback_lookahead_steps=mppi_yaml.get(
+            "output_front_force_feedback_lookahead_steps"
+        ),
+        output_front_force_feedback_gain_leg=mppi_yaml.get(
+            "output_front_force_feedback_gain_leg"
+        ),
+        output_pitch_feedback_ref_ids=mppi_yaml.get(
+            "output_pitch_feedback_ref_ids"
+        ),
+        output_pitch_feedback_gain_leg=mppi_yaml.get(
+            "output_pitch_feedback_gain_leg"
+        ),
+        output_pitch_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_pitch_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_joint_position_offset_leg=mppi_yaml.get(
+            "output_joint_position_offset_leg"
+        ),
     )
 
     try:
@@ -180,11 +246,47 @@ def main() -> dict:
         )
 
         snapshot = provider.rollout.capture()
+        configured_reference_overrides = (
+            nominal_action_reference_overrides_by_ref.get(
+                args_cli.ref_id,
+                {},
+            )
+        )
+        reference_overrides, solver_schedule_phase = (
+            resolve_nominal_solver_overrides(
+                configured_reference_overrides,
+                request.ref_frame,
+            )
+        )
+        solver_schedule_start_frame = None
+        if solver_schedule_phase is not None:
+            solver_schedule_start_frame = int(
+                configured_reference_overrides["solver_schedule"][
+                    solver_schedule_phase
+                ]["start_frame"]
+            )
+        action_residual_weight = reference_overrides.get(
+            "action_residual_weight"
+        )
+        base_orientation_cost_multiplier = float(
+            reference_overrides.get(
+                "base_orientation_cost_multiplier",
+                1.0,
+            )
+        )
         before = provider.rollout.state_vector()[0].clone()
         before_delay_queue = adapter.action_delay_queue.clone()
         before_previous_command = adapter.previous_commanded_action.clone()
         before_platform_pose = adapter.platform.data.root_pose_w.clone()
-        costs = provider.rollout.evaluate(candidates, snapshot, nominal)
+        costs = provider.rollout.evaluate(
+            candidates,
+            snapshot,
+            nominal,
+            action_residual_weight=action_residual_weight,
+            base_orientation_cost_multiplier=(
+                base_orientation_cost_multiplier
+            ),
+        )
         provider.rollout.restore(snapshot)
         after = provider.rollout.state_vector()[0].clone()
         delay_queue_round_trip = float(
@@ -207,7 +309,14 @@ def main() -> dict:
         round_trip_max_abs = float(torch.max(torch.abs(before - after)).item())
         clone_state = provider.rollout.state_vector()
         clone_spread_max_abs = float(torch.max(torch.abs(clone_state - clone_state[0:1])).item())
-        determinism = provider.rollout.probe_determinism(candidates, nominal)
+        determinism = provider.rollout.probe_determinism(
+            candidates,
+            nominal,
+            action_residual_weight=action_residual_weight,
+            base_orientation_cost_multiplier=(
+                base_orientation_cost_multiplier
+            ),
+        )
         rollout_action16 = torch.cat(
             (
                 candidates,
@@ -250,6 +359,31 @@ def main() -> dict:
             "seed": args_cli.seed,
             "ref_id": args_cli.ref_id,
             "scenario": scenario_profile.metadata(),
+            "reference_bridge": dict(adapter.reference_bridge),
+            "nominal_action_reference": nominal_action_reference_record,
+            "effective_action_residual_weight": (
+                provider.rollout.cost_weights.action_residual
+                if action_residual_weight is None
+                else float(action_residual_weight)
+            ),
+            "effective_base_orientation_cost_multiplier": (
+                base_orientation_cost_multiplier
+            ),
+            "effective_selection_mode": str(
+                reference_overrides.get(
+                    "selection_mode",
+                    mppi_config.selection_mode,
+                )
+            ),
+            "effective_warm_start": bool(
+                reference_overrides.get(
+                    "warm_start",
+                    mppi_config.warm_start,
+                )
+            ),
+            "solver_schedule_phase": solver_schedule_phase,
+            "solver_schedule_start_frame": solver_schedule_start_frame,
+            "validated_reference_frame": int(request.ref_frame),
             "action_delay_steps": adapter.action_delay_steps,
             "platform_position_jitter_m_sampled": list(adapter._platform_jitter),
             "reset_reference_max_abs": reset_reference_max_abs,

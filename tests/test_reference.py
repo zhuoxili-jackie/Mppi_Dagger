@@ -46,7 +46,7 @@ def test_derived_standing_reference_matches_isaac_command_semantics() -> None:
 
 def test_low_load_reference_is_small_stride_frequency_scaled_crawl() -> None:
     references = ReferenceSet.from_config(
-        "configs/reference_low_load_v1.yaml"
+        "configs/low_load_lateral/train_001/reference.yaml"
     )
     assert len(references) == 9
     assert references[8].target_vy == 0.0
@@ -72,7 +72,7 @@ def test_low_load_reference_is_small_stride_frequency_scaled_crawl() -> None:
 
 def test_low_load_reference_fits_student_joint_specific_envelope() -> None:
     references = ReferenceSet.from_config(
-        "configs/reference_low_load_v1.yaml"
+        "configs/low_load_lateral/train_001/reference.yaml"
     )
     student = load_yaml("configs/student.yaml")
     limits = np.asarray(
@@ -81,6 +81,111 @@ def test_low_load_reference_fits_student_joint_specific_envelope() -> None:
     )
     initial = references[0].joint_pos[0, :12]
     for motion in references.motions[:8]:
+        deviation = np.max(
+            np.abs(motion.joint_pos[:, :12] - initial),
+            axis=0,
+        )
+        assert np.all(deviation <= limits + 1.0e-5)
+
+
+def test_low_load_has_explicit_fixed_first_frame_support_preload() -> None:
+    references = ReferenceSet.from_config(
+        "configs/low_load_lateral/train_001/reference.yaml"
+    )
+    assert len(references) == 9
+    assert references[8].source_kind == "explicit_standing_npz"
+    assert references[8].target_vy == 0.0
+    for motion in references.motions:
+        np.testing.assert_array_equal(
+            motion.joint_pos[0],
+            references.fixed_motion.joint_pos[0],
+        )
+        np.testing.assert_array_equal(
+            motion.body_pos_w[0],
+            references.fixed_motion.body_pos_w[0],
+        )
+        assert abs(
+            motion.body_pos_w[-1, 0, 0]
+            - motion.body_pos_w[0, 0, 0]
+            - 0.008
+        ) < 1.0e-6
+    np.testing.assert_allclose(
+        references[8].body_pos_w[:, 15:17],
+        np.broadcast_to(
+            references[8].body_pos_w[0:1, 15:17],
+            references[8].body_pos_w[:, 15:17].shape,
+        ),
+        atol=1.0e-6,
+    )
+    np.testing.assert_allclose(
+        references[8].body_pos_w[-1, 13:15, 0]
+        - references[8].body_pos_w[0, 13:15, 0],
+        np.full(2, 0.008),
+        atol=1.0e-6,
+    )
+    np.testing.assert_allclose(
+        references[8].body_pos_w[:, 13:15, 1],
+        np.broadcast_to(
+            references[8].body_pos_w[0:1, 13:15, 1],
+            references[8].body_pos_w[:, 13:15, 1].shape,
+        ),
+        atol=1.0e-6,
+    )
+    np.testing.assert_allclose(
+        references[8].body_pos_w[-1, 13:15, 2]
+        - references[8].body_pos_w[0, 13:15, 2],
+        np.full(2, -0.007),
+        atol=1.0e-6,
+    )
+    np.testing.assert_allclose(
+        references[8].body_lin_vel_w[-1],
+        np.zeros_like(references[8].body_lin_vel_w[-1]),
+        atol=1.0e-6,
+    )
+    student = load_yaml("configs/student.yaml")
+    limits = np.asarray(
+        student["physical_target_abs_limit_rad_by_joint"],
+        dtype=np.float32,
+    )
+    initial = references.fixed_motion.joint_pos[0, :12]
+    for motion in references.motions:
+        deviation = np.max(
+            np.abs(motion.joint_pos[:, :12] - initial),
+            axis=0,
+        )
+        assert np.all(deviation <= limits + 1.0e-5)
+
+
+def test_low_load_mirrors_load_shift_and_fits_student_envelope() -> None:
+    references = ReferenceSet.from_config(
+        "configs/low_load_lateral/train_001/reference.yaml"
+    )
+    assert len(references) == 9
+    limits = np.asarray(
+        load_yaml("configs/student.yaml")[
+            "physical_target_abs_limit_rad_by_joint"
+        ],
+        dtype=np.float32,
+    )
+    initial = references.fixed_motion.joint_pos[0, :12]
+    for negative_id, positive_id in ((0, 7), (1, 6), (2, 5), (3, 4)):
+        negative = references[negative_id]
+        positive = references[positive_id]
+        assert negative.target_vy == -positive.target_vy
+        negative_y = (
+            negative.body_pos_w[:, 0, 1]
+            - negative.body_pos_w[0, 0, 1]
+        )
+        positive_y = (
+            positive.body_pos_w[:, 0, 1]
+            - positive.body_pos_w[0, 0, 1]
+        )
+        np.testing.assert_allclose(
+            negative_y,
+            -positive_y,
+            atol=1.0e-6,
+        )
+    for motion in references.motions:
         deviation = np.max(
             np.abs(motion.joint_pos[:, :12] - initial),
             axis=0,
@@ -103,3 +208,35 @@ def test_interpolation_and_per_wheel_contact_schedule() -> None:
     schedule = infer_contact_schedule(motion)
     assert schedule.shape == (332, 4)
     assert schedule.dtype == np.uint8
+
+
+def test_low_load_contact_schedule_uses_crawl_phase_after_preload() -> None:
+    references = ReferenceSet.from_config(
+        "configs/low_load_lateral/train_001/reference.yaml"
+    )
+    kwargs = references.contact_inference_kwargs()
+    assert (
+        kwargs["method"]
+        == "generated_crawl_phase_with_geometric_preload"
+    )
+    preload_frames = round(
+        kwargs["support_preload_seconds"] * references[0].fps
+    )
+    schedules = [
+        infer_contact_schedule(motion, **kwargs)
+        for motion in references.motions
+    ]
+
+    for schedule in schedules[:8]:
+        swing_count = np.sum(schedule[preload_frames:] == 0, axis=1)
+        assert np.max(swing_count) <= 1
+    np.testing.assert_array_equal(
+        schedules[8][preload_frames:],
+        np.ones_like(schedules[8][preload_frames:]),
+    )
+
+    for negative_id, positive_id in ((0, 7), (1, 6), (2, 5), (3, 4)):
+        np.testing.assert_array_equal(
+            schedules[negative_id][preload_frames:, [0, 1, 2, 3]],
+            schedules[positive_id][preload_frames:, [1, 0, 3, 2]],
+        )
