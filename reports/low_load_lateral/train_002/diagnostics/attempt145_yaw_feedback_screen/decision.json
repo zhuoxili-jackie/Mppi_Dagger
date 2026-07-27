@@ -1,0 +1,24 @@
+{
+  "schema_version": "pcbc-diagnostic-decision-v1",
+  "status": "reject_inconclusive_open_loop_replay",
+  "qualification_effect": "none",
+  "training_data_eligible": false,
+  "source_episode": "datasets/low_load_lateral/train_002/attempt_141_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt141_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "report": "reports/low_load_lateral/train_002/diagnostics/attempt145_yaw_feedback_screen/replay_start120.json",
+  "requested_steps": 300,
+  "candidate_count": 20,
+  "replicates_per_candidate": 2,
+  "wheel_action_exact_zero": true,
+  "formal_thresholds_changed": false,
+  "result": {
+    "all_candidates_terminated": true,
+    "zero_feedback_baseline_orientation_rmse_rad": 0.3364753723144531,
+    "zero_feedback_baseline_lateral_velocity_mae_m_s": 0.10999445617198944,
+    "zero_feedback_baseline_front_low_fraction": 0.7390350877192983,
+    "recorded_closed_loop_orientation_rmse_rad": 0.2152990698814392,
+    "recorded_closed_loop_lateral_velocity_mae_m_s": 0.025147996842861176,
+    "recorded_closed_loop_front_low_fraction": 0.3399122807017544
+  },
+  "interpretation": "Exact-action reset replay did not reproduce the recorded closed-loop contact state and diverged before it could provide gate-equivalent evidence. Relative ranks from this replay cannot authorize a feedback sign, a formal collection, or a threshold decision.",
+  "decision": "Retain the JSON only as negative diagnostic evidence. Base subsequent bounded closed-loop hypotheses on state-copy, the saved local-response probes, and a new isolated MPPI episode; do not use this open-loop replay to claim improvement or PASS."
+}

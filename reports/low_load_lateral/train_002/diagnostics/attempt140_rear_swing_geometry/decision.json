@@ -1,0 +1,151 @@
+{
+  "schema_version": "pcbc-rear-swing-geometry-decision-v1",
+  "status": "REJECT_DIRECT_REFERENCE_JOINT_TRACKING",
+  "qualification_effect": "none",
+  "dataset_classification": "unqualified_debug",
+  "source_dataset": "datasets/low_load_lateral/train_002/attempt_100_ref0_seed1000_diag300",
+  "reference_config": "configs/low_load_lateral/train_001/reference.yaml",
+  "robot_urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf",
+  "probe": {
+    "gain": 0.1,
+    "joint_correction_cap_abs_rad": 0.04,
+    "reference_lookahead_steps": 1,
+    "evaluation_point": "middle frame of every scheduled rear swing",
+    "method": "finite-difference world-Cartesian wheel Jacobian at the recorded Isaac joint and base state"
+  },
+  "model_validation": {
+    "maximum_fk_position_error_vs_recorded_isaac_wheel_pose_m": 2.97e-7,
+    "passed": true
+  },
+  "scheduled_swing_records": [
+    {
+      "wheel": "RL",
+      "start_frame": 42,
+      "stop_frame_inclusive": 48,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [13.76, 1.18, -8.51]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 75,
+      "stop_frame_inclusive": 81,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [12.31, 2.83, -1.02]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 109,
+      "stop_frame_inclusive": 114,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [12.92, -0.71, -1.8]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 142,
+      "stop_frame_inclusive": 148,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [9.96, -1.26, 0.05]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 175,
+      "stop_frame_inclusive": 181,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [10.99, -0.51, -0.65]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 209,
+      "stop_frame_inclusive": 214,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [6.78, -0.47, 2.78]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 242,
+      "stop_frame_inclusive": 248,
+      "measured_contact_fraction": 0.0,
+      "predicted_wheel_delta_xyz_mm": [10.82, 0.81, 2.28]
+    },
+    {
+      "wheel": "RL",
+      "start_frame": 276,
+      "stop_frame_inclusive": 281,
+      "measured_contact_fraction": 0.0,
+      "predicted_wheel_delta_xyz_mm": [8.85, -0.22, 1.69]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 25,
+      "stop_frame_inclusive": 31,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [4.74, 0.51, -6.58]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 59,
+      "stop_frame_inclusive": 65,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [5.38, -0.66, -5.02]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 92,
+      "stop_frame_inclusive": 98,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [8.1, -0.53, -4.68]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 125,
+      "stop_frame_inclusive": 131,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [8.8, 0.96, -3.74]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 159,
+      "stop_frame_inclusive": 164,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [6.59, 0.18, -3.61]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 192,
+      "stop_frame_inclusive": 198,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [8.99, 2.03, -6.67]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 225,
+      "stop_frame_inclusive": 231,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [7.76, 1.61, -6.19]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 259,
+      "stop_frame_inclusive": 264,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [11.42, 1.08, -2.06]
+    },
+    {
+      "wheel": "RR",
+      "start_frame": 292,
+      "stop_frame_inclusive": 298,
+      "measured_contact_fraction": 1.0,
+      "predicted_wheel_delta_xyz_mm": [2.02, -1.7, 0.52]
+    }
+  ],
+  "evidence": {
+    "stuck_rl_swing_count": 6,
+    "stuck_rr_swing_count": 9,
+    "stuck_rl_predicted_vertical_delta_mean_mm": -1.525,
+    "stuck_rr_predicted_vertical_delta_mean_mm": -4.225555555555555,
+    "maximum_predicted_lateral_delta_abs_mm": 2.83,
+    "frozen_reference_rear_clearance_mm": 12.0,
+    "interpretation": "Directly pulling the recorded joints toward the frozen reference at gain 0.1 and a 0.04 rad cap primarily moves the wheel along world x. In 13 of the 15 stuck rear swings it predicts less than 1 mm upward motion or an actual downward motion, and it provides at most 2.83 mm of immediate lateral authority. This correction is not a defensible release mechanism."
+  },
+  "decision": "Do not implement deterministic rear-swing reference-joint tracking. Reuse the already tested, formal-rate-compatible bilateral measured-force swing feedback as the next full 300-step screen because it has direct 100-step evidence for improved load distribution without changing the reference height or frozen contracts."
+}

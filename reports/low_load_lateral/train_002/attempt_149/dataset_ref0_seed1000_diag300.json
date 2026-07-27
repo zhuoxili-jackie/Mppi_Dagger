@@ -1,0 +1,18 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "train": 1
+  }
+}

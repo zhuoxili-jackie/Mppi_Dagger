@@ -1,0 +1,51 @@
+{
+  "schema_version": "pcbc-mppi-candidate-decision-v1",
+  "status": "reject_unqualified_debug",
+  "training_data_eligible": false,
+  "candidate_config": "configs/low_load_lateral/train_002/expert_attempt_149.yaml",
+  "candidate_config_sha256": "9ee044b43fb84e2e716ea48fdaa5654543106ec6aee94938696a0bd74d076633",
+  "dataset": "datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag150",
+  "state_copy_pass": true,
+  "pytest": {
+    "passed": 360,
+    "warnings": 2
+  },
+  "gate_pass": false,
+  "formal_metrics": {
+    "base_orientation_rmse_rad": 0.1416769027709961,
+    "wheel_position_rmse_m": [
+      0.0244,
+      0.0658,
+      0.0817,
+      0.084951
+    ],
+    "lateral_velocity_mae_m_s": 0.027096698060631752,
+    "lateral_displacement_error_m": 0.05863157659769058,
+    "signed_lateral_progress_ratio": 0.6402682405748542,
+    "front_normal_below_6n_fraction_when_desired": 0.2857142857142857,
+    "rear_normal_force_p95_n": [
+      104.2,
+      134.126
+    ],
+    "rear_no_support_fraction": 0.0,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "wheel_action_exact_zero": true
+  },
+  "isolated_change": {
+    "comparison_attempt": "attempt_148",
+    "front_normal_support_weight": [
+      192.0,
+      384.0
+    ],
+    "rear_force_overload_weight": [
+      26.0,
+      104.0
+    ],
+    "rear_force_imbalance_weight": [
+      5.0,
+      20.0
+    ]
+  },
+  "interpretation": "The cost rebalance brings both rear-force p95 values inside the frozen 135 N limit at 150 steps, but wheel, velocity, and front-support checks remain outside their frozen limits.",
+  "decision": "Reject before 300 steps; retain as the bounded comparison base for mechanism diagnostics only."
+}

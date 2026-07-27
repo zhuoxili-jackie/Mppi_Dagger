@@ -1,0 +1,133 @@
+{
+  "schema_version": "pcbc-workspace-cleanup-v1",
+  "generated_at": "2026-07-27T09:08:48+08:00",
+  "scope": "current lateral_mppi_dagger repository only",
+  "reason": "Remove failed-run bulk while preserving formal R0 inputs, current best evidence, reproducible diagnostics, source changes, and compact experiment history.",
+  "git_status_counts": {
+    "before": {
+      "porcelain_entries": 1806,
+      "tracked_modified": 21,
+      "untracked_nonignored": 1785,
+      "ignored_generated_files": 1649
+    },
+    "after_before_this_manifest": {
+      "porcelain_entries": 84,
+      "tracked_modified": 21,
+      "untracked_nonignored": 63,
+      "ignored_generated_files": 35
+    },
+    "after_final": {
+      "porcelain_entries": 85,
+      "tracked_modified": 21,
+      "untracked_nonignored": 64,
+      "ignored_retained_files_or_directories": 25
+    }
+  },
+  "deleted": {
+    "old_train002_report_directories": 155,
+    "old_train002_dataset_directories": 161,
+    "old_train002_artifact_directories": 22,
+    "old_train002_configs_after_compact_archive": 149,
+    "python_cache_directories": 276,
+    "rejected_train001_data": [
+      "datasets/low_load_lateral/train_001/expert_50x300",
+      "datasets/low_load_lateral/train_001/performance",
+      "datasets/low_load_lateral/train_001/unqualified_debug_bc_9x100_split"
+    ],
+    "rejected_checkpoint": "checkpoints/low_load_lateral/train_001/unqualified_debug",
+    "other_deleted_classes": [
+      "per-step server dumps from dominated candidates",
+      "console and simulator logs",
+      "redundant logs under training_records",
+      "superseded diagnostic probes after compact archiving",
+      "pytest and Python bytecode caches"
+    ],
+    "estimated_disk_reclaimed": "greater than 1.1 GB"
+  },
+  "recoverability": {
+    "compact_configs_gates_decisions_summaries_and_artifacts": "recoverable from the two validated archives below",
+    "deleted_verbose_server_dumps": "not recoverable",
+    "deleted_failed_episode_datasets": "not recoverable",
+    "deleted_rejected_debug_bc_checkpoints": "not recoverable",
+    "interpretation": "The non-recoverable material was explicitly failed, ineligible for formal training, or redundant with retained structured evidence."
+  },
+  "archives": [
+    {
+      "path": "reports/low_load_lateral/train_002/pre_r0_attempt001_157_compact_20260727.tar.gz",
+      "entries": 930,
+      "bytes": 3238482,
+      "sha256": "54b2716076f41036fd955be3e3b8dd74087b9246e5ba66a78d7aeeb161639eb4",
+      "gzip_test": "PASS"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/pre_r0_diagnostic_history_20260727.tar.gz",
+      "entries": 158,
+      "bytes": 4578874,
+      "sha256": "700b9867098c8759a2393eed92fda1e606c8a2483e64c94663b638badbeeb476",
+      "gzip_test": "PASS"
+    }
+  ],
+  "retained_formal_and_active_material": {
+    "valid_expert_gate": "reports/low_load_lateral/train_001/qualification/gate_9x100.json",
+    "valid_expert_dataset": {
+      "path": "datasets/low_load_lateral/train_001/qualification_9x100",
+      "manifest_sha256": "7187318b56ee4ff983b4e884462a3e4bce2d12b6758d551853d09eb5c6bbd202"
+    },
+    "formal_50x300_failure_evidence": "reports/low_load_lateral/train_001/qualification/gate_50x300_partial10_unqualified_debug.json",
+    "pre_r0_blocker": "reports/low_load_lateral/train_002/qualification_blocker_pre_r0.json",
+    "current_best_candidate": {
+      "config": "configs/low_load_lateral/train_002/expert_attempt_149.yaml",
+      "config_sha256": "9ee044b43fb84e2e716ea48fdaa5654543106ec6aee94938696a0bd74d076633",
+      "dataset": "datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300",
+      "dataset_manifest_sha256": "b3f2f7ea017d792397ba6c4ae0d346353a71a5c224b82a30389abee997a4d781",
+      "gate": "reports/low_load_lateral/train_002/attempt_149/gate_ref0_seed1000_diag300_unqualified_debug.json",
+      "server_trace": "reports/low_load_lateral/train_002/attempt_149/server_ref0_seed1000_diag300.json"
+    },
+    "latest_recenter_diagnostic": {
+      "config": "configs/low_load_lateral/train_002/expert_attempt_157.yaml",
+      "config_sha256": "0a4e591adac711848532c5b45f7ce1580b77caa389a551be72368c7abcefaab8",
+      "decision": "reports/low_load_lateral/train_002/attempt_157/decision_diag150.json"
+    },
+    "active_diagnostic_evidence": [
+      "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability",
+      "reports/low_load_lateral/train_002/diagnostics/attempt140_rear_swing_geometry",
+      "reports/low_load_lateral/train_002/diagnostics/attempt141_rear_swing_height_dls",
+      "reports/low_load_lateral/train_002/diagnostics/attempt145_yaw_feedback_screen",
+      "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority",
+      "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority",
+      "reports/low_load_lateral/train_002/diagnostics/attempt160_staged_rear_swing_authority"
+    ],
+    "source_and_tests": "all tracked modifications plus eight untracked diagnostic/build scripts and tests were retained",
+    "current_config_dependencies": {
+      "attempt149_nominal": {
+        "path": "artifacts/low_load_lateral/train_002/attempt_148/nominal_actions/ref_00_from_attempt141_seed1000.npz",
+        "sha256": "4830ee56d218197d394b0bb1945c0b60ff0e65deafa1aabf0ffbe82849456e33"
+      },
+      "attempt157_nominal": {
+        "path": "artifacts/low_load_lateral/train_002/attempt_157/nominal_actions/ref_00_from_attempt149_seed1000.npz",
+        "sha256": "e0a17ebef83d37f2cf295598a450d2fb0958f38a09dc83ace1c4a47362b470e3"
+      },
+      "moving_reference_proposals": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001"
+    }
+  },
+  "retained_but_not_currently_qualified": {
+    "legacy_export": "exported/lateral_policy_v2_key7_aligned_r1",
+    "legacy_checkpoint": "checkpoints/deployment_v2_columns_handoff",
+    "qualified_low_load_lateral_release_exists": false
+  },
+  "post_cleanup_sizes_before_this_manifest_bytes": {
+    "artifacts": 537062,
+    "configs_low_load_lateral": 47778,
+    "reports_low_load_lateral": 35409823,
+    "datasets": 2452036,
+    "checkpoints": 1558260,
+    "exported": 1091992
+  },
+  "safety": {
+    "tracked_files_deleted": false,
+    "tracked_modifications_changed_by_cleanup": false,
+    "reference_only_touched": false,
+    "outside_repository_touched": false,
+    "commit_or_push_performed": false
+  }
+}

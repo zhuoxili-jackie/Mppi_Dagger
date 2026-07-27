@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 from typing import Any, Callable
 
 import torch
@@ -49,10 +50,22 @@ class ReferenceCenteredMPPI:
         """Start an episode-specific, reproducible sampling stream."""
         self.generator.manual_seed(int(seed))
 
-    def _correlated_noise(self) -> torch.Tensor:
+    def _correlated_noise(
+        self,
+        sample_count: int | None = None,
+    ) -> torch.Tensor:
         # Use antithetic pairs so a small rollout batch has exactly zero
         # perturbation mean instead of injecting a random control bias.
-        pair_count = (self.config.samples - 1) // 2
+        count = (
+            self.config.samples
+            if sample_count is None
+            else int(sample_count)
+        )
+        if count < 1 or count > self.config.samples:
+            raise ValueError(
+                "MPPI noise sample_count must lie in [1, samples]."
+            )
+        pair_count = (count - 1) // 2
         paired = torch.randn(
             pair_count,
             self.config.horizon,
@@ -64,7 +77,7 @@ class ReferenceCenteredMPPI:
         alpha = self.config.temporal_smoothing
         for step in range(1, self.config.horizon):
             paired[:, step] = alpha * paired[:, step - 1] + (1.0 - alpha) * paired[:, step]
-        zero_count = self.config.samples - 2 * pair_count
+        zero_count = count - 2 * pair_count
         zeros = torch.zeros(
             zero_count,
             self.config.horizon,
@@ -114,8 +127,10 @@ class ReferenceCenteredMPPI:
         previous_action: torch.Tensor | None = None,
         max_delta: torch.Tensor | None = None,
         initial_sequence: torch.Tensor | None = None,
+        proposal_offsets: torch.Tensor | None = None,
         selection_mode: str | None = None,
-    ) -> tuple[torch.Tensor, dict[str, float | str]]:
+        temperature: float | None = None,
+    ) -> tuple[torch.Tensor, dict[str, Any]]:
         if nominal.shape != (self.config.horizon, 12):
             raise ValueError(f"nominal must have shape {(self.config.horizon, 12)}, got {tuple(nominal.shape)}")
         raw_min = raw_min.to(self.device, dtype=torch.float32)
@@ -131,6 +146,37 @@ class ReferenceCenteredMPPI:
         start = nominal if initial_sequence is None else initial_sequence
         if start.shape != nominal.shape:
             raise ValueError("initial_sequence must have the same shape as nominal.")
+        if proposal_offsets is None:
+            proposals = torch.empty(
+                (0, self.config.horizon, 12),
+                dtype=torch.float32,
+                device=self.device,
+            )
+        else:
+            proposals = proposal_offsets.to(
+                self.device,
+                dtype=torch.float32,
+            )
+            if (
+                proposals.ndim != 3
+                or tuple(proposals.shape[1:])
+                != (self.config.horizon, 12)
+            ):
+                raise ValueError(
+                    "proposal_offsets must have shape "
+                    f"[P,{self.config.horizon},12]."
+                )
+            if proposals.shape[0] >= self.config.samples:
+                raise ValueError(
+                    "proposal_offsets must leave at least one MPPI sample "
+                    "for the reference-centred stochastic population."
+                )
+            if not torch.isfinite(proposals).all():
+                raise ValueError(
+                    "proposal_offsets contains NaN or Inf."
+                )
+        proposal_count = int(proposals.shape[0])
+        stochastic_sample_count = self.config.samples - proposal_count
         effective_selection_mode = (
             self.config.selection_mode
             if selection_mode is None
@@ -139,6 +185,18 @@ class ReferenceCenteredMPPI:
         if effective_selection_mode not in {"weighted", "best_sample"}:
             raise ValueError(
                 "selection_mode must be 'weighted' or 'best_sample'."
+            )
+        effective_temperature = (
+            self.config.temperature
+            if temperature is None
+            else float(temperature)
+        )
+        if (
+            not math.isfinite(effective_temperature)
+            or effective_temperature <= 0.0
+        ):
+            raise ValueError(
+                "temperature must be finite and positive."
             )
         sequence = self.project_sequence(
             start.to(self.device, dtype=torch.float32).clone(),
@@ -152,25 +210,74 @@ class ReferenceCenteredMPPI:
         effective_sample_size = 0.0
         best_candidate: torch.Tensor | None = None
         best_candidate_cost = float("inf")
-        for _ in range(self.config.iterations):
-            noise = self._correlated_noise()
-            candidates = self.project_sequence(
+        best_candidate_source = "none"
+        best_candidate_index = -1
+        best_candidate_iteration = -1
+        zero_count = stochastic_sample_count - 2 * (
+            (stochastic_sample_count - 1) // 2
+        )
+        for iteration in range(self.config.iterations):
+            noise = self._correlated_noise(stochastic_sample_count)
+            stochastic_candidates = self.project_sequence(
                 sequence.unsqueeze(0) + noise,
                 raw_min,
                 raw_max,
-                None if previous_action is None else previous_action.expand(self.config.samples, -1),
+                (
+                    None
+                    if previous_action is None
+                    else previous_action.expand(
+                        stochastic_sample_count,
+                        -1,
+                    )
+                ),
                 max_delta,
             )
+            if proposal_count:
+                structured_candidates = self.project_sequence(
+                    sequence.unsqueeze(0) + proposals,
+                    raw_min,
+                    raw_max,
+                    (
+                        None
+                        if previous_action is None
+                        else previous_action.expand(proposal_count, -1)
+                    ),
+                    max_delta,
+                )
+                candidates = torch.cat(
+                    (stochastic_candidates, structured_candidates),
+                    dim=0,
+                )
+            else:
+                candidates = stochastic_candidates
             costs = rollout_cost(candidates)
             if costs.shape != (self.config.samples,) or not torch.isfinite(costs).all():
                 raise RuntimeError("MPPI rollout_cost must return one finite cost per sample.")
             shifted = costs - costs.min()
-            weights = torch.softmax(-shifted / self.config.temperature, dim=0)
+            weights = torch.softmax(
+                -shifted / effective_temperature,
+                dim=0,
+            )
             iteration_best_index = int(torch.argmin(costs).item())
             iteration_best_cost = float(costs[iteration_best_index].item())
             if iteration_best_cost < best_candidate_cost:
                 best_candidate_cost = iteration_best_cost
                 best_candidate = candidates[iteration_best_index].detach().clone()
+                best_candidate_index = iteration_best_index
+                best_candidate_iteration = iteration
+                proposal_start = stochastic_sample_count
+                if (
+                    proposal_count
+                    and iteration_best_index >= proposal_start
+                ):
+                    best_candidate_source = (
+                        "structured_proposal_"
+                        f"{iteration_best_index - proposal_start}"
+                    )
+                elif iteration_best_index < zero_count:
+                    best_candidate_source = "solve_center"
+                else:
+                    best_candidate_source = "stochastic"
             weighted = torch.sum(weights.view(-1, 1, 1) * candidates, dim=0)
             sequence = self.project_sequence(
                 weighted,
@@ -191,7 +298,16 @@ class ReferenceCenteredMPPI:
             "mean_total_cost": mean_cost,
             "effective_sample_size": effective_sample_size,
             "selected_best_sample_cost": best_candidate_cost,
+            "selected_best_sample_source": best_candidate_source,
+            "selected_best_sample_index": best_candidate_index,
+            "selected_best_sample_iteration": best_candidate_iteration,
+            "structured_proposal_count": proposal_count,
+            "structured_proposal_semantics": (
+                "offset_from_iteration_center"
+            ),
+            "stochastic_sample_count": stochastic_sample_count,
             "selection_mode": effective_selection_mode,
+            "temperature": effective_temperature,
         }
 
 

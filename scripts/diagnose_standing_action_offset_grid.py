@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import itertools
+import json
 import sys
 import traceback
 from pathlib import Path
@@ -29,9 +30,29 @@ parser.add_argument(
     default="configs/low_load_lateral/train_001/reference.yaml",
 )
 parser.add_argument(
+    "--tracking-config",
+    type=Path,
+    default=ROOT / "configs/low_load_lateral/train_001/expert.yaml",
+    help=(
+        "Expert YAML supplying the unchanged closed-loop tracking thresholds "
+        "used to score each diagnostic replay."
+    ),
+)
+parser.add_argument(
     "--episode",
     type=Path,
     required=True,
+)
+parser.add_argument(
+    "--precondition-episodes",
+    type=Path,
+    nargs="*",
+    default=(),
+    help=(
+        "Optional collected episode shards replayed in order, with their "
+        "recorded reset seed/reference, before the target reset. This "
+        "diagnoses cross-episode reset-state dependence."
+    ),
 )
 parser.add_argument(
     "--action-reference",
@@ -150,6 +171,25 @@ parser.add_argument(
     "--pitch-feedback-max-abs-rad",
     type=float,
     default=0.05,
+)
+parser.add_argument(
+    "--pitch-feedback-axis",
+    choices=("x", "y", "z"),
+    default="y",
+    help=(
+        "Target-frame rotation-vector component driving the bounded "
+        "orientation feedback. The default y axis preserves the historical "
+        "signed-pitch diagnostic exactly."
+    ),
+)
+parser.add_argument(
+    "--pitch-feedback-start-frame",
+    type=int,
+    default=0,
+    help=(
+        "Do not apply the bounded orientation feedback before this replay "
+        "frame. Zero preserves the historical diagnostic behavior."
+    ),
 )
 parser.add_argument(
     "--front-force-feedback-scale-values",
@@ -330,6 +370,24 @@ parser.add_argument(
     ),
 )
 parser.add_argument(
+    "--clear-contact-warm-start-after-reset",
+    action="store_true",
+    help=(
+        "Cold-recreate contact pairs once after the target reset and clear "
+        "the contact-sensor buffers. This diagnoses cross-episode PhysX "
+        "warm-start leakage without altering every replay step."
+    ),
+)
+parser.add_argument(
+    "--clone-env0-after-reset",
+    action="store_true",
+    help=(
+        "Copy env0's complete explicit reset state and manager/sensor buffers "
+        "to every diagnostic clone before replay. This removes independent "
+        "vectorized-reset perturbations without cold-recreating contacts."
+    ),
+)
+parser.add_argument(
     "--contact-prime-substeps",
     type=int,
     default=0,
@@ -360,6 +418,61 @@ FRONT_CONTROL_INDICES = (4, 5, 8, 9)
 FRONT_LEG_INDICES = (0, 1, 4, 5, 8, 9)
 
 
+def _quat_multiply_np(lhs: np.ndarray, rhs: np.ndarray) -> np.ndarray:
+    lw, lx, ly, lz = np.moveaxis(lhs, -1, 0)
+    rw, rx, ry, rz = np.moveaxis(rhs, -1, 0)
+    return np.stack(
+        (
+            lw * rw - lx * rx - ly * ry - lz * rz,
+            lw * rx + lx * rw + ly * rz - lz * ry,
+            lw * ry - lx * rz + ly * rw + lz * rx,
+            lw * rz + lx * ry - ly * rx + lz * rw,
+        ),
+        axis=-1,
+    )
+
+
+def _quat_conjugate_np(value: np.ndarray) -> np.ndarray:
+    result = np.asarray(value, dtype=np.float64).copy()
+    result[..., 1:] *= -1.0
+    return result
+
+
+def _quat_rotation_vector_np(
+    actual_quat_w: np.ndarray,
+    target_quat_w: np.ndarray,
+) -> np.ndarray:
+    """Return target-frame shortest rotation vectors for wxyz quaternions."""
+
+    actual = np.asarray(actual_quat_w, dtype=np.float64)
+    target = np.asarray(target_quat_w, dtype=np.float64)
+    epsilon = np.finfo(np.float64).eps
+    actual /= np.maximum(
+        np.linalg.norm(actual, axis=-1, keepdims=True),
+        epsilon,
+    )
+    target /= np.maximum(
+        np.linalg.norm(target, axis=-1, keepdims=True),
+        epsilon,
+    )
+    relative = _quat_multiply_np(
+        _quat_conjugate_np(target),
+        actual,
+    )
+    relative = np.where(relative[..., :1] < 0.0, -relative, relative)
+    vector = relative[..., 1:]
+    vector_norm = np.linalg.norm(vector, axis=-1, keepdims=True)
+    angle = 2.0 * np.arctan2(
+        vector_norm,
+        np.maximum(relative[..., :1], epsilon),
+    )
+    return np.where(
+        vector_norm > epsilon,
+        vector * angle / np.maximum(vector_norm, epsilon),
+        2.0 * vector,
+    )
+
+
 def main() -> dict:
     import gymnasium as gym
     import robot_lab.tasks  # noqa: F401
@@ -367,32 +480,40 @@ def main() -> dict:
     from isaaclab_tasks.utils import parse_env_cfg
 
     from lateral_mppi_dagger.contract.action16 import ActionContract
-    from lateral_mppi_dagger.config import sha256_file
+    from lateral_mppi_dagger.config import load_yaml, sha256_file
     from lateral_mppi_dagger.env.isaac_adapter import IsaacLateralAdapter
     from lateral_mppi_dagger.env.isaac_mppi_rollout import (
         IsaacMPPIRolloutCloner,
         IsaacRolloutCostWeights,
         _quat_conjugate,
         _quat_multiply,
-        _signed_pitch_error_rad,
+        _quat_rotation_vector,
     )
     from lateral_mppi_dagger.env.scenarios import (
         configure_env_for_scenario,
         load_scenario_profile,
     )
+    from lateral_mppi_dagger.evaluation.closed_loop_gate import (
+        compute_tracking_metrics,
+        tracking_threshold_failures,
+    )
     from lateral_mppi_dagger.reference.loader import ReferenceSet
 
     if args_cli.steps < 1 or args_cli.replicates < 1:
         raise ValueError("--steps and --replicates must be positive.")
+    if args_cli.pitch_feedback_start_frame < 0:
+        raise ValueError("--pitch-feedback-start-frame must be non-negative.")
     if args_cli.contact_prime_substeps < 0:
         raise ValueError("--contact-prime-substeps must be non-negative.")
     if (
         args_cli.contact_prime_substeps
-        and not args_cli.clear_contact_warm_start_before_step
+        and not (
+            args_cli.clear_contact_warm_start_before_step
+            or args_cli.clear_contact_warm_start_after_reset
+        )
     ):
         raise ValueError(
-            "--contact-prime-substeps requires "
-            "--clear-contact-warm-start-before-step."
+            "--contact-prime-substeps requires a contact warm-start clear."
         )
     if (
         args_cli.contact_prime_substeps
@@ -509,6 +630,11 @@ def main() -> dict:
     pitch_feedback_max_abs_rad = float(
         args_cli.pitch_feedback_max_abs_rad
     )
+    pitch_feedback_axis_index = {
+        "x": 0,
+        "y": 1,
+        "z": 2,
+    }[args_cli.pitch_feedback_axis]
     if (
         not pitch_feedback_gains
         or not np.isfinite(pitch_feedback_gains).all()
@@ -657,6 +783,64 @@ def main() -> dict:
         recorded_desired_contact = np.asarray(
             archive["desired_contact"],
             dtype=bool,
+        )
+    precondition_replays: list[
+        tuple[Path, int, int, np.ndarray]
+    ] = []
+    precondition_records: list[dict[str, object]] = []
+    for value in args_cli.precondition_episodes:
+        precondition_path = value.expanduser().resolve()
+        with np.load(precondition_path, allow_pickle=False) as archive:
+            precondition_action = np.asarray(
+                archive["executed_action16"],
+                dtype=np.float32,
+            )
+            precondition_ref_ids = np.asarray(
+                archive["ref_id"],
+                dtype=np.int64,
+            ).reshape(-1)
+            metadata = json.loads(
+                str(np.asarray(archive["metadata_json"]).reshape(-1)[0])
+            )
+        if (
+            precondition_action.ndim != 2
+            or precondition_action.shape[1] != 16
+            or precondition_action.shape[0] < 1
+            or not np.isfinite(precondition_action).all()
+            or not precondition_ref_ids.size
+            or np.any(precondition_ref_ids != precondition_ref_ids[0])
+            or not np.array_equal(
+                precondition_action[:, 12:],
+                np.zeros_like(precondition_action[:, 12:]),
+            )
+        ):
+            raise ValueError(
+                "Each precondition episode must contain finite "
+                "[steps,16] executed actions, one consistent ref_id, and "
+                "exact-zero wheel actions."
+            )
+        precondition_seed = int(metadata["seed"])
+        precondition_ref_id = int(precondition_ref_ids[0])
+        if int(metadata["ref_id"]) != precondition_ref_id:
+            raise ValueError(
+                "Precondition episode metadata ref_id is inconsistent."
+            )
+        precondition_replays.append(
+            (
+                precondition_path,
+                precondition_seed,
+                precondition_ref_id,
+                precondition_action,
+            )
+        )
+        precondition_records.append(
+            {
+                "path": str(precondition_path),
+                "sha256": sha256_file(precondition_path),
+                "seed": precondition_seed,
+                "ref_id": precondition_ref_id,
+                "steps": int(precondition_action.shape[0]),
+            }
         )
     action_reference_path = None
     blend_base_action_reference_path = None
@@ -1032,6 +1216,11 @@ def main() -> dict:
     contract = ActionContract.from_dict(contract_dict)
     references = ReferenceSet.from_config(args_cli.reference_config)
     reference = references[args_cli.ref_id]
+    tracking_config_path = args_cli.tracking_config.expanduser().resolve()
+    tracking_config = load_yaml(tracking_config_path)
+    tracking_thresholds = dict(
+        tracking_config["closed_loop_gate"]["tracking_thresholds"]
+    )
     metric_frames = np.minimum(
         recorded_ref_frame[: args_cli.steps],
         reference.frames - 1,
@@ -1069,12 +1258,58 @@ def main() -> dict:
             horizon=1,
             cost_weights=IsaacRolloutCostWeights(),
         )
-        if args_cli.clear_contact_warm_start_before_step
+        if (
+            args_cli.clone_env0_after_reset
+            or
+            args_cli.clear_contact_warm_start_before_step
+            or args_cli.clear_contact_warm_start_after_reset
+        )
         else None
     )
 
     try:
+        for (
+            _,
+            precondition_seed,
+            precondition_ref_id,
+            precondition_action,
+        ) in precondition_replays:
+            adapter.reset(
+                precondition_seed,
+                precondition_ref_id,
+            )
+            action_t = torch.as_tensor(
+                precondition_action,
+                dtype=torch.float32,
+                device=adapter.base.device,
+            )
+            for step_action in action_t:
+                env.step(
+                    step_action.unsqueeze(0).expand(
+                        num_envs,
+                        -1,
+                    )
+                )
         adapter.reset(args_cli.seed, args_cli.ref_id)
+        if args_cli.clone_env0_after_reset:
+            assert contact_restorer is not None
+            clone_snapshot = contact_restorer.capture()
+            contact_restorer.restore(
+                clone_snapshot,
+                clear_contact_warm_start=False,
+                forward_after_state_write=(
+                    args_cli.contact_restore_mode
+                    != "in_place_no_forward"
+                ),
+            )
+        if args_cli.clear_contact_warm_start_after_reset:
+            assert contact_restorer is not None
+            contact_restorer.restore(
+                contact_restorer.capture(),
+                clear_contact_warm_start=True,
+                contact_prime_substeps=args_cli.contact_prime_substeps,
+            )
+            adapter.contact_sensor.reset()
         if action_reference_path is not None:
             schedule_frames = np.minimum(
                 recorded_ref_frame,
@@ -1198,8 +1433,102 @@ def main() -> dict:
         signed_pitch_error_samples: list[np.ndarray] = []
         front_force_feedback_samples: list[np.ndarray] = []
         trajectory_correction_samples: list[np.ndarray] = []
+        base_pose_samples: list[np.ndarray] = []
+        base_twist_samples: list[np.ndarray] = []
+        joint_position_samples: list[np.ndarray] = []
+        joint_velocity_samples: list[np.ndarray] = []
+        wheel_pose_samples: list[np.ndarray] = []
+        wheel_twist_samples: list[np.ndarray] = []
+        contact_force_samples: list[np.ndarray] = []
+        measured_contact_samples: list[np.ndarray] = []
 
         for step in range(args_cli.steps):
+            anchor_position_w = adapter.command.robot_anchor_pos_w
+            base_pose_samples.append(
+                torch.cat(
+                    (
+                        anchor_position_w,
+                        adapter.command.robot_anchor_quat_w,
+                    ),
+                    dim=-1,
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            base_twist_samples.append(
+                torch.cat(
+                    (
+                        adapter.command.robot_anchor_lin_vel_w,
+                        adapter.command.robot_anchor_ang_vel_w,
+                    ),
+                    dim=-1,
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            joint_position_samples.append(
+                adapter.robot.data.joint_pos[:, adapter.joint_ids]
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            joint_velocity_samples.append(
+                adapter.robot.data.joint_vel[:, adapter.joint_ids]
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            wheel_pose_samples.append(
+                torch.cat(
+                    (
+                        adapter.robot.data.body_pos_w[
+                            :,
+                            adapter.wheel_body_ids,
+                        ],
+                        adapter.robot.data.body_quat_w[
+                            :,
+                            adapter.wheel_body_ids,
+                        ],
+                    ),
+                    dim=-1,
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            wheel_twist_samples.append(
+                torch.cat(
+                    (
+                        adapter.robot.data.body_lin_vel_w[
+                            :,
+                            adapter.wheel_body_ids,
+                        ],
+                        adapter.robot.data.body_ang_vel_w[
+                            :,
+                            adapter.wheel_body_ids,
+                        ],
+                    ),
+                    dim=-1,
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            pre_step_contact_force = (
+                adapter.contact_sensor.data.net_forces_w[
+                    :,
+                    adapter.contact_body_ids,
+                ]
+                .detach()
+                .cpu()
+                .numpy()
+            )
+            contact_force_samples.append(pre_step_contact_force)
+            measured_contact_samples.append(
+                np.linalg.norm(pre_step_contact_force, axis=-1) >= 8.0
+            )
             pre_step_force_samples.append(
                 adapter.contact_sensor.data.net_forces_w[
                     :,
@@ -1226,16 +1555,21 @@ def main() -> dict:
                 dtype=torch.float32,
                 device=device,
             ).clone()
-            signed_pitch_error = _signed_pitch_error_rad(
+            signed_pitch_error = _quat_rotation_vector(
                 adapter.command.robot_anchor_quat_w,
                 target_anchor_quaternion[step].unsqueeze(0).expand(
                     num_envs,
                     -1,
                 ),
+            )[..., pitch_feedback_axis_index]
+            active_pitch_feedback_error = (
+                signed_pitch_error
+                if step >= args_cli.pitch_feedback_start_frame
+                else torch.zeros_like(signed_pitch_error)
             )
             pitch_feedback_physical = torch.clamp(
                 (
-                    signed_pitch_error
+                    active_pitch_feedback_error
                     * pitch_feedback_gains_t
                 ).unsqueeze(-1)
                 * pitch_feedback_vector_t,
@@ -1459,6 +1793,14 @@ def main() -> dict:
         trajectory_correction = np.stack(
             trajectory_correction_samples
         )
+        base_pose = np.stack(base_pose_samples)
+        base_twist = np.stack(base_twist_samples)
+        joint_position = np.stack(joint_position_samples)
+        joint_velocity = np.stack(joint_velocity_samples)
+        wheel_pose = np.stack(wheel_pose_samples)
+        wheel_twist = np.stack(wheel_twist_samples)
+        contact_force = np.stack(contact_force_samples)
+        measured_contact = np.stack(measured_contact_samples)
         desired_front = recorded_desired_contact[
             : args_cli.steps,
             :2,
@@ -1538,6 +1880,107 @@ def main() -> dict:
                 )
                 * contract.scale[:12]
             )
+            formal_metrics_per_replicate = []
+            formal_failures_per_replicate = []
+            orientation_rotation_vectors = []
+            for replicate_index in range(args_cli.replicates):
+                env_index = start + replicate_index
+                actual_quaternion = np.asarray(
+                    base_pose[:, env_index, 3:7],
+                    dtype=np.float64,
+                )
+                reference_quaternion = np.asarray(
+                    reference.body_quat_w[
+                        recorded_ref_frame[: args_cli.steps],
+                        0,
+                    ],
+                    dtype=np.float64,
+                )
+                alignment_quaternion_np = _quat_multiply_np(
+                    actual_quaternion[0],
+                    _quat_conjugate_np(reference_quaternion[0]),
+                )
+                target_quaternion = _quat_multiply_np(
+                    np.broadcast_to(
+                        alignment_quaternion_np,
+                        reference_quaternion.shape,
+                    ),
+                    reference_quaternion,
+                )
+                orientation_rotation_vectors.append(
+                    _quat_rotation_vector_np(
+                        actual_quaternion,
+                        target_quaternion,
+                    )
+                )
+                formal_metrics = compute_tracking_metrics(
+                    {
+                        "ref_frame": recorded_ref_frame[
+                            : args_cli.steps
+                        ],
+                        "base_pose_w": base_pose[:, env_index],
+                        "base_twist_w": base_twist[:, env_index],
+                        "q": joint_position[:, env_index],
+                        "dq": joint_velocity[:, env_index],
+                        "wheel_body_pose_w": wheel_pose[:, env_index],
+                        "wheel_body_twist_w": wheel_twist[:, env_index],
+                        "contact_force_w": contact_force[:, env_index],
+                        "desired_contact": recorded_desired_contact[
+                            : args_cli.steps
+                        ],
+                        "measured_contact": measured_contact[:, env_index],
+                        "scheduled_action16": candidate_actions[
+                            :,
+                            replicate_index,
+                        ],
+                        "executed_action16": candidate_actions[
+                            :,
+                            replicate_index,
+                        ],
+                    },
+                    reference,
+                    references,
+                    contract,
+                )
+                formal_metrics_per_replicate.append(formal_metrics)
+                formal_failures_per_replicate.append(
+                    tracking_threshold_failures(
+                        formal_metrics,
+                        tracking_thresholds,
+                    )
+                )
+            formal_metric_means = {
+                key: np.mean(
+                    np.asarray(
+                        [
+                            metrics[key]
+                            for metrics in formal_metrics_per_replicate
+                        ],
+                        dtype=np.float64,
+                    ),
+                    axis=0,
+                ).tolist()
+                for key in formal_metrics_per_replicate[0]
+            }
+            formal_metric_means = {
+                key: (
+                    float(value)
+                    if not isinstance(value, list)
+                    else value
+                )
+                for key, value in formal_metric_means.items()
+            }
+            orientation_rotation_vectors_np = np.stack(
+                orientation_rotation_vectors,
+                axis=1,
+            )
+            formal_failure_union = sorted(
+                {
+                    failure
+                    for failures in formal_failures_per_replicate
+                    for failure in failures
+                }
+            )
             records.append(
                 {
                     "action_blend": blend,
@@ -1568,6 +2011,10 @@ def main() -> dict:
                         np.max(np.abs(candidate_velocity_feedback))
                     ),
                     "pitch_feedback_gain": pitch_feedback_gain,
+                    "pitch_feedback_axis": args_cli.pitch_feedback_axis,
+                    "pitch_feedback_start_frame": (
+                        args_cli.pitch_feedback_start_frame
+                    ),
                     "pitch_feedback_vector_index": (
                         pitch_feedback_vector_index
                     ),
@@ -1656,6 +2103,16 @@ def main() -> dict:
                             )
                         )
                     ),
+                    "orientation_rotation_vector_rmse_rad": np.sqrt(
+                        np.mean(
+                            orientation_rotation_vectors_np ** 2,
+                            axis=(0, 1),
+                        )
+                    ).tolist(),
+                    "orientation_rotation_vector_mean_rad": np.mean(
+                        orientation_rotation_vectors_np,
+                        axis=(0, 1),
+                    ).tolist(),
                     "lateral_velocity_mae_m_s": float(
                         np.mean(
                             np.abs(
@@ -1685,6 +2142,19 @@ def main() -> dict:
                     "physical_leg_target_step_max_rad": float(
                         np.max(np.abs(physical_step))
                     ),
+                    "formal_tracking_metrics_mean": formal_metric_means,
+                    "formal_tracking_metrics_per_replicate": (
+                        formal_metrics_per_replicate
+                    ),
+                    "formal_tracking_failures_union": (
+                        formal_failure_union
+                    ),
+                    "formal_tracking_failures_per_replicate": (
+                        formal_failures_per_replicate
+                    ),
+                    "formal_tracking_pass_all": bool(
+                        not any(formal_failures_per_replicate)
+                    ),
                     "terminated_any": bool(
                         done_any[start:stop].any().item()
                     ),
@@ -1703,20 +2173,24 @@ def main() -> dict:
             records,
             key=lambda record: (
                 record["terminated_any"],
-                record["lateral_velocity_mae_m_s"] > 0.025,
-                (
-                    abs(record["target_lateral_displacement_m"]) > 1.0e-4
-                    and record["signed_lateral_progress_ratio"] < 0.60
+                not record["formal_tracking_pass_all"],
+                len(record["formal_tracking_failures_union"]),
+                record["formal_tracking_metrics_mean"][
+                    "base_orientation_rmse_rad"
+                ],
+                max(
+                    record["formal_tracking_metrics_mean"][
+                        "wheel_position_rmse_m"
+                    ]
                 ),
-                record[
-                    "front_normal_below_6n_fraction_when_desired"
-                ] > 0.20,
-                record["lateral_velocity_mae_m_s"],
-                record[
+                max(
+                    record["formal_tracking_metrics_mean"][
+                        "rear_normal_force_p95_n"
+                    ]
+                ),
+                record["formal_tracking_metrics_mean"][
                     "front_normal_below_6n_fraction_when_desired"
                 ],
-                max(record["base_position_delta_max_abs_m"]),
-                record["base_orientation_rmse_rad"],
             ),
         )
         trace_path = None
@@ -1755,7 +2229,13 @@ def main() -> dict:
             "status": "diagnostic_not_training_data",
             "task": args_cli.task,
             "reference_config": args_cli.reference_config,
+            "tracking_config": str(tracking_config_path),
+            "tracking_config_sha256": sha256_file(
+                tracking_config_path
+            ),
+            "tracking_thresholds": tracking_thresholds,
             "source_episode": str(episode_path),
+        "precondition_episodes": precondition_records,
         "action_reference": (
             str(action_reference_path)
             if action_reference_path is not None
@@ -1791,6 +2271,10 @@ def main() -> dict:
             pitch_feedback_vectors.tolist()
         ),
         "pitch_feedback_max_abs_rad": pitch_feedback_max_abs_rad,
+        "pitch_feedback_axis": args_cli.pitch_feedback_axis,
+        "pitch_feedback_start_frame": (
+            args_cli.pitch_feedback_start_frame
+        ),
         "front_force_feedback_scale_values": list(
             front_force_feedback_scales
         ),
@@ -1811,6 +2295,12 @@ def main() -> dict:
         ),
         "clear_contact_warm_start_before_step": bool(
             args_cli.clear_contact_warm_start_before_step
+        ),
+        "clone_env0_after_reset": bool(
+            args_cli.clone_env0_after_reset
+        ),
+        "clear_contact_warm_start_after_reset": bool(
+            args_cli.clear_contact_warm_start_after_reset
         ),
         "contact_prime_substeps": int(args_cli.contact_prime_substeps),
         "contact_restore_mode": args_cli.contact_restore_mode,

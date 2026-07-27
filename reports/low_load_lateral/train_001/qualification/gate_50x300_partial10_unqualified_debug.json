@@ -1,0 +1,859 @@
+{
+  "checks": {
+    "expected_episode_count": false,
+    "expert_implementation_hashes_match_current": true,
+    "expert_implementation_hashes_present": true,
+    "failure_codes_all_none": true,
+    "finite_required_fields": true,
+    "requested_reference_resets_match": true,
+    "required_reference_coverage": true,
+    "required_scenario_matches": true,
+    "required_successes": false,
+    "seed_set_exact": false,
+    "shield_interventions_zero": true,
+    "single_expert_config_hash": true,
+    "structural_failures_empty": false,
+    "teacher_valid_rate": true,
+    "tracking_thresholds": false,
+    "valid_label_sources_all_mppi": true,
+    "wheel_action_exact_zero": true
+  },
+  "config": {
+    "expected_implementation_sha256": {
+      "scripts/_isaac_workflow.py": "ea070ba51d15cd8417f1cee0986b0484b72e8ea47612b1d9fa28d3b310508db2",
+      "scripts/run_isolated_mppi_server.py": "66603662036b45accf76c5d15f64d3ad2660e070eeb06891157b1cb7f48f3c0f",
+      "src/lateral_mppi_dagger/contract/action16.py": "e9fda1403860bdf9c4ff8b14521f30e68673a20a5e0b68fdc38d3d3a36bdbb0e",
+      "src/lateral_mppi_dagger/data/collector.py": "f911fe87325f439a351e7978f70e7c2efc840eb3f97f76f4ab22e3bfbf6318bd",
+      "src/lateral_mppi_dagger/env/action_delay.py": "1a653688e18b521627d37f95a316d41e716a79f3a79696c55c0d9e2404427b94",
+      "src/lateral_mppi_dagger/env/isaac_adapter.py": "3381fbb10e7433fba8787ef8222f1cd627c96e80c99799ee58197741d090077a",
+      "src/lateral_mppi_dagger/env/isaac_mppi_rollout.py": "7b98294ae1b4562f058f5a9b88e86bf6cfa87a75e259fd4922d240ce28a10513",
+      "src/lateral_mppi_dagger/env/isolated_mppi.py": "93574e08f0e3bb0101be44e1c891d26c1609c88796f83190b61d808779772d61",
+      "src/lateral_mppi_dagger/env/scenarios.py": "54a28a8da31181f1fe527143ad71a314c6a67a8b716f750725358c22158928ce",
+      "src/lateral_mppi_dagger/expert/mppi_expert.py": "8f55a83a81df90ae72953b65540d88ae2686b7b64fb98ecde0b5314169a5edac",
+      "src/lateral_mppi_dagger/reference/action_reference.py": "ae4bfe4858444aa09e31dab014a787070903d031a1fec5e13d84bdb2a554499b",
+      "src/lateral_mppi_dagger/reference/loader.py": "53b8d62103e662a4d9225f091f2c9df1073cb84fc413e9c937eac8c3128e7a26"
+    },
+    "expected_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1025,
+      1026,
+      1027,
+      1028,
+      1029,
+      1030,
+      1031,
+      1032,
+      1033,
+      1034,
+      1035,
+      1036,
+      1037,
+      1038,
+      1039,
+      1040,
+      1041,
+      1042,
+      1043,
+      1044,
+      1045,
+      1046,
+      1047,
+      1048,
+      1049
+    ],
+    "full_episode_steps": 300,
+    "require_implementation_hashes": true,
+    "require_requested_reference_reset": true,
+    "require_zero_shield_interventions": true,
+    "required_ref_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "required_scenario_resolved_name": "nominal",
+    "required_successes": 48,
+    "required_teacher_valid_rate": 0.99,
+    "reset_reference_tolerance": 1e-05,
+    "tracking_thresholds": {
+      "base_orientation_rmse_rad": 0.2,
+      "base_position_max_abs_m": [
+        0.12,
+        0.1,
+        0.1
+      ],
+      "box_local_x_drift_max_abs_m": 0.1,
+      "contact_mismatch_rate": 0.25,
+      "front_normal_below_6n_fraction_max": 0.2,
+      "lateral_displacement_error_max_abs_m": 0.08,
+      "lateral_velocity_mae_max_m_s": 0.025,
+      "physical_leg_target_step_max_rad": 0.055,
+      "rear_no_support_fraction_max": 0.01,
+      "rear_normal_force_p95_max_n": 135.0,
+      "rear_single_support_fraction_max": 0.45,
+      "signed_lateral_progress_ratio_min": 0.6,
+      "wheel_position_rmse_m": 0.08
+    }
+  },
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_001/expert_50x300",
+  "episodes": [
+    {
+      "collector_success": false,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref0_seed1000",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift",
+        "tracking:lateral_velocity_mae_m_s",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:rear_normal_force_p95"
+      ],
+      "ref_id": 0,
+      "seed": 1000,
+      "shield_interventions": 0,
+      "steps": 265,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.36000004410743713,
+        "action_rate_mean_abs": 0.06914258748292923,
+        "actual_lateral_displacement_m": -0.22869262099266052,
+        "actual_lateral_velocity_mean_m_s": -0.04439254105091095,
+        "base_orientation_rmse_rad": 0.3177221417427063,
+        "base_position_max_abs_m": [
+          0.3496011793613434,
+          0.07920284569263458,
+          0.23051893711090088
+        ],
+        "base_position_rmse_m": [
+          0.0748889148235321,
+          0.03348227217793465,
+          0.07515771687030792
+        ],
+        "box_local_x_drift_max_abs_m": 0.34160116314888,
+        "contact_mismatch_rate": 0.3179245283018868,
+        "contact_wheel_planar_speed_max_m_s": 0.3597896993160248,
+        "front_normal_below_6n_fraction_when_desired": 0.465,
+        "front_normal_force_mean_n": [
+          2.499235122092068,
+          6.558500849525884
+        ],
+        "joint_position_rmse_rad": 0.3803061842918396,
+        "joint_velocity_rmse_rad_s": 0.8936853408813477,
+        "lateral_displacement_error_m": 0.06739294528961182,
+        "lateral_velocity_mae_m_s": 0.03072298876941204,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          56.37768617710977,
+          119.0112851556742
+        ],
+        "rear_normal_force_p95_n": [
+          101.39080657958984,
+          167.22601928710935
+        ],
+        "rear_single_support_fraction": 0.06037735849056604,
+        "signed_lateral_progress_ratio": 0.7723869280903651,
+        "target_lateral_displacement_m": -0.29608556628227234,
+        "target_lateral_velocity_mean_m_s": -0.056005340069532394,
+        "wheel_center_rmse_m": 0.1470394730567932,
+        "wheel_position_rmse_m": [
+          0.11328773945569992,
+          0.1611284613609314,
+          0.15488241612911224,
+          0.15393948554992676
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref1_seed1001",
+      "failures": [
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:signed_lateral_progress_ratio"
+      ],
+      "ref_id": 1,
+      "seed": 1001,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.06415000557899475,
+        "actual_lateral_displacement_m": -0.09255616366863251,
+        "actual_lateral_velocity_mean_m_s": -0.016037369146943092,
+        "base_orientation_rmse_rad": 0.30214181542396545,
+        "base_position_max_abs_m": [
+          0.08832882344722748,
+          0.08125293254852295,
+          0.09103190898895264
+        ],
+        "base_position_rmse_m": [
+          0.055529460310935974,
+          0.042951975017786026,
+          0.054703500121831894
+        ],
+        "box_local_x_drift_max_abs_m": 0.09632882475852966,
+        "contact_mismatch_rate": 0.2125,
+        "contact_wheel_planar_speed_max_m_s": 0.2006063461303711,
+        "front_normal_below_6n_fraction_when_desired": 0.3377777777777778,
+        "front_normal_force_mean_n": [
+          5.424273155530294,
+          6.579729120333989
+        ],
+        "joint_position_rmse_rad": 0.35397398471832275,
+        "joint_velocity_rmse_rad_s": 0.5605740547180176,
+        "lateral_displacement_error_m": 0.0759315937757492,
+        "lateral_velocity_mae_m_s": 0.020379750058054924,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          66.18217918395996,
+          109.39851795196533
+        ],
+        "rear_normal_force_p95_n": [
+          100.56297073364259,
+          129.5681755065918
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 0.5493346523956529,
+        "target_lateral_displacement_m": -0.1684877574443817,
+        "target_lateral_velocity_mean_m_s": -0.028113791719079018,
+        "wheel_center_rmse_m": 0.08271674066781998,
+        "wheel_position_rmse_m": [
+          0.07746309041976929,
+          0.0780104324221611,
+          0.07952006161212921,
+          0.09465008229017258
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref2_seed1002",
+      "failures": [
+        "tracking:wheel_position",
+        "tracking:lateral_displacement_error_m",
+        "tracking:signed_lateral_progress_ratio"
+      ],
+      "ref_id": 2,
+      "seed": 1002,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.044686488807201385,
+        "actual_lateral_displacement_m": -0.03865028917789459,
+        "actual_lateral_velocity_mean_m_s": -0.006546297576278448,
+        "base_orientation_rmse_rad": 0.18705523014068604,
+        "base_position_max_abs_m": [
+          0.0902528315782547,
+          0.0946735292673111,
+          0.0933830738067627
+        ],
+        "base_position_rmse_m": [
+          0.07527463883161545,
+          0.04689089581370354,
+          0.059377383440732956
+        ],
+        "box_local_x_drift_max_abs_m": 0.09825284034013748,
+        "contact_mismatch_rate": 0.18416666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.2966861426830292,
+        "front_normal_below_6n_fraction_when_desired": 0.1013215859030837,
+        "front_normal_force_mean_n": [
+          6.704252001568675,
+          6.130740490953127
+        ],
+        "joint_position_rmse_rad": 0.4947024881839752,
+        "joint_velocity_rmse_rad_s": 0.5474619269371033,
+        "lateral_displacement_error_m": 0.0946735292673111,
+        "lateral_velocity_mae_m_s": 0.018877195194363594,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          67.70021394093831,
+          94.69131502787272
+        ],
+        "rear_normal_force_p95_n": [
+          91.22876472473148,
+          119.1398391723633
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 0.28989785642675203,
+        "target_lateral_displacement_m": -0.1333238184452057,
+        "target_lateral_velocity_mean_m_s": -0.022262226790189743,
+        "wheel_center_rmse_m": 0.07448652386665344,
+        "wheel_position_rmse_m": [
+          0.0543031208217144,
+          0.054765067994594574,
+          0.06140097230672836,
+          0.11169085651636124
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref3_seed1003",
+      "failures": [
+        "tracking:base_orientation",
+        "tracking:front_normal_below_6n_fraction_when_desired"
+      ],
+      "ref_id": 3,
+      "seed": 1003,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.09137745946645737,
+        "actual_lateral_displacement_m": -0.05636053904891014,
+        "actual_lateral_velocity_mean_m_s": -0.009623491205275059,
+        "base_orientation_rmse_rad": 0.20065267384052277,
+        "base_position_max_abs_m": [
+          0.08265581727027893,
+          0.014108814299106598,
+          0.08565521240234375
+        ],
+        "base_position_rmse_m": [
+          0.05259773135185242,
+          0.006744561716914177,
+          0.039389390498399734
+        ],
+        "box_local_x_drift_max_abs_m": 0.09065582603216171,
+        "contact_mismatch_rate": 0.17833333333333334,
+        "contact_wheel_planar_speed_max_m_s": 0.23915578424930573,
+        "front_normal_below_6n_fraction_when_desired": 0.3400900900900901,
+        "front_normal_force_mean_n": [
+          6.417192393740018,
+          5.8893180318673455
+        ],
+        "joint_position_rmse_rad": 0.2524544596672058,
+        "joint_velocity_rmse_rad_s": 0.530146598815918,
+        "lateral_displacement_error_m": 0.01279793307185173,
+        "lateral_velocity_mae_m_s": 0.010370710864663124,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          71.1815918858846,
+          100.75277641296387
+        ],
+        "rear_normal_force_p95_n": [
+          102.0822780609131,
+          118.29333801269532
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 0.8149477181985098,
+        "target_lateral_displacement_m": -0.06915847212076187,
+        "target_lateral_velocity_mean_m_s": -0.011555206030607224,
+        "wheel_center_rmse_m": 0.034506905823946,
+        "wheel_position_rmse_m": [
+          0.03025818057358265,
+          0.04146018251776695,
+          0.020396504551172256,
+          0.04138096794486046
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref4_seed1004",
+      "failures": [
+        "tracking:base_orientation",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:rear_normal_force_p95"
+      ],
+      "ref_id": 4,
+      "seed": 1004,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.08491911739110947,
+        "actual_lateral_displacement_m": 0.11556761711835861,
+        "actual_lateral_velocity_mean_m_s": 0.01945301704108715,
+        "base_orientation_rmse_rad": 0.211959570646286,
+        "base_position_max_abs_m": [
+          0.0759735256433487,
+          0.0551789253950119,
+          0.08950388431549072
+        ],
+        "base_position_rmse_m": [
+          0.04875373840332031,
+          0.02870778553187847,
+          0.04160231351852417
+        ],
+        "box_local_x_drift_max_abs_m": 0.08397353440523148,
+        "contact_mismatch_rate": 0.22083333333333333,
+        "contact_wheel_planar_speed_max_m_s": 0.26799628138542175,
+        "front_normal_below_6n_fraction_when_desired": 0.5022522522522522,
+        "front_normal_force_mean_n": [
+          5.750753411054611,
+          4.643171821931998
+        ],
+        "joint_position_rmse_rad": 0.28153395652770996,
+        "joint_velocity_rmse_rad_s": 0.507193386554718,
+        "lateral_displacement_error_m": 0.04640914499759674,
+        "lateral_velocity_mae_m_s": 0.02070951834321022,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          103.41458145141601,
+          71.02453152974446
+        ],
+        "rear_normal_force_p95_n": [
+          139.9571746826172,
+          109.37832565307617
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 1.6710550938221838,
+        "target_lateral_displacement_m": 0.06915847212076187,
+        "target_lateral_velocity_mean_m_s": 0.011555206030607224,
+        "wheel_center_rmse_m": 0.038229890167713165,
+        "wheel_position_rmse_m": [
+          0.034095533192157745,
+          0.053326014429330826,
+          0.0385313555598259,
+          0.018848439678549767
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref5_seed1005",
+      "failures": [
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:front_normal_below_6n_fraction_when_desired"
+      ],
+      "ref_id": 5,
+      "seed": 1005,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.11292949318885803,
+        "actual_lateral_displacement_m": 0.09813064336776733,
+        "actual_lateral_velocity_mean_m_s": 0.01696607656776905,
+        "base_orientation_rmse_rad": 0.25301411747932434,
+        "base_position_max_abs_m": [
+          0.07218480110168457,
+          0.03665061295032501,
+          0.09389150142669678
+        ],
+        "base_position_rmse_m": [
+          0.05988466367125511,
+          0.023297084495425224,
+          0.04596029594540596
+        ],
+        "box_local_x_drift_max_abs_m": 0.08018480986356735,
+        "contact_mismatch_rate": 0.17916666666666667,
+        "contact_wheel_planar_speed_max_m_s": 0.22803577780723572,
+        "front_normal_below_6n_fraction_when_desired": 0.33480176211453744,
+        "front_normal_force_mean_n": [
+          5.983288338979086,
+          6.329324769775073
+        ],
+        "joint_position_rmse_rad": 0.29078570008277893,
+        "joint_velocity_rmse_rad_s": 0.6438559293746948,
+        "lateral_displacement_error_m": -0.035193175077438354,
+        "lateral_velocity_mae_m_s": 0.01519092358648777,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          103.71556201934814,
+          66.77760734558106
+        ],
+        "rear_normal_force_p95_n": [
+          133.21168060302736,
+          103.56932601928712
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 0.7360323497492515,
+        "target_lateral_displacement_m": 0.1333238184452057,
+        "target_lateral_velocity_mean_m_s": 0.022262226790189743,
+        "wheel_center_rmse_m": 0.06909710168838501,
+        "wheel_position_rmse_m": [
+          0.09316747635602951,
+          0.024187950417399406,
+          0.074277862906456,
+          0.06569020450115204
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": false,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref6_seed1006",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:rear_normal_force_p95"
+      ],
+      "ref_id": 6,
+      "seed": 1006,
+      "shield_interventions": 0,
+      "steps": 275,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.36000004410743713,
+        "action_rate_mean_abs": 0.061217762529850006,
+        "actual_lateral_displacement_m": 0.1026148572564125,
+        "actual_lateral_velocity_mean_m_s": 0.018788756802678108,
+        "base_orientation_rmse_rad": 0.25500932335853577,
+        "base_position_max_abs_m": [
+          0.44925323128700256,
+          0.06884846836328506,
+          0.19921809434890747
+        ],
+        "base_position_rmse_m": [
+          0.09173543006181717,
+          0.04405972361564636,
+          0.049102187156677246
+        ],
+        "box_local_x_drift_max_abs_m": 0.4412532150745392,
+        "contact_mismatch_rate": 0.31636363636363635,
+        "contact_wheel_planar_speed_max_m_s": 0.21923023462295532,
+        "front_normal_below_6n_fraction_when_desired": 0.5980629539951574,
+        "front_normal_force_mean_n": [
+          4.928094543977217,
+          3.3073141852156684
+        ],
+        "joint_position_rmse_rad": 0.3883439302444458,
+        "joint_velocity_rmse_rad_s": 0.6273632049560547,
+        "lateral_displacement_error_m": -0.05577186495065689,
+        "lateral_velocity_mae_m_s": 0.019506867974996567,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          102.91518807151101,
+          75.55885121258822
+        ],
+        "rear_normal_force_p95_n": [
+          138.30435791015626,
+          105.82909393310547
+        ],
+        "rear_single_support_fraction": 0.0036363636363636364,
+        "signed_lateral_progress_ratio": 0.6478753763352546,
+        "target_lateral_displacement_m": 0.1583867222070694,
+        "target_lateral_velocity_mean_m_s": 0.02885325253009796,
+        "wheel_center_rmse_m": 0.1168171614408493,
+        "wheel_position_rmse_m": [
+          0.1557670384645462,
+          0.13177815079689026,
+          0.08872547000646591,
+          0.07130176573991776
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref7_seed1007",
+      "failures": [
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift",
+        "tracking:lateral_velocity_mae_m_s",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:rear_normal_force_p95"
+      ],
+      "ref_id": 7,
+      "seed": 1007,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.07138153165578842,
+        "actual_lateral_displacement_m": 0.2714534401893616,
+        "actual_lateral_velocity_mean_m_s": 0.04685536026954651,
+        "base_orientation_rmse_rad": 0.5193325877189636,
+        "base_position_max_abs_m": [
+          0.14214175939559937,
+          0.06715971231460571,
+          0.19032663106918335
+        ],
+        "base_position_rmse_m": [
+          0.06237806752324104,
+          0.02961139567196369,
+          0.089664027094841
+        ],
+        "box_local_x_drift_max_abs_m": 0.15014176070690155,
+        "contact_mismatch_rate": 0.31416666666666665,
+        "contact_wheel_planar_speed_max_m_s": 0.2620354890823364,
+        "front_normal_below_6n_fraction_when_desired": 0.42543859649122806,
+        "front_normal_force_mean_n": [
+          7.409826643864314,
+          2.3822666935125985
+        ],
+        "joint_position_rmse_rad": 0.47874507308006287,
+        "joint_velocity_rmse_rad_s": 0.7914534211158752,
+        "lateral_displacement_error_m": -0.06715971231460571,
+        "lateral_velocity_mae_m_s": 0.0342152863740921,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          132.9314342244466,
+          44.791407576004666
+        ],
+        "rear_normal_force_p95_n": [
+          168.8080841064453,
+          102.53569412231445
+        ],
+        "rear_single_support_fraction": 0.07666666666666666,
+        "signed_lateral_progress_ratio": 0.8016624226850761,
+        "target_lateral_displacement_m": 0.3386131525039673,
+        "target_lateral_velocity_mean_m_s": 0.056570664048194885,
+        "wheel_center_rmse_m": 0.17529131472110748,
+        "wheel_position_rmse_m": [
+          0.16743363440036774,
+          0.1528136134147644,
+          0.17679308354854584,
+          0.20066475868225098
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": true,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref8_seed1008",
+      "failures": [
+        "tracking:front_normal_below_6n_fraction_when_desired"
+      ],
+      "ref_id": 8,
+      "seed": 1008,
+      "shield_interventions": 0,
+      "steps": 300,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 1,
+      "tracking": {
+        "action_rate_max_abs": 0.35999995470046997,
+        "action_rate_mean_abs": 0.050407350063323975,
+        "actual_lateral_displacement_m": -0.010643808171153069,
+        "actual_lateral_velocity_mean_m_s": -0.001862918958067894,
+        "base_orientation_rmse_rad": 0.19789665937423706,
+        "base_position_max_abs_m": [
+          0.07945668697357178,
+          0.0198821984231472,
+          0.09206515550613403
+        ],
+        "base_position_rmse_m": [
+          0.066789910197258,
+          0.010249917395412922,
+          0.04316488653421402
+        ],
+        "box_local_x_drift_max_abs_m": 0.08745668828487396,
+        "contact_mismatch_rate": 0.0016666666666666668,
+        "contact_wheel_planar_speed_max_m_s": 0.19862745702266693,
+        "front_normal_below_6n_fraction_when_desired": 0.5210526315789473,
+        "front_normal_force_mean_n": [
+          6.146033086776733,
+          5.615121122996013
+        ],
+        "joint_position_rmse_rad": 0.2659658193588257,
+        "joint_velocity_rmse_rad_s": 0.44233208894729614,
+        "lateral_displacement_error_m": -0.010643808171153069,
+        "lateral_velocity_mae_m_s": 0.014234587550163269,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500000551342964,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          85.50694197336833,
+          82.6711000887553
+        ],
+        "rear_normal_force_p95_n": [
+          100.0206413269043,
+          100.8193531036377
+        ],
+        "rear_single_support_fraction": 0.0,
+        "signed_lateral_progress_ratio": 1.0,
+        "target_lateral_displacement_m": 2.980232727267662e-11,
+        "target_lateral_velocity_mean_m_s": 4.949046381041988e-12,
+        "wheel_center_rmse_m": 0.016904227435588837,
+        "wheel_position_rmse_m": [
+          0.017367731779813766,
+          0.02826758474111557,
+          0.004345489665865898,
+          0.00484082568436861
+        ]
+      },
+      "wheel_action_exact_zero": true
+    },
+    {
+      "collector_success": false,
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref0_seed1009",
+      "failures": [
+        "did_not_complete_full_horizon",
+        "tracking:base_position",
+        "tracking:base_orientation",
+        "tracking:wheel_position",
+        "tracking:contact_mismatch",
+        "tracking:box_local_x_drift",
+        "tracking:lateral_velocity_mae_m_s",
+        "tracking:front_normal_below_6n_fraction_when_desired",
+        "tracking:rear_normal_force_p95"
+      ],
+      "ref_id": 0,
+      "seed": 1009,
+      "shield_interventions": 0,
+      "steps": 275,
+      "success": false,
+      "teacher_valid_rate": 1.0,
+      "termination_reason": 2,
+      "tracking": {
+        "action_rate_max_abs": 0.3600000739097595,
+        "action_rate_mean_abs": 0.07337117195129395,
+        "actual_lateral_displacement_m": -0.23621748387813568,
+        "actual_lateral_velocity_mean_m_s": -0.04433130845427513,
+        "base_orientation_rmse_rad": 0.3202623128890991,
+        "base_position_max_abs_m": [
+          0.3563635051250458,
+          0.07818712294101715,
+          0.22935742139816284
+        ],
+        "base_position_rmse_m": [
+          0.07439379394054413,
+          0.03629186004400253,
+          0.07525787502527237
+        ],
+        "box_local_x_drift_max_abs_m": 0.3483634889125824,
+        "contact_mismatch_rate": 0.3109090909090909,
+        "contact_wheel_planar_speed_max_m_s": 0.355613112449646,
+        "front_normal_below_6n_fraction_when_desired": 0.45036319612590797,
+        "front_normal_force_mean_n": [
+          2.428032787225463,
+          6.845866652835499
+        ],
+        "joint_position_rmse_rad": 0.3782787621021271,
+        "joint_velocity_rmse_rad_s": 0.8806044459342957,
+        "lateral_displacement_error_m": 0.07663621008396149,
+        "lateral_velocity_mae_m_s": 0.02739977091550827,
+        "leg_action_saturation_rate": 0.0,
+        "physical_leg_target_step_max_rad": 0.04500001668930054,
+        "rear_no_support_fraction": 0.0,
+        "rear_normal_force_mean_n": [
+          56.35311400456862,
+          119.78919928810814
+        ],
+        "rear_normal_force_p95_n": [
+          101.56191635131837,
+          166.12202606201177
+        ],
+        "rear_single_support_fraction": 0.06909090909090909,
+        "signed_lateral_progress_ratio": 0.7550413769663014,
+        "target_lateral_displacement_m": -0.31285369396209717,
+        "target_lateral_velocity_mean_m_s": -0.057025350630283356,
+        "wheel_center_rmse_m": 0.1521563082933426,
+        "wheel_position_rmse_m": [
+          0.1126575767993927,
+          0.16594626009464264,
+          0.1622312217950821,
+          0.16142277419567108
+        ]
+      },
+      "wheel_action_exact_zero": true
+    }
+  ],
+  "ok": false,
+  "schema_version": "pcbc-expert-gate-v1",
+  "structural_failures": [
+    "missing_seeds:[1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049]"
+  ],
+  "summary": {
+    "episodes_found": 10,
+    "expert_config_hashes": [
+      "da3aedf804fdbedb0b6acd751c19f04feae47b853f13b87d8732d6dd426305b0"
+    ],
+    "observed_ref_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "requested_reference_resets_match": true,
+    "shield_interventions": 0,
+    "success_rate": 0.0,
+    "successes": 0,
+    "teacher_valid_rate": 1.0,
+    "tracking_successes": 0,
+    "wheel_action_exact_zero": true
+  }
+}

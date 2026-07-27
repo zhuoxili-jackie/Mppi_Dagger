@@ -12,6 +12,9 @@ import numpy as np
 
 from lateral_mppi_dagger.expert.base import (
     LEGACY_MPPI_COST_COMPONENT_NAMES,
+    LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES,
+    OBSERVABILITY_MPPI_COST_COMPONENT_NAMES,
+    REAR_SWING_MPPI_COST_COMPONENT_NAMES,
     MPPI_COST_COMPONENT_NAMES,
     FailureCode,
     LabelSource,
@@ -108,6 +111,9 @@ class EpisodeShard:
             if name == "mppi_cost_components":
                 allowed_widths = {
                     len(LEGACY_MPPI_COST_COMPONENT_NAMES),
+                    len(LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES),
+                    len(OBSERVABILITY_MPPI_COST_COMPONENT_NAMES),
+                    len(REAR_SWING_MPPI_COST_COMPONENT_NAMES),
                     len(MPPI_COST_COMPONENT_NAMES),
                 }
                 if (

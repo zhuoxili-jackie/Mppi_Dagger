@@ -1,0 +1,36 @@
+{
+  "frames": 332,
+  "held_after_frame": 300,
+  "lookahead_steps": 1,
+  "output": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/artifacts/low_load_lateral/train_002/attempt_157/nominal_actions/ref_00_from_attempt149_seed1000.npz",
+  "output_sha256": "e0a17ebef83d37f2cf295598a450d2fb0958f38a09dc83ace1c4a47362b470e3",
+  "physical_offset_leg_rad": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "physical_target_rate_limit_rad_s": 2.25,
+  "physical_target_step_max_rad": 0.04500007629394531,
+  "purpose": "mppi_proposal_centre_not_state_reference_or_training_data",
+  "q_des_shape": [
+    332,
+    12
+  ],
+  "ref_id": 0,
+  "reference_config": "configs/low_load_lateral/train_001/reference.yaml",
+  "schema_version": "pcbc-nominal-action-reference-v1",
+  "source_episode": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "source_episode_sha256": "1dc8fc984cb357c5f4c13f29df20efb26df236e4f615916455af8c56f0f2ef57",
+  "source_steps": 300,
+  "status": "diagnostic_feedforward_requires_closed_loop_mppi_gate",
+  "wheel_action_exact_zero": true
+}

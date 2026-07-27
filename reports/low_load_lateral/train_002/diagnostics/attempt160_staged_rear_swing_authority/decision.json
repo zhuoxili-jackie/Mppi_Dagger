@@ -1,0 +1,50 @@
+{
+  "schema_version": "pcbc-local-authority-decision-v1",
+  "attempt": "attempt_160",
+  "status": "reject_before_expert_implementation",
+  "qualification_effect": "none",
+  "dataset_classification": "unqualified_debug",
+  "training_data_eligible": false,
+  "candidate_config_created": false,
+  "expert_dataset_created": false,
+  "source_episode": "datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "source_episode_sha256": "1dc8fc984cb357c5f4c13f29df20efb26df236e4f615916455af8c56f0f2ef57",
+  "isolated_hypothesis": "Twenty steps of bounded medium load transfer before the existing RR swing, followed by release and monotonic frozen-reference YZ endpoint tracking, can create the missing rear contact transition.",
+  "frozen_constraints": {
+    "reference_height_changed": false,
+    "gate_thresholds_changed": false,
+    "action_contract_changed": false,
+    "wheel_action_exact_zero": true,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "deployment_code_changed": false
+  },
+  "state_copy": {
+    "pass": true,
+    "pre_probe_spread_max_abs": 0.0
+  },
+  "evidence": [
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt160_staged_rear_swing_authority/attempt149_frame105_rr_medium_lead20_yz_n40.json",
+      "sha256": "c41e5584a256c855865515e5cde55d76fa3fc54c55f9871f27be4a2f34284eac",
+      "finding": "Both rear wheels remained above the unchanged 8 N contact threshold for all 40 probe steps. RR moved only 2.96 mm in the required world-Y direction. FL contact fraction fell to 0.5, base orientation RMSE rose to 0.24166 rad, and relative base displacement reached [-42.56,-64.72,-18.53] mm."
+    }
+  ],
+  "reference_step_evidence": {
+    "rear_swing_target_lateral_step_range_mm": [
+      36.45,
+      39.42
+    ],
+    "attempt149_early_rear_swing_actual_typical_mm": [
+      0.0,
+      3.0
+    ],
+    "attempt149_early_rear_swing_measured_contact_fraction": 1.0,
+    "interpretation": "The formal 300-step wheel error is the repeated accumulation of missed frozen-reference rear steps, not a single late disturbance."
+  },
+  "decision_reasons": [
+    "Extending the pre-load interval from nine to twenty steps did not change rear contact topology.",
+    "The resulting RR endpoint motion remained less than one tenth of the frozen-reference step while front support and pose exceeded unchanged formal limits.",
+    "No forced load-transfer or Cartesian intervention tested in attempts 158 through 160 has a safe local basin that can be promoted to expert collection."
+  ],
+  "next_action": "Stop forced-output intervention development. Produce a consolidated reachability and qualification-blocker report from the complete attempt history, then retain the valid 9x100 result while keeping R0 blocked until a controller can demonstrate an actual 36 to 39 mm low-load rear step under the frozen contracts."
+}

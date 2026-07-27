@@ -1,0 +1,53 @@
+{
+  "schema_version": "pcbc-local-authority-decision-v1",
+  "attempt": "attempt_158",
+  "status": "reject_before_expert_implementation",
+  "qualification_effect": "none",
+  "dataset_classification": "unqualified_debug",
+  "training_data_eligible": false,
+  "candidate_config_created": false,
+  "expert_dataset_created": false,
+  "source_episode": "datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "source_episode_sha256": "1dc8fc984cb357c5f4c13f29df20efb26df236e4f615916455af8c56f0f2ef57",
+  "isolated_hypothesis": "A bounded frozen-reference rear-joint target, with continuous or staged load transfer, can unload and laterally reposition the planted RR wheel during its existing 12 mm low-load swing.",
+  "frozen_constraints": {
+    "reference_height_changed": false,
+    "gate_thresholds_changed": false,
+    "action_contract_changed": false,
+    "wheel_action_exact_zero": true,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "deployment_code_changed": false
+  },
+  "state_copy": {
+    "pass": true,
+    "pre_probe_spread_max_abs": 0.0
+  },
+  "evidence": [
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority/attempt149_frame116_rr_hip_reference_n20.json",
+      "sha256": "0cc0e805d40026e1b16a6dd06f7e3f784f2b7116a177444dc1cc804ff729e970",
+      "finding": "Frozen-reference RR hip tracking alone did not unload the wheel or move it in the required lateral direction."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority/attempt149_frame116_rr_all_reference_preload_n20_v2.json",
+      "sha256": "2bf1af4c86b30c9753dbd4080ad6bce49276f46a8d94409b0414c7ef46337cab",
+      "finding": "Continuous all-joint reference tracking plus small or medium load transfer moved RR only 2.49 or 1.56 mm in the required world-Y direction; the large direction moved it 7.54 mm in the wrong direction and added 0.06197 rad mean roll-vector error."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority/attempt149_frame116_rr_staged_preload_n20_v3.json",
+      "sha256": "dd1abe9cabd8de9c48b31147b24252c4f10b9aca117c328b58e7e892cd5aaa84",
+      "finding": "Pre-swing load transfer followed by swing-window frozen-reference tracking left all four wheels in measured contact for every probe step and moved RR 1.42 to 6.73 mm in the wrong world-Y direction."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority/attempt149_frame116_rr_preload_n40_v4.json",
+      "sha256": "60930cdae174e914637907149872be446c8abd9bf8da0390e6d81d75c0e1d0c2",
+      "finding": "Extending the strongest continuous direction to 40 steps still kept both rear wheels in contact for every step, while front contact fractions fell to 0.925 and 0.875, base orientation RMSE rose to 0.19673 rad, and base displacement relative to baseline reached [-0.06552,-0.08380,-0.02974] m."
+    }
+  ],
+  "decision_reasons": [
+    "The intervention never changed the required rear contact topology.",
+    "The bounded lateral displacement was at least an order of magnitude below the approximately 31 mm missing RR swing displacement, or had the wrong sign.",
+    "Stronger and longer intervention traded away front contact, base pose, and orientation instead of creating rear swing authority."
+  ],
+  "next_action": "Do not add this intervention to the expert. Return to episode-global MPPI tracking and test a frozen-reference Cartesian rear-wheel correction only after a local Jacobian probe demonstrates the correct endpoint direction under the unchanged contact, raw-action, rate, and zero-wheel constraints."
+}

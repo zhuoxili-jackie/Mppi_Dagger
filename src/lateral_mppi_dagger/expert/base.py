@@ -53,13 +53,37 @@ LEGACY_MPPI_COST_COMPONENT_NAMES = (
     "terminal",
 )
 
-MPPI_COST_COMPONENT_NAMES = (
+LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES = (
     *LEGACY_MPPI_COST_COMPONENT_NAMES[:-2],
     "front_normal_support",
     "rear_force_overload",
     "rear_force_imbalance",
     "rear_support_loss",
     *LEGACY_MPPI_COST_COMPONENT_NAMES[-2:],
+)
+
+OBSERVABILITY_MPPI_COST_COMPONENT_NAMES = (
+    LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES[0],
+    "base_height_drop",
+    *LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES[1:3],
+    "rear_leg_position",
+    *LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES[3:6],
+    "lateral_position",
+    *LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES[6:],
+)
+
+REAR_SWING_MPPI_COST_COMPONENT_NAMES = (
+    *OBSERVABILITY_MPPI_COST_COMPONENT_NAMES[:7],
+    "rear_swing_lateral_position",
+    *OBSERVABILITY_MPPI_COST_COMPONENT_NAMES[7:-2],
+    "rear_swing_force",
+    *OBSERVABILITY_MPPI_COST_COMPONENT_NAMES[-2:],
+)
+
+MPPI_COST_COMPONENT_NAMES = (
+    *REAR_SWING_MPPI_COST_COMPONENT_NAMES[:8],
+    "rear_swing_height_deficit",
+    *REAR_SWING_MPPI_COST_COMPONENT_NAMES[8:],
 )
 
 

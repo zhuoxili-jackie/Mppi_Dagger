@@ -1,0 +1,53 @@
+{
+  "schema_version": "pcbc-local-authority-decision-v1",
+  "attempt": "attempt_159",
+  "status": "reject_before_expert_implementation",
+  "qualification_effect": "none",
+  "dataset_classification": "unqualified_debug",
+  "training_data_eligible": false,
+  "candidate_config_created": false,
+  "expert_dataset_created": false,
+  "source_episode": "datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "source_episode_sha256": "1dc8fc984cb357c5f4c13f29df20efb26df236e4f615916455af8c56f0f2ef57",
+  "isolated_hypothesis": "A damped-least-squares correction toward the episode-aligned frozen-reference RR endpoint can recover the missing lateral swing without changing the original 12 mm reference height.",
+  "frozen_constraints": {
+    "reference_height_changed": false,
+    "gate_thresholds_changed": false,
+    "action_contract_changed": false,
+    "wheel_action_exact_zero": true,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "deployment_code_changed": false
+  },
+  "state_copy": {
+    "pass": true,
+    "pre_probe_spread_max_abs": 0.0
+  },
+  "evidence": [
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority/attempt149_frame116_rr_cartesian_n20.json",
+      "sha256": "189d2049bf4d93f8461d56effe91366efa11149f776e52fdaf7e3a37b842a47c",
+      "finding": "Superseded diagnostic: this first implementation did not preserve an already more aggressive same-direction MPPI joint target and therefore underestimated available target authority."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority/attempt149_frame116_rr_cartesian_preload_n20_v2.json",
+      "sha256": "00da1f7e0caa51713d28e5cae06fcc1558caf53e6c920eba8cc2d806dbd57ebb",
+      "finding": "Partially superseded diagnostic: the medium load-transfer combinations are unchanged by the monotonic target correction and remain invalid because RR Y reversed sign, RR X error grew to 174 to 178 mm, base-height loss exceeded 81 mm, and orientation RMSE exceeded 0.263 rad."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority/attempt149_frame116_rr_cartesian_monotonic_n20_v3.json",
+      "sha256": "5c707629bd6088e76f1c6d6b5b0f37c10c2c6c97e311d7075aea84151161b92a",
+      "finding": "With formal monotonic target semantics, YZ preview moved RR 4.68 to 4.80 mm in the required direction, limited relative base-height change to +3.01 mm, and improved front-normal means to about [4.9,6.0] N, but RR remained in contact for every step."
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority/attempt149_frame116_rr_cartesian_monotonic_n50_v4.json",
+      "sha256": "c850018617adf7ba2689cc8da8dc11a34899296b89ed8b2aed4b1162b4300e35",
+      "finding": "Across 50 steps and two RR swing previews, the bounded YZ correction remained non-terminating with orientation RMSE 0.146 rad and less than 4.3 mm relative base-height loss, but RR stayed in contact for every step and correct RR Y displacement plateaued at 5.5 to 5.8 mm instead of accumulating toward the approximately 31 mm missing step."
+    }
+  ],
+  "decision_reasons": [
+    "The only locally stable Cartesian correction preserves base pose but produces less than one fifth of the missing RR endpoint motion and does not accumulate across a second swing preview.",
+    "The only combination that changed rear contact topology moved the wheel in the wrong lateral direction and produced errors already beyond the unchanged formal limits.",
+    "The intervention therefore cannot address the long-horizon rear-wheel error and must not be promoted to a 150-step expert candidate."
+  ],
+  "next_action": "Close forced rear-joint and Cartesian output corrections. Audit the episode-global rollout objective and candidate selection after frame 100 for a model-prediction or cost-attribution defect before proposing another closed-loop expert."
+}

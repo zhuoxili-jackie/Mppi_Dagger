@@ -1,0 +1,26 @@
+{
+  "base_config": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/configs/low_load_lateral/train_002/expert_attempt_149.yaml",
+  "base_config_sha256": "9ee044b43fb84e2e716ea48fdaa5654543106ec6aee94938696a0bd74d076633",
+  "candidate_status": "unqualified_debug",
+  "cost_weight_replacements": [],
+  "load_limit_replacements": [],
+  "mppi_setting_replacements": [],
+  "noise_std_scale": null,
+  "note": "attempt157：以 attempt149 的完整300步闭环实际执行腿动作为 ref0 新 MPPI nominal proposal center，仅做零偏置、1步lookahead、0.045rad速率投影和哈希锁定。失败轨迹不进入BC/DAgger，只作为普通MPPI搜索中心；attempt149 的完整Isaac代价、256×40×2预算、冻结门槛、12mm参考、93D ABI、rotation6D、零轮动作、raw/rate限制和部署代码均不变。先做state-copy和ref0×150消除诊断，只有多项指标共同改善才扩展300步。",
+  "output": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/configs/low_load_lateral/train_002/expert_attempt_157.yaml",
+  "output_feedback_replacements": [],
+  "output_sha256": "0a4e591adac711848532c5b45f7ce1580b77caa389a551be72368c7abcefaab8",
+  "reference_proposal_replacements": [],
+  "replacements": [
+    {
+      "path": "artifacts/low_load_lateral/train_002/attempt_157/nominal_actions/ref_00_from_attempt149_seed1000.npz",
+      "previous_path": "artifacts/low_load_lateral/train_002/attempt_148/nominal_actions/ref_00_from_attempt141_seed1000.npz",
+      "previous_sha256": "4830ee56d218197d394b0bb1945c0b60ff0e65deafa1aabf0ffbe82849456e33",
+      "ref_id": 0,
+      "sha256": "e0a17ebef83d37f2cf295598a450d2fb0958f38a09dc83ace1c4a47362b470e3"
+    }
+  ],
+  "schema_version": "pcbc-mppi-candidate-config-build-v11",
+  "solver_override_replacements": [],
+  "status": "unqualified_debug_requires_full_requalification"
+}

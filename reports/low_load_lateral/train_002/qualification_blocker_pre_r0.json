@@ -1,0 +1,169 @@
+{
+  "schema_version": "pcbc-pre-r0-qualification-blocker-v1",
+  "generated_at": "2026-07-27T06:55:17+08:00",
+  "training_id": "train_002",
+  "status": "BLOCK_EXPERT_50X300",
+  "pipeline_stage": "PRE_R0",
+  "r0_admission": false,
+  "observability_status": "NOT_REACHED",
+  "observability_is_current_blocker": false,
+  "active_training_or_gate_process": false,
+  "qualification_constraints_changed": false,
+  "valid_prior_result": {
+    "description": "train_001 expert qualification over 9 references and 100 steps",
+    "result": "PASS_9_OF_9_AT_100_STEPS",
+    "still_valid": true,
+    "formal_50x300_equivalent": false,
+    "evidence": {
+      "path": "reports/low_load_lateral/train_001/qualification/gate_9x100.json",
+      "sha256": "2d806809898a08ff05ca9d05ef26d2538cac9cc849e055754295ffb81747ec4f"
+    }
+  },
+  "formal_entry_gate": {
+    "required_episode_count": 50,
+    "required_episode_steps": 300,
+    "required_successes": 48,
+    "latest_formal_partial_result": "FAIL_0_OF_10_AT_300_STEPS",
+    "evidence": {
+      "path": "reports/low_load_lateral/train_001/qualification/gate_50x300_partial10_unqualified_debug.json",
+      "sha256": "ce412ee48ff6240d4ffb483337817bb1f5e3174fb9b861967fee75873c5f1ce0"
+    }
+  },
+  "best_current_full_horizon_candidate": {
+    "candidate": "attempt_149",
+    "scope": "reference 0, seed 1000, 300 steps",
+    "result": "FAIL_0_OF_1",
+    "collector_completed_full_horizon": true,
+    "teacher_valid_rate": 1.0,
+    "wheel_action_exact_zero": true,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "formal_metrics": {
+      "base_orientation_rmse_rad": {
+        "value": 0.2093740701675415,
+        "limit": 0.2,
+        "pass": false
+      },
+      "wheel_position_rmse_m": {
+        "value": [
+          0.030287861824035645,
+          0.09597796201705933,
+          0.17540796101093292,
+          0.17980720102787018
+        ],
+        "per_wheel_limit": 0.08,
+        "pass": false
+      },
+      "lateral_velocity_mae_m_s": {
+        "value": 0.026967179030179977,
+        "limit": 0.025,
+        "pass": false
+      },
+      "lateral_displacement_error_m": {
+        "value": 0.07728791236877441,
+        "limit": 0.08,
+        "pass": true
+      },
+      "signed_lateral_progress_ratio": {
+        "value": 0.771751593825438,
+        "minimum": 0.6,
+        "pass": true
+      },
+      "front_normal_below_6n_fraction_when_desired": {
+        "value": 0.3267543859649123,
+        "limit": 0.2,
+        "pass": false
+      },
+      "rear_normal_force_p95_n": {
+        "value": [
+          100.41991920471192,
+          175.79826889038085
+        ],
+        "per_wheel_limit": 135.0,
+        "pass": false
+      }
+    },
+    "evidence": {
+      "path": "reports/low_load_lateral/train_002/attempt_149/gate_ref0_seed1000_diag300_unqualified_debug.json",
+      "sha256": "a06d2d419db2b2dff0bd2ea157b52b53ecfb2042e4c479df8b583434709f354e"
+    }
+  },
+  "failure_mechanism": {
+    "rear_swing_target_lateral_step_range_mm": [
+      36.45,
+      39.42
+    ],
+    "attempt149_early_rear_swing_actual_typical_mm": [
+      0.0,
+      3.0
+    ],
+    "attempt149_early_rear_swing_measured_contact_fraction": 1.0,
+    "interpretation": "The 300-step rear-wheel error grows through repeated missed frozen-reference rear steps; it is not explained by the 0.2 rad orientation threshold alone or by one late disturbance."
+  },
+  "closed_recent_branches": [
+    {
+      "attempt": "attempt_157",
+      "mechanism": "recenter proposals on the attempt_149 closed-loop trajectory",
+      "decision": "REJECT_UNQUALIFIED_DEBUG",
+      "reason": "The 150-step candidate regressed orientation, wheel tracking, lateral velocity, displacement, progress, and front support.",
+      "evidence": {
+        "path": "reports/low_load_lateral/train_002/attempt_157/decision_diag150.json",
+        "sha256": "4339563a5a7facb8b9c4963ca333b4c956e8a8b68267dedf4db9a47db2fe5337"
+      }
+    },
+    {
+      "attempt": "attempt_158",
+      "mechanism": "bounded frozen joint targets with continuous or staged load transfer",
+      "decision": "REJECT_BEFORE_EXPERT_IMPLEMENTATION",
+      "reason": "Rear contact topology did not change; stronger interventions traded away front contact and base pose.",
+      "evidence": {
+        "path": "reports/low_load_lateral/train_002/diagnostics/attempt158_rear_swing_lateral_authority/decision.json",
+        "sha256": "427dbeca1e6de6e34b758bda504b4db4504ba88586dd07933b63e538a39fe9b7"
+      }
+    },
+    {
+      "attempt": "attempt_159",
+      "mechanism": "monotonic damped-least-squares frozen Cartesian rear endpoint correction",
+      "decision": "REJECT_BEFORE_EXPERT_IMPLEMENTATION",
+      "reason": "The stable correction plateaued below 5.8 mm, kept the rear wheel in contact, and did not accumulate across the next swing.",
+      "evidence": {
+        "path": "reports/low_load_lateral/train_002/diagnostics/attempt159_rear_cartesian_authority/decision.json",
+        "sha256": "a39a81d571a2e5cd41807b6db4a483784031c3035d9819fdade0bddb8e7b091d"
+      }
+    },
+    {
+      "attempt": "attempt_160",
+      "mechanism": "20-step load-transfer lead followed by monotonic Cartesian swing tracking",
+      "decision": "REJECT_BEFORE_EXPERT_IMPLEMENTATION",
+      "reason": "Both rear wheels stayed in contact for all 40 probe steps; RR moved 2.96 mm while pose and front support exceeded formal limits.",
+      "evidence": {
+        "path": "reports/low_load_lateral/train_002/diagnostics/attempt160_staged_rear_swing_authority/decision.json",
+        "sha256": "f46c9729b8f548127c64e3a71d7393b1a505dcffebafb4f45b9ed8a52c744eac"
+      }
+    }
+  ],
+  "runtime_estimate": {
+    "measured_mean_teacher_solve_ms_per_step": 1137.4693603515625,
+    "solver_only_50x300_hours": 4.739455668131511,
+    "earliest_wall_clock_after_a_viable_candidate_hours": [
+      5.0,
+      6.0
+    ],
+    "current_eta_to_r0": "UNKNOWN_UNTIL_A_VIABLE_300_STEP_EXPERT_CANDIDATE_EXISTS",
+    "interpretation": "Five to six hours is a lower bound after a viable candidate exists, not an estimate from the present blocked state."
+  },
+  "onnx_status": {
+    "qualified_low_load_lateral_release_exists": false,
+    "requested_release_path_exists": false,
+    "legacy_onnx_found": "exported/lateral_policy_v2_key7_aligned_r1/policy.onnx",
+    "legacy_onnx_is_current_pipeline_release": false,
+    "debug_bc_export_decision": "REJECT_ONNX_FOR_ROBOT_PREVIEW",
+    "debug_bc_export_attempted": false,
+    "debug_bc_decision_path": "reports/low_load_lateral/train_001/qualification/debug_bc_9x100_export_decision.json"
+  },
+  "admission_decision": {
+    "start_formal_50x300_now": false,
+    "start_r0_now": false,
+    "reason": "No current candidate passes even the single-reference 300-step screen, and the measured rear-step failure repeats over the formal horizon.",
+    "next_in_scope_work": "Audit the episode-global rollout objective and candidate selection after frame 100, then require an unchanged-threshold 300-step reference screen before spending the full 50-episode gate."
+  }
+}

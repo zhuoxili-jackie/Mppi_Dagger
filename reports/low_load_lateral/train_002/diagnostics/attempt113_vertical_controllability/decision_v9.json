@@ -1,0 +1,140 @@
+{
+  "schema_version": "pcbc-local-controllability-decision-v1",
+  "diagnostic": "attempt113_vertical_controllability",
+  "status": "PROMOTE_ONE_DIRECTION_TO_UNQUALIFIED_DEBUG_MPPI_CANDIDATE",
+  "qualification_effect": "none",
+  "dataset_classification": "unqualified_debug",
+  "formal_thresholds_changed": false,
+  "frozen_contracts_changed": false,
+  "decision": {
+    "promoted_direction_name": "front_press_full_plus_rear_thigh_minus",
+    "joint_order": [
+      "FL_hip",
+      "FR_hip",
+      "RL_hip",
+      "RR_hip",
+      "FL_thigh",
+      "FR_thigh",
+      "RL_thigh",
+      "RR_thigh",
+      "FL_calf",
+      "FR_calf",
+      "RL_calf",
+      "RR_calf"
+    ],
+    "full_scale_physical_offset_rad": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.12,
+      0.12,
+      -0.12,
+      -0.12,
+      0.12,
+      0.12,
+      0.0,
+      0.0
+    ],
+    "candidate_scales": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "activation": {
+      "ref_ids": [
+        0
+      ],
+      "start_frame": 100,
+      "gate_mode": "swing_schedule"
+    },
+    "selection_semantics": "ordinary_full_cost_mppi_proposal",
+    "forced_output": false,
+    "reference_height_changed": false,
+    "wheel_action_changed": false
+  },
+  "evidence_validity": {
+    "v4_v5": {
+      "valid_for_causal_decision": false,
+      "reason": "Probe rollouts were not restored to an identical simulator state before every candidate, so clone drift confounded local response."
+    },
+    "v6_v7": {
+      "valid_for_causal_decision": true,
+      "result": "State-copy replicas were used. Bounded single-joint perturbations showed no useful rear-wheel vertical authority or contact release, and rear-joint torque was not saturated."
+    },
+    "v8": {
+      "valid_for_candidate_decision": false,
+      "reason": "Some probe steps exceeded the frozen physical leg-target step gate of 0.055 rad and therefore cannot justify a formal-compatible proposal."
+    },
+    "v9": {
+      "valid_for_candidate_decision": true,
+      "state_copy_before_each_probe": true,
+      "baseline_replica_count": 4,
+      "physical_target_rate_limit_rad_s": 2.25,
+      "physical_target_step_limit_rad": 0.045,
+      "frozen_gate_physical_leg_target_step_max_rad": 0.055,
+      "wheel_action_exact_zero": true,
+      "probe_steps": 20,
+      "probe_amplitude_rad": 0.12
+    }
+  },
+  "v9_coordinated_direction_response": {
+    "rl_prelead_frame_100": {
+      "scheduled_rear_wheel": "RL",
+      "scheduled_rear_normal_force_mean_delta_n": -6.822606086730957,
+      "other_rear_normal_force_mean_delta_n": -9.225481033325195,
+      "front_vertical_support_mean_delta_total_n": 8.199105024337769,
+      "front_normal_force_mean_delta_total_n": 4.512764930725098,
+      "orientation_rotation_vector_delta_max_abs_rad": 0.037174709141254425,
+      "rear_contact_released": false
+    },
+    "rr_prelead_frame_116": {
+      "scheduled_rear_wheel": "RR",
+      "scheduled_rear_normal_force_mean_delta_n": -9.968778610229492,
+      "other_rear_normal_force_mean_delta_n": -4.202427387237549,
+      "front_vertical_support_mean_delta_total_n": 7.1479411125183105,
+      "front_normal_force_mean_delta_total_n": 3.9077095985412598,
+      "orientation_rotation_vector_delta_max_abs_rad": 0.0089,
+      "rear_contact_released": false
+    }
+  },
+  "interpretation": [
+    "The v9 coordinated direction is the first tested formal-rate-compatible direction that consistently transfers a useful amount of vertical support from the scheduled rear wheel toward front wall support.",
+    "The short local probe does not lift or reposition a rear wheel and does not pass any expert gate by itself.",
+    "Only a complete 150-step, then 300-step Isaac MPPI rollout may determine whether full-cost selection improves the frozen tracking and load gates."
+  ],
+  "rejected_followups": [
+    "Do not use v8 amplitudes as formal-compatible evidence.",
+    "Do not force the probe direction after MPPI optimization.",
+    "Do not lower the frozen thresholds.",
+    "Do not increase reference swing height or restore a high-lift gait.",
+    "Do not change the 93D ABI, rotation-6D encoding, wheel-action zero contract, or deployment code."
+  ],
+  "evidence": [
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rl_frame108_all_amp040_v7.json",
+      "sha256": "fde27e5a9e60d44bdb7016e75094d97898c956ad8d9940f9888acb0c4c14d01c"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rr_frame124_all_amp040_v7.json",
+      "sha256": "6ce2d2d87e3ad4ee46d966488e1045061155063427652c4af90e4a3d8522bfcd"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rl_prelead_frame100_all_amp120_n20_v8.json",
+      "sha256": "e3b18f60ec8c6b6f7207167ae651bb6177427e8d91caf064f484884526ffe309"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rr_prelead_frame116_all_amp120_n20_v8.json",
+      "sha256": "af6ec691a192e455d13d5d836bbe950716ecab93ffdf0a6b7953fe9849ece723"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rl_prelead_frame100_all_amp120_n20_v9.json",
+      "sha256": "c63a05a913f1144827aa57f7e651ef10f05813d0761b588c274308e5230e0b02"
+    },
+    {
+      "path": "reports/low_load_lateral/train_002/diagnostics/attempt113_vertical_controllability/rr_prelead_frame116_all_amp120_n20_v9.json",
+      "sha256": "7276b108cb39d098f7c14b3f7738723132eadc8f9f9249cf21e5bbff35ccc94d"
+    }
+  ]
+}

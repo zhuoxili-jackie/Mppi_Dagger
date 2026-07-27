@@ -1,0 +1,374 @@
+{
+  "action_delay_steps": 0,
+  "clone_spread_max_abs": 0.0,
+  "cost_components_for_best_candidate": {
+    "action_rate": 0.11777792125940323,
+    "action_residual": 163.01058959960938,
+    "base_height_drop": 0.9826335310935974,
+    "base_orientation": 15.362238883972168,
+    "base_position": 141.15431213378906,
+    "box_x_drift": 3.2903366088867188,
+    "contact_mismatch": 13.0,
+    "edge_drop": 0.0,
+    "front_normal_support": 1679.630615234375,
+    "joint_acceleration": 0.05296504497528076,
+    "joint_limit": 0.0,
+    "joint_position": 15.04751968383789,
+    "joint_velocity": 3.9916980266571045,
+    "lateral_position": 0.0,
+    "lateral_velocity": 257.00732421875,
+    "rear_force_imbalance": 92.11819458007812,
+    "rear_force_overload": 188.17640686035156,
+    "rear_leg_position": 0.0,
+    "rear_support_loss": 0.0,
+    "rear_swing_force": 613.387939453125,
+    "rear_swing_height_deficit": 0.0,
+    "rear_swing_lateral_position": 0.0,
+    "terminal": 0.5584564208984375,
+    "termination": 0.0,
+    "torque_limit": 0.0,
+    "wheel_position": 0.3111633360385895,
+    "wheel_slip": 0.208811417222023
+  },
+  "determinism": {
+    "cost_max_abs": 0.0,
+    "cost_max_candidate": 0,
+    "pass": true,
+    "state_group_max_abs": {
+      "joint_position": 0.0,
+      "joint_velocity": 0.0,
+      "root_pose": 0.0,
+      "root_velocity": 0.0
+    },
+    "state_max_abs": 0.0,
+    "state_max_candidate": 0,
+    "state_max_dimension": 0
+  },
+  "device": "cuda:0",
+  "effective_action_residual_weight": 5000.0,
+  "effective_base_orientation_axis_multipliers": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "effective_base_orientation_cost_multiplier": 1.0,
+  "effective_lateral_velocity_cost_multiplier": 1.0,
+  "effective_rear_support_loss_cost_multiplier": 1.0,
+  "effective_selection_mode": "best_sample",
+  "effective_temperature": 50.0,
+  "effective_warm_start": false,
+  "finite_costs": true,
+  "hard_zero_rollout_actions": true,
+  "horizon": 40,
+  "maximum_cost": 6254.404296875,
+  "minimum_cost": 3187.409423828125,
+  "nominal_action_reference": {
+    "enabled": true,
+    "entries": [
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_002/attempt_157/nominal_actions/ref_00_from_attempt149_seed1000.npz",
+        "ref_id": 0,
+        "representation": "raw_action",
+        "sha256": "e0a17ebef83d37f2cf295598a450d2fb0958f38a09dc83ace1c4a47362b470e3",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "base_orientation_axis_multipliers": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "base_orientation_cost_multiplier": 1.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 500.0,
+              "base_orientation_axis_multipliers": [
+                4.0,
+                2.0,
+                4.0
+              ],
+              "base_orientation_cost_multiplier": 50.0,
+              "reset_warm_start": true,
+              "selection_mode": "best_sample",
+              "start_frame": 40,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref1_proposal.npz",
+        "ref_id": 1,
+        "representation": "raw_action",
+        "sha256": "d53650ccc8652eeb4ed0a65618877e82340e5bb4d6f0e71fd98be65a6e29bf87",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref2_proposal.npz",
+        "ref_id": 2,
+        "representation": "raw_action",
+        "sha256": "a5d5d84108c51e5eee69b0b3ee1bbc8dd493c7e9ce7f53ed9bb150c916205707",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref3_proposal.npz",
+        "ref_id": 3,
+        "representation": "raw_action",
+        "sha256": "e9978103eda4eacfd037fc8b44091b2558294a1a0691449bd2346c3abb174a91",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 72,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref4_proposal.npz",
+        "ref_id": 4,
+        "representation": "raw_action",
+        "sha256": "21ccd534e054492ffa6958fa98629d7ac8e6ff00749f2844f4d505e9d0f78106",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref5_proposal.npz",
+        "ref_id": 5,
+        "representation": "raw_action",
+        "sha256": "eb5e325c84a8a2e01145f54b2583cd6ddecd74de679641d55ff90ba6719047a0",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "solver_schedule": [
+            {
+              "action_residual_weight": 5000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 0,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 1000.0,
+              "selection_mode": "best_sample",
+              "start_frame": 50,
+              "warm_start": false
+            },
+            {
+              "action_residual_weight": 500.0,
+              "selection_mode": "best_sample",
+              "start_frame": 60,
+              "warm_start": false
+            }
+          ]
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref6_proposal.npz",
+        "ref_id": 6,
+        "representation": "raw_action",
+        "sha256": "af8f3d2848a388db1a0900e0cbb2fa3a8c783078dd58b5f32807835ad1acd851",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "artifacts/low_load_lateral/train_001/diagnostics/full_moving_proposals_attempt_001/low_load_ref7_proposal.npz",
+        "ref_id": 7,
+        "representation": "raw_action",
+        "sha256": "284db1443f2de1186df8682d0e4e2d4633a0ab588426ef6ad43f70c1836f3d62",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      },
+      {
+        "array_key": "raw_action_leg",
+        "path": "assets/low_load_lateral/train_001/nominal_actions/ref_08_standing.npz",
+        "ref_id": 8,
+        "representation": "raw_action",
+        "sha256": "b5fa11447f714663e67029ac6852c646a1b23c74ab89b3c99839535978511576",
+        "shape": [
+          332,
+          12
+        ],
+        "solver_overrides": {
+          "action_residual_weight": 5000.0,
+          "selection_mode": "best_sample",
+          "warm_start": false
+        }
+      }
+    ]
+  },
+  "nominal_reset_matches_requested_reference": true,
+  "pass": true,
+  "platform_position_jitter_m_sampled": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "ref_id": 0,
+  "reference_bridge": {
+    "active_reference_count": 9,
+    "id_mapping": "identity_after_runtime_bank_replacement",
+    "legacy_reference_count": 7,
+    "moving_reference_count": 8,
+    "semantics": "standalone_reference_set_replaces_isaac_runtime_bank",
+    "standing_reference_id": 8
+  },
+  "reset_reference_max_abs": {
+    "anchor_orientation_rad": 0.0,
+    "anchor_position_m": 5.960464477539063e-08,
+    "anchor_twist": 0.0,
+    "joint_position_rad": 0.0,
+    "joint_velocity_rad_s": 0.0
+  },
+  "round_trip_delay_queue_max_abs": 0.0,
+  "round_trip_platform_pose_max_abs": 0.0,
+  "round_trip_previous_command_max_abs": 0.0,
+  "round_trip_state_max_abs": 0.0,
+  "samples": 256,
+  "scenario": {
+    "action_delay_steps": 0,
+    "initial_state": {
+      "joint_position": [
+        0.0,
+        0.0
+      ],
+      "pose": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      },
+      "velocity": {
+        "pitch": [
+          0.0,
+          0.0
+        ],
+        "roll": [
+          0.0,
+          0.0
+        ],
+        "x": [
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0
+        ],
+        "yaw": [
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "observation_noise_std": 0.0,
+    "physics_profile": "nominal",
+    "platform_position_jitter_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "requested_name": "nominal",
+    "resolved_name": "nominal"
+  },
+  "schema_version": "pcbc-mppi-state-copy-gate-v1",
+  "seed": 1000,
+  "solver_schedule_phase": 0,
+  "solver_schedule_start_frame": 0,
+  "task": "RobotLab-Isaac-BeyondMimic-Flat-pcbC-v1-lateral-bipedal-stand-v0",
+  "thresholds": {
+    "cost_max_abs": 1e-05,
+    "state_max_abs": 1e-05
+  },
+  "validated_reference_frame": 0
+}

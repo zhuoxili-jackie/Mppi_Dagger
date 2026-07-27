@@ -1,0 +1,90 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_001/expert_50x300",
+  "episode_level_split_leakage": false,
+  "episodes": [
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref0_seed1000",
+      "split": "train",
+      "steps": 265,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref1_seed1001",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref2_seed1002",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref3_seed1003",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref4_seed1004",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref5_seed1005",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref6_seed1006",
+      "split": "train",
+      "steps": 275,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref7_seed1007",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref8_seed1008",
+      "split": "train",
+      "steps": 300,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    },
+    {
+      "episode_id": "low_load_lateral_train_001_expert_50x300_ref0_seed1009",
+      "split": "train",
+      "steps": 275,
+      "student_valid_rate": 0.0,
+      "teacher_valid_rate": 1.0,
+      "wheel_action_max_abs": 0.0
+    }
+  ],
+  "schema_version": "pcbc-dataset-validation-v1",
+  "split_counts": {
+    "train": 10
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "base_config": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/configs/low_load_lateral/train_002/expert_attempt_148.yaml",
+  "base_config_sha256": "9047b994e0cdf721068a58eeb5cdfaed2292c18ae8950fdd4ec4ef3360433d4f",
+  "candidate_status": "unqualified_debug",
+  "cost_weight_replacements": [
+    {
+      "name": "front_normal_support",
+      "previous": 192.0,
+      "replacement": 384.0
+    },
+    {
+      "name": "rear_force_imbalance",
+      "previous": 5.0,
+      "replacement": 20.0
+    },
+    {
+      "name": "rear_force_overload",
+      "previous": 26.0,
+      "replacement": 104.0
+    }
+  ],
+  "load_limit_replacements": [],
+  "mppi_setting_replacements": [],
+  "noise_std_scale": null,
+  "note": "attempt149：保留 attempt148 的当前300步 nominal proposal center，仅依据其完整日志中 front_normal_support p95约12761、rear_force_overload p95约1543仍低于 orientation p95约20041 的证据，将前支撑权重192→384、后轮过载26→104、后轮不平衡5→20。所有项均为现有完整Isaac代价，不改变正式门槛、参考、MPPI预算、ABI、rotation6D、零轮动作、raw/rate限制或部署；先做state-copy和ref0×150消除诊断。",
+  "output": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/configs/low_load_lateral/train_002/expert_attempt_149.yaml",
+  "output_feedback_replacements": [],
+  "output_sha256": "9ee044b43fb84e2e716ea48fdaa5654543106ec6aee94938696a0bd74d076633",
+  "reference_proposal_replacements": [],
+  "replacements": [],
+  "schema_version": "pcbc-mppi-candidate-config-build-v11",
+  "solver_override_replacements": [],
+  "status": "unqualified_debug_requires_full_requalification"
+}

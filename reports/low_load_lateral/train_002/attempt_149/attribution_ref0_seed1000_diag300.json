@@ -1,0 +1,1928 @@
+{
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300",
+  "episode_id": "low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000",
+  "episode_shard": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300/episodes/low_load_lateral_train_002_attempt149_ref0_seed1000_diag300_ref0_seed1000.npz",
+  "formal_tracking_metrics": {
+    "action_rate_max_abs": 0.3600001335144043,
+    "action_rate_mean_abs": 0.11410199850797653,
+    "actual_lateral_displacement_m": -0.26132524013519287,
+    "actual_lateral_velocity_mean_m_s": -0.04456302523612976,
+    "base_orientation_rmse_rad": 0.2093740701675415,
+    "base_position_max_abs_m": [
+      0.06416057795286179,
+      0.09433278441429138,
+      0.09349703788757324
+    ],
+    "base_position_rmse_m": [
+      0.03929188475012779,
+      0.05878707394003868,
+      0.03574593365192413
+    ],
+    "box_local_x_drift_max_abs_m": 0.07216058671474457,
+    "contact_mismatch_rate": 0.22833333333333333,
+    "contact_wheel_planar_speed_max_m_s": 0.6183515787124634,
+    "front_normal_below_6n_fraction_when_desired": 0.3267543859649123,
+    "front_normal_force_mean_n": [
+      5.795810337315003,
+      6.312066618849834
+    ],
+    "joint_position_rmse_rad": 0.30350261926651,
+    "joint_velocity_rmse_rad_s": 0.9522031545639038,
+    "lateral_displacement_error_m": 0.07728791236877441,
+    "lateral_velocity_mae_m_s": 0.026967179030179977,
+    "leg_action_saturation_rate": 0.0,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "rear_no_support_fraction": 0.0,
+    "rear_normal_force_mean_n": [
+      47.88004987080892,
+      122.09056761423747
+    ],
+    "rear_normal_force_p95_n": [
+      100.41991920471192,
+      175.79826889038085
+    ],
+    "rear_single_support_fraction": 0.23,
+    "signed_lateral_progress_ratio": 0.771751593825438,
+    "target_lateral_displacement_m": -0.3386131525039673,
+    "target_lateral_velocity_mean_m_s": -0.056570664048194885,
+    "wheel_center_rmse_m": 0.13530310988426208,
+    "wheel_position_rmse_m": [
+      0.030287861824035645,
+      0.09597796201705933,
+      0.17540796101093292,
+      0.17980720102787018
+    ]
+  },
+  "mppi_diagnostics": {
+    "cost_component_order": [
+      "base_position",
+      "base_height_drop",
+      "base_orientation",
+      "joint_position",
+      "rear_leg_position",
+      "joint_velocity",
+      "wheel_position",
+      "rear_swing_lateral_position",
+      "rear_swing_height_deficit",
+      "lateral_velocity",
+      "lateral_position",
+      "box_x_drift",
+      "wheel_slip",
+      "contact_mismatch",
+      "edge_drop",
+      "action_residual",
+      "action_rate",
+      "joint_acceleration",
+      "torque_limit",
+      "joint_limit",
+      "front_normal_support",
+      "rear_force_overload",
+      "rear_force_imbalance",
+      "rear_support_loss",
+      "rear_swing_force",
+      "termination",
+      "terminal"
+    ],
+    "cost_components": {
+      "action_rate": {
+        "maximum": 0.13143084943294525,
+        "mean": 0.11282589237205684,
+        "median": 0.11968864873051643,
+        "minimum": 0.013844951055943966,
+        "p10": 0.09586348161101342,
+        "p95": 0.12749626561999322
+      },
+      "action_residual": {
+        "maximum": 1000.6701049804688,
+        "mean": 149.96051087061565,
+        "median": 134.17767333984375,
+        "minimum": 0.0,
+        "p10": 66.56719131469727,
+        "p95": 261.442465209961
+      },
+      "base_height_drop": {
+        "maximum": 150.84315490722656,
+        "mean": 6.9839756852077945,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 51.08376445770265
+      },
+      "base_orientation": {
+        "maximum": 21697.96875,
+        "mean": 7775.0747356987,
+        "median": 5298.2314453125,
+        "minimum": 16.171297073364258,
+        "p10": 32.054182052612305,
+        "p95": 20113.44775390625
+      },
+      "base_position": {
+        "maximum": 275.22515869140625,
+        "mean": 124.55040159861247,
+        "median": 127.53147888183594,
+        "minimum": 32.994773864746094,
+        "p10": 53.27247695922852,
+        "p95": 193.99183731079108
+      },
+      "box_x_drift": {
+        "maximum": 6.751416206359863,
+        "mean": 3.6109083038568497,
+        "median": 3.713913321495056,
+        "minimum": 0.1773625761270523,
+        "p10": 1.2730878710746767,
+        "p95": 5.765740537643433
+      },
+      "contact_mismatch": {
+        "maximum": 86.0,
+        "mean": 39.056666666666665,
+        "median": 35.0,
+        "minimum": 14.0,
+        "p10": 24.0,
+        "p95": 65.05000000000001
+      },
+      "edge_drop": {
+        "maximum": 4.482956409454346,
+        "mean": 0.3734375952050822,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 2.727342343330384
+      },
+      "front_normal_support": {
+        "maximum": 9867.66796875,
+        "mean": 4168.963909098307,
+        "median": 3761.1197509765625,
+        "minimum": 1192.013671875,
+        "p10": 2601.8853759765625,
+        "p95": 7273.938159179687
+      },
+      "joint_acceleration": {
+        "maximum": 0.08140089362859726,
+        "mean": 0.05470721994837125,
+        "median": 0.05568667873740196,
+        "minimum": 0.010709607973694801,
+        "p10": 0.0411514300853014,
+        "p95": 0.07279353328049185
+      },
+      "joint_limit": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "joint_position": {
+        "maximum": 24.851661682128906,
+        "mean": 17.499567836125692,
+        "median": 17.872217178344727,
+        "minimum": 9.566458702087402,
+        "p10": 12.821953010559081,
+        "p95": 22.55382881164551
+      },
+      "joint_velocity": {
+        "maximum": 7.31174898147583,
+        "mean": 5.119413255055745,
+        "median": 5.216912031173706,
+        "minimum": 3.3591792583465576,
+        "p10": 4.123715019226074,
+        "p95": 5.95862762928009
+      },
+      "lateral_position": {
+        "maximum": 8092.58642578125,
+        "mean": 3247.392076022575,
+        "median": 3723.86083984375,
+        "minimum": 0.0,
+        "p10": 12.03406763076783,
+        "p95": 6838.654638671876
+      },
+      "lateral_velocity": {
+        "maximum": 1638.804931640625,
+        "mean": 552.965812886556,
+        "median": 468.6343536376953,
+        "minimum": 129.61399841308594,
+        "p10": 263.54970703125,
+        "p95": 1115.2881774902344
+      },
+      "rear_force_imbalance": {
+        "maximum": 1122.675537109375,
+        "mean": 307.8217655436198,
+        "median": 182.0761947631836,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 918.1253601074219
+      },
+      "rear_force_overload": {
+        "maximum": 6930.3671875,
+        "mean": 2220.8441274388633,
+        "median": 1144.0977172851562,
+        "minimum": 18.02686309814453,
+        "p10": 75.26579360961914,
+        "p95": 6187.958642578125
+      },
+      "rear_leg_position": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "rear_support_loss": {
+        "maximum": 750.0,
+        "mean": 161.53333333333333,
+        "median": 10.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 660.5000000000001
+      },
+      "rear_swing_force": {
+        "maximum": 6549.55908203125,
+        "mean": 2149.420098063151,
+        "median": 1887.7616577148438,
+        "minimum": 651.30712890625,
+        "p10": 1120.3732788085938,
+        "p95": 4604.200244140627
+      },
+      "rear_swing_height_deficit": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "rear_swing_lateral_position": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "terminal": {
+        "maximum": 0.9486302137374878,
+        "mean": 0.624705501695474,
+        "median": 0.6291338503360748,
+        "minimum": 0.3628612756729126,
+        "p10": 0.4452820628881455,
+        "p95": 0.8187974154949188
+      },
+      "termination": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "torque_limit": {
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p95": 0.0
+      },
+      "wheel_position": {
+        "maximum": 47.26185607910156,
+        "mean": 17.71982225447893,
+        "median": 15.703320503234863,
+        "minimum": 0.2978838384151459,
+        "p10": 0.9487702369689941,
+        "p95": 43.12176837921144
+      },
+      "wheel_slip": {
+        "maximum": 0.6999786496162415,
+        "mean": 0.395243534296751,
+        "median": 0.3815501630306244,
+        "minimum": 0.19742228090763092,
+        "p10": 0.27309697270393374,
+        "p95": 0.5703151792287826
+      }
+    },
+    "effective_sample_size": {
+      "fraction_below_2": 0.5466666666666666,
+      "fraction_below_4": 0.85,
+      "maximum": 14.89103889465332,
+      "mean": 2.3790130857626597,
+      "median": 1.8489410281181335,
+      "minimum": 1.0000007152557373,
+      "p10": 1.0148890137672424,
+      "p95": 5.701802611351014
+    },
+    "mean_total_cost": {
+      "maximum": 55112.7890625,
+      "mean": 22764.876438802083,
+      "median": 18978.931640625,
+      "minimum": 5896.56591796875,
+      "p10": 8541.55546875,
+      "p95": 42976.67949218751
+    },
+    "minimum_total_cost": {
+      "maximum": 52112.75,
+      "mean": 20950.076429036457,
+      "median": 17578.125,
+      "minimum": 3429.29443359375,
+      "p10": 6661.5921875,
+      "p95": 41499.18457031251
+    },
+    "rollout_termination_rate": {
+      "maximum": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "minimum": 0.0,
+      "p10": 0.0,
+      "p95": 0.0
+    }
+  },
+  "orientation_angle_consistency_max_abs_rad": 8.344022318943888e-05,
+  "orientation_axis_correlations": {
+    "x": {
+      "base_position_error": [
+        -0.19141014353968028,
+        0.31819013669965873,
+        0.12755352021798985
+      ],
+      "front_normal_force": [
+        -0.1613858441321412,
+        0.1661095624202632
+      ],
+      "rear_normal_force": [
+        0.040424541976097794,
+        -0.04879083918983181
+      ],
+      "wheel_position_error": {
+        "FL": [
+          0.09976002008900552,
+          0.3444020534029238,
+          0.16873186450669084
+        ],
+        "FR": [
+          0.13235520599395767,
+          0.4988211442991947,
+          -0.028394927513979352
+        ],
+        "RL": [
+          -0.5726164854696791,
+          0.14512541480937746,
+          -0.33585465214040305
+        ],
+        "RR": [
+          0.1744416430297304,
+          0.1085124733966359,
+          -0.002731425229156833
+        ]
+      }
+    },
+    "y": {
+      "base_position_error": [
+        -0.2550813859906548,
+        0.23047334066286435,
+        0.6953458111843682
+      ],
+      "front_normal_force": [
+        0.06935686366467328,
+        0.1552274529419654
+      ],
+      "rear_normal_force": [
+        -0.2368949015334456,
+        -0.06053185640388015
+      ],
+      "wheel_position_error": {
+        "FL": [
+          0.3187453337391276,
+          0.013390808946615257,
+          0.2746231617033792
+        ],
+        "FR": [
+          0.38022120485851485,
+          0.26968905714585356,
+          -0.10050926345991802
+        ],
+        "RL": [
+          -0.2966285669018602,
+          0.26328670178475017,
+          0.22466989350728545
+        ],
+        "RR": [
+          -0.2720888519265432,
+          0.23261835407270529,
+          -0.2629795461304654
+        ]
+      }
+    },
+    "z": {
+      "base_position_error": [
+        -0.28645862603590716,
+        -0.8320672346696795,
+        -0.7051009096321199
+      ],
+      "front_normal_force": [
+        -0.06101135130374404,
+        -0.267142565603166
+      ],
+      "rear_normal_force": [
+        0.8453002883664342,
+        -0.7821177347475057
+      ],
+      "wheel_position_error": {
+        "FL": [
+          -0.23435449459009425,
+          0.017815909653513193,
+          -0.2903907981240008
+        ],
+        "FR": [
+          -0.5305347390912483,
+          -0.535057123048147,
+          0.4153021078876626
+        ],
+        "RL": [
+          -0.3447134927171607,
+          -0.9568713740949606,
+          -0.7702178269649174
+        ],
+        "RR": [
+          0.7203891058812545,
+          -0.9797046741774803,
+          0.5966064973934749
+        ]
+      }
+    }
+  },
+  "orientation_rotation_vector_mean_rad": [
+    0.01195065883262518,
+    -0.08449534870266827,
+    -0.15357710638095698
+  ],
+  "orientation_rotation_vector_rmse_rad": [
+    0.036922288068844476,
+    0.09905676687869786,
+    0.1807292129849515
+  ],
+  "physical_leg_target_step_max_rad": 0.04500001668930054,
+  "rear_swing_records": [
+    {
+      "actual_joint_first_rad": [
+        0.032348670065402985,
+        0.9284926652908325,
+        1.6159751415252686
+      ],
+      "actual_joint_last_rad": [
+        0.09165921062231064,
+        0.8615933060646057,
+        1.6148122549057007
+      ],
+      "actual_wheel_displacement_m": [
+        -0.001171216368675232,
+        -0.0007782280445098877,
+        3.199279308319092e-05
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.019741947726515847,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.2599388360977173,
+        0.6810731291770935,
+        0.9298739433288574
+      ],
+      "reference_joint_last_rad": [
+        0.02034357376396656,
+        0.7070347666740417,
+        1.0532758235931396
+      ],
+      "start_frame": 42,
+      "stop_frame": 49,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03942002356052399,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        0.1321038007736206,
+        0.7576789855957031,
+        1.2590081691741943
+      ],
+      "teacher_q_des_last_rad": [
+        0.17715562880039215,
+        0.7190316915512085,
+        1.0578136444091797
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.14215494692325592,
+        0.927453875541687,
+        1.089056372642517
+      ],
+      "actual_joint_last_rad": [
+        0.252630352973938,
+        0.9100862145423889,
+        1.1096558570861816
+      ],
+      "actual_wheel_displacement_m": [
+        -0.018149999901652336,
+        -0.0016222596168518066,
+        -0.002435460686683655
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.04172479449576727,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.2600250840187073,
+        0.6827908754348755,
+        0.9270239472389221
+      ],
+      "reference_joint_last_rad": [
+        0.025031957775354385,
+        0.7018769979476929,
+        1.058823585510254
+      ],
+      "start_frame": 75,
+      "stop_frame": 82,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.038879990577697754,
+        0.0011458992958068848
+      ],
+      "teacher_q_des_first_rad": [
+        0.2231743037700653,
+        0.9122210741043091,
+        1.0377713441848755
+      ],
+      "teacher_q_des_last_rad": [
+        0.20636369287967682,
+        0.975452721118927,
+        0.9101933240890503
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.10200109332799911,
+        1.1020176410675049,
+        1.0485451221466064
+      ],
+      "actual_joint_last_rad": [
+        -0.0005993552040308714,
+        1.0327903032302856,
+        1.0818897485733032
+      ],
+      "actual_wheel_displacement_m": [
+        -0.002120625227689743,
+        -0.0023240745067596436,
+        5.7853758335113525e-05
+      ],
+      "frames": 6,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.06376059382229564,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.259523868560791,
+        0.6761186122894287,
+        0.938212513923645
+      ],
+      "reference_joint_last_rad": [
+        0.03382713720202446,
+        0.6936349272727966,
+        1.0667966604232788
+      ],
+      "start_frame": 109,
+      "stop_frame": 115,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.036450013518333435,
+        0.0013273954391479492
+      ],
+      "teacher_q_des_first_rad": [
+        -0.0056627290323376656,
+        1.071678876876831,
+        0.867289125919342
+      ],
+      "teacher_q_des_last_rad": [
+        0.0429307222366333,
+        0.9559531211853027,
+        0.8523918390274048
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.09341446310281754,
+        1.1480025053024292,
+        0.9137024283409119
+      ],
+      "actual_joint_last_rad": [
+        -0.027286842465400696,
+        1.1089723110198975,
+        0.9387966394424438
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0007314626127481461,
+        -0.0008974969387054443,
+        -4.939734935760498e-06
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.022767554439375434,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.2614571154117584,
+        0.6810089945793152,
+        0.9288172125816345
+      ],
+      "reference_joint_last_rad": [
+        0.020350279286503792,
+        0.7070336937904358,
+        1.0532732009887695
+      ],
+      "start_frame": 142,
+      "stop_frame": 149,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.0394199974834919,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        -0.06604132056236267,
+        1.0996472835540771,
+        0.8390529155731201
+      ],
+      "teacher_q_des_last_rad": [
+        0.01461116410791874,
+        1.1313142776489258,
+        0.8466346263885498
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.08012040704488754,
+        1.3646321296691895,
+        0.8145781755447388
+      ],
+      "actual_joint_last_rad": [
+        0.005435625556856394,
+        1.312903881072998,
+        0.8813253045082092
+      ],
+      "actual_wheel_displacement_m": [
+        0.00465698167681694,
+        -0.0026578009128570557,
+        0.00058707594871521
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.06835906079398296,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.2600250840187073,
+        0.6827908754348755,
+        0.9270239472389221
+      ],
+      "reference_joint_last_rad": [
+        0.025031957775354385,
+        0.7018769979476929,
+        1.058823585510254
+      ],
+      "start_frame": 175,
+      "stop_frame": 182,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.038880009204149246,
+        0.0011458992958068848
+      ],
+      "teacher_q_des_first_rad": [
+        -0.029326505959033966,
+        1.123775839805603,
+        0.7391975522041321
+      ],
+      "teacher_q_des_last_rad": [
+        0.010096455924212933,
+        1.122998595237732,
+        0.7199856638908386
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.013343610800802708,
+        1.192059874534607,
+        0.8481841087341309
+      ],
+      "actual_joint_last_rad": [
+        -0.05147334560751915,
+        1.2851057052612305,
+        0.8124849796295166
+      ],
+      "actual_wheel_displacement_m": [
+        0.0023652473464608192,
+        0.0010679066181182861,
+        -0.0005229339003562927
+      ],
+      "frames": 6,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": -0.029297844728290962,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.259523868560791,
+        0.6761186122894287,
+        0.938212513923645
+      ],
+      "reference_joint_last_rad": [
+        0.03382713720202446,
+        0.6936349272727966,
+        1.0667966604232788
+      ],
+      "start_frame": 209,
+      "stop_frame": 215,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03645000606775284,
+        0.0013273954391479492
+      ],
+      "teacher_q_des_first_rad": [
+        0.002497708424925804,
+        1.2687466144561768,
+        0.7740436792373657
+      ],
+      "teacher_q_des_last_rad": [
+        -0.011623280122876167,
+        1.3076443672180176,
+        0.6868692636489868
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.10288157314062119,
+        1.0741032361984253,
+        0.7618156671524048
+      ],
+      "actual_joint_last_rad": [
+        -0.006249571219086647,
+        1.038102149963379,
+        0.64915931224823
+      ],
+      "actual_wheel_displacement_m": [
+        0.06576211750507355,
+        -0.00945262610912323,
+        0.010944128036499023
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": 0.23979254809941286,
+      "measured_contact_fraction": 0.0,
+      "reference_joint_first_rad": [
+        0.2614571154117584,
+        0.6810089945793152,
+        0.9288172125816345
+      ],
+      "reference_joint_last_rad": [
+        0.020350279286503792,
+        0.7070336937904358,
+        1.0532732009887695
+      ],
+      "start_frame": 242,
+      "stop_frame": 249,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03942001610994339,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        0.11567078530788422,
+        0.9398217797279358,
+        0.720599353313446
+      ],
+      "teacher_q_des_last_rad": [
+        0.019856292754411697,
+        1.0440592765808105,
+        0.670865535736084
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.08092562854290009,
+        0.9510399699211121,
+        0.9845749735832214
+      ],
+      "actual_joint_last_rad": [
+        -0.0004667651664931327,
+        0.9793943762779236,
+        1.0252366065979004
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0538303405046463,
+        0.012110546231269836,
+        0.008897826075553894
+      ],
+      "frames": 6,
+      "joint_indices_policy_order": [
+        2,
+        6,
+        10
+      ],
+      "lateral_displacement_completion_ratio": -0.33225080218910036,
+      "measured_contact_fraction": 0.0,
+      "reference_joint_first_rad": [
+        0.2545500695705414,
+        0.6687005162239075,
+        0.953991711139679
+      ],
+      "reference_joint_last_rad": [
+        0.025031957775354385,
+        0.7018769979476929,
+        1.058823585510254
+      ],
+      "start_frame": 276,
+      "stop_frame": 282,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.036450013518333435,
+        -0.0013273954391479492
+      ],
+      "teacher_q_des_first_rad": [
+        0.07656912505626678,
+        0.8675951361656189,
+        0.990588366985321
+      ],
+      "teacher_q_des_last_rad": [
+        0.021246157586574554,
+        1.0025951862335205,
+        1.082119345664978
+      ],
+      "wheel": "RL"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.13556860387325287,
+        0.7502539753913879,
+        1.5436776876449585
+      ],
+      "actual_joint_last_rad": [
+        0.15524610877037048,
+        0.7294253706932068,
+        1.601208209991455
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0004780776798725128,
+        -0.0007857680320739746,
+        -0.0002159327268600464
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.020233383009974723,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.11273272335529327,
+        0.7322297692298889,
+        1.0951483249664307
+      ],
+      "reference_joint_last_rad": [
+        -0.16997656226158142,
+        0.6817511320114136,
+        0.9911685585975647
+      ],
+      "start_frame": 25,
+      "stop_frame": 32,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.038835227489471436,
+        0.0011011362075805664
+      ],
+      "teacher_q_des_first_rad": [
+        0.15218688547611237,
+        0.6892165541648865,
+        1.2901015281677246
+      ],
+      "teacher_q_des_last_rad": [
+        0.06421405076980591,
+        0.6776375770568848,
+        1.1860417127609253
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.01589241623878479,
+        0.7575833797454834,
+        1.4560914039611816
+      ],
+      "actual_joint_last_rad": [
+        -0.014380284585058689,
+        0.6419985890388489,
+        1.4797096252441406
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0012769009917974472,
+        -0.0007036328315734863,
+        -0.00011003762483596802
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.0180975635743033,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.08637934923171997,
+        0.7216245532035828,
+        1.0966817140579224
+      ],
+      "reference_joint_last_rad": [
+        -0.18048757314682007,
+        0.6870734691619873,
+        0.9748010635375977
+      ],
+      "start_frame": 59,
+      "stop_frame": 66,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03887997567653656,
+        -0.0011458992958068848
+      ],
+      "teacher_q_des_first_rad": [
+        -0.02647094987332821,
+        0.5455243587493896,
+        1.070288062095642
+      ],
+      "teacher_q_des_last_rad": [
+        -0.08449239283800125,
+        0.5657428503036499,
+        1.0140868425369263
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.028200414031744003,
+        0.7248689532279968,
+        1.298645257949829
+      ],
+      "actual_joint_last_rad": [
+        -0.08443071693181992,
+        0.7357357740402222,
+        1.353074312210083
+      ],
+      "actual_wheel_displacement_m": [
+        -0.00021300464868545532,
+        0.0004373490810394287,
+        -4.62457537651062e-05
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": -0.011094596270098797,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.0917389914393425,
+        0.726904034614563,
+        1.091139793395996
+      ],
+      "reference_joint_last_rad": [
+        -0.18205061554908752,
+        0.6852750182151794,
+        0.9765801429748535
+      ],
+      "start_frame": 92,
+      "stop_frame": 99,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03942000865936279,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        -0.0645272359251976,
+        0.6290794014930725,
+        0.947726845741272
+      ],
+      "teacher_q_des_last_rad": [
+        -0.03173864260315895,
+        0.69740229845047,
+        0.9685420989990234
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.012189899571239948,
+        0.8068805932998657,
+        1.3512345552444458
+      ],
+      "actual_joint_last_rad": [
+        0.07837028056383133,
+        0.8582735061645508,
+        1.3642702102661133
+      ],
+      "actual_wheel_displacement_m": [
+        0.0010756384581327438,
+        -0.0011969208717346191,
+        -0.00021272897720336914
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.030784985708230204,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.09166036546230316,
+        0.7283557057380676,
+        1.088647484779358
+      ],
+      "reference_joint_last_rad": [
+        -0.17984819412231445,
+        0.6807317733764648,
+        0.9855950474739075
+      ],
+      "start_frame": 125,
+      "stop_frame": 132,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03888002038002014,
+        0.0011458992958068848
+      ],
+      "teacher_q_des_first_rad": [
+        0.08723373711109161,
+        0.769995391368866,
+        1.001311182975769
+      ],
+      "teacher_q_des_last_rad": [
+        0.046111926436424255,
+        0.7086185812950134,
+        0.9607552886009216
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.008470949716866016,
+        0.8010031580924988,
+        1.3062808513641357
+      ],
+      "actual_joint_last_rad": [
+        0.010355544276535511,
+        0.6875870823860168,
+        1.3804670572280884
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0011604540050029755,
+        -0.0012947767972946167,
+        -0.00012855976819992065
+      ],
+      "frames": 6,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.035521940442872435,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.08637934923171997,
+        0.7216245532035828,
+        1.0966817140579224
+      ],
+      "reference_joint_last_rad": [
+        -0.17423996329307556,
+        0.6739701628684998,
+        1.000699758529663
+      ],
+      "start_frame": 159,
+      "stop_frame": 165,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03645005822181702,
+        0.0013273954391479492
+      ],
+      "teacher_q_des_first_rad": [
+        -0.04966190457344055,
+        0.5800386071205139,
+        0.9143695831298828
+      ],
+      "teacher_q_des_last_rad": [
+        0.035200223326683044,
+        0.5858625769615173,
+        0.9289196729660034
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.05466613546013832,
+        0.7103691101074219,
+        1.4461857080459595
+      ],
+      "actual_joint_last_rad": [
+        0.008402803912758827,
+        0.7122215628623962,
+        1.4060039520263672
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0002576485276222229,
+        -0.0007925182580947876,
+        -0.00021901726722717285
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.02010448206907762,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.0917389914393425,
+        0.726904034614563,
+        1.091139793395996
+      ],
+      "reference_joint_last_rad": [
+        -0.18205061554908752,
+        0.6852750182151794,
+        0.9765801429748535
+      ],
+      "start_frame": 192,
+      "stop_frame": 199,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.039419978857040405,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        0.05201949179172516,
+        0.7781589031219482,
+        0.9821669459342957
+      ],
+      "teacher_q_des_last_rad": [
+        -0.07043229788541794,
+        0.6082844138145447,
+        0.9388250112533569
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        -0.03204981982707977,
+        0.7286264896392822,
+        1.468272089958191
+      ],
+      "actual_joint_last_rad": [
+        0.026471847668290138,
+        0.6782466769218445,
+        1.5145968198776245
+      ],
+      "actual_wheel_displacement_m": [
+        0.0018826108425855637,
+        7.458031177520752e-05,
+        -0.0002633780241012573
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": -0.0019182183603199765,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.09166036546230316,
+        0.7283557057380676,
+        1.088647484779358
+      ],
+      "reference_joint_last_rad": [
+        -0.17984819412231445,
+        0.6807317733764648,
+        0.9855950474739075
+      ],
+      "start_frame": 225,
+      "stop_frame": 232,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.038879990577697754,
+        0.0011458992958068848
+      ],
+      "teacher_q_des_first_rad": [
+        0.10055246949195862,
+        0.7937343716621399,
+        0.9600973129272461
+      ],
+      "teacher_q_des_last_rad": [
+        0.00557340495288372,
+        0.7397089004516602,
+        0.9920515418052673
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.0898393988609314,
+        0.9586747288703918,
+        1.247715950012207
+      ],
+      "actual_joint_last_rad": [
+        0.02894301526248455,
+        0.9879684448242188,
+        1.266162633895874
+      ],
+      "actual_wheel_displacement_m": [
+        -0.0023923590779304504,
+        -0.0009593218564987183,
+        -0.0002897605299949646
+      ],
+      "frames": 6,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.026318801760500908,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.08637934923171997,
+        0.7216245532035828,
+        1.0966817140579224
+      ],
+      "reference_joint_last_rad": [
+        -0.17423996329307556,
+        0.6739701628684998,
+        1.000699758529663
+      ],
+      "start_frame": 259,
+      "stop_frame": 265,
+      "target_wheel_displacement_m": [
+        3.725290298461914e-09,
+        -0.03645005822181702,
+        0.0013273954391479492
+      ],
+      "teacher_q_des_first_rad": [
+        0.06067328900098801,
+        0.84618079662323,
+        0.6576435565948486
+      ],
+      "teacher_q_des_last_rad": [
+        -0.07539168745279312,
+        0.7273927330970764,
+        0.5746892690658569
+      ],
+      "wheel": "RR"
+    },
+    {
+      "actual_joint_first_rad": [
+        0.06924910843372345,
+        0.9176210165023804,
+        1.0865952968597412
+      ],
+      "actual_joint_last_rad": [
+        0.07773192226886749,
+        0.9090177416801453,
+        0.9594342708587646
+      ],
+      "actual_wheel_displacement_m": [
+        -0.010175857692956924,
+        -0.0006308406591415405,
+        -0.0009402260184288025
+      ],
+      "frames": 7,
+      "joint_indices_policy_order": [
+        3,
+        7,
+        11
+      ],
+      "lateral_displacement_completion_ratio": 0.01600305734564336,
+      "measured_contact_fraction": 1.0,
+      "reference_joint_first_rad": [
+        0.0917389914393425,
+        0.726904034614563,
+        1.091139793395996
+      ],
+      "reference_joint_last_rad": [
+        -0.18205061554908752,
+        0.6852750182151794,
+        0.9765801429748535
+      ],
+      "start_frame": 292,
+      "stop_frame": 299,
+      "target_wheel_displacement_m": [
+        0.0,
+        -0.03942000865936279,
+        0.0
+      ],
+      "teacher_q_des_first_rad": [
+        0.16043251752853394,
+        0.8037623167037964,
+        0.5643379092216492
+      ],
+      "teacher_q_des_last_rad": [
+        0.1221250593662262,
+        0.933614194393158,
+        0.5390089154243469
+      ],
+      "wheel": "RR"
+    }
+  ],
+  "ref_id": 0,
+  "reference_config": "configs/low_load_lateral/train_001/reference.yaml",
+  "schema_version": "pcbc-expert-episode-attribution-v2",
+  "seed": 1000,
+  "status": "diagnostic_not_gate_or_training_data",
+  "steps": 300,
+  "wheel_action_exact_zero": true,
+  "window_records": [
+    {
+      "base_orientation_rmse_rad": 0.15525430944683136,
+      "base_position_max_abs_m": [
+        0.05049203708767891,
+        0.005612114444375038,
+        0.09349703788757324
+      ],
+      "base_position_rmse_m": [
+        0.034264449030160904,
+        0.0026006181724369526,
+        0.06733771413564682
+      ],
+      "contact_mismatch_rate": 0.13,
+      "contact_mismatch_rate_by_wheel": [
+        0.18,
+        0.04,
+        0.14,
+        0.16
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        11,
+        6
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.30357142857142855,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.3793103448275862,
+        0.2222222222222222
+      ],
+      "front_normal_desired_count": [
+        29,
+        27
+      ],
+      "front_normal_force_mean_n": [
+        4.852902210950852,
+        3.682309740483761
+      ],
+      "front_normal_force_p10_n": [
+        0.0,
+        0.0
+      ],
+      "lateral_velocity_mae_m_s": 0.025069179013371468,
+      "lateral_velocity_mean_error_m_s": 0.0026848125271499157,
+      "orientation_rotation_vector_mean_rad": [
+        -0.019701138304380153,
+        -0.1317007087618365,
+        -0.025893248997126143
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.029090379483918058,
+        0.1483917078167102,
+        0.03517884981823909
+      ],
+      "rear_normal_force_mean_n": [
+        82.4094577407837,
+        99.31610572814941
+      ],
+      "rear_normal_force_p95_n": [
+        107.8206027984619,
+        136.20798568725584
+      ],
+      "start_frame": 0,
+      "stop_frame": 50,
+      "wheel_position_rmse_m": [
+        0.022503068670630455,
+        0.022141648456454277,
+        0.010618613101541996,
+        0.023721303790807724
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.01154487207531929,
+          0.013495109975337982,
+          0.01381976529955864
+        ],
+        [
+          0.013039433397352695,
+          0.006330840289592743,
+          0.016737570986151695
+        ],
+        [
+          0.004156374838203192,
+          0.009108073078095913,
+          0.0035387135576456785
+        ],
+        [
+          0.0032685850746929646,
+          0.02309228852391243,
+          0.0043316129595041275
+        ]
+      ]
+    },
+    {
+      "base_orientation_rmse_rad": 0.11741688119522795,
+      "base_position_max_abs_m": [
+        0.049822382628917694,
+        0.02931956946849823,
+        0.08124411106109619
+      ],
+      "base_position_rmse_m": [
+        0.038775231689214706,
+        0.01546882838010788,
+        0.035483598709106445
+      ],
+      "contact_mismatch_rate": 0.185,
+      "contact_mismatch_rate_by_wheel": [
+        0.1,
+        0.22,
+        0.14,
+        0.28
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        10,
+        15
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.30864197530864196,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.23255813953488372,
+        0.39473684210526316
+      ],
+      "front_normal_desired_count": [
+        43,
+        38
+      ],
+      "front_normal_force_mean_n": [
+        6.87019918680191,
+        5.922875312566757
+      ],
+      "front_normal_force_p10_n": [
+        2.645582842826843,
+        3.6229508161544803
+      ],
+      "lateral_velocity_mae_m_s": 0.027332626283168793,
+      "lateral_velocity_mean_error_m_s": 0.025184255093336105,
+      "orientation_rotation_vector_mean_rad": [
+        0.007215082412771471,
+        -0.07138085369024251,
+        -0.0814160242640393
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.021426688145990615,
+        0.0810134777639438,
+        0.08224620018760578
+      ],
+      "rear_normal_force_mean_n": [
+        69.38821254730225,
+        97.39042114257812
+      ],
+      "rear_normal_force_p95_n": [
+        99.57300300598143,
+        119.80937156677244
+      ],
+      "start_frame": 50,
+      "stop_frame": 100,
+      "wheel_position_rmse_m": [
+        0.023132119327783585,
+        0.05143798515200615,
+        0.0685964971780777,
+        0.06984341889619827
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.007914168760180473,
+          0.019677411764860153,
+          0.009233647026121616
+        ],
+        [
+          0.015871562063694,
+          0.04778382554650307,
+          0.010519793257117271
+        ],
+        [
+          0.03980253264307976,
+          0.055802784860134125,
+          0.0026997490786015987
+        ],
+        [
+          0.005485513247549534,
+          0.06934146583080292,
+          0.0063066501170396805
+        ]
+      ]
+    },
+    {
+      "base_orientation_rmse_rad": 0.1494305300433073,
+      "base_position_max_abs_m": [
+        0.0473567359149456,
+        0.05863157659769058,
+        0.03051072359085083
+      ],
+      "base_position_rmse_m": [
+        0.04235934093594551,
+        0.043916117399930954,
+        0.02212543599307537
+      ],
+      "contact_mismatch_rate": 0.2,
+      "contact_mismatch_rate_by_wheel": [
+        0.28,
+        0.12,
+        0.26,
+        0.14
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        17,
+        3
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.25,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.4594594594594595,
+        0.06976744186046512
+      ],
+      "front_normal_desired_count": [
+        37,
+        43
+      ],
+      "front_normal_force_mean_n": [
+        5.24988208770752,
+        8.609779496192932
+      ],
+      "front_normal_force_p10_n": [
+        2.4687602043151857,
+        5.363850879669189
+      ],
+      "lateral_velocity_mae_m_s": 0.0288882777094841,
+      "lateral_velocity_mean_error_m_s": 0.028640499338507652,
+      "orientation_rotation_vector_mean_rad": [
+        0.040008548316715756,
+        -0.07027125301320623,
+        -0.1201691093967573
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.04930042687084077,
+        0.0726192679025776,
+        0.12093549168325363
+      ],
+      "rear_normal_force_mean_n": [
+        63.50554004669189,
+        105.70177291870117
+      ],
+      "rear_normal_force_p95_n": [
+        89.71207466125489,
+        138.31863174438476
+      ],
+      "start_frame": 100,
+      "stop_frame": 150,
+      "wheel_position_rmse_m": [
+        0.02954123541712761,
+        0.10036617517471313,
+        0.12331464886665344,
+        0.12731631100177765
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.004549392964690924,
+          0.027776872739195824,
+          0.008968438021838665
+        ],
+        [
+          0.022237354889512062,
+          0.09731078147888184,
+          0.010463345795869827
+        ],
+        [
+          0.057485248893499374,
+          0.10900310426950455,
+          0.004502568393945694
+        ],
+        [
+          0.004193214233964682,
+          0.1271023452281952,
+          0.006070755422115326
+        ]
+      ]
+    },
+    {
+      "base_orientation_rmse_rad": 0.1807376835646473,
+      "base_position_max_abs_m": [
+        0.04430067539215088,
+        0.08558055758476257,
+        0.03263592720031738
+      ],
+      "base_position_rmse_m": [
+        0.03963560611009598,
+        0.07474122196435928,
+        0.024262435734272003
+      ],
+      "contact_mismatch_rate": 0.19,
+      "contact_mismatch_rate_by_wheel": [
+        0.12,
+        0.24,
+        0.14,
+        0.26
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        7,
+        12
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.2375,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.16279069767441862,
+        0.32432432432432434
+      ],
+      "front_normal_desired_count": [
+        43,
+        37
+      ],
+      "front_normal_force_mean_n": [
+        6.625634875595569,
+        6.162462410330773
+      ],
+      "front_normal_force_p10_n": [
+        1.848400926589966,
+        1.5171947836875916
+      ],
+      "lateral_velocity_mae_m_s": 0.02757303975522518,
+      "lateral_velocity_mean_error_m_s": 0.026145730167627335,
+      "orientation_rotation_vector_mean_rad": [
+        0.02840103281246103,
+        -0.07076851849573097,
+        -0.15948303095943597
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.03744418294266305,
+        0.07501267637609556,
+        0.1601160260778605
+      ],
+      "rear_normal_force_mean_n": [
+        42.37918077468872,
+        127.41091903686524
+      ],
+      "rear_normal_force_p95_n": [
+        62.85553131103516,
+        158.28851318359375
+      ],
+      "start_frame": 150,
+      "stop_frame": 200,
+      "wheel_position_rmse_m": [
+        0.04143475741147995,
+        0.12580034136772156,
+        0.18742386996746063,
+        0.18064720928668976
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.009173241443932056,
+          0.039984624832868576,
+          0.00582412164658308
+        ],
+        [
+          0.02378055267035961,
+          0.12303449958562851,
+          0.011077849194407463
+        ],
+        [
+          0.0777919739484787,
+          0.17049522697925568,
+          0.00273711234331131
+        ],
+        [
+          0.0045739635825157166,
+          0.18040716648101807,
+          0.00810835137963295
+        ]
+      ]
+    },
+    {
+      "base_orientation_rmse_rad": 0.24911846881651117,
+      "base_position_max_abs_m": [
+        0.043846819549798965,
+        0.09433278441429138,
+        0.032570481300354004
+      ],
+      "base_position_rmse_m": [
+        0.02629006840288639,
+        0.08726834505796432,
+        0.024791553616523743
+      ],
+      "contact_mismatch_rate": 0.31,
+      "contact_mismatch_rate_by_wheel": [
+        0.46,
+        0.3,
+        0.34,
+        0.14
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        31,
+        15
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.575,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.8378378378378378,
+        0.3488372093023256
+      ],
+      "front_normal_desired_count": [
+        37,
+        43
+      ],
+      "front_normal_force_mean_n": [
+        4.408389449119568,
+        6.868806180953979
+      ],
+      "front_normal_force_p10_n": [
+        1.9471545100212098,
+        1.7286380410194397
+      ],
+      "lateral_velocity_mae_m_s": 0.03032202646136284,
+      "lateral_velocity_mean_error_m_s": -0.010746622458100319,
+      "orientation_rotation_vector_mean_rad": [
+        0.03778243939683643,
+        -0.08880282672508218,
+        -0.2242762201255112
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.041810555581132745,
+        0.0963020308358361,
+        0.22591548819054824
+      ],
+      "rear_normal_force_mean_n": [
+        29.597908115386964,
+        142.9164517211914
+      ],
+      "rear_normal_force_p95_n": [
+        78.67172470092773,
+        184.9552909851074
+      ],
+      "start_frame": 200,
+      "stop_frame": 250,
+      "wheel_position_rmse_m": [
+        0.0385078601539135,
+        0.1336839646100998,
+        0.22690357267856598,
+        0.23681989312171936
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.012107166461646557,
+          0.03566087782382965,
+          0.008035771548748016
+        ],
+        [
+          0.018720608204603195,
+          0.13130687177181244,
+          0.01671689748764038
+        ],
+        [
+          0.050185881555080414,
+          0.2208155244588852,
+          0.01439165323972702
+        ],
+        [
+          0.008684039115905762,
+          0.23651105165481567,
+          0.008413014002144337
+        ]
+      ]
+    },
+    {
+      "base_orientation_rmse_rad": 0.32876291064368585,
+      "base_position_max_abs_m": [
+        0.06416057795286179,
+        0.07728791236877441,
+        0.03255760669708252
+      ],
+      "base_position_rmse_m": [
+        0.050289981067180634,
+        0.07320404797792435,
+        0.013429626822471619
+      ],
+      "contact_mismatch_rate": 0.355,
+      "contact_mismatch_rate_by_wheel": [
+        0.12,
+        0.16,
+        0.88,
+        0.26
+      ],
+      "frames": 50,
+      "front_normal_below_6n_count_when_desired": [
+        13,
+        9
+      ],
+      "front_normal_below_6n_fraction_when_desired": 0.27848101265822783,
+      "front_normal_below_6n_fraction_when_desired_by_wheel": [
+        0.3023255813953488,
+        0.25
+      ],
+      "front_normal_desired_count": [
+        43,
+        36
+      ],
+      "front_normal_force_mean_n": [
+        6.7678542137146,
+        6.626166572570801
+      ],
+      "front_normal_force_p10_n": [
+        4.160112261772156,
+        2.31989426612854
+      ],
+      "lateral_velocity_mae_m_s": 0.02261793427169323,
+      "lateral_velocity_mean_error_m_s": 0.00013712965301238,
+      "orientation_rotation_vector_mean_rad": [
+        -0.022002011638653424,
+        -0.07404793152991121,
+        -0.31022500454287216
+      ],
+      "orientation_rotation_vector_rmse_rad": [
+        0.035964670304547315,
+        0.10057651330046041,
+        0.3109275781868114
+      ],
+      "rear_normal_force_mean_n": [
+        0.0,
+        159.80773513793946
+      ],
+      "rear_normal_force_p95_n": [
+        0.0,
+        184.22857513427735
+      ],
+      "start_frame": 250,
+      "stop_frame": 300,
+      "wheel_position_rmse_m": [
+        0.019755126908421516,
+        0.09145491570234299,
+        0.2792312800884247,
+        0.2891652286052704
+      ],
+      "wheel_position_vector_rmse_m": [
+        [
+          0.006691072601824999,
+          0.0162873063236475,
+          0.008956457488238811
+        ],
+        [
+          0.024887865409255028,
+          0.08652331680059433,
+          0.016071954742074013
+        ],
+        [
+          0.10058992356061935,
+          0.24798236787319183,
+          0.07972774654626846
+        ],
+        [
+          0.02749737538397312,
+          0.2876373827457428,
+          0.011186089366674423
+        ]
+      ]
+    }
+  ]
+}

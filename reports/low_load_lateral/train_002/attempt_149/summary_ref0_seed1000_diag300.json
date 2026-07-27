@@ -1,0 +1,44 @@
+{
+  "compressed_bytes": 575475,
+  "dataset": "/home/zzc/Desktop/zhuoxili-jackie/lateral_mppi_dagger/datasets/low_load_lateral/train_002/attempt_149_ref0_seed1000_diag300",
+  "episodes": 1,
+  "expert_config_hashes": [
+    "97b35f0926dbf55ee4895c01b6609b761dc6fb831ba65afdb7e1c5fcf26a5431"
+  ],
+  "frames": 300,
+  "mean_teacher_solve_ms": 1137.4693603515625,
+  "p95_teacher_solve_ms": 1178.3892761230468,
+  "reference_episodes": {
+    "0": 1
+  },
+  "round_episodes": {
+    "0": 1
+  },
+  "round_frames": {
+    "0": 300
+  },
+  "round_student_behavior_frames": {
+    "0": 0
+  },
+  "scenario_episodes": {
+    "nominal": 1
+  },
+  "scenario_frames": {
+    "nominal": 300
+  },
+  "schema_version": "pcbc-dataset-summary-v1",
+  "shield_intervention_rate": 0.0,
+  "split_episodes": {
+    "train": 1
+  },
+  "split_frames": {
+    "train": 300
+  },
+  "student_checkpoint_hashes": [],
+  "student_valid_rate": 0.0,
+  "success_counts": {
+    "success": 1
+  },
+  "teacher_valid_rate": 1.0,
+  "wheel_action_exact_zero": true
+}

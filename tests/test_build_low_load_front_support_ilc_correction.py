@@ -69,3 +69,37 @@ def test_load_support_trace_rejects_mixed_reference_ids(
 
     with pytest.raises(ValueError, match="consistent ref_id"):
         MODULE.load_support_trace(path)
+
+
+@pytest.mark.parametrize(
+    ("mode", "expected"),
+    (
+        ("independent", [[0.2, 0.8], [0.4, 0.1]]),
+        ("mean", [[0.5, 0.5], [0.25, 0.25]]),
+        ("max", [[0.8, 0.8], [0.4, 0.4]]),
+    ),
+)
+def test_couple_front_deficit(
+    mode: str,
+    expected: list[list[float]],
+) -> None:
+    deficit = np.asarray(
+        [[0.2, 0.8], [0.4, 0.1]],
+        dtype=np.float32,
+    )
+
+    coupled = MODULE.couple_front_deficit(deficit, mode)
+
+    np.testing.assert_allclose(
+        coupled,
+        np.asarray(expected, dtype=np.float32),
+    )
+    assert coupled is not deficit
+
+
+def test_couple_front_deficit_rejects_invalid_mode() -> None:
+    with pytest.raises(ValueError, match="independent, mean, or max"):
+        MODULE.couple_front_deficit(
+            np.zeros((3, 2), dtype=np.float32),
+            "invalid",
+        )

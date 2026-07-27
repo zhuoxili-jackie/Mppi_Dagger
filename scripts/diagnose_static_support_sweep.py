@@ -189,6 +189,9 @@ def main() -> dict:
 
     from lateral_mppi_dagger.contract.action16 import ActionContract
     from lateral_mppi_dagger.env.isaac_adapter import IsaacLateralAdapter
+    from lateral_mppi_dagger.env.isaac_mppi_rollout import (
+        _quat_rotation_vector,
+    )
     from lateral_mppi_dagger.env.scenarios import (
         configure_env_for_scenario,
         load_scenario_profile,
@@ -281,7 +284,12 @@ def main() -> dict:
             adapter.command.robot_anchor_pos_w
             - adapter.base.scene.env_origins
         ).clone()
+        box_root0 = (
+            adapter.base.scene["box"].data.root_pos_w
+            - adapter.base.scene.env_origins
+        ).clone()
         base_samples: list[np.ndarray] = []
+        orientation_samples: list[np.ndarray] = []
         wheel_samples: list[np.ndarray] = []
         front_force_samples: list[np.ndarray] = []
         rear_samples: list[np.ndarray] = []
@@ -297,6 +305,15 @@ def main() -> dict:
                 adapter.contact_body_ids,
             ]
             base_samples.append(base_local.detach().cpu().numpy())
+            orientation_samples.append(
+                _quat_rotation_vector(
+                    adapter.command.robot_anchor_quat_w,
+                    adapter.command.anchor_quat_w,
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
             wheel_samples.append(
                 (
                     adapter.robot.data.body_pos_w[:, adapter.wheel_body_ids]
@@ -328,6 +345,7 @@ def main() -> dict:
             alive &= ~done
 
         base = np.stack(base_samples)
+        orientation = np.stack(orientation_samples)
         wheel = np.stack(wheel_samples)
         front_force = np.stack(front_force_samples)
         front_normal = np.abs(front_force[..., 0])
@@ -337,6 +355,8 @@ def main() -> dict:
         records = []
         for index, (root_mm, front_mm, front_drop_mm) in enumerate(combinations):
             valid = alive_mask[:, index]
+            valid_indices = np.flatnonzero(valid)
+            tail_indices = valid_indices[-min(20, len(valid_indices)) :]
             base_delta = base[:, index] - base_initial[index]
             wheel_delta = wheel[:, index] - wheel[0, index]
             records.append(
@@ -344,6 +364,7 @@ def main() -> dict:
                     "index": index,
                     "root_shift_mm": root_mm,
                     "front_penetration_mm": front_mm,
+                    "front_relative_to_root_mm": front_mm - root_mm,
                     "front_drop_mm": front_drop_mm,
                     "q_target_leg": q_targets[index].tolist(),
                     "q_bias_leg": (
@@ -371,6 +392,20 @@ def main() -> dict:
                     "base_position_final_delta_m": base_delta[
                         max(int(np.sum(valid)) - 1, 0)
                     ].tolist(),
+                    "base_orientation_rmse_rad": float(
+                        np.sqrt(
+                            np.mean(
+                                np.sum(
+                                    orientation[valid, index] ** 2,
+                                    axis=-1,
+                                )
+                            )
+                        )
+                    ),
+                    "base_orientation_rotation_vector_mean_rad": np.mean(
+                        orientation[valid, index],
+                        axis=0,
+                    ).tolist(),
                     "front_wheel_position_min_delta_m": np.min(
                         wheel_delta[valid, :2],
                         axis=0,
@@ -386,6 +421,13 @@ def main() -> dict:
                         front_normal[valid, index],
                         axis=0,
                     ).tolist(),
+                    "front_normal_tail20_below_6n_fraction": float(
+                        np.mean(front_normal[tail_indices, index] < 6.0)
+                    ),
+                    "front_normal_tail20_mean_n": np.mean(
+                        front_normal[tail_indices, index],
+                        axis=0,
+                    ).tolist(),
                     "front_force_mean_w_n": np.mean(
                         front_force[valid, index],
                         axis=0,
@@ -393,6 +435,14 @@ def main() -> dict:
                     "rear_normal_p95_n": np.percentile(
                         rear[valid, index],
                         95.0,
+                        axis=0,
+                    ).tolist(),
+                    "rear_normal_mean_n": np.mean(
+                        rear[valid, index],
+                        axis=0,
+                    ).tolist(),
+                    "rear_normal_tail20_mean_n": np.mean(
+                        rear[tail_indices, index],
                         axis=0,
                     ).tolist(),
                     "wheel_action_exact_zero": True,
@@ -406,6 +456,8 @@ def main() -> dict:
             "seed": args_cli.seed,
             "steps": args_cli.steps,
             "physical_target_rate_limit_rad_s": 2.25,
+            "box_root_position_local_m": box_root0.detach().cpu().numpy().tolist(),
+            "initial_front_wheel_position_local_m": wheel[0, :, :2].tolist(),
             "candidates": records,
         }
         write_json(args_cli.report, report)

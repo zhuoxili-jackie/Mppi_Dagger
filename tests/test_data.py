@@ -8,9 +8,21 @@ import numpy as np
 from lateral_mppi_dagger.config import load_yaml
 from lateral_mppi_dagger.contract.action16 import Action16Adapter, ActionContract, SafetyShield
 from lateral_mppi_dagger.data.collector import CollectorConfig, collect_episode
-from lateral_mppi_dagger.data.schema import SCHEMA_VERSION, read_episode_shard, write_episode_shard
+from lateral_mppi_dagger.data.schema import (
+    SCHEMA_VERSION,
+    EpisodeShard,
+    read_episode_shard,
+    write_episode_shard,
+)
 from lateral_mppi_dagger.data.dataset import EpisodeWindowDataset
 from lateral_mppi_dagger.env.replay_env import ReplayContractEnv
+from lateral_mppi_dagger.expert.base import (
+    LEGACY_MPPI_COST_COMPONENT_NAMES,
+    LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES,
+    OBSERVABILITY_MPPI_COST_COMPONENT_NAMES,
+    REAR_SWING_MPPI_COST_COMPONENT_NAMES,
+    MPPI_COST_COMPONENT_NAMES,
+)
 from lateral_mppi_dagger.expert.reference_wbc import ReferenceWBCExpert
 from lateral_mppi_dagger.reference.loader import ReferenceSet
 
@@ -72,6 +84,29 @@ def test_episode_schema_preserves_transition_and_masks(tmp_path: Path) -> None:
         np.asarray(student_inputs, dtype=np.float32),
         loaded.arrays["obs93_train"],
     )
+    assert loaded.arrays["mppi_cost_components"].shape == (
+        8,
+        len(MPPI_COST_COMPONENT_NAMES),
+    )
+    for historical_order in (
+        LEGACY_MPPI_COST_COMPONENT_NAMES,
+        LOAD_SUPPORT_MPPI_COST_COMPONENT_NAMES,
+        OBSERVABILITY_MPPI_COST_COMPONENT_NAMES,
+        REAR_SWING_MPPI_COST_COMPONENT_NAMES,
+    ):
+        historical_arrays = dict(loaded.arrays)
+        historical_arrays["mppi_cost_components"] = np.zeros(
+            (8, len(historical_order)),
+            dtype=np.float32,
+        )
+        historical_metadata = dict(loaded.metadata)
+        historical_metadata["mppi_cost_component_order"] = list(
+            historical_order
+        )
+        assert EpisodeShard(
+            arrays=historical_arrays,
+            metadata=historical_metadata,
+        ).validate() == 8
 
 
 def test_dagger_sampling_allocates_mass_by_round() -> None:

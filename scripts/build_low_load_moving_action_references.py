@@ -40,6 +40,40 @@ def _project_raw_sequence(
     return projected
 
 
+def _moving_proposal_q_des(
+    *,
+    standing_action_q_des: np.ndarray,
+    standing_reference_q: np.ndarray,
+    moving_reference_q: np.ndarray,
+    gait_delta_scale_leg: np.ndarray,
+    balance_baseline: str,
+) -> np.ndarray:
+    if balance_baseline == "standing_action":
+        baseline = standing_action_q_des
+    elif balance_baseline == "standing_reference":
+        baseline = standing_reference_q
+    else:
+        raise ValueError(
+            f"Unknown balance baseline {balance_baseline!r}."
+        )
+    expected_shape = standing_reference_q.shape
+    if (
+        expected_shape != moving_reference_q.shape
+        or expected_shape != standing_action_q_des.shape
+        or len(expected_shape) != 2
+        or expected_shape[1] != 12
+        or gait_delta_scale_leg.shape != (12,)
+    ):
+        raise ValueError(
+            "Proposal inputs must use matching [frames,12] trajectories "
+            "and a 12-element scale."
+        )
+    gait_delta = moving_reference_q - standing_reference_q
+    return (
+        baseline + gait_delta_scale_leg[None] * gait_delta
+    ).astype(np.float32)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
@@ -60,6 +94,17 @@ def main() -> None:
         / "assets/low_load_lateral/train_001/nominal_actions/ref_08_standing.npz",
     )
     parser.add_argument("--standing-ref-id", type=int, default=8)
+    parser.add_argument(
+        "--balance-baseline",
+        choices=("standing_action", "standing_reference"),
+        default="standing_action",
+        help=(
+            "Use the validated standing balance action (default) or the "
+            "frozen standing reference itself as the gait-delta baseline. "
+            "The latter is intended for deterministic reachability "
+            "diagnostics."
+        ),
+    )
     parser.add_argument(
         "--moving-ref-ids",
         type=int,
@@ -277,9 +322,15 @@ def main() -> None:
                 "Unhandled gait-delta frame-shift mode "
                 f"{args.gait_delta_frame_shift_mode!r}."
             )
-        proposed_q_des = (
-            standing_q_des
-            + gait_delta_scale_leg[None] * gait_delta
+        proposed_q_des = _moving_proposal_q_des(
+            standing_action_q_des=standing_q_des,
+            standing_reference_q=standing_joint_reference,
+            moving_reference_q=np.asarray(
+                reference.joint_pos[:, :12],
+                dtype=np.float32,
+            ),
+            gait_delta_scale_leg=gait_delta_scale_leg,
+            balance_baseline=args.balance_baseline,
         )
         proposed_raw = (proposed_q_des - q_offset) / scale
         unshifted_projected_raw = _project_raw_sequence(
@@ -374,6 +425,7 @@ def main() -> None:
         ),
         "reference_config": args.reference_config,
         "standing_ref_id": args.standing_ref_id,
+        "balance_baseline": args.balance_baseline,
         "standing_action": str(standing_action_path),
         "standing_action_sha256": sha256_file(standing_action_path),
         "gait_delta_scale": args.gait_delta_scale,

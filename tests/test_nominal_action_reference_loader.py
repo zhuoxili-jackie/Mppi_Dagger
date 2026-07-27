@@ -112,6 +112,7 @@ def test_load_per_reference_solver_overrides(tmp_path) -> None:
                     "raw_action_key": "raw_action_leg",
                     "action_residual_weight": 500.0,
                     "selection_mode": "best_sample",
+                    "temperature": 75.0,
                     "warm_start": False,
                 }
             ]
@@ -122,6 +123,7 @@ def test_load_per_reference_solver_overrides(tmp_path) -> None:
         8: {
             "action_residual_weight": 500.0,
             "selection_mode": "best_sample",
+            "temperature": 75.0,
             "warm_start": False,
         }
     }
@@ -137,14 +139,21 @@ def test_load_frame_scheduled_solver_overrides(tmp_path) -> None:
             "start_frame": 0,
             "action_residual_weight": 500.0,
             "base_orientation_cost_multiplier": 1.0,
+            "lateral_velocity_cost_multiplier": 1.0,
+            "rear_support_loss_cost_multiplier": 1.0,
             "selection_mode": "best_sample",
+            "temperature": 50.0,
             "warm_start": False,
         },
         {
             "start_frame": 100,
             "action_residual_weight": 0.06,
             "base_orientation_cost_multiplier": 5.0,
+            "base_orientation_axis_multipliers": [1.0, 1.0, 8.0],
+            "lateral_velocity_cost_multiplier": 0.5,
+            "rear_support_loss_cost_multiplier": 10.0,
             "selection_mode": "weighted",
+            "temperature": 200.0,
             "warm_start": True,
             "reset_warm_start": True,
         },
@@ -178,14 +187,21 @@ def test_load_frame_scheduled_solver_overrides(tmp_path) -> None:
     assert first == {
         "action_residual_weight": 500.0,
         "base_orientation_cost_multiplier": 1.0,
+        "lateral_velocity_cost_multiplier": 1.0,
+        "rear_support_loss_cost_multiplier": 1.0,
         "selection_mode": "best_sample",
+        "temperature": 50.0,
         "warm_start": False,
     }
     assert second_index == 1
     assert second == {
         "action_residual_weight": 0.06,
         "base_orientation_cost_multiplier": 5.0,
+        "base_orientation_axis_multipliers": [1.0, 1.0, 8.0],
+        "lateral_velocity_cost_multiplier": 0.5,
+        "rear_support_loss_cost_multiplier": 10.0,
         "selection_mode": "weighted",
+        "temperature": 200.0,
         "warm_start": True,
     }
 
@@ -206,6 +222,73 @@ def test_load_frame_scheduled_solver_overrides(tmp_path) -> None:
             },
             ValueError,
             "finite",
+        ),
+        (
+            {
+                "base_orientation_axis_multipliers": [1.0, 1.0],
+            },
+            ValueError,
+            "three finite",
+        ),
+        (
+            {
+                "base_orientation_axis_multipliers": [1.0, 0.5, 1.0],
+            },
+            ValueError,
+            "at least 1.0",
+        ),
+        (
+            {
+                "base_orientation_axis_multipliers": [
+                    1.0,
+                    1.0,
+                    float("nan"),
+                ],
+            },
+            ValueError,
+            "three finite",
+        ),
+        (
+            {
+                "lateral_velocity_cost_multiplier": 0.0,
+            },
+            ValueError,
+            "finite and positive",
+        ),
+        (
+            {
+                "lateral_velocity_cost_multiplier": float("nan"),
+            },
+            ValueError,
+            "finite and positive",
+        ),
+        (
+            {
+                "rear_support_loss_cost_multiplier": 0.0,
+            },
+            ValueError,
+            "rear_support_loss_cost_multiplier must be finite and positive",
+        ),
+        (
+            {
+                "rear_support_loss_cost_multiplier": float("nan"),
+            },
+            ValueError,
+            "rear_support_loss_cost_multiplier must be finite and positive",
+        ),
+        (
+            {
+                "temperature": 0.0,
+            },
+            ValueError,
+            "temperature override must be finite and positive",
+        ),
+        (
+            {
+                "temperature": float("nan"),
+            },
+            ValueError,
+            "temperature override must be finite and positive",
         ),
         (
             {"solver_schedule": []},

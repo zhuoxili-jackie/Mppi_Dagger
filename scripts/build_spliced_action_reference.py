@@ -10,6 +10,7 @@ from _bootstrap import ROOT, load_contract, write_json
 
 from lateral_mppi_dagger.config import sha256_file
 from lateral_mppi_dagger.contract.action16 import ActionContract
+from lateral_mppi_dagger.contract.joint_mapping import POLICY_JOINT_ORDER
 from lateral_mppi_dagger.reference.loader import ReferenceSet
 
 
@@ -44,7 +45,21 @@ def _load_action_stream(
                     f"{resolved} has no environment axis; --env-index must "
                     "be zero."
                 )
-            actions = stored
+            if stored.shape[1:] == (16,):
+                actions = stored
+                representation = "action16"
+            elif stored.shape[1:] == (12,):
+                actions = np.zeros(
+                    (stored.shape[0], 16),
+                    dtype=np.float32,
+                )
+                actions[:, :12] = stored
+                representation = "raw_action_leg"
+            else:
+                raise ValueError(
+                    f"{resolved}:{array_key} must have 12 or 16 columns, "
+                    f"got {stored.shape}."
+                )
         elif stored.ndim == 3:
             if not 0 <= env_index < stored.shape[1]:
                 raise ValueError(
@@ -52,10 +67,11 @@ def _load_action_stream(
                     f"environment axis of length {stored.shape[1]}."
                 )
             actions = stored[:, env_index]
+            representation = "action16"
         else:
             raise ValueError(
-                f"{resolved}:{array_key} must have shape [steps,16] or "
-                f"[steps,envs,16], got {stored.shape}."
+                f"{resolved}:{array_key} must have shape [steps,12], "
+                f"[steps,16], or [steps,envs,16], got {stored.shape}."
             )
         if (
             actions.shape[1:] != (16,)
@@ -81,21 +97,25 @@ def _load_action_stream(
                 f"{resolved} contains a ref_id other than {ref_id}."
             )
 
-        if "ref_frame" not in archive:
-            raise KeyError(f"{resolved} does not contain ref_frame.")
-        source_ref_frame = np.asarray(
-            archive["ref_frame"],
-            dtype=np.int64,
-        )
-        if source_ref_frame.ndim == 2:
-            if not 0 <= env_index < source_ref_frame.shape[1]:
-                raise ValueError(
-                    f"--env-index {env_index} is outside {resolved}'s "
-                    "ref_frame environment axis."
-                )
-            source_ref_frame = source_ref_frame[:, env_index]
+        if "ref_frame" in archive:
+            source_ref_frame = np.asarray(
+                archive["ref_frame"],
+                dtype=np.int64,
+            )
+            if source_ref_frame.ndim == 2:
+                if not 0 <= env_index < source_ref_frame.shape[1]:
+                    raise ValueError(
+                        f"--env-index {env_index} is outside {resolved}'s "
+                        "ref_frame environment axis."
+                    )
+                source_ref_frame = source_ref_frame[:, env_index]
+            else:
+                source_ref_frame = source_ref_frame.reshape(-1)
         else:
-            source_ref_frame = source_ref_frame.reshape(-1)
+            source_ref_frame = np.arange(
+                actions.shape[0],
+                dtype=np.int64,
+            )
         expected_frames = np.arange(actions.shape[0], dtype=np.int64)
         if not np.array_equal(source_ref_frame, expected_frames):
             raise ValueError(
@@ -108,6 +128,7 @@ def _load_action_stream(
         "array_key": array_key,
         "env_index": env_index,
         "steps": int(actions.shape[0]),
+        "representation": representation,
     }
 
 
@@ -143,6 +164,64 @@ def _rate_project_leg_actions(
     return projected, projection_physical
 
 
+def _joint_scope_mask(scope: str) -> np.ndarray:
+    limb_prefixes = {
+        "all": ("FL_", "FR_", "RL_", "RR_"),
+        "front": ("FL_", "FR_"),
+        "rear": ("RL_", "RR_"),
+        "fl": ("FL_",),
+        "fr": ("FR_",),
+        "rl": ("RL_",),
+        "rr": ("RR_",),
+    }
+    if scope not in limb_prefixes:
+        raise ValueError(f"Unknown tail joint scope {scope!r}.")
+    return np.asarray(
+        [
+            name.startswith(limb_prefixes[scope])
+            for name in POLICY_JOINT_ORDER[:12]
+        ],
+        dtype=bool,
+    )
+
+
+def _splice_action_streams(
+    prefix: np.ndarray,
+    tail: np.ndarray,
+    *,
+    steps: int,
+    tail_intervals: list[tuple[int, int]],
+    tail_joint_mask: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    if (
+        prefix.ndim != 2
+        or tail.ndim != 2
+        or prefix.shape[1:] != (16,)
+        or tail.shape[1:] != (16,)
+    ):
+        raise ValueError("Action streams must have shape [steps,16].")
+    if min(prefix.shape[0], tail.shape[0]) < steps:
+        raise ValueError(
+            "Both action streams must contain at least the requested steps."
+        )
+    joint_mask = np.asarray(tail_joint_mask, dtype=bool)
+    if joint_mask.shape != (12,) or not np.any(joint_mask):
+        raise ValueError(
+            "tail_joint_mask must select at least one of 12 leg joints."
+        )
+    selected_columns = np.zeros(16, dtype=bool)
+    selected_columns[:12] = joint_mask
+    result = prefix[:steps].copy()
+    tail_step_mask = np.zeros(steps, dtype=bool)
+    for start, stop in tail_intervals:
+        result[start:stop, selected_columns] = tail[
+            start:stop,
+            selected_columns,
+        ]
+        tail_step_mask[start:stop] = True
+    return result, tail_step_mask
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
@@ -163,6 +242,31 @@ def main() -> None:
     )
     parser.add_argument("--prefix-env-index", type=int, default=0)
     parser.add_argument("--tail-env-index", type=int, default=0)
+    parser.add_argument(
+        "--prefix-frame-offset",
+        type=int,
+        default=0,
+        help=(
+            "Skip this many leading prefix rows. Use one when a nominal "
+            "asset is indexed by proposal frame while output rows are "
+            "indexed by executed step."
+        ),
+    )
+    parser.add_argument(
+        "--tail-frame-offset",
+        type=int,
+        default=0,
+        help="Skip this many leading tail rows before splicing.",
+    )
+    parser.add_argument(
+        "--tail-joint-scope",
+        choices=("all", "front", "rear", "fl", "fr", "rl", "rr"),
+        default="all",
+        help=(
+            "Leg-joint columns taken from the tail stream inside each "
+            "interval. Wheel columns remain hard zero."
+        ),
+    )
     parser.add_argument(
         "--switch-frame",
         type=int,
@@ -230,8 +334,13 @@ def main() -> None:
                     "--tail-interval values must be ordered and disjoint."
                 )
             previous_stop = stop
-    if args.prefix_env_index < 0 or args.tail_env_index < 0:
-        parser.error("Environment indices must be non-negative.")
+    if (
+        args.prefix_env_index < 0
+        or args.tail_env_index < 0
+        or args.prefix_frame_offset < 0
+        or args.tail_frame_offset < 0
+    ):
+        parser.error("Environment indices and frame offsets must be non-negative.")
     if (
         not np.isfinite(args.physical_target_rate_limit_rad_s)
         or args.physical_target_rate_limit_rad_s <= 0.0
@@ -261,16 +370,23 @@ def main() -> None:
         env_index=args.tail_env_index,
         ref_id=args.ref_id,
     )
+    prefix = prefix[args.prefix_frame_offset :]
+    tail = tail[args.tail_frame_offset :]
+    prefix_provenance["frame_offset"] = args.prefix_frame_offset
+    tail_provenance["frame_offset"] = args.tail_frame_offset
     if prefix.shape[0] < args.steps or tail.shape[0] < args.steps:
         raise ValueError(
             "Both action streams must contain at least --steps rows."
         )
 
-    desired_action16 = prefix[: args.steps].copy()
-    tail_step_mask = np.zeros(args.steps, dtype=bool)
-    for start, stop in tail_intervals:
-        desired_action16[start:stop] = tail[start:stop]
-        tail_step_mask[start:stop] = True
+    tail_joint_mask = _joint_scope_mask(args.tail_joint_scope)
+    desired_action16, tail_step_mask = _splice_action_streams(
+        prefix,
+        tail,
+        steps=args.steps,
+        tail_intervals=tail_intervals,
+        tail_joint_mask=tail_joint_mask,
+    )
     contract = ActionContract.from_dict(load_contract())
     scale_leg = np.asarray(contract.scale[:12], dtype=np.float32)
     q_offset_leg = np.asarray(
@@ -342,6 +458,7 @@ def main() -> None:
         raw_action_leg=raw_action_leg,
         source_stream_id=source_stream_id,
         source_step_id=source_step_id,
+        tail_joint_mask=tail_joint_mask.astype(np.uint8),
     )
 
     physical_steps = np.diff(
@@ -356,6 +473,7 @@ def main() -> None:
             (tail[start, :12] - prefix[start - 1, :12])
             * scale_leg
         )
+        entry_step[~tail_joint_mask] = 0.0
         record: dict[str, object] = {
             "frame": start,
             "direction": "prefix_to_tail",
@@ -367,6 +485,7 @@ def main() -> None:
                 (prefix[stop, :12] - tail[stop - 1, :12])
                 * scale_leg
             )
+            exit_step[~tail_joint_mask] = 0.0
             desired_boundary_steps.append(
                 {
                     "frame": stop,
@@ -392,6 +511,16 @@ def main() -> None:
         ],
         "prefix": prefix_provenance,
         "tail": tail_provenance,
+        "tail_joint_scope": args.tail_joint_scope,
+        "tail_joint_names": [
+            name
+            for name, selected in zip(
+                POLICY_JOINT_ORDER[:12],
+                tail_joint_mask,
+                strict=True,
+            )
+            if selected
+        ],
         "physical_target_rate_limit_rad_s": (
             args.physical_target_rate_limit_rad_s
         ),

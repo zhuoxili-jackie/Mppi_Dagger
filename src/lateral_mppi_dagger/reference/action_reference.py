@@ -10,7 +10,11 @@ from lateral_mppi_dagger.config import resolve_project_path, sha256_file
 _SOLVER_OVERRIDE_KEYS = {
     "action_residual_weight",
     "base_orientation_cost_multiplier",
+    "base_orientation_axis_multipliers",
+    "lateral_velocity_cost_multiplier",
+    "rear_support_loss_cost_multiplier",
     "selection_mode",
+    "temperature",
     "warm_start",
 }
 _SOLVER_SCHEDULE_PHASE_KEYS = {
@@ -73,6 +77,55 @@ def normalize_nominal_solver_overrides(
             normalized["base_orientation_cost_multiplier"] = (
                 base_orientation_cost_multiplier
             )
+        if "base_orientation_axis_multipliers" in overrides:
+            base_orientation_axis_multipliers = np.asarray(
+                overrides["base_orientation_axis_multipliers"],
+                dtype=np.float64,
+            )
+            if (
+                base_orientation_axis_multipliers.shape != (3,)
+                or not np.isfinite(
+                    base_orientation_axis_multipliers
+                ).all()
+                or np.any(base_orientation_axis_multipliers < 1.0)
+            ):
+                raise ValueError(
+                    "base_orientation_axis_multipliers must contain three "
+                    "finite values of at least 1.0."
+                )
+            normalized["base_orientation_axis_multipliers"] = (
+                base_orientation_axis_multipliers.tolist()
+            )
+        if "lateral_velocity_cost_multiplier" in overrides:
+            lateral_velocity_cost_multiplier = float(
+                overrides["lateral_velocity_cost_multiplier"]
+            )
+            if (
+                not np.isfinite(lateral_velocity_cost_multiplier)
+                or lateral_velocity_cost_multiplier <= 0.0
+            ):
+                raise ValueError(
+                    "lateral_velocity_cost_multiplier must be finite and "
+                    "positive."
+                )
+            normalized["lateral_velocity_cost_multiplier"] = (
+                lateral_velocity_cost_multiplier
+            )
+        if "rear_support_loss_cost_multiplier" in overrides:
+            rear_support_loss_cost_multiplier = float(
+                overrides["rear_support_loss_cost_multiplier"]
+            )
+            if (
+                not np.isfinite(rear_support_loss_cost_multiplier)
+                or rear_support_loss_cost_multiplier <= 0.0
+            ):
+                raise ValueError(
+                    "rear_support_loss_cost_multiplier must be finite and "
+                    "positive."
+                )
+            normalized["rear_support_loss_cost_multiplier"] = (
+                rear_support_loss_cost_multiplier
+            )
         if "selection_mode" in overrides:
             selection_mode = str(overrides["selection_mode"])
             if selection_mode not in {"weighted", "best_sample"}:
@@ -81,6 +134,13 @@ def normalize_nominal_solver_overrides(
                     "'best_sample'."
                 )
             normalized["selection_mode"] = selection_mode
+        if "temperature" in overrides:
+            temperature = float(overrides["temperature"])
+            if not np.isfinite(temperature) or temperature <= 0.0:
+                raise ValueError(
+                    "temperature override must be finite and positive."
+                )
+            normalized["temperature"] = temperature
         if "warm_start" in overrides:
             warm_start = overrides["warm_start"]
             if not isinstance(warm_start, bool):

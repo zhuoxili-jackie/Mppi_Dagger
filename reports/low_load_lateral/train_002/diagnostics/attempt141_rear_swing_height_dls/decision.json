@@ -1,0 +1,73 @@
+{
+  "schema_version": "pcbc-rear-swing-height-dls-decision-v1",
+  "status": "IMPLEMENT_BOUNDED_SCREEN",
+  "qualification_effect": "none_until_gate_pass",
+  "dataset_classification": "unqualified_debug",
+  "source_dataset": "datasets/low_load_lateral/train_002/attempt_141_ref0_seed1000_diag300",
+  "reference_config": "configs/low_load_lateral/train_001/reference.yaml",
+  "robot_urdf": "vendor/robot_lab/data/Robots/pcbC/pcb_v2_description_0.88/urdf/pcb_v88.urdf",
+  "model_validation": {
+    "maximum_fk_position_error_vs_recorded_isaac_wheel_pose_m": 2.97e-7,
+    "passed": true
+  },
+  "probe": {
+    "method": "actual-state wheel-position Jacobian with weighted damped least squares",
+    "cartesian_axis_weights": [1.0, 1.0, 4.0],
+    "damping": 0.001,
+    "cartesian_target": [0.0, 0.0, "aligned_frozen_reference_height_minus_actual_height"],
+    "frozen_reference_rear_clearance_m": 0.012,
+    "maximum_joint_correction_abs_rad": 0.12
+  },
+  "representative_results": [
+    {
+      "frame": 45,
+      "wheel": "RL",
+      "joint_delta_rad": [-0.013, -0.028, 0.068],
+      "predicted_wheel_delta_mm": [-0.18, 0.28, 11.97]
+    },
+    {
+      "frame": 111,
+      "wheel": "RL",
+      "joint_delta_rad": [-0.03, -0.033, 0.09],
+      "predicted_wheel_delta_mm": [-0.23, 0.12, 11.95]
+    },
+    {
+      "frame": 211,
+      "wheel": "RL",
+      "joint_delta_rad": [-0.065, -0.042, 0.12],
+      "predicted_wheel_delta_mm": [0.62, -1.0, 11.45]
+    },
+    {
+      "frame": 28,
+      "wheel": "RR",
+      "joint_delta_rad": [0.016, -0.034, 0.074],
+      "predicted_wheel_delta_mm": [-0.1, -0.36, 11.96]
+    },
+    {
+      "frame": 195,
+      "wheel": "RR",
+      "joint_delta_rad": [0.008, -0.039, 0.08],
+      "predicted_wheel_delta_mm": [-0.05, -2.49, 11.93]
+    },
+    {
+      "frame": 295,
+      "wheel": "RR",
+      "joint_delta_rad": [0.043, -0.05, 0.115],
+      "predicted_wheel_delta_mm": [-0.03, -0.31, 11.91]
+    }
+  ],
+  "safety_constraints": {
+    "enabled_by_default": false,
+    "active_only_for_explicit_reference_ids": true,
+    "active_only_for_scheduled_swing_with_measured_contact": true,
+    "target_never_above_aligned_frozen_reference_height": true,
+    "feedback_gain_range": [0.0, 1.0],
+    "joint_correction_cap_abs_rad": 0.12,
+    "ordinary_raw_action_bounds_preserved": true,
+    "ordinary_physical_target_rate_limit_preserved": true,
+    "wheel_action_mode": "hard_zero",
+    "abi_or_deployment_change": false
+  },
+  "interpretation": "The missing vertical authority requires coordinated hip, thigh, and calf motion. Unlike direct reference-joint tracking, the DLS direction predicts approximately the frozen 12 mm lift with small horizontal motion at all representative stuck swings. This justifies a reversible expert-only screen, not admission or qualification.",
+  "decision": "Implement the default-disabled, frozen-reference-bounded output correction; add unit and configuration tests; pass state-copy; then run ref0 short and 300-step screens before any 50x300 formal gate."
+}

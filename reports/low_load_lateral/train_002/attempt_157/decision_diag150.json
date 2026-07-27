@@ -1,0 +1,62 @@
+{
+  "schema_version": "pcbc-mppi-candidate-decision-v1",
+  "status": "reject_unqualified_debug",
+  "training_data_eligible": false,
+  "candidate_config": "configs/low_load_lateral/train_002/expert_attempt_157.yaml",
+  "candidate_config_sha256": "0a4e591adac711848532c5b45f7ce1580b77caa389a551be72368c7abcefaab8",
+  "dataset": "datasets/low_load_lateral/train_002/attempt_157_ref0_seed1000_diag150",
+  "state_copy_pass": true,
+  "collector_completed_steps": 150,
+  "server_request_count": 150,
+  "server_status": "closed_by_client",
+  "server_error": null,
+  "gate_pass": false,
+  "formal_metrics": {
+    "base_orientation_rmse_rad": 0.14384880661964417,
+    "wheel_position_rmse_m": [
+      0.02319266088306904,
+      0.05860055983066559,
+      0.08099610358476639,
+      0.086280457675457
+    ],
+    "lateral_velocity_mae_m_s": 0.030368970707058907,
+    "lateral_displacement_error_m": 0.06586450338363647,
+    "signed_lateral_progress_ratio": 0.595890899396482,
+    "front_normal_below_6n_fraction_when_desired": 0.391705069124424,
+    "rear_normal_force_p95_n": [
+      103.82619285583496,
+      132.23227081298828
+    ],
+    "rear_single_support_fraction": 0.006666666666666667,
+    "rear_no_support_fraction": 0.0,
+    "physical_leg_target_step_max_rad": 0.04500001668930054,
+    "wheel_action_exact_zero": true
+  },
+  "isolated_change": {
+    "comparison_attempt": "attempt_149",
+    "mechanism": "Replace only the ref0 MPPI nominal proposal centre with the full 300-step closed-loop actions collected from attempt149.",
+    "source_episode_sha256": "1dc8fc984cb357c5f4c13f29df20efb26df236e4f615916455af8c56f0f2ef57",
+    "nominal_action_reference_sha256": "e0a17ebef83d37f2cf295598a450d2fb0958f38a09dc83ace1c4a47362b470e3",
+    "forced_output": false
+  },
+  "delta_vs_attempt149_diag150": {
+    "base_orientation_rmse_rad": 0.0021719038486480713,
+    "worst_wheel_position_rmse_m": 0.0013290047645568848,
+    "lateral_velocity_mae_m_s": 0.0032722726464271545,
+    "lateral_displacement_error_m": 0.007232926785945892,
+    "signed_lateral_progress_ratio": -0.0443773411783722,
+    "front_normal_below_6n_fraction_when_desired": 0.1059907834101383,
+    "rear_normal_force_p95_n": [
+      -0.37453956604003906,
+      -1.8939605712890175
+    ]
+  },
+  "remaining_gate_failures": [
+    "tracking:wheel_position",
+    "tracking:lateral_velocity_mae_m_s",
+    "tracking:front_normal_below_6n_fraction_when_desired",
+    "tracking:signed_lateral_progress_ratio"
+  ],
+  "interpretation": "Recentring on the failed 300-step trajectory slightly reduces rear p95 load, but simultaneously worsens orientation, wheel tracking, lateral velocity, displacement, signed progress, and front low-load fraction at 150 steps. The source trajectory therefore encodes the closed-loop drift rather than a stabilising nonlocal centre.",
+  "decision": "Reject before 300 steps, do not use this episode for expert labels, and close direct full-trajectory recentering from attempt149 as the primary remedy."
+}

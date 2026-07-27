@@ -164,6 +164,117 @@ def main() -> dict:
         nominal_front_force_feedback_gain_leg=mppi_yaml.get(
             "nominal_front_force_feedback_gain_leg"
         ),
+        rear_swing_reference_proposal_ref_ids=mppi_yaml.get(
+            "rear_swing_reference_proposal_ref_ids"
+        ),
+        rear_swing_reference_proposal_scales=mppi_yaml.get(
+            "rear_swing_reference_proposal_scales"
+        ),
+        rear_swing_reference_proposal_joint_mask_leg=mppi_yaml.get(
+            "rear_swing_reference_proposal_joint_mask_leg"
+        ),
+        rear_swing_reference_proposal_lead_steps=int(
+            mppi_yaml.get(
+                "rear_swing_reference_proposal_lead_steps",
+                0,
+            )
+        ),
+        rear_swing_action_residual_lead_steps=(
+            int(mppi_yaml["rear_swing_action_residual_lead_steps"])
+            if mppi_yaml.get(
+                "rear_swing_action_residual_lead_steps"
+            )
+            is not None
+            else None
+        ),
+        rear_swing_tracking_error_proposal_scales=mppi_yaml.get(
+            "rear_swing_tracking_error_proposal_scales"
+        ),
+        rear_swing_tracking_error_proposal_joint_mask_leg=mppi_yaml.get(
+            "rear_swing_tracking_error_proposal_joint_mask_leg"
+        ),
+        rear_swing_tracking_error_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_swing_tracking_error_proposal_start_frame",
+                0,
+            )
+        ),
+        rear_swing_load_transfer_proposal_ref_ids=mppi_yaml.get(
+            "rear_swing_load_transfer_proposal_ref_ids"
+        ),
+        rear_swing_load_transfer_proposal_scales=mppi_yaml.get(
+            "rear_swing_load_transfer_proposal_scales"
+        ),
+        rear_swing_load_transfer_proposal_gain_by_wheel_leg_rad=(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_gain_by_wheel_leg_rad"
+            )
+        ),
+        rear_swing_load_transfer_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_start_frame",
+                0,
+            )
+        ),
+        rear_swing_load_transfer_proposal_start_frame_by_wheel=(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_start_frame_by_wheel"
+            )
+        ),
+        rear_swing_load_transfer_proposal_gate_mode=str(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_gate_mode",
+                "swing_schedule",
+            )
+        ),
+        rear_swing_load_transfer_proposal_imbalance_threshold_n=float(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_imbalance_threshold_n",
+                0.0,
+            )
+        ),
+        front_support_proposal_ref_ids=mppi_yaml.get(
+            "front_support_proposal_ref_ids"
+        ),
+        front_support_proposal_scales=mppi_yaml.get(
+            "front_support_proposal_scales"
+        ),
+        front_support_proposal_gain_leg_rad=mppi_yaml.get(
+            "front_support_proposal_gain_leg_rad"
+        ),
+        front_support_proposal_start_frame=int(
+            mppi_yaml.get(
+                "front_support_proposal_start_frame",
+                0,
+            )
+        ),
+        combine_rear_swing_front_support_proposals=mppi_yaml.get(
+            "combine_rear_swing_front_support_proposals",
+            False,
+        ),
+        combine_rear_swing_load_transfer_front_support_proposals=(
+            mppi_yaml.get(
+                "combine_rear_swing_load_transfer_front_support_proposals",
+                False,
+            )
+        ),
+        combine_rear_swing_reference_load_transfer_front_support_proposals=(
+            mppi_yaml.get(
+                "combine_rear_swing_reference_load_transfer_front_support_"
+                "proposals",
+                False,
+            )
+        ),
+        include_rear_support_reference_in_coordinated_proposals=mppi_yaml.get(
+            "include_rear_support_reference_in_coordinated_proposals",
+            False,
+        ),
+        rear_support_reference_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_support_reference_proposal_start_frame",
+                0,
+            )
+        ),
         output_front_force_feedback_target_n=float(
             mppi_yaml.get("output_front_force_feedback_target_n", 0.0)
         ),
@@ -179,11 +290,93 @@ def main() -> dict:
         output_front_force_feedback_gain_leg=mppi_yaml.get(
             "output_front_force_feedback_gain_leg"
         ),
+        output_rear_swing_force_feedback_target_n=float(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_target_n",
+                0.0,
+            )
+        ),
+        output_rear_swing_force_feedback_scale_n=float(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_scale_n",
+                1.0,
+            )
+        ),
+        output_rear_swing_force_feedback_lookahead_steps=mppi_yaml.get(
+            "output_rear_swing_force_feedback_lookahead_steps"
+        ),
+        output_rear_swing_force_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_start_frame",
+                0,
+            )
+        ),
+        output_rear_swing_force_feedback_gain_leg=mppi_yaml.get(
+            "output_rear_swing_force_feedback_gain_leg"
+        ),
+        output_rear_swing_height_feedback_ref_ids=mppi_yaml.get(
+            "output_rear_swing_height_feedback_ref_ids"
+        ),
+        output_rear_swing_height_feedback_gain=float(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_gain",
+                0.0,
+            )
+        ),
+        output_rear_swing_height_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_rear_swing_height_feedback_lookahead_steps=(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_lookahead_steps"
+            )
+        ),
+        output_rear_swing_height_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_start_frame",
+                0,
+            )
+        ),
+        output_rear_support_tracking_feedback_ref_ids=mppi_yaml.get(
+            "output_rear_support_tracking_feedback_ref_ids"
+        ),
+        output_rear_support_tracking_feedback_gain=float(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_gain",
+                0.0,
+            )
+        ),
+        output_rear_support_tracking_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_rear_support_tracking_feedback_lookahead_steps=(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_lookahead_steps"
+            )
+        ),
+        output_rear_support_tracking_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_start_frame",
+                0,
+            )
+        ),
         output_pitch_feedback_ref_ids=mppi_yaml.get(
             "output_pitch_feedback_ref_ids"
         ),
         output_pitch_feedback_gain_leg=mppi_yaml.get(
             "output_pitch_feedback_gain_leg"
+        ),
+        output_pitch_feedback_axis=str(
+            mppi_yaml.get("output_pitch_feedback_axis", "y")
+        ),
+        output_pitch_feedback_start_frame=int(
+            mppi_yaml.get("output_pitch_feedback_start_frame", 0)
         ),
         output_pitch_feedback_max_abs_rad=float(
             mppi_yaml.get(
@@ -274,6 +467,25 @@ def main() -> dict:
                 1.0,
             )
         )
+        lateral_velocity_cost_multiplier = float(
+            reference_overrides.get(
+                "lateral_velocity_cost_multiplier",
+                1.0,
+            )
+        )
+        rear_support_loss_cost_multiplier = float(
+            reference_overrides.get(
+                "rear_support_loss_cost_multiplier",
+                1.0,
+            )
+        )
+        base_orientation_axis_multipliers = tuple(
+            float(value)
+            for value in reference_overrides.get(
+                "base_orientation_axis_multipliers",
+                (1.0, 1.0, 1.0),
+            )
+        )
         before = provider.rollout.state_vector()[0].clone()
         before_delay_queue = adapter.action_delay_queue.clone()
         before_previous_command = adapter.previous_commanded_action.clone()
@@ -285,6 +497,15 @@ def main() -> dict:
             action_residual_weight=action_residual_weight,
             base_orientation_cost_multiplier=(
                 base_orientation_cost_multiplier
+            ),
+            lateral_velocity_cost_multiplier=(
+                lateral_velocity_cost_multiplier
+            ),
+            rear_support_loss_cost_multiplier=(
+                rear_support_loss_cost_multiplier
+            ),
+            base_orientation_axis_multipliers=(
+                base_orientation_axis_multipliers
             ),
         )
         provider.rollout.restore(snapshot)
@@ -315,6 +536,15 @@ def main() -> dict:
             action_residual_weight=action_residual_weight,
             base_orientation_cost_multiplier=(
                 base_orientation_cost_multiplier
+            ),
+            lateral_velocity_cost_multiplier=(
+                lateral_velocity_cost_multiplier
+            ),
+            rear_support_loss_cost_multiplier=(
+                rear_support_loss_cost_multiplier
+            ),
+            base_orientation_axis_multipliers=(
+                base_orientation_axis_multipliers
             ),
         )
         rollout_action16 = torch.cat(
@@ -369,10 +599,25 @@ def main() -> dict:
             "effective_base_orientation_cost_multiplier": (
                 base_orientation_cost_multiplier
             ),
+            "effective_lateral_velocity_cost_multiplier": (
+                lateral_velocity_cost_multiplier
+            ),
+            "effective_rear_support_loss_cost_multiplier": (
+                rear_support_loss_cost_multiplier
+            ),
+            "effective_base_orientation_axis_multipliers": list(
+                base_orientation_axis_multipliers
+            ),
             "effective_selection_mode": str(
                 reference_overrides.get(
                     "selection_mode",
                     mppi_config.selection_mode,
+                )
+            ),
+            "effective_temperature": float(
+                reference_overrides.get(
+                    "temperature",
+                    mppi_config.temperature,
                 )
             ),
             "effective_warm_start": bool(

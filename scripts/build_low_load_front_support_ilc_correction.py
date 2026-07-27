@@ -14,6 +14,32 @@ from lateral_mppi_dagger.config import sha256_file
 FRONT_JOINTS = ((0, 4, 8), (1, 5, 9))
 
 
+def couple_front_deficit(
+    deficit: np.ndarray,
+    mode: str,
+) -> np.ndarray:
+    """Optionally couple the two front-wheel deficits.
+
+    Coupling is useful when a physical correction must be applied as a
+    left/right pair because the local contact response is not separable.
+    """
+
+    value = np.asarray(deficit, dtype=np.float32)
+    if value.ndim != 2 or value.shape[1] != 2:
+        raise ValueError("Front deficit must have shape [steps,2].")
+    if mode == "independent":
+        return value.copy()
+    if mode == "mean":
+        shared = np.mean(value, axis=1, keepdims=True)
+    elif mode == "max":
+        shared = np.max(value, axis=1, keepdims=True)
+    else:
+        raise ValueError(
+            "Deficit coupling must be independent, mean, or max."
+        )
+    return np.repeat(shared, 2, axis=1).astype(np.float32)
+
+
 def _inside_root(path: Path) -> bool:
     resolved = path.expanduser().resolve()
     return resolved != ROOT and ROOT in resolved.parents
@@ -84,6 +110,15 @@ def main() -> None:
     parser.add_argument("--target-force-n", type=float, default=6.0)
     parser.add_argument("--lead-steps", type=int, default=4)
     parser.add_argument("--smoothing-radius", type=int, default=2)
+    parser.add_argument(
+        "--deficit-coupling",
+        choices=("independent", "mean", "max"),
+        default="independent",
+        help=(
+            "Use each front-wheel deficit independently, or apply the mean/"
+            "maximum deficit symmetrically to both front legs."
+        ),
+    )
     parser.add_argument(
         "--physical-gain-leg",
         type=float,
@@ -186,6 +221,10 @@ def main() -> None:
             ],
             axis=-1,
         ).astype(np.float32)
+    anticipated = couple_front_deficit(
+        anticipated,
+        args.deficit_coupling,
+    )
 
     physical_correction = np.zeros((steps, 12), dtype=np.float32)
     for wheel, joint_indices in enumerate(FRONT_JOINTS):
@@ -211,6 +250,10 @@ def main() -> None:
             [args.smoothing_radius],
             dtype=np.int32,
         ),
+        deficit_coupling=np.asarray(
+            [args.deficit_coupling],
+            dtype="U16",
+        ),
         physical_gain_leg=gain,
         measured_front_normal_force_n=force,
         desired_front_contact=desired_contact,
@@ -227,6 +270,7 @@ def main() -> None:
         "target_force_n": args.target_force_n,
         "lead_steps": args.lead_steps,
         "smoothing_radius": args.smoothing_radius,
+        "deficit_coupling": args.deficit_coupling,
         "physical_gain_leg": gain.tolist(),
         "source_below_target_count": np.sum(
             (force < args.target_force_n) & desired_contact,

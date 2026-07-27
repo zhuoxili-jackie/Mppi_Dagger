@@ -210,6 +210,117 @@ def main() -> dict[str, Any]:
         nominal_front_force_feedback_gain_leg=mppi_yaml.get(
             "nominal_front_force_feedback_gain_leg"
         ),
+        rear_swing_reference_proposal_ref_ids=mppi_yaml.get(
+            "rear_swing_reference_proposal_ref_ids"
+        ),
+        rear_swing_reference_proposal_scales=mppi_yaml.get(
+            "rear_swing_reference_proposal_scales"
+        ),
+        rear_swing_reference_proposal_joint_mask_leg=mppi_yaml.get(
+            "rear_swing_reference_proposal_joint_mask_leg"
+        ),
+        rear_swing_reference_proposal_lead_steps=int(
+            mppi_yaml.get(
+                "rear_swing_reference_proposal_lead_steps",
+                0,
+            )
+        ),
+        rear_swing_action_residual_lead_steps=(
+            int(mppi_yaml["rear_swing_action_residual_lead_steps"])
+            if mppi_yaml.get(
+                "rear_swing_action_residual_lead_steps"
+            )
+            is not None
+            else None
+        ),
+        rear_swing_tracking_error_proposal_scales=mppi_yaml.get(
+            "rear_swing_tracking_error_proposal_scales"
+        ),
+        rear_swing_tracking_error_proposal_joint_mask_leg=mppi_yaml.get(
+            "rear_swing_tracking_error_proposal_joint_mask_leg"
+        ),
+        rear_swing_tracking_error_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_swing_tracking_error_proposal_start_frame",
+                0,
+            )
+        ),
+        rear_swing_load_transfer_proposal_ref_ids=mppi_yaml.get(
+            "rear_swing_load_transfer_proposal_ref_ids"
+        ),
+        rear_swing_load_transfer_proposal_scales=mppi_yaml.get(
+            "rear_swing_load_transfer_proposal_scales"
+        ),
+        rear_swing_load_transfer_proposal_gain_by_wheel_leg_rad=(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_gain_by_wheel_leg_rad"
+            )
+        ),
+        rear_swing_load_transfer_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_start_frame",
+                0,
+            )
+        ),
+        rear_swing_load_transfer_proposal_start_frame_by_wheel=(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_start_frame_by_wheel"
+            )
+        ),
+        rear_swing_load_transfer_proposal_gate_mode=str(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_gate_mode",
+                "swing_schedule",
+            )
+        ),
+        rear_swing_load_transfer_proposal_imbalance_threshold_n=float(
+            mppi_yaml.get(
+                "rear_swing_load_transfer_proposal_imbalance_threshold_n",
+                0.0,
+            )
+        ),
+        front_support_proposal_ref_ids=mppi_yaml.get(
+            "front_support_proposal_ref_ids"
+        ),
+        front_support_proposal_scales=mppi_yaml.get(
+            "front_support_proposal_scales"
+        ),
+        front_support_proposal_gain_leg_rad=mppi_yaml.get(
+            "front_support_proposal_gain_leg_rad"
+        ),
+        front_support_proposal_start_frame=int(
+            mppi_yaml.get(
+                "front_support_proposal_start_frame",
+                0,
+            )
+        ),
+        combine_rear_swing_front_support_proposals=mppi_yaml.get(
+            "combine_rear_swing_front_support_proposals",
+            False,
+        ),
+        combine_rear_swing_load_transfer_front_support_proposals=(
+            mppi_yaml.get(
+                "combine_rear_swing_load_transfer_front_support_proposals",
+                False,
+            )
+        ),
+        combine_rear_swing_reference_load_transfer_front_support_proposals=(
+            mppi_yaml.get(
+                "combine_rear_swing_reference_load_transfer_front_support_"
+                "proposals",
+                False,
+            )
+        ),
+        include_rear_support_reference_in_coordinated_proposals=mppi_yaml.get(
+            "include_rear_support_reference_in_coordinated_proposals",
+            False,
+        ),
+        rear_support_reference_proposal_start_frame=int(
+            mppi_yaml.get(
+                "rear_support_reference_proposal_start_frame",
+                0,
+            )
+        ),
         output_front_force_feedback_target_n=float(
             mppi_yaml.get("output_front_force_feedback_target_n", 0.0)
         ),
@@ -225,15 +336,121 @@ def main() -> dict[str, Any]:
         output_front_force_feedback_gain_leg=mppi_yaml.get(
             "output_front_force_feedback_gain_leg"
         ),
+        output_rear_swing_force_feedback_target_n=float(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_target_n",
+                0.0,
+            )
+        ),
+        output_rear_swing_force_feedback_scale_n=float(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_scale_n",
+                1.0,
+            )
+        ),
+        output_rear_swing_force_feedback_lookahead_steps=mppi_yaml.get(
+            "output_rear_swing_force_feedback_lookahead_steps"
+        ),
+        output_rear_swing_force_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_swing_force_feedback_start_frame",
+                0,
+            )
+        ),
+        output_rear_swing_force_feedback_gain_leg=mppi_yaml.get(
+            "output_rear_swing_force_feedback_gain_leg"
+        ),
+        output_rear_swing_height_feedback_ref_ids=mppi_yaml.get(
+            "output_rear_swing_height_feedback_ref_ids"
+        ),
+        output_rear_swing_height_feedback_gain=float(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_gain",
+                0.0,
+            )
+        ),
+        output_rear_swing_height_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_rear_swing_height_feedback_lookahead_steps=(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_lookahead_steps"
+            )
+        ),
+        output_rear_swing_height_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_swing_height_feedback_start_frame",
+                0,
+            )
+        ),
+        output_rear_support_tracking_feedback_ref_ids=mppi_yaml.get(
+            "output_rear_support_tracking_feedback_ref_ids"
+        ),
+        output_rear_support_tracking_feedback_gain=float(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_gain",
+                0.0,
+            )
+        ),
+        output_rear_support_tracking_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_rear_support_tracking_feedback_lookahead_steps=(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_lookahead_steps"
+            )
+        ),
+        output_rear_support_tracking_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_rear_support_tracking_feedback_start_frame",
+                0,
+            )
+        ),
         output_pitch_feedback_ref_ids=mppi_yaml.get(
             "output_pitch_feedback_ref_ids"
         ),
         output_pitch_feedback_gain_leg=mppi_yaml.get(
             "output_pitch_feedback_gain_leg"
         ),
+        output_pitch_feedback_axis=str(
+            mppi_yaml.get("output_pitch_feedback_axis", "y")
+        ),
+        output_pitch_feedback_start_frame=int(
+            mppi_yaml.get("output_pitch_feedback_start_frame", 0)
+        ),
         output_pitch_feedback_max_abs_rad=float(
             mppi_yaml.get(
                 "output_pitch_feedback_max_abs_rad",
+                0.0,
+            )
+        ),
+        output_contact_orientation_feedback_ref_ids=mppi_yaml.get(
+            "output_contact_orientation_feedback_ref_ids"
+        ),
+        output_contact_orientation_feedback_gain_xyz=mppi_yaml.get(
+            "output_contact_orientation_feedback_gain_xyz"
+        ),
+        output_contact_orientation_feedback_start_frame=int(
+            mppi_yaml.get(
+                "output_contact_orientation_feedback_start_frame",
+                0,
+            )
+        ),
+        output_contact_orientation_feedback_max_endpoint_delta_m=float(
+            mppi_yaml.get(
+                "output_contact_orientation_feedback_max_endpoint_delta_m",
+                0.0,
+            )
+        ),
+        output_contact_orientation_feedback_max_abs_rad=float(
+            mppi_yaml.get(
+                "output_contact_orientation_feedback_max_abs_rad",
                 0.0,
             )
         ),
@@ -248,6 +465,31 @@ def main() -> dict[str, Any]:
     reset_count = 0
     solver_schedule_phase_counts: dict[str, int] = {}
     solver_schedule_reset_events: list[dict[str, int]] = []
+    selected_best_sample_source_counts: dict[str, int] = {}
+    structured_proposal_selection_events: list[dict[str, object]] = []
+    structured_proposal_cost_events: list[dict[str, object]] = []
+    rear_swing_height_feedback_events: list[dict[str, object]] = []
+    rear_swing_height_feedback_stuck_counts = [0, 0]
+    rear_swing_height_feedback_nonzero_applied_count = 0
+    rear_swing_height_feedback_max_deficit_m = 0.0
+    rear_swing_height_feedback_max_requested_abs_rad = 0.0
+    rear_swing_height_feedback_max_applied_abs_rad = 0.0
+    rear_support_tracking_feedback_events: list[dict[str, object]] = []
+    rear_support_tracking_feedback_missing_counts = [0, 0]
+    rear_support_tracking_feedback_nonzero_applied_count = 0
+    rear_support_tracking_feedback_max_requested_abs_rad = 0.0
+    rear_support_tracking_feedback_max_applied_abs_rad = 0.0
+    orientation_feedback_events: list[dict[str, object]] = []
+    orientation_feedback_nonzero_applied_count = 0
+    orientation_feedback_max_error_abs_rad = 0.0
+    orientation_feedback_max_requested_abs_rad = 0.0
+    orientation_feedback_max_applied_abs_rad = 0.0
+    contact_orientation_feedback_events: list[dict[str, object]] = []
+    contact_orientation_feedback_nonzero_applied_count = 0
+    contact_orientation_feedback_max_error_abs_rad = 0.0
+    contact_orientation_feedback_max_endpoint_delta_m = 0.0
+    contact_orientation_feedback_max_requested_abs_rad = 0.0
+    contact_orientation_feedback_max_applied_abs_rad = 0.0
     status = "starting"
     error_record = None
     try:
@@ -302,6 +544,519 @@ def main() -> dict[str, Any]:
                     reply = provider(request)
                     request_count += 1
                     diagnostics = dict(provider.last_diagnostics)
+                    selected_source = str(
+                        diagnostics.get(
+                            "selected_best_sample_source",
+                            "missing",
+                        )
+                    )
+                    selected_best_sample_source_counts[selected_source] = (
+                        selected_best_sample_source_counts.get(
+                            selected_source,
+                            0,
+                        )
+                        + 1
+                    )
+                    if selected_source.startswith(
+                        "structured_proposal_"
+                    ):
+                        proposal_index = int(
+                            selected_source.rsplit("_", 1)[1]
+                        )
+                        proposal_descriptors = diagnostics.get(
+                            "structured_proposal_descriptors",
+                            [],
+                        )
+                        proposal_descriptor = (
+                            dict(proposal_descriptors[proposal_index])
+                            if proposal_index
+                            < len(proposal_descriptors)
+                            else {}
+                        )
+                        structured_proposal_selection_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "proposal_index": proposal_index,
+                                "proposal_kind": (
+                                    proposal_descriptor.get("kind")
+                                ),
+                                "proposal_scale": (
+                                    proposal_descriptor.get("scale")
+                                ),
+                                "selected_best_sample_iteration": int(
+                                    diagnostics.get(
+                                        "selected_best_sample_iteration",
+                                        -1,
+                                    )
+                                ),
+                            }
+                        )
+                    proposal_cost_iterations = diagnostics.get(
+                        "structured_proposal_cost_iterations",
+                        [],
+                    )
+                    if proposal_cost_iterations:
+                        proposal_descriptors = list(
+                            diagnostics.get(
+                                "structured_proposal_descriptors",
+                                [],
+                            )
+                        )
+                        proposal_diagnostics = diagnostics.get(
+                            "rear_swing_reference_proposals",
+                            {},
+                        )
+                        structured_proposal_cost_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "proposal_descriptors": (
+                                    proposal_descriptors
+                                ),
+                                "proposal_scales": [
+                                    descriptor.get("scale")
+                                    for descriptor in proposal_descriptors
+                                ],
+                                "lead_steps": int(
+                                    proposal_diagnostics.get(
+                                        "lead_steps",
+                                        0,
+                                    )
+                                ),
+                                "iterations": proposal_cost_iterations,
+                            }
+                        )
+                    rear_swing_height_feedback = diagnostics.get(
+                        "output_rear_swing_height_feedback",
+                        {},
+                    )
+                    stuck_rear_swing = list(
+                        rear_swing_height_feedback.get(
+                            "stuck_rear_swing",
+                            [False, False],
+                        )
+                    )
+                    if (
+                        rear_swing_height_feedback.get("enabled", False)
+                        and any(bool(value) for value in stuck_rear_swing)
+                    ):
+                        height_deficit = [
+                            float(value)
+                            for value in rear_swing_height_feedback.get(
+                                "height_deficit_m",
+                                [0.0, 0.0],
+                            )
+                        ]
+                        requested_correction = [
+                            float(value)
+                            for value in rear_swing_height_feedback.get(
+                                "requested_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        applied_correction = [
+                            float(value)
+                            for value in rear_swing_height_feedback.get(
+                                "applied_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        for rear_index in range(2):
+                            rear_swing_height_feedback_stuck_counts[
+                                rear_index
+                            ] += int(bool(stuck_rear_swing[rear_index]))
+                        if any(
+                            abs(value) > 0.0
+                            for value in applied_correction
+                        ):
+                            rear_swing_height_feedback_nonzero_applied_count += 1
+                        rear_swing_height_feedback_max_deficit_m = max(
+                            rear_swing_height_feedback_max_deficit_m,
+                            max(height_deficit),
+                        )
+                        rear_swing_height_feedback_max_requested_abs_rad = max(
+                            rear_swing_height_feedback_max_requested_abs_rad,
+                            max(
+                                abs(value)
+                                for value in requested_correction
+                            ),
+                        )
+                        rear_swing_height_feedback_max_applied_abs_rad = max(
+                            rear_swing_height_feedback_max_applied_abs_rad,
+                            max(
+                                abs(value)
+                                for value in applied_correction
+                            ),
+                        )
+                        rear_swing_height_feedback_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "schedule_frame": int(
+                                    rear_swing_height_feedback[
+                                        "schedule_frame"
+                                    ]
+                                ),
+                                "preview_start_frame": int(
+                                    rear_swing_height_feedback[
+                                        "preview_start_frame"
+                                    ]
+                                ),
+                                "target_frame_by_rear": [
+                                    (
+                                        None
+                                        if value is None
+                                        else int(value)
+                                    )
+                                    for value
+                                    in rear_swing_height_feedback.get(
+                                        "target_frame_by_rear",
+                                        [None, None],
+                                    )
+                                ],
+                                "stuck_rear_swing": [
+                                    bool(value)
+                                    for value in stuck_rear_swing
+                                ],
+                                "rear_normal_n": [
+                                    float(value)
+                                    for value
+                                    in rear_swing_height_feedback.get(
+                                        "rear_normal_n",
+                                        [0.0, 0.0],
+                                    )
+                                ],
+                                "height_deficit_m": height_deficit,
+                                "jacobian_joint_delta_rad": [
+                                    float(value)
+                                    for value
+                                    in rear_swing_height_feedback.get(
+                                        "jacobian_joint_delta_rad",
+                                        [0.0] * 12,
+                                    )
+                                ],
+                                "predicted_cartesian_delta_m_by_rear": [
+                                    [float(value) for value in vector]
+                                    for vector
+                                    in rear_swing_height_feedback.get(
+                                        "predicted_cartesian_delta_m_by_rear",
+                                        [
+                                            [0.0, 0.0, 0.0],
+                                            [0.0, 0.0, 0.0],
+                                        ],
+                                    )
+                                ],
+                                "requested_correction_rad": (
+                                    requested_correction
+                                ),
+                                "applied_correction_rad": (
+                                    applied_correction
+                                ),
+                            }
+                        )
+                    rear_support_feedback = diagnostics.get(
+                        "output_rear_support_tracking_feedback",
+                        {},
+                    )
+                    missing_rear_support = list(
+                        rear_support_feedback.get(
+                            "missing_rear_support",
+                            [False, False],
+                        )
+                    )
+                    if (
+                        rear_support_feedback.get("enabled", False)
+                        and any(bool(value) for value in missing_rear_support)
+                    ):
+                        requested_correction = [
+                            float(value)
+                            for value in rear_support_feedback.get(
+                                "requested_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        applied_correction = [
+                            float(value)
+                            for value in rear_support_feedback.get(
+                                "applied_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        for rear_index in range(2):
+                            rear_support_tracking_feedback_missing_counts[
+                                rear_index
+                            ] += int(
+                                bool(
+                                    missing_rear_support[rear_index]
+                                )
+                            )
+                        if any(
+                            abs(value) > 0.0
+                            for value in applied_correction
+                        ):
+                            rear_support_tracking_feedback_nonzero_applied_count += 1
+                        rear_support_tracking_feedback_max_requested_abs_rad = max(
+                            rear_support_tracking_feedback_max_requested_abs_rad,
+                            max(
+                                abs(value)
+                                for value in requested_correction
+                            ),
+                        )
+                        rear_support_tracking_feedback_max_applied_abs_rad = max(
+                            rear_support_tracking_feedback_max_applied_abs_rad,
+                            max(
+                                abs(value)
+                                for value in applied_correction
+                            ),
+                        )
+                        rear_support_tracking_feedback_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "schedule_frame": int(
+                                    rear_support_feedback[
+                                        "schedule_frame"
+                                    ]
+                                ),
+                                "missing_rear_support": [
+                                    bool(value)
+                                    for value in missing_rear_support
+                                ],
+                                "rear_normal_n": [
+                                    float(value)
+                                    for value in rear_support_feedback.get(
+                                        "rear_normal_n",
+                                        [0.0, 0.0],
+                                    )
+                                ],
+                                "requested_correction_rad": (
+                                    requested_correction
+                                ),
+                                "applied_correction_rad": (
+                                    applied_correction
+                                ),
+                            }
+                        )
+                    contact_orientation_feedback = diagnostics.get(
+                        "output_contact_orientation_feedback",
+                        {},
+                    )
+                    if contact_orientation_feedback.get(
+                        "enabled",
+                        False,
+                    ):
+                        orientation_error = [
+                            float(value)
+                            for value
+                            in contact_orientation_feedback.get(
+                                "orientation_error_target_rad",
+                                [0.0] * 3,
+                            )
+                        ]
+                        endpoint_delta = [
+                            [float(value) for value in vector]
+                            for vector
+                            in contact_orientation_feedback.get(
+                                "desired_endpoint_delta_world_m",
+                                [[0.0] * 3 for _ in range(4)],
+                            )
+                        ]
+                        requested_correction = [
+                            float(value)
+                            for value
+                            in contact_orientation_feedback.get(
+                                "requested_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        applied_correction = [
+                            float(value)
+                            for value
+                            in contact_orientation_feedback.get(
+                                "applied_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        if any(
+                            abs(value) > 0.0
+                            for value in applied_correction
+                        ):
+                            contact_orientation_feedback_nonzero_applied_count += 1
+                        contact_orientation_feedback_max_error_abs_rad = max(
+                            contact_orientation_feedback_max_error_abs_rad,
+                            sum(
+                                value * value
+                                for value in orientation_error
+                            )
+                            ** 0.5,
+                        )
+                        contact_orientation_feedback_max_endpoint_delta_m = max(
+                            contact_orientation_feedback_max_endpoint_delta_m,
+                            max(
+                                (
+                                    sum(
+                                        value * value
+                                        for value in vector
+                                    )
+                                    ** 0.5
+                                )
+                                for vector in endpoint_delta
+                            ),
+                        )
+                        contact_orientation_feedback_max_requested_abs_rad = max(
+                            contact_orientation_feedback_max_requested_abs_rad,
+                            max(
+                                abs(value)
+                                for value in requested_correction
+                            ),
+                        )
+                        contact_orientation_feedback_max_applied_abs_rad = max(
+                            contact_orientation_feedback_max_applied_abs_rad,
+                            max(
+                                abs(value)
+                                for value in applied_correction
+                            ),
+                        )
+                        contact_orientation_feedback_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "schedule_frame": int(
+                                    contact_orientation_feedback.get(
+                                        "schedule_frame",
+                                        request.ref_frame,
+                                    )
+                                ),
+                                "orientation_error_target_rad": (
+                                    orientation_error
+                                ),
+                                "weighted_orientation_error_world_rad": [
+                                    float(value)
+                                    for value
+                                    in contact_orientation_feedback.get(
+                                        "weighted_orientation_error_world_rad",
+                                        [0.0] * 3,
+                                    )
+                                ],
+                                "desired_support": [
+                                    bool(value)
+                                    for value
+                                    in contact_orientation_feedback.get(
+                                        "desired_support",
+                                        [False] * 4,
+                                    )
+                                ],
+                                "measured_contact": [
+                                    bool(value)
+                                    for value
+                                    in contact_orientation_feedback.get(
+                                        "measured_contact",
+                                        [False] * 4,
+                                    )
+                                ],
+                                "normal_force_n": [
+                                    float(value)
+                                    for value
+                                    in contact_orientation_feedback.get(
+                                        "normal_force_n",
+                                        [0.0] * 4,
+                                    )
+                                ],
+                                "desired_endpoint_delta_world_m": (
+                                    endpoint_delta
+                                ),
+                                "jacobian_joint_delta_rad": [
+                                    float(value)
+                                    for value
+                                    in contact_orientation_feedback.get(
+                                        "jacobian_joint_delta_rad",
+                                        [0.0] * 12,
+                                    )
+                                ],
+                                "requested_correction_rad": (
+                                    requested_correction
+                                ),
+                                "applied_correction_rad": (
+                                    applied_correction
+                                ),
+                            }
+                        )
+                    orientation_feedback = diagnostics.get(
+                        "output_pitch_feedback",
+                        {},
+                    )
+                    if orientation_feedback.get("enabled", False):
+                        requested_correction = [
+                            float(value)
+                            for value in orientation_feedback.get(
+                                "requested_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        applied_correction = [
+                            float(value)
+                            for value in orientation_feedback.get(
+                                "applied_correction_rad",
+                                [0.0] * 12,
+                            )
+                        ]
+                        signed_error = float(
+                            orientation_feedback.get(
+                                "signed_orientation_axis_error_rad",
+                                0.0,
+                            )
+                        )
+                        if any(
+                            abs(value) > 0.0
+                            for value in applied_correction
+                        ):
+                            orientation_feedback_nonzero_applied_count += 1
+                        orientation_feedback_max_error_abs_rad = max(
+                            orientation_feedback_max_error_abs_rad,
+                            abs(signed_error),
+                        )
+                        orientation_feedback_max_requested_abs_rad = max(
+                            orientation_feedback_max_requested_abs_rad,
+                            max(
+                                abs(value)
+                                for value in requested_correction
+                            ),
+                        )
+                        orientation_feedback_max_applied_abs_rad = max(
+                            orientation_feedback_max_applied_abs_rad,
+                            max(
+                                abs(value)
+                                for value in applied_correction
+                            ),
+                        )
+                        orientation_feedback_events.append(
+                            {
+                                "request_count": request_count,
+                                "ref_id": int(request.ref_id),
+                                "ref_frame": int(request.ref_frame),
+                                "feedback_axis": str(
+                                    orientation_feedback.get(
+                                        "feedback_axis",
+                                        "missing",
+                                    )
+                                ),
+                                "signed_orientation_axis_error_rad": (
+                                    signed_error
+                                ),
+                                "requested_correction_rad": (
+                                    requested_correction
+                                ),
+                                "applied_correction_rad": (
+                                    applied_correction
+                                ),
+                            }
+                        )
                     schedule_phase = diagnostics.get(
                         "solver_schedule_phase"
                     )
@@ -360,7 +1115,7 @@ def main() -> dict[str, Any]:
             socket_path.unlink()
 
     report = {
-        "schema_version": "pcbc-isolated-mppi-server-report-v1",
+        "schema_version": "pcbc-isolated-mppi-server-report-v3",
         "status": status,
         "server": identity,
         "socket": str(socket_path),
@@ -372,6 +1127,89 @@ def main() -> dict[str, Any]:
         "solver_schedule_reset_events": (
             solver_schedule_reset_events
         ),
+        "selected_best_sample_source_counts": (
+            selected_best_sample_source_counts
+        ),
+        "structured_proposal_selection_events": (
+            structured_proposal_selection_events
+        ),
+        "structured_proposal_cost_events": (
+            structured_proposal_cost_events
+        ),
+        "rear_swing_height_feedback": {
+            "event_count": len(rear_swing_height_feedback_events),
+            "stuck_swing_counts": (
+                rear_swing_height_feedback_stuck_counts
+            ),
+            "nonzero_applied_count": (
+                rear_swing_height_feedback_nonzero_applied_count
+            ),
+            "max_height_deficit_m": (
+                rear_swing_height_feedback_max_deficit_m
+            ),
+            "max_requested_abs_rad": (
+                rear_swing_height_feedback_max_requested_abs_rad
+            ),
+            "max_applied_abs_rad": (
+                rear_swing_height_feedback_max_applied_abs_rad
+            ),
+            "events": rear_swing_height_feedback_events,
+        },
+        "rear_support_tracking_feedback": {
+            "event_count": len(
+                rear_support_tracking_feedback_events
+            ),
+            "missing_support_counts": (
+                rear_support_tracking_feedback_missing_counts
+            ),
+            "nonzero_applied_count": (
+                rear_support_tracking_feedback_nonzero_applied_count
+            ),
+            "max_requested_abs_rad": (
+                rear_support_tracking_feedback_max_requested_abs_rad
+            ),
+            "max_applied_abs_rad": (
+                rear_support_tracking_feedback_max_applied_abs_rad
+            ),
+            "events": rear_support_tracking_feedback_events,
+        },
+        "orientation_feedback": {
+            "event_count": len(orientation_feedback_events),
+            "nonzero_applied_count": (
+                orientation_feedback_nonzero_applied_count
+            ),
+            "max_error_abs_rad": (
+                orientation_feedback_max_error_abs_rad
+            ),
+            "max_requested_abs_rad": (
+                orientation_feedback_max_requested_abs_rad
+            ),
+            "max_applied_abs_rad": (
+                orientation_feedback_max_applied_abs_rad
+            ),
+            "events": orientation_feedback_events,
+        },
+        "contact_orientation_feedback": {
+            "event_count": len(
+                contact_orientation_feedback_events
+            ),
+            "nonzero_applied_count": (
+                contact_orientation_feedback_nonzero_applied_count
+            ),
+            "max_error_abs_rad": (
+                contact_orientation_feedback_max_error_abs_rad
+            ),
+            "max_endpoint_delta_m": (
+                contact_orientation_feedback_max_endpoint_delta_m
+            ),
+            "max_requested_abs_rad": (
+                contact_orientation_feedback_max_requested_abs_rad
+            ),
+            "max_applied_abs_rad": (
+                contact_orientation_feedback_max_applied_abs_rad
+            ),
+            "events": contact_orientation_feedback_events,
+        },
         "nominal_action_reference": nominal_record,
         "error": error_record,
     }
